@@ -108,12 +108,12 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
                     <h3 id="currentSubjectTitle" class="text-lg font-bold text-white flex items-center gap-2">
-                        <span>🧬 Fichas Mnemotécnicas: Ciencias</span>
+                        <span>🧬 Fichas Mnemotécnicas</span>
                     </h3>
                     <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para girarla 3D. Marca si ya la comprendiste o si necesitas repasar.</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span id="cardCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Ficha 1 de 150</span>
+                    <span id="cardCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Ficha 1 de 1</span>
                 </div>
             </div>
 
@@ -161,7 +161,7 @@
                     <p class="text-xs text-slate-400 mt-0.5">Práctica guiada con reactivos oficiales de pruebas estandarizadas y retroalimentación</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span id="questionCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Reactivo 1 de 90</span>
+                    <span id="questionCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Reactivo 1 de 1</span>
                 </div>
             </div>
 
@@ -230,7 +230,7 @@
                 {t: "Primera Ley de Newton", b: "Dinámica", e: "🧱", f: "Inercia (ΣF = 0)", d: "Un cuerpo mantiene su estado a menos que actúe una fuerza neta.", tip: "Frenado brusco de un autobús."},
                 {t: "Segunda Ley de Newton", b: "Dinámica", e: "🏋️", f: "F = m·a", d: "La aceleración es directamente proporcional a la fuerza e inversamente a la masa.", tip: "Empujar un carrito vacío vs lleno."},
                 {t: "Tercera Ley de Newton", b: "Dinámica", e: "🪃", f: "Acción y Reacción", d: "A toda fuerza de acción corresponde otra de igual magnitud y sentido opuesto.", tip: "El retroceso al disparar un arma."},
-                {t: "Trabajo Mecánico", b: "Energía y Trabajo", e: "⚙️", f: "W = F · d · cos(θ)", d: "Producto de la fuerza aplicada por el desplazamiento en la misma dirección.", tip: "Unidades in Joules (J)."},
+                {t: "Trabajo Mecánico", b: "Energía y Trabajo", e: "⚙️", f: "W = F · d · cos(θ)", d: "Producto de la fuerza aplicada por el desplazamiento en la misma dirección.", tip: "Unidades en Joules (J)."},
                 {t: "Energía Cinética", b: "Energía y Trabajo", e: "⚡", f: "K = ½ · m · v²", d: "Energía que posee un cuerpo en virtud de su movimiento.", tip: "Depende directamente de la masa y del cuadrado de la velocidad."},
                 {t: "Potencia Mecánica", b: "Trabajo y Potencia", e: "💡", f: "P = W / t", d: "Rapidez con la que se realiza un trabajo o se transfiere energía.", tip: "Unidades en Watts (W)."}
             ];
@@ -769,6 +769,7 @@
 
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             Object.keys(database).forEach(key => {
@@ -837,50 +838,56 @@
             renderSubjects();
             renderFlashcardSingle();
             renderQuestion();
-            updateLiveStats();
         }
 
         function renderFlashcardSingle() {
             const sub = database[currentSubjectKey];
             const card = sub.flashcards[currentCardIdx];
             
-            document.getElementById('currentSubjectTitle').innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name}</span>`;
-            document.getElementById('cardCounter').className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
-            document.getElementById('cardCounter').innerText = `Ficha ${currentCardIdx + 1} de ${sub.flashcards.length}`;
-            
+            const titleEl = document.getElementById('currentSubjectTitle');
+            const counterEl = document.getElementById('cardCounter');
             const container = document.getElementById('flashcardSingleContainer');
-            container.innerHTML = `
-                <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-2xl rounded-2xl cursor-pointer" onclick="this.classList.toggle('rotate-y-180')">
-                    <div class="absolute inset-0 backface-hidden bg-slate-950 border ${sub.borderNeon} rounded-2xl p-6 flex flex-col justify-between">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">Ficha #${currentCardIdx + 1}</span>
-                            <span class="text-xs text-slate-400 font-medium">${card.block}</span>
+            
+            if (titleEl) titleEl.innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name}</span>`;
+            if (counterEl) {
+                counterEl.className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
+                counterEl.innerText = `Ficha ${currentCardIdx + 1} de ${sub.flashcards.length}`;
+            }
+            
+            if (container) {
+                container.innerHTML = `
+                    <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-2xl rounded-2xl cursor-pointer" onclick="this.classList.toggle('rotate-y-180')">
+                        <div class="absolute inset-0 backface-hidden bg-slate-950 border ${sub.borderNeon} rounded-2xl p-6 flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">Ficha #${currentCardIdx + 1}</span>
+                                <span class="text-xs text-slate-400 font-medium">${card.block}</span>
+                            </div>
+                            <div class="text-center space-y-3 my-auto">
+                                <span class="text-5xl block">${card.frontEmoji}</span>
+                                <h4 class="font-bold text-base text-white">${card.title}</h4>
+                                <p class="text-xs sm:text-sm text-slate-300 font-mono">${card.frontText}</p>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-[11px] ${sub.badgeNeon} px-3 py-1.5 rounded-lg border inline-block">👆 Toca para girar y ver significado MEP</span>
+                            </div>
                         </div>
-                        <div class="text-center space-y-3 my-auto">
-                            <span class="text-5xl block">${card.frontEmoji}</span>
-                            <h4 class="font-bold text-base text-white">${card.title}</h4>
-                            <p class="text-xs sm:text-sm text-slate-300 font-mono">${card.frontText}</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-[11px] ${sub.badgeNeon} px-3 py-1.5 rounded-lg border inline-block">👆 Toca para girar y ver significado MEP</span>
-                        </div>
-                    </div>
 
-                    <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-slate-900 to-slate-950 border ${sub.borderNeon} rounded-2xl p-6 flex flex-col justify-between">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">${card.backTitle}</span>
-                            <span class="text-xs text-slate-400 font-medium">MEP 2026</span>
-                        </div>
-                        <div class="space-y-3 my-auto">
-                            <h5 class="font-bold text-sm text-white">${card.title}</h5>
-                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${card.backText}</p>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 font-medium">
-                            🎯 <strong>Tip:</strong> ${card.tip}
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-slate-900 to-slate-950 border ${sub.borderNeon} rounded-2xl p-6 flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">${card.backTitle}</span>
+                                <span class="text-xs text-slate-400 font-medium">MEP 2026</span>
+                            </div>
+                            <div class="space-y-3 my-auto">
+                                <h5 class="font-bold text-sm text-white">${card.title}</h5>
+                                <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${card.backText}</p>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 font-medium">
+                                🎯 <strong>Tip:</strong> ${card.tip}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
 
             updateCardStatusButtons();
         }
@@ -904,6 +911,7 @@
             
             const btnComp = document.getElementById('btnComprendido');
             const btnRep = document.getElementById('btnRepasar');
+            if (!btnComp || !btnRep) return;
 
             if (currentStatus === 'comprendido') {
                 btnComp.className = "px-4 py-2 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-xl border border-emerald-500/50 transition-all flex items-center gap-1.5 shadow-lg shadow-emerald-500/10";
@@ -940,11 +948,18 @@
         function renderQuestion() {
             const sub = database[currentSubjectKey];
             const q = sub.questions[currentQuestionIdx];
-            document.getElementById('questionBankTitle').innerHTML = `<span>📝 Banco de Preguntas MEP: ${sub.name} (${sub.questions.length} Ítems)</span>`;
-            document.getElementById('questionCounter').className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
-            document.getElementById('questionCounter').innerText = `Reactivo ${currentQuestionIdx + 1} de ${sub.questions.length}`;
-
+            
+            const titleEl = document.getElementById('questionBankTitle');
+            const counterEl = document.getElementById('questionCounter');
             const container = document.getElementById('questionContainer');
+
+            if (titleEl) titleEl.innerHTML = `<span>📝 Banco de Preguntas MEP: ${sub.name} (${sub.questions.length} Ítems)</span>`;
+            if (counterEl) {
+                counterEl.className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
+                counterEl.innerText = `Reactivo ${currentQuestionIdx + 1} de ${sub.questions.length}`;
+            }
+
+            if (!container) return;
             
             let optionsHTML = '';
             const letters = ['A', 'B', 'C', 'D'];
@@ -1017,9 +1032,7 @@
             
             sub.progress.questions = Math.min(100, Math.round((Object.keys(selectedAnswers).length / sub.questions.length) * 100));
             renderSubjects();
-
             renderQuestion();
-            updateLiveStats();
         }
 
         function nextQuestion() {
@@ -1044,25 +1057,12 @@
             database[currentSubjectKey].progress.questions = 0;
             renderSubjects();
             renderQuestion();
-            updateLiveStats();
-        }
-
-        function updateLiveStats() {
-            const sub = database[currentSubjectKey];
-            const totalQ = sub.questions.length;
-            const pct = stats.answered > 0 ? Math.round((stats.correct / stats.answered) * 100) : 0;
-            
-            document.getElementById('answeredCount')?.innerText = `${stats.answered} / ${totalQ}`;
-            document.getElementById('correctCount')?.innerText = stats.correct;
-            document.getElementById('liveScoreBadge')?.innerText = `${pct}% Aciertos`;
-            document.getElementById('liveProgressBar')?.style.width = `${pct}%`;
         }
 
         window.onload = function() {
             renderSubjects();
             renderFlashcardSingle();
             renderQuestion();
-            updateLiveStats();
         };
     </script>
 </body>
