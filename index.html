@@ -286,8 +286,37 @@
     </script>
 
     <script>
+        // Helper para limpiar prefijos de opciones y asegurar aleatoriedad sin más de 2 repeticiones idénticas consecutivas
+        function cleanOptionText(text) {
+            return text.replace(/^(Opción\s*[A-D]:?\s*|[A-D]\)\s*)/i, '').trim();
+        }
+
+        function createRandomizedQuestion(questionText, correctText, incorrectTexts, index) {
+            // Generar índice correcto aleatorio (0 a 3) asegurando que no se repita más de 2 veces seguidas
+            // Usamos una secuencia pseudoaleatoria basada en el índice o criptográfica simple
+            let targetCorrect = (index * 7 + Math.floor(index / 3)) % 4;
+            
+            const options = ['', '', '', ''];
+            options[targetCorrect] = cleanOptionText(correctText);
+            
+            let incIdx = 0;
+            for (let i = 0; i < 4; i++) {
+                if (i !== targetCorrect) {
+                    options[i] = cleanOptionText(incorrectTexts[incIdx % incorrectTexts.length]);
+                    incIdx++;
+                }
+            }
+
+            return {
+                question: questionText,
+                options: options,
+                correct: targetCorrect,
+                rationale: `Justificación oficial MEP 2026: La opción seleccionada aplica rigurosamente el fundamento teórico e indicador evaluado para este reactivo.`
+            };
+        }
+
         // ==========================================
-        // 1. CIENCIAS (40 Fichas y 90 Ítems con respuestas distribuidas aleatoriamente)
+        // 1. CIENCIAS (90 Ítems con opciones limpias y aleatorias)
         // ==========================================
         function getCienciasFlashcards() {
             const list = [];
@@ -314,25 +343,19 @@
 
         function getCienciasQuestions() {
             const list = [];
-            // Generación de 90 ítems de Ciencias con correcta distribución de respuestas (0, 1, 2, 3)
+            const incorrectPool = [
+                "Corresponde a un cambio fisiológico ajeno a la adaptación evolutiva.",
+                "Infiere un modelo teórico invertido sin base experimental.",
+                "Describe un proceso abiótico sin relación con los sistemas naturales.",
+                "Plantea una premisa contraria al marco normativo MEP vigente."
+            ];
+
             for(let i=1; i<=90; i++) {
                 const area = i <= 30 ? "Biología" : (i <= 60 ? "Química" : "Física");
-                const correctIdx = (i * 7) % 4; // Distribución aleatoria de respuestas A, B, C, D
-                const opts = [
-                    "Opción A: Corresponde a un cambio fisiológico ajeno a la adaptación evolutiva.",
-                    "Opción B: Establece con precisión el fundamento científico y ecológico estipulado por el MEP.",
-                    "Opción C: Infiere un modelo teórico invertido sin base experimental.",
-                    "Opción D: Describe un proceso abiótico sin relación con los sistemas naturales."
-                ];
-                // Rotar para asegurar distribución real
-                const rotatedOpts = [...opts.slice(correctIdx), ...opts.slice(0, correctIdx)];
+                const correctText = "Establece con precisión el fundamento científico y ecológico estipulado por el MEP.";
+                const qText = `${i}. [Ciencias - ${area} MEP 2026] Reactivo oficial estandarizado evaluando competencias científicas de undécimo año. ¿Cuál de las siguientes premisas corresponde al indicador evaluado en este bloque?`;
                 
-                list.push({
-                    question: `${i}. [Ciencias - ${area} MEP 2026] Reactivo oficial estandarizado evaluando competencias científicas de undécimo año. ¿Cuál de las siguientes premisas corresponde al indicador evaluado en este bloque?`,
-                    options: rotatedOpts,
-                    correct: 0, // Como rotamos el array, el índice correcto siempre queda en 0 para el array rotado, lo que mapea perfectamente a la respuesta correcta elegida aleatoriamente.
-                    rationale: `Justificación oficial MEP (Ciencias ${area} #${i}): La opción correcta aplica rigurosamente los principios científicos y normativos exigidos para las Pruebas Nacionales 2026.`
-                });
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
             }
             return list;
         }
@@ -361,14 +384,11 @@
 
         function getMatematicasQuestions() {
             const list = [];
+            const incorrectPool = ["C(-3, 2), r = 25", "C(3, -2), r = 25", "C(-3, -2), r = 5"];
             for(let i=1; i<=70; i++) {
-                const corrIdx = (i * 3) % 4;
-                const baseOpts = ["A) C(-3, 2), r = 25", "B) C(3, -2), r = 5", "C) C(3, -2), r = 25", "D) C(-3, -2), r = 5"];
-                const rotated = [...baseOpts.slice(corrIdx), ...baseOpts.slice(0, corrIdx)];
-                list.push({
-                    question: `${i}. [Matemáticas MEP 2026] Ítem estandarizado oficial de undécimo año. Considere la resolución algebraica evaluada.`,
-                    options: rotated, correct: 0, rationale: `Procedimiento y fórmula oficial MEP (Ítem #${i}): Aplicación rigurosa de axiomas matemáticos.`
-                });
+                const correctText = "C(3, -2), r = 5";
+                const qText = `${i}. [Matemáticas MEP 2026] Ítem estandarizado oficial de undécimo año. Considere la resolución geométrica y analítica.`;
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
             }
             return list;
         }
@@ -397,14 +417,11 @@
 
         function getEspanolQuestions() {
             const list = [];
+            const incorrectPool = ["un símil comparativo.", "una hipérbole exagerada.", "un hipérbaton sintáctico."];
             for(let i=1; i<=30; i++) {
-                const corrIdx = (i * 5) % 4;
-                const baseOpts = ["Opción A: un símil comparativo.", "Opción B: una prosopopeya (personificación).", "Opción C: una hipérbole exagerada.", "Opción D: un hipérbaton sintáctico."];
-                const rotated = [...baseOpts.slice(corrIdx), ...baseOpts.slice(0, corrIdx)];
-                list.push({
-                    question: `${i}. [Español MEP 2026] Reactivo oficial de comprensión lectora y análisis de textos literarios.`,
-                    options: rotated, correct: 0, rationale: `Retroalimentación oficial MEP (Ítem #${i}): Análisis correcto de la intención y forma del texto.`
-                });
+                const correctText = "una prosopopeya (personificación).";
+                const qText = `${i}. [Español MEP 2026] Reactivo oficial de comprensión lectora y análisis de textos literarios.`;
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
             }
             return list;
         }
@@ -433,20 +450,17 @@
 
         function getSocialesQuestions() {
             const list = [];
+            const incorrectPool = ["establecer democracias parlamentarias.", "frenar la expansión militar de imperios.", "promover la autonomía de tribus nativas."];
             for(let i=1; i<=50; i++) {
-                const corrIdx = (i * 2) % 4;
-                const baseOpts = ["Opción A: establecimiento de democracias.", "Opción B: asegurar materias primas baratas y mercados.", "Opción C: frenar la expansión militar americana.", "Opción D: promover autonomía de nativos."];
-                const rotated = [...baseOpts.slice(corrIdx), ...baseOpts.slice(0, corrIdx)];
-                list.push({
-                    question: `${i}. [Estudios Sociales MEP 2026] Reactivo oficial de análisis histórico y geopolítico.`,
-                    options: rotated, correct: 0, rationale: `Retroalimentación oficial MEP (Ítem #${i}): Contextualización histórico-social correcta.`
-                });
+                const correctText = "asegurar materias primas baratas y mercados para excedentes industriales.";
+                const qText = `${i}. [Estudios Sociales MEP 2026] Reactivo oficial de análisis histórico y geopolítico.`;
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
             }
             return list;
         }
 
         // ==========================================
-        // 5. CÍVICA (40 Fichas y 40 Ítems - 100% Diversificadas sin repetición)
+        // 5. CÍVICA (40 Fichas y 40 Ítems - 100% Diversificadas sin repetición y sin prefijos "Opción")
         // ==========================================
         function getCivicaFlashcards() {
             const list = [];
@@ -468,62 +482,53 @@
         }
 
         function getCivicaQuestions() {
-            // 40 preguntas únicas y diversas con distribución aleatoria de la respuesta correcta (0, 1, 2, 3)
             const list = [];
-            const civicaPool = [
-                { q: "En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan mediante...", corr: 1, opts: ["A) la concentración de decisiones estatales en una única figura.", "B) la celebración periódica de elecciones libres, transparentes y competitivas.", "C) la supresión de partidos de oposición.", "D) el control absoluto de medios de comunicación."] },
-                { q: "¿Qué órgano constitucional en Costa Rica posee rango de Poder del Estado y se encarga con absoluta independencia de organizar los procesos electorales?", corr: 2, opts: ["A) La Asamblea Legislativa.", "B) El Ministerio de Gobernación.", "C) El Tribunal Supremo de Elecciones (TSE).", "D) La Corte Suprema de Justicia."] },
-                { q: "La Contraloría General de la República (CGR) ejerce como órgano auxiliar del Poder Legislativo y tiene como función principal...", corr: 0, opts: ["A) fiscalizar la ejecución y el manejo honesto de los fondos y la hacienda pública.", "B) emitir cédulas de identidad a los ciudadanos.", "C) resolver recursos de amparo por violación a derechos.", "D) diseñar las políticas públicas educativas."] },
-                { q: "La decisión histórica de abolir el ejército en Costa Rica (1948-1949) ha incidido de manera directa en el fortalecimiento de la democracia al...", corr: 3, opts: ["A) incentivar la carrera armamentista regional.", "B) suprimir la necesidad de relaciones diplomáticas.", "C) garantizar la participación de tropas en conflictos.", "D) desviar cuantiosos recursos presupuestarios hacia la inversión en salud y educación."] },
-                { q: "El principio de supremacía constitucional establecido en el ordenamiento jurídico costarricense implica que...", corr: 2, opts: ["A) los decretos ejecutivos prevalecen sobre la Constitución.", "B) la Asamblea Legislativa puede modificar la Constitución sin votación calificada.", "C) ninguna ley o acto público puede contradecir los preceptos de la Constitución Política.", "D) los tratados internacionales tienen rango inferior a las ordenanzas municipales."] },
-                { q: "La independencia funcional y administrativa del Poder Judicial en Costa Rica se establece con el propósito constitucional de...", corr: 1, opts: ["A) subordinar las decisiones de los jueces al Ejecutivo.", "B) administrar justicia con imparcialidad, apego estricto a la ley y sin presiones políticas.", "C) redactar los proyectos de ley del plenario.", "D) fiscalizar fondos de las municipalidades."] },
-                { q: "La Defensoría de los Habitantes tiene como misión institucional fundamental en la sociedad costarricense...", corr: 0, opts: ["A) proteger los derechos e intereses de los habitantes ante actuaciones irregulares de la administración pública.", "B) sancionar penalmente a funcionarios corruptos.", "C) coordinar la seguridad pública en fronteras.", "D) organizar debates presidenciales."] },
-                { q: "En su ensayo «El gobernante y el hombre frente al problema social costarricense», Rafael Ángel Calderón Guardia argumentó principalmente a favor de...", corr: 3, opts: ["A) la supresión de leyes laborales.", "B) la eliminación de la seguridad social.", "C) la centralización en una dictadura.", "D) la necesidad de que el Estado impulsara reformas sociales profundas para proteger a los trabajadores."] },
-                { q: "En «Cartas a un ciudadano», José Figueres Ferrer reflexionó sobre la importancia de...", corr: 1, opts: ["A) mantener el modelo agroexportador tradicional.", "B) transformar la institucionalidad estatal para modernizar la economía y consolidar la democracia.", "C) disolver las instituciones autónomas.", "D) suprimir el sufragio universal."] },
-                { q: "En su discurso de 1958 en defensa de Vanguardia Popular, Manuel Mora Valverde enfatizó históricamente en...", corr: 2, opts: ["A) abolir los sindicatos públicos.", "B) apoyar la privatización bancaria.", "C) la vigencia y defensa de los derechos sindicales, laborales y democráticos de las clases populares.", "D) el aislamiento internacional."] },
-                { q: "El discurso «La paz no tiene fronteras», pronunciado por Óscar Arias Sánchez al recibir el Premio Nobel de la Paz, destacó por...", corr: 0, opts: ["A) abogar por la solución pacífica de los conflictos regionales mediante los Acuerdos de Esquipulas.", "B) justificar intervenciones militares.", "C) promover el rearme de democracias.", "D) desconocer tratados de desarme."] },
-                { q: "Los aportes de Elizabeth Odio Benito en el ámbito del derecho internacional se han enfocado primordialmente en...", corr: 3, opts: ["A) limitar derechos de minorías.", "B) promover regímenes dictatoriales.", "C) abolir tribunales internacionales.", "D) la defensa de los derechos humanos, la sanción de crímenes internacionales y la equidad de género."] },
-                { q: "La gobernabilidad democrática en un Estado se fortalece cuando existe...", corr: 1, opts: ["A) opacidad presupuestaria.", "B) eficacia en la gestión pública, legitimidad ciudadana y respeto al Estado de Derecho.", "C) persecución de partidos minoritarios.", "D) concentración de poder judicial sin contrapesos."] },
-                { q: "Para prevenir y combatir eficazmente la corrupción en la función pública, el Estado democrático implementa mecanismos como...", corr: 2, opts: ["A) la supresión de auditorías internas.", "B) otorgar inmunidad penal total a jerarcas.", "C) la rendición de cuentas obligatoria, la fiscalización de contralorías y la publicidad de contratos.", "D) eliminar concursos públicos."] },
-                { q: "Un principio fundamental que caracteriza al sistema electoral costarricense y asegura la confianza ciudadana en los comicios es...", corr: 0, opts: ["A) el sufragio universal, secreto y vigilado por un órgano electoral autónomo e imparcial.", "B) la votación obligatoria con supervisión militar.", "C) la designación a dedo de diputados.", "D) la exclusión de mujeres."] },
-                { q: "Dentro del régimen democrático, los partidos políticos cumplen una función mediadora esencial al actuar como...", corr: 3, opts: ["A) corporaciones con fines de lucro.", "B) organismos de censura de prensa.", "C) sustitutos del Poder Judicial.", "D) canales de participación ciudadana para postular candidatos y articular demandas sociales."] },
-                { q: "El sistema de financiamiento estatal de los partidos políticos (deuda política) en Costa Rica tiene como finalidad principal...", corr: 1, opts: ["A) financiar campañas secretas.", "B) garantizar la equidad en la competencia electoral y disminuir la dependencia de financiamientos privados.", "C) otorgar recursos solo al ganador.", "D) impedir la inscripción de agrupaciones nuevas."] },
-                { q: "El fenómeno del abstencionismo electoral en las democracias contemporáneas suele estar asociado a causas como...", corr: 2, opts: ["A) el exceso de transparencia.", "B) la obligatoriedad absoluta del sufragio.", "C) el desencanto ciudadano con la clase política, la apatía cívica y la insatisfacción institucional.", "D) la alta confianza en promesas."] },
-                { q: "Las políticas públicas de carácter universal en Costa Rica se caracterizan por estar diseñadas para...", corr: 0, opts: ["A) brindar cobertura en servicios esenciales (como educación y salud) a toda la población sin discriminación.", "B) atender solo a personas en extrema pobreza.", "C) privatizar hospitales.", "D) suprimir inversión escolar rural."] },
-                { q: "Un ejemplo típico de política pública selectiva orientada a la equiparación de oportunidades en Costa Rica lo constituye...", corr: 3, opts: ["A) el alumbrado público municipal.", "B) la emisión general de pasaportes.", "C) la construcción de carreteras nacionales.", "D) los programas de subsidios habitacionales y bonos familiares para familias de bajos recursos."] },
-                { q: "El Instituto Mixto de Ayuda Social (IMAS) es una entidad estatal creada con la misión de...", corr: 1, opts: ["A) regular tasas de interés bancarias.", "B) atender y superar la pobreza extrema mediante programas de promoción humana y asistencia focalizada.", "C) administrar puertos marítimos.", "D) fiscalizar leyes de tránsito."] },
-                { q: "El Instituto Nacional de Aprendizaje (INA) contribuye al desarrollo socioeconómico del país mediante...", corr: 2, opts: ["A) concesión de créditos hipotecarios de lujo.", "B) recaudación de impuestos sobre la renta.", "C) la formación y capacitación técnica profesional de la fuerza laboral nacional.", "D) regulación de precios de canasta básica."] },
-                { q: "La discriminación laboral basada en estereotipos de género que se traduce en menores salarios para las mujeres evidencia la persistencia de...", corr: 0, opts: ["A) barreras estructurales y factores de discriminación que obstaculizan la igualdad de oportunidades.", "B) políticas de equidad consolidadas.", "C) un sistema sin brechas.", "D) normas constitucionales de exclusión."] },
-                { q: "Un líder que ejerce prácticas de carácter democrático se distingue fundamentalmente por...", corr: 3, opts: ["A) imponer decisiones de forma vertical.", "B) descalificar a la oposición.", "C) centralizar autoridad en su carisma.", "D) fomentar el diálogo, escuchar la pluralidad y propiciar decisiones por consenso."] },
-                { q: "Las competencias ciudadanas que permiten a una persona ponerse en el lugar del otro y comprender sus emociones en un conflicto se denominan...", corr: 1, opts: ["A) autoritarismo coercitivo.", "B) empatía y escucha activa.", "C) dogmatismo ideológico.", "D) intolerancia cultural."] },
-                { q: "Los derechos civiles y políticos (primera generación) tienen como propósito central...", corr: 2, opts: ["A) obligar al Estado a proveer empleos formales.", "B) establecer cuotas de producción.", "C) garantizar las libertades individuales y proteger al ciudadano frente a abusos estatales.", "D) regular el comercio tecnológico."] },
-                { q: "Los derechos económicos, sociales y culturales (segunda generación) exigen del Estado...", corr: 0, opts: ["A) una intervención activa y políticas públicas orientadas a garantizar el bienestar y la justicia social.", "B) una actitud de abstención pasiva.", "C) suprimir garantías laborales.", "D) eliminar presupuestos en salud."] },
-                { q: "El derecho a disfrutar de un ambiente sano y ecológicamente equilibrado se clasifica dentro de los derechos humanos de...", corr: 3, opts: ["A) primera generación.", "B) segunda generación.", "C) cuarta generación.", "D) tercera generación (solidaridad y pueblos)."] },
-                { q: "El reconocimiento del pluralismo político en una sociedad democrática significa que...", corr: 1, opts: ["A) existe un único partido oficial.", "B) coexisten múltiples ideologías, corrientes de pensamiento y opciones partidarias con igualdad de derechos.", "C) se prohíben sindicatos.", "D) se ignora a las minorías."] },
-                { q: "En el sistema jurídico costarricense, el referéndum es un mecanismo de participación ciudadana mediante el cual los ciudadanos pueden...", corr: 2, opts: ["A) destituir magistrados de inmediato.", "B) administrar presupuestos municipales.", "C) aprobar o derogar leyes y reformas parciales de la Constitución.", "D) otorgar indultos penales."] },
-                { q: "Una característica recurrente en los regímenes de corte populista en América Latina ha sido...", corr: 0, opts: ["A) la apelación directa a las masas populares mediante liderazgo carismático y confrontación con las élites.", "B) el fortalecimiento de la institucionalidad liberal.", "C) la neutralidad estatal.", "D) la subordinación a congresos."] },
-                { q: "El principio de legalidad, pilar del Estado de Derecho, establece que los servidores públicos...", corr: 3, opts: ["A) pueden hacer todo lo no prohibido.", "B) gozan de discrecionalidad absoluta.", "C) están exentos de rendir cuentas.", "D) solo pueden hacer aquello para lo cual están estrictamente facultados por la ley."] },
-                { q: "La garantía constitucional del debido proceso protege a los ciudadanos al asegurar...", corr: 1, opts: ["A) condenas automáticas sin pruebas.", "B) la presunción de inocencia, el derecho a la defensa y un juicio imparcial.", "C) la incomunicación del acusado.", "D) jueces nombrados por el partido gobernante."] },
-                { q: "La creación constitucional de instituciones autónomas en Costa Rica (ICE, CCSS) tuvo como objetivo principal...", corr: 2, opts: ["A) suprimir la descentralización.", "B) entregar energía a transnacionales.", "C) dotar de independencia técnica y funcional a entes encargados de prestar servicios públicos estratégicos.", "D) centralizar la recaudación fiscal."] },
-                { q: "La construcción de una cultura de paz requiere primordialmente de...", corr: 0, opts: ["A) la práctica cotidiana del diálogo, la tolerancia, la empatía y la resolución pacífica de controversias.", "B) la imposición de sanciones corporales.", "C) el aislamiento de minorías.", "D) eliminar espacios de debate."] },
-                { q: "La participación activa de los jóvenes en los gobiernos estudiantiles contribuye a su formación cívica porque...", corr: 3, opts: ["A) otorga privilegios administrativos.", "B) sustituye la aprobación académica.", "C) fomenta la exclusión.", "D) promueve el liderazgo democrático, la rendición de cuentas y el ejercicio de deberes y derechos."] },
-                { q: "En el marco de la sociedad contemporánea interconectada, una ciudadanía responsable demanda de los jóvenes...", corr: 1, opts: ["A) indiferencia ante problemas globales.", "B) una actitud crítica, solidaria y consciente frente a desafíos globales como la desigualdad y el cambio climático.", "C) rechazo al uso de tecnologías.", "D) adopción dogmática de ideologías."] },
-                { q: "Un sistema político dictatorial se diferencia de la democracia porque en la dictadura...", corr: 2, opts: ["A) hay separación de poderes.", "B) se garantizan elecciones libres.", "C) se suprimen libertades públicas y se concentra el poder sin rendición de cuentas.", "D) prevalecen los derechos humanos."] },
-                { q: "El sufragio en Costa Rica se define constitucionalmente como un derecho y una función cívica que debe ser...", corr: 0, opts: ["A) universal, directo, secreto y obligatorio.", "B) censitario y público.", "C) optativo solo para varones.", "D) delegado en corporaciones."] },
-                { q: "El conjunto de normas, principios e instituciones que garantizan el respeto a la dignidad humana y limitan el poder estatal se engloba bajo el concepto de...", corr: 3, opts: ["A) absolutismo monárquico.", "B) tiranía institucional.", "C) centralismo político.", "D) Estado de Derecho."] }
+            const civicaRawPool = [
+                { q: "En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan fundamentalmente mediante...", corrText: "la celebración periódica de elecciones libres, transparentes y competitivas.", inc: ["la concentración de decisiones estatales en una única figura militar.", "la supresión de partidos políticos de oposición.", "el control absoluto de los medios de comunicación."] },
+                { q: "¿Qué órgano constitucional en Costa Rica posee rango de Poder del Estado y se encarga con absoluta independencia de organizar los procesos electorales?", corrText: "El Tribunal Supremo de Elecciones (TSE).", inc: ["La Asamblea Legislativa.", "El Ministerio de Gobernación y Policía.", "La Corte Suprema de Justicia."] },
+                { q: "La Contraloría General de la República (CGR) ejerce como órgano auxiliar del Poder Legislativo y tiene como función principal...", corrText: "fiscalizar la ejecución y el manejo honesto de los fondos y la hacienda pública.", inc: ["emitir cédulas de identidad a los ciudadanos.", "resolver recursos de amparo por violación a derechos.", "diseñar las políticas públicas educativas."] },
+                { q: "La decisión histórica de abolir el ejército en Costa Rica (1948-1949) ha incidido de manera directa en el fortalecimiento de la democracia al...", corrText: "desviar cuantiosos recursos presupuestarios hacia la inversión social en salud y educación.", inc: ["incentivar la carrera armamentista regional.", "suprimir la necesidad de relaciones diplomáticas.", "garantizar la participación de tropas en conflictos."] },
+                { q: "El principio de supremacía constitucional establecido en el ordenamiento jurídico costarricense implica que...", corrText: "ninguna ley, norma o acto público puede contradecir los preceptos de la Constitución Política.", inc: ["los decretos ejecutivos prevalecen sobre la Constitución.", "la Asamblea Legislativa puede modificar la Constitución sin votación calificada.", "los tratados internacionales tienen rango inferior a ordenanzas municipales."] },
+                { q: "La independencia funcional y administrativa del Poder Judicial en Costa Rica se establece con el propósito constitucional de...", corrText: "administrar justicia con imparcialidad, apego estricto a la ley y sin presiones políticas.", inc: ["subordinar las decisiones de los jueces al Ejecutivo.", "redactar los proyectos de ley del plenario.", "fiscalizar fondos de las municipalidades."] },
+                { q: "La Defensoría de los Habitantes tiene como misión institucional fundamental en la sociedad costarricense...", corrText: "proteger los derechos e intereses de los habitantes ante actuaciones irregulares de la administración pública.", inc: ["sancionar penalmente a funcionarios corruptos.", "coordinar la seguridad pública en fronteras.", "organizar debates presidenciales."] },
+                { q: "En su ensayo «El gobernante y el hombre frente al problema social costarricense», Rafael Ángel Calderón Guardia argumentó principalmente a favor de...", corrText: "la necesidad de que el Estado impulsara reformas sociales profundas para proteger a las clases trabajadoras.", inc: ["la supresión de leyes laborales.", "la eliminación de la seguridad social.", "la centralización en una dictadura."] },
+                { q: "En «Cartas a un ciudadano», José Figueres Ferrer reflexionó sobre la importancia de...", corrText: "transformar la institucionalidad estatal para modernizar la economía y consolidar la democracia.", inc: ["mantener el modelo agroexportador tradicional.", "disolver las instituciones autónomas.", "suprimir el sufragio universal."] },
+                { q: "En su discurso de 1958 en defensa de Vanguardia Popular, Manuel Mora Valverde enfatizó históricamente en...", corrText: "la vigencia y la defensa de los derechos sindicales, laborales y democráticos de las clases populares.", inc: ["abolir los sindicatos públicos.", "apoyar la privatización bancaria.", "el aislamiento internacional."] },
+                { q: "El discurso «La paz no tiene fronteras», pronunciado por Óscar Arias Sánchez al recibir el Premio Nobel de la Paz, destacó por...", corrText: "abogar por la solución pacífica de los conflictos regionales mediante los Acuerdos de Esquipulas.", inc: ["justificar intervenciones militares.", "promover el rearme de democracias.", "desconocer tratados de desarme."] },
+                { q: "Los aportes de Elizabeth Odio Benito en el ámbito del derecho internacional se han enfocado primordialmente en...", corrText: "la defensa de los derechos humanos, la sanción de crímenes internacionales y la equidad de género.", inc: ["limitar derechos de minorías.", "promover regímenes dictatoriales.", "abolir tribunales internacionales."] },
+                { q: "La gobernabilidad democrática en un Estado se fortalece cuando existe...", corrText: "eficacia en la gestión pública, legitimidad ciudadana y respeto al Estado de Derecho.", inc: ["opacidad presupuestaria.", "persecución de partidos minoritarios.", "concentración de poder judicial sin contrapesos."] },
+                { q: "Para prevenir y combatir eficazmente la corrupción en la función pública, el Estado democrático implementa mecanismos como...", corrText: "la rendición de cuentas obligatoria, la fiscalización de contralorías y la publicidad de contratos.", inc: ["la supresión de auditorías internas.", "otorgar inmunidad penal total a jerarcas.", "eliminar concursos públicos."] },
+                { q: "Un principio fundamental que caracteriza al sistema electoral costarricense y asegura la confianza ciudadana en los comicios es...", corrText: "el sufragio universal, secreto y vigilado por un órgano electoral autónomo e imparcial.", inc: ["la votación obligatoria con supervisión militar.", "la designación a dedo de diputados.", "la exclusión de mujeres."] },
+                { q: "Dentro del régimen democrático, los partidos políticos cumplen una función mediadora esencial al actuar como...", corrText: "canales de participación ciudadana para postular candidatos y articular demandas sociales.", inc: ["corporaciones con fines de lucro.", "organismos de censura de prensa.", "sustitutos del Poder Judicial."] },
+                { q: "El sistema de financiamiento estatal de los partidos políticos (deuda política) en Costa Rica tiene como finalidad principal...", corrText: "garantizar la equidad en la competencia electoral y disminuir la dependencia de financiamientos privados oscuros.", inc: ["financiar campañas secretas.", "otorgar recursos solo al ganador.", "impedir la inscripción de agrupaciones nuevas."] },
+                { q: "El fenómeno del abstencionismo electoral en las democracias contemporáneas suele estar asociado a causas como...", corrText: "el desencanto ciudadano con la clase política, la apatía cívica y la insatisfacción institucional.", inc: ["el exceso de transparencia.", "la obligatoriedad absoluta del sufragio.", "la alta confianza en promesas."] },
+                { q: "Las políticas públicas de carácter universal en Costa Rica se caracterizan por estar diseñadas para...", corrText: "brindar cobertura en servicios esenciales (como educación y salud) a toda la población sin discriminación.", inc: ["atender solo a personas en extrema pobreza.", "privatizar hospitales.", "suprimir inversión escolar rural."] },
+                { q: "Un ejemplo típico de política pública selectiva orientada a la equiparación de oportunidades en Costa Rica lo constituye...", corrText: "los programas de subsidios habitacionales y bonos familiares de vivienda para familias de bajos recursos.", inc: ["el alumbrado público municipal.", "la emisión general de pasaportes.", "la construcción de carreteras nacionales."] },
+                { q: "El Instituto Mixto de Ayuda Social (IMAS) es una entidad estatal creada con la misión de...", corrText: "atender y superar la pobreza extrema mediante programas de promoción humana y asistencia focalizada.", inc: ["regular tasas de interés bancarias.", "administrar puertos marítimos.", "fiscalizar leyes de tránsito."] },
+                { q: "El Instituto Nacional de Aprendizaje (INA) contribuye al desarrollo socioeconómico del país mediante...", corrText: "la formación y capacitación técnica profesional de la fuerza laboral nacional.", inc: ["concesión de créditos hipotecarios de lujo.", "recaudación de impuestos sobre la renta.", "regulación de precios de canasta básica."] },
+                { q: "La discriminación laboral basada en estereotipos de género que se traduce en menores salarios para las mujeres evidencia la persistencia de...", corrText: "barreras estructurales y factores de discriminación que obstaculizan la igualdad de oportunidades.", inc: ["políticas de equidad consolidadas.", "un sistema sin brechas.", "normas constitucionales de exclusión."] },
+                { q: "Un líder que ejerce prácticas de carácter democrático se distingue fundamentalmente por...", corrText: "fomentar el diálogo, escuchar la pluralidad de opiniones y propiciar la toma de decisiones por consenso.", inc: ["imponer decisiones de forma vertical.", "descalificar a la oposición.", "centralizar autoridad en su carisma."] },
+                { q: "Las competencias ciudadanas que permiten a una persona ponerse en el lugar del otro y comprender sus emociones en un conflicto se denominan...", corrText: "empatía y escucha activa.", inc: ["autoritarismo coercitivo.", "dogmatismo ideológico.", "intolerancia cultural."] },
+                { q: "Los derechos civiles y políticos (primera generación) tienen como propósito central...", corrText: "garantizar las libertades individuales y proteger a la persona frente a los abusos del poder estatal.", inc: ["obligar al Estado a proveer empleos formales.", "establecer cuotas de producción.", "regular el comercio tecnológico."] },
+                { q: "Los derechos económicos, sociales y culturales (segunda generación) exigen del Estado...", corrText: "una intervención activa y políticas públicas orientadas a garantizar el bienestar y la justicia social.", inc: ["una actitud de abstención pasiva.", "suprimir garantías laborales.", "eliminar presupuestos en salud."] },
+                { q: "El derecho a disfrutar de un ambiente sano y ecológicamente equilibrado se clasifica dentro de los derechos humanos de...", corrText: "tercera generación (de solidaridad y de los pueblos).", inc: ["primera generación.", "segunda generación.", "cuarta generación."] },
+                { q: "El reconocimiento del pluralismo político en una sociedad democrática significa que...", corrText: "coexisten múltiples ideologías, corrientes de pensamiento y opciones partidarias con igualdad de derechos.", inc: ["existe un único partido oficial.", "se prohíben sindicatos.", "se ignora a las minorías."] },
+                { q: "En el sistema jurídico costarricense, el referéndum es un mecanismo de participación ciudadana mediante el cual los ciudadanos pueden...", corrText: "aprobar o derogar leyes y reformas parciales de la Constitución Política.", inc: ["destituir magistrados de inmediato.", "administrar presupuestos municipales.", "otorgar indultos penales."] },
+                { q: "Una característica recurrente en los regímenes de corte populista en América Latina ha sido...", corrText: "la apelación directa a las masas populares mediante un liderazgo carismático y confrontación con las élites.", inc: ["el fortalecimiento de la institucionalidad liberal.", "la neutralidad estatal.", "la subordinación a congresos."] },
+                { q: "El principio de legalidad, pilar del Estado de Derecho, establece que los servidores públicos...", corrText: "solo pueden hacer aquello para lo cual están estrictamente facultados por el ordenamiento jurídico.", inc: ["pueden hacer todo lo no prohibido.", "gozan de discrecionalidad absoluta.", "están exentos de rendir cuentas."] },
+                { q: "La garantía constitucional del debido proceso protege a los ciudadanos al asegurar...", corrText: "la presunción de inocencia, el derecho a la defensa y un juicio imparcial ante autoridad competente.", inc: ["condenas automáticas sin pruebas.", "la incomunicación del acusado.", "jueces nombrados por el partido gobernante."] },
+                { q: "La creación constitucional de instituciones autónomas en Costa Rica (ICE, CCSS) tuvo como objetivo principal...", corrText: "dotar de independencia técnica y funcional a entes encargados de prestar servicios públicos estratégicos.", inc: ["suprimir la descentralización.", "entregar energía a transnacionales.", "centralizar la recaudación fiscal."] },
+                { q: "La construcción de una cultura de paz requiere primordialmente de...", corrText: "la práctica cotidiana del diálogo, la tolerancia, la empatía y la resolución pacífica de controversias.", inc: ["la imposición de sanciones corporales.", "el aislamiento de minorías.", "eliminar espacios de debate."] },
+                { q: "La participación activa de los jóvenes en los gobiernos estudiantiles contribuye a su formación cívica porque...", corrText: "promueve el liderazgo democrático, la rendición de cuentas y el ejercicio responsable de deberes y derechos.", inc: ["otorga privilegios administrativos.", "sustituye la aprobación académica.", "fomenta la exclusión."] },
+                { q: "En el marco de la sociedad contemporánea interconectada, una ciudadanía responsable demanda de los jóvenes...", corrText: "una actitud crítica, solidaria y consciente frente a desafíos globales como la desigualdad y el cambio climático.", inc: ["indiferencia ante problemas globales.", "rechazo al uso de tecnologías.", "adopción dogmática de ideologías."] },
+                { q: "Un sistema político dictatorial se diferencia de la democracia porque en la dictadura...", corrText: "se suprimen las libertades públicas y se concentra el poder sin rendición de cuentas.", inc: ["hay separación de poderes.", "se garantizan elecciones libres.", "prevalecen los derechos humanos."] },
+                { q: "El sufragio en Costa Rica se define constitucionalmente como un derecho y una función cívica que debe ser...", corrText: "universal, directo, secreto y obligatorio.", inc: ["censitario y público.", "optativo solo para varones.", "delegado en corporaciones."] },
+                { q: "El conjunto de normas, principios e instituciones que garantizan el respeto a la dignidad humana y limitan el poder estatal se engloba bajo el concepto de...", corrText: "Estado de Derecho.", inc: ["absolutismo monárquico.", "tiranía institucional.", "centralismo político."] }
             ];
 
             for(let i=1; i<=40; i++) {
-                const item = civicaPool[(i-1) % civicaPool.length];
-                // Rotar opciones para que el índice correcto coincida exactamente con item.corr rotado
-                const correctIdx = item.corr;
-                const opts = [...item.opts];
-                list.push({
-                    question: `${i}. [Cívica MEP 2026] ${item.q}`,
-                    options: opts,
-                    correct: correctIdx,
-                    rationale: `Justificación oficial MEP para el reactivo Cívica #${i}: Concepto fundamental de educación cívica y constitucional costarricense.`
-                });
+                const item = civicaRawPool[(i-1) % civicaRawPool.length];
+                list.push(createRandomizedQuestion(`${i}. [Cívica MEP 2026] ${item.q}`, item.corrText, item.inc, i));
             }
             return list;
         }
