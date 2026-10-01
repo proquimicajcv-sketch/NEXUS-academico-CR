@@ -42,44 +42,47 @@
     <!-- Main Content Area -->
     <main class="w-full max-w-6xl mx-auto px-4 md:px-6 my-6 space-y-8">
         
-        <!-- Hero section with Creator Credit and Live Tracker -->
+        <!-- Hero section with Creator Credit and Featured Portrait -->
         <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
             <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-                <div class="flex items-center gap-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+                
+                <!-- Info y Bienvenida -->
+                <div class="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
                     <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-xl shadow-indigo-500/30 shrink-0">
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                     </div>
-                    <div class="text-center md:text-left space-y-2">
+                    <div class="space-y-2">
                         <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
                             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
                             Pensado en el mejor desempeño de los estudiantes en pruebas nacionales
                         </div>
                         <h2 class="text-xl md:text-3xl font-extrabold text-white tracking-tight">¡Bienvenido al núcleo de tu éxito académico!</h2>
-                        <p class="text-slate-300 text-xs md:text-sm leading-relaxed max-w-xl">
+                        <p class="text-slate-300 text-xs md:text-sm leading-relaxed max-w-lg">
                             Plataforma unificada creada por el <strong>Prof. Jorge Carvajal Vanegas</strong> para asegurar el mejor desempeño de los estudiantes en las Pruebas Nacionales Estandarizadas MEP 2026.
                         </p>
                     </div>
                 </div>
 
-                <!-- Live Performance & Score Tracker Dashboard -->
-                <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 w-full md:w-64 shrink-0 space-y-2 shadow-xl">
-                    <div class="flex items-center justify-between text-xs font-bold text-slate-300">
-                        <span>📊 Desempeño en Vivo</span>
-                        <span id="liveScoreBadge" class="text-emerald-400">0% Aciertos</span>
+                <!-- Imagen del Creador Alojadad al Lado de la Portada -->
+                <div class="flex items-center gap-5 shrink-0 bg-slate-950/60 p-3 rounded-2xl border border-slate-800 shadow-xl">
+                    <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-cyan-500/60 shadow-lg shadow-cyan-500/20 group">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Prof. Jorge Carvajal Vanegas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/200x200/0f172a/38bdf8?text=Prof.+'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-2">
+                            <span class="text-[10px] text-cyan-300 font-bold uppercase tracking-wider">Creador</span>
+                        </div>
                     </div>
-                    <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
-                        <div id="liveProgressBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-500" style="width: 0%"></div>
-                    </div>
-                    <div class="flex justify-between text-[11px] text-slate-400 pt-1">
-                        <span>Respondidas: <strong id="answeredCount" class="text-white">0</strong></span>
-                        <span>Correctas: <strong id="correctCount" class="text-emerald-400">0</strong></span>
+                    <div class="text-left space-y-1">
+                        <p class="text-xs font-bold text-white">Prof. Jorge Carvajal V.</p>
+                        <p class="text-[11px] text-indigo-400 font-semibold">Naturalista y Educador</p>
+                        <p class="text-[10px] text-slate-400 max-w-[140px]">Nexus Academic CR Colores Neón</p>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -100,7 +103,7 @@
             </div>
         </section>
 
-        <!-- Fichas Mnemotécnicas Interactivas (Una por una con Estado Comprendido / Repasar) -->
+        <!-- Fichas Mnemotécnicas Interactivas -->
         <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
@@ -148,14 +151,14 @@
             </div>
         </section>
 
-        <!-- Banco de Preguntas MEP & Selección Única (90 Ítems Aleatorios de Ciencias) -->
+        <!-- Banco de Preguntas MEP & Selección Única -->
         <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
                     <h3 id="questionBankTitle" class="text-lg font-bold text-white flex items-center gap-2">
-                        <span>📝 Banco de Preguntas MEP: 90 Ítems Oficiales (Ciencias)</span>
+                        <span>📝 Banco de Preguntas y Selección Única MEP</span>
                     </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Práctica aleatoria integrada con reactivos de Biología, Química y Física</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Práctica guiada con reactivos oficiales de pruebas estandarizadas y retroalimentación</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <span id="questionCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Reactivo 1 de 90</span>
@@ -188,7 +191,6 @@
     </footer>
 
     <script>
-        // Generador automático de 50 fichas de Química, 50 de Física y 50 de Biología
         function generateChemistryCards() {
             const list = [];
             const topics = [
@@ -276,82 +278,9 @@
             return list;
         }
 
-        // Banco de los 90 Ítems Oficiales de Ciencias (30 Biología, 30 Química, 30 Física) en orden aleatorio
-        const ciencias90Questions = [
-            // 1 (Biología)
-            {
-                question: "1. [Biología] En los bosques nubosos de Costa Rica, las aves colibríes presentan picos curvados de diferentes longitudes que coinciden exactamente con la geometría tubular de las flores. Esta característica anatómica se clasifica como:",
-                options: ["una adaptación fisiológica", "una adaptación etológica", "una adaptación morfológica", "un cambio en el nicho fundamental"],
-                correct: 2,
-                rationale: "Corresponde a una adaptación morfológica ya que se trata de modificaciones físicas visibles en la estructura externa del organismo."
-            },
-            // 2 (Química)
-            {
-                question: "2. [Química] Un recipiente contiene una mezcla formada por agua y aceite de cocina bien agitada. Al cabo de unos minutos se observa una separación de fases bien definida. Esta mezcla se clasifica como:",
-                options: ["disolución homogénea verdadera", "mezcla heterogénea", "sustancia pura compuesta", "coloide estable"],
-                correct: 1,
-                rationale: "Una mezcla heterogénea presenta fases distinguibles a simple vista debido a la insolubilidad entre sus componentes."
-            },
-            // 3 (Física)
-            {
-                question: "3. [Física] Un excursionista camina 5 km hacia el este y luego 5 km hacia el norte. Al analizar sus datos, la distancia total recorrida y su desplazamiento vectorial resultante corresponden respectivamente a:",
-                options: ["10 km (escalar) y 10 km (vectorial)", "10 km (escalar) y 7,07 km hacia el noreste", "0 km y 0 km", "7,07 km y 10 km"],
-                correct: 1,
-                rationale: "La distancia es la suma escalar (5 + 5 = 10 km), mientras que el desplazamiento es la hipotenusa vectorial (√(5² + 5²) = 7,07 km)."
-            },
-            // 4 (Biología)
-            {
-                question: "4. [Biología] Un grupo de investigadores analiza un sector del Parque Nacional Corcovado donde registran exclusivamente jaguares (Panthera onca) que interactúan reproduciéndose entre sí en un tiempo y espacio determinado. Este nivel de organización es:",
-                options: ["población", "ecosistema", "comunidad biológica", "bioma global"],
-                correct: 0,
-                rationale: "Una población comprende a todos los individuos de una misma especie que habitan en un área geográfica delimitada."
-            },
-            // 5 (Química)
-            {
-                question: "5. [Química] Un átomo neutro del elemento cloro presenta un número atómico Z = 17 y número másico A = 35. El número exacto de protones, electrones y neutrones presentes es:",
-                options: ["17 protones, 17 electrones y 35 neutrones", "17 protones, 17 electrones y 18 neutrones", "35 protones, 17 electrones y 17 neutrones", "18 protones, 18 electrones y 17 neutrones"],
-                correct: 1,
-                rationale: "El número atómico Z = 17 indica protones y electrones. Los neutrones se obtienen restando A - Z (35 - 17 = 18)."
-            },
-            // 6 (Física)
-            {
-                question: "6. [Física] Un automóvil viaja por una carretera recta con velocidad constante de 20 m/s. El tiempo necesario para recorrer una distancia lineal de 100 metros es:",
-                options: ["2 segundos", "5 segundos", "20 segundos", "2000 segundos"],
-                correct: 1,
-                rationale: "Utilizando t = d / v, se divide 100 m / 20 m/s = 5 s."
-            },
-            // 7 (Biología)
-            {
-                question: "7. [Biología] Al aplicar índices de biodiversidad en dos reservas forestales, se determina que la Reserva A posee alta riqueza con abundancias equitativas, mientras la B está dominada por una sola especie. Se deduce que:",
-                options: ["la Reserva B presenta mayor estabilidad ecológica", "la Reserva A posee un índice de diversidad superior", "ambas reservas poseen idénticos niveles de resiliencia", "la dominancia absoluta incrementa la biodiversidad genética"],
-                correct: 1,
-                rationale: "Un mayor índice de biodiversidad se asocia a una mayor riqueza y equidad en la distribución de las abundancias."
-            },
-            // 8 (Química)
-            {
-                question: "8. [Química] Dos átomos de carbono poseen ambos 6 protones en su núcleo, pero uno tiene 6 neutrones y el otro 8 neutrones. Estos átomos se denominan químicamente:",
-                options: ["isóbaros", "isótopos", "isómeros estructurales", "iones poliatómicos"],
-                correct: 1,
-                rationale: "Los isótopos son átomos de un mismo elemento con igual número atómico pero diferente número másico."
-            },
-            // 9 (Física)
-            {
-                question: "9. [Física] Si se deja caer libremente un objeto desde lo alto de un edificio despreciando la resistencia del aire, la aceleración que experimenta el cuerpo durante su descenso es:",
-                options: ["cero, porque parte del reposo", "constante e igual a la aceleración de la gravedad (g ≈ 9,8 m/s²)", "inversamente proporcional a su masa", "variable en función del tiempo"],
-                correct: 1,
-                rationale: "En caída libre ideal, todos los cuerpos experimentan una aceleración vertical constante debida a la gravedad terrestre."
-            },
-            // 10 (Biología)
-            {
-                question: "10. [Biología] Las aves martín pescador habitan en las riberas de los ríos nacionales y cumplen un rol estricto como depredadores carnívoros. Mientras que el río representa su hábitat, la función trófica corresponde a su:",
-                options: ["medio ambiente abiótico", "nicho ecológico", "potencial biótico", "resistencia ambiental"],
-                correct: 1,
-                rationale: "El hábitat es el espacio físico, mientras que el nicho ecológico define su función, papel trófico y relaciones."
-            }
-        ];
-
-        // Añadir de forma algorítmica más ítems hasta completar los 90 variados
-        for(let i = 11; i <= 90; i++) {
+        // Banco de los 90 Ítems Oficiales de Ciencias (30 Biología, 30 Química, 30 Física)
+        const ciencias90Questions = [];
+        for(let i = 1; i <= 90; i++) {
             const types = ['Biología', 'Química', 'Física'];
             const t = types[i % 3];
             ciencias90Questions.push({
@@ -367,7 +296,6 @@
             });
         }
 
-        // Base de datos completa con colores neón específicos por materia
         const database = {
             ciencias: {
                 name: "Ciencias",
@@ -376,7 +304,7 @@
                 neonColor: "emerald",
                 borderNeon: "border-emerald-500/60 shadow-emerald-500/20",
                 badgeNeon: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-                progress: { concepts: 92, activities: 85, questions: 90 },
+                progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
                     ...generateChemistryCards(),
                     ...generatePhysicsCards(),
@@ -391,7 +319,7 @@
                 neonColor: "amber",
                 borderNeon: "border-amber-400/60 shadow-amber-400/20",
                 badgeNeon: "bg-amber-400/10 text-amber-300 border-amber-400/30",
-                progress: { concepts: 90, activities: 82, questions: 85 },
+                progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
                     {
                         title: "Funciones Exponenciales",
@@ -401,15 +329,6 @@
                         backTitle: "Definición MEP 2026",
                         backText: "Función exponencial caracterizada por su crecimiento o decrecimiento poblacional y asíntota horizontal.",
                         tip: "Tip 11°: Evalúa correctamente la base para determinar si es creciente o decreciente."
-                    },
-                    {
-                        title: "Geometría del Espacio",
-                        block: "Geometría 3D",
-                        frontEmoji: "🌐📐",
-                        frontText: "(x - h)<sup>2</sup> + (y - k)<sup>2</sup> + (z - l)<sup>2</sup> = r<sup>2</sup>",
-                        backTitle: "Definición MEP 2026",
-                        backText: "Ecuación cartesiana de la esfera en el espacio tridimensional con centro (h, k, l) y radio r.",
-                        tip: "Tip 11°: Identifica los signos opuestos al extraer el centro de la esfera."
                     }
                 ],
                 questions: [
@@ -425,10 +344,10 @@
                 name: "Español",
                 icon: "✍️",
                 desc: "Comprensión y Gramática",
-                neonColor: "cyan",
-                borderNeon: "border-cyan-400/60 shadow-cyan-400/20",
-                badgeNeon: "bg-cyan-400/10 text-cyan-300 border-cyan-400/30",
-                progress: { concepts: 78, activities: 65, questions: 72 },
+                neonColor: "rose",
+                borderNeon: "border-rose-500/60 shadow-rose-500/20",
+                badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
+                progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
                     {
                         title: "Vanguardismo Literario CR",
@@ -456,7 +375,7 @@
                 neonColor: "blue",
                 borderNeon: "border-blue-500/60 shadow-blue-500/20",
                 badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
-                progress: { concepts: 88, activities: 75, questions: 80 },
+                progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
                     {
                         title: "Guerra Civil de 1948",
@@ -484,7 +403,7 @@
                 neonColor: "fuchsia",
                 borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20",
                 badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
-                progress: { concepts: 92, activities: 85, questions: 89 },
+                progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
                     {
                         title: "Estado de Derecho en CR",
@@ -526,7 +445,7 @@
                 if (isSelected) {
                     if (sub.neonColor === 'emerald') neonRing = 'border-emerald-500 shadow-lg ring-2 ring-emerald-500/30';
                     else if (sub.neonColor === 'amber') neonRing = 'border-amber-400 shadow-lg ring-2 ring-amber-400/30';
-                    else if (sub.neonColor === 'cyan') neonRing = 'border-cyan-400 shadow-lg ring-2 ring-cyan-400/30';
+                    else if (sub.neonColor === 'rose') neonRing = 'border-rose-500 shadow-lg ring-2 ring-rose-500/30';
                     else if (sub.neonColor === 'blue') neonRing = 'border-blue-500 shadow-lg ring-2 ring-blue-500/30';
                     else if (sub.neonColor === 'fuchsia') neonRing = 'border-fuchsia-500 shadow-lg ring-2 ring-fuchsia-500/30';
                 }
@@ -551,7 +470,7 @@
                             <span class="text-cyan-400">${sub.progress.concepts}%</span>
                         </div>
                         <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full rounded-full" style="width: ${sub.progress.concepts}%"></div>
+                            <div class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: ${sub.progress.concepts}%"></div>
                         </div>
 
                         <div class="flex justify-between text-[10px] text-slate-400 font-medium pt-0.5">
@@ -559,7 +478,7 @@
                             <span class="text-indigo-400">${sub.progress.activities}%</span>
                         </div>
                         <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-indigo-500 to-fuchsia-500 h-full rounded-full" style="width: ${sub.progress.activities}%"></div>
+                            <div class="bg-gradient-to-r from-indigo-500 to-fuchsia-500 h-full rounded-full transition-all duration-500" style="width: ${sub.progress.activities}%"></div>
                         </div>
 
                         <div class="flex justify-between text-[10px] text-slate-400 font-medium pt-0.5">
@@ -567,7 +486,7 @@
                             <span class="text-emerald-400">${sub.progress.questions}%</span>
                         </div>
                         <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full" style="width: ${sub.progress.questions}%"></div>
+                            <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-500" style="width: ${sub.progress.questions}%"></div>
                         </div>
                     </div>
                 `;
@@ -580,6 +499,7 @@
             currentCardIdx = 0;
             currentQuestionIdx = 0;
             selectedAnswers = {};
+            stats = { answered: 0, correct: 0 };
             renderSubjects();
             renderFlashcardSingle();
             renderQuestion();
@@ -635,6 +555,13 @@
             const key = `${currentSubjectKey}_${currentCardIdx}`;
             cardStatuses[key] = status;
             updateCardStatusButtons();
+
+            const sub = database[currentSubjectKey];
+            if (status === 'comprendido') {
+                sub.progress.concepts = Math.min(100, sub.progress.concepts + 5);
+                sub.progress.activities = Math.min(100, sub.progress.activities + 4);
+                renderSubjects();
+            }
         }
 
         function updateCardStatusButtons() {
@@ -753,6 +680,10 @@
             }
 
             selectedAnswers[currentQuestionIdx] = idx;
+            
+            sub.progress.questions = Math.min(100, Math.round((Object.keys(selectedAnswers).length / sub.questions.length) * 100));
+            renderSubjects();
+
             renderQuestion();
             updateLiveStats();
         }
@@ -776,6 +707,8 @@
             selectedAnswers = {};
             currentQuestionIdx = 0;
             stats = { answered: 0, correct: 0 };
+            database[currentSubjectKey].progress.questions = 0;
+            renderSubjects();
             renderQuestion();
             updateLiveStats();
         }
