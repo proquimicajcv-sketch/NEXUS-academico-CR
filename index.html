@@ -42,31 +42,48 @@
     <!-- Main Content Area -->
     <main class="w-full max-w-6xl mx-auto px-4 md:px-6 my-6 space-y-8">
         
-        <!-- Hero section with Creator Credit -->
+        <!-- Hero section with Creator Credit and Live Tracker -->
         <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
             <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="flex flex-col md:flex-row items-center gap-6 relative z-10">
-                <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-xl shadow-indigo-500/30 shrink-0">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
-                </div>
-                <div class="text-center md:text-left space-y-2">
-                    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
-                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        Pensado en el mejor desempeño de los estudiantes en pruebas nacionales
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-xl shadow-indigo-500/30 shrink-0">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
                     </div>
-                    <h2 class="text-xl md:text-3xl font-extrabold text-white tracking-tight">¡Bienvenido al núcleo de tu éxito académico!</h2>
-                    <p class="text-slate-300 text-xs md:text-sm leading-relaxed max-w-2xl">
-                        Plataforma unificada creada por el <strong>Prof. Jorge Carvajal Vanegas</strong> para asegurar el mejor desempeño de los estudiantes en las Pruebas Nacionales Estandarizadas MEP 2026.
-                    </p>
+                    <div class="text-center md:text-left space-y-2">
+                        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                            Pensado en el mejor desempeño de los estudiantes en pruebas nacionales
+                        </div>
+                        <h2 class="text-xl md:text-3xl font-extrabold text-white tracking-tight">¡Bienvenido al núcleo de tu éxito académico!</h2>
+                        <p class="text-slate-300 text-xs md:text-sm leading-relaxed max-w-xl">
+                            Plataforma unificada creada por el <strong>Prof. Jorge Carvajal Vanegas</strong> para asegurar el mejor desempeño de los estudiantes en las Pruebas Nacionales Estandarizadas MEP 2026.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Live Performance & Score Tracker Dashboard -->
+                <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 w-full md:w-64 shrink-0 space-y-2 shadow-xl">
+                    <div class="flex items-center justify-between text-xs font-bold text-slate-300">
+                        <span>📊 Desempeño en Vivo</span>
+                        <span id="liveScoreBadge" class="text-emerald-400">0% Aciertos</span>
+                    </div>
+                    <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+                        <div id="liveProgressBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between text-[11px] text-slate-400 pt-1">
+                        <span>Respondidas: <strong id="answeredCount" class="text-white">0</strong></span>
+                        <span>Correctas: <strong id="correctCount" class="text-emerald-400">0</strong></span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Áreas de Estudio & Avance por Materia (Con barras de colores) -->
+        <!-- Áreas de Estudio & Avance por Materia -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2">
@@ -75,7 +92,7 @@
                     </div>
                     Áreas de Estudio & Avance por Materia
                 </h3>
-                <span class="text-xs text-slate-400">Haz clic en una materia para filtrar fichas y trivias</span>
+                <span class="text-xs text-slate-400">Haz clic en una materia para cambiar de tema</span>
             </div>
             
             <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -83,23 +100,51 @@
             </div>
         </section>
 
-        <!-- Sección Interactiva: Fichas Mnemotécnicas (Con colores Neón específicos) -->
+        <!-- Fichas Mnemotécnicas Interactivas (Una por una con Estado Comprendido / Repasar) -->
         <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
                     <h3 id="currentSubjectTitle" class="text-lg font-bold text-white flex items-center gap-2">
                         <span>🧬 Fichas Mnemotécnicas: Ciencias</span>
                     </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Toca cualquier tarjeta para girarla 3D y revelar su definición oficial MEP y tip</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para girarla 3D. Marca si ya la comprendiste o si necesitas repasar.</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span id="cardCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Fichas MEP</span>
+                    <span id="cardCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Ficha 1 de 150</span>
                 </div>
             </div>
 
-            <!-- Contenedor de Tarjetas 3D con colores Neón específicos por materia -->
-            <div id="flashcardsContainer" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Renderizado por JS -->
+            <!-- Contenedor Individual de Tarjeta 3D -->
+            <div class="max-w-xl mx-auto space-y-4">
+                <div id="flashcardSingleContainer" class="perspective-1000 h-80 cursor-pointer">
+                    <!-- Renderizado por JS -->
+                </div>
+
+                <!-- Opciones de Estado de Comprensión -->
+                <div class="flex items-center justify-center gap-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800">
+                    <button onclick="setCardStatus('comprendido')" id="btnComprendido" class="px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        ✅ Ya lo comprendí
+                    </button>
+                    <button onclick="setCardStatus('repasar')" id="btnRepasar" class="px-4 py-2 bg-slate-900 hover:bg-amber-950/40 text-slate-300 hover:text-amber-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                        🔄 Necesito Repasar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navegación de Fichas -->
+            <div class="flex items-center justify-between pt-2 max-w-xl mx-auto">
+                <button onclick="prevCard()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition-colors">
+                    &larr; Anterior Ficha
+                </button>
+                <button onclick="resetCards()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    Reiniciar
+                </button>
+                <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-indigo-600/30">
+                    Siguiente Ficha &rarr;
+                </button>
             </div>
         </section>
 
@@ -110,24 +155,26 @@
                     <h3 id="questionBankTitle" class="text-lg font-bold text-white flex items-center gap-2">
                         <span>📝 Banco de Preguntas y Selección Única MEP</span>
                     </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Práctica guiada con reactivos oficiales de pruebas estandarizadas y justificación</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Práctica guiada con reactivos oficiales de pruebas estandarizadas y retroalimentación</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <span id="questionCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Reactivo 1 de 3</span>
                 </div>
             </div>
 
-            <div id="questionContainer" class="space-y-6">
+            <div id="questionContainer" class="space-y-6 max-w-2xl mx-auto">
                 <!-- Renderizado dinámico -->
             </div>
 
-            <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+            <div class="flex items-center justify-between pt-4 border-t border-slate-800 max-w-2xl mx-auto">
                 <button onclick="prevQuestion()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition-colors">
-                    &larr; Anterior
+                    &larr; Anterior Pregunta
                 </button>
-                <span id="questionStatusIndicator" class="text-xs text-slate-400 font-medium">Selecciona una opción</span>
+                <button onclick="resetQuestions()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
+                    Reiniciar Test
+                </button>
                 <button onclick="nextQuestion()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-indigo-600/30">
-                    Siguiente &rarr;
+                    Siguiente Pregunta &rarr;
                 </button>
             </div>
         </section>
@@ -209,7 +256,7 @@
                 {t: "Nicho Ecológico", b: "Ecología", e: "🐝", f: "Función y rol trófico", d: "Función, rol y relaciones tróficas de un organismo dentro de su ecosistema.", tip: "Las abejas como polinizadoras."},
                 {t: "Potencial Biótico", b: "Dinámica Poblacional", e: "📈", f: "Reproducción máxima", d: "Capacidad máxima de reproducción de una población en condiciones óptimas.", tip: "Crecimiento exponencial bacteriano."},
                 {t: "Mutación", b: "Genética", e: "🧬", f: "Cambio en secuencia ADN", d: "Cambio espontáneo o inducido en la secuencia de nucleótidos del ADN.", tip: "Alteraciones cromosómicas."},
-                {t: "Fotosíntesis", b: "Bioenergética", e: "☀️️", f: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", d: "Conversión de energía lumínica en energía química por organismos autótrofos.", tip: "Ocurre en los cloroplastos."},
+                {t: "Fotosíntesis", b: "Bioenergética", e: "☀", f: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", d: "Conversión de energía lumínica en energía química por organismos autótrofos.", tip: "Ocurre en los cloroplastos."},
                 {t: "Respiración Celular", b: "Bioenergética", e: "🔋", f: "Glucosa + O₂ → ATP + CO₂ + H₂O", d: "Proceso catabólico de oxidación de nutrientes para obtener ATP celular.", tip: "Ocurre en las mitocondrias."},
                 {t: "Homeostasis", b: "Fisiología", e: "⚖️", f: "Equilibrio interno", d: "Capacidad del organismo para mantener condiciones internas estables.", tip: "Regulación de temperatura corporal."},
                 {t: "Biodiversidad", b: "Conservación", e: "🌍", f: "Variedad de ecosistemas", d: "Diversidad de especies genéticas y ecosistémicas en el planeta.", tip: "Costa Rica destaca por su alta riqueza biológica."}
@@ -248,10 +295,10 @@
                     {
                         question: "Al analizar las propiedades periódicas y la estructura de Lewis de los elementos representativos, ¿cuál de los siguientes compuestos presenta un enlace predominantemente iónico?",
                         options: [
-                            "$CO_{2}$",
-                            "$MgCl_{2}$ (Cloruro de magnesio)",
-                            "$H_{2}O$",
-                            "$CH_{4}$"
+                            "CO<sub>2</sub>",
+                            "MgCl<sub>2</sub> (Cloruro de magnesio)",
+                            "H<sub>2</sub>O",
+                            "CH<sub>4</sub>"
                         ],
                         correct: 1,
                         rationale: "Se forma por la combinación de un metal y un no metal con transferencia electrónica neta."
@@ -259,10 +306,10 @@
                     {
                         question: "Un bloque de 8 kg se desplaza con velocidad constante sobre una superficie horizontal con fricción. La aceleración experimentada por el cuerpo corresponde a:",
                         options: [
-                            "$0~m/s^{2}$ (Inercia / Equilibrio dinámico)",
-                            "$9.8~m/s^{2}$",
-                            "$1.5~m/s^{2}$",
-                            "$8.0~m/s^{2}$"
+                            "0 m/s<sup>2</sup> (Inercia / Equilibrio dinámico)",
+                            "9.8 m/s<sup>2</sup>",
+                            "1.5 m/s<sup>2</sup>",
+                            "8.0 m/s<sup>2</sup>"
                         ],
                         correct: 0,
                         rationale: "Al tener velocidad constante, la sumatoria de fuerzas y la aceleración son iguales a cero (Primera Ley de Newton)."
@@ -319,15 +366,15 @@
                 ],
                 questions: [
                     {
-                        question: "Considere la función exponencial $f(x) = 2^{x}$. ¿Cuál es la ecuación de su asíntota horizontal?",
+                        question: "Considere la función exponencial f(x) = 2<sup>x</sup>. ¿Cuál es la ecuación de su asíntota horizontal?",
                         options: [
-                            "$y = 0$",
-                            "$x = 0$",
-                            "$y = 1$",
-                            "$y = 2$"
+                            "y = 0",
+                            "x = 0",
+                            "y = 1",
+                            "y = 2"
                         ],
                         correct: 0,
-                        rationale: "La gráfica de toda función exponencial básica de la forma $f(x) = a^{x}$ tiende a cero cuando $x$ tiende a menos infinito, siendo $y = 0$ su asíntota horizontal."
+                        rationale: "La gráfica de toda función exponencial básica de la forma f(x) = a<sup>x</sup> tiende a cero cuando x tiende a menos infinito, siendo y = 0 su asíntota horizontal."
                     }
                 ]
             },
@@ -394,7 +441,7 @@
                     {
                         title: "Guerra Civil de 1948",
                         block: "Historia de Costa Rica",
-                        frontEmoji: "🇨🇷⚖️",
+                        frontEmoji: "🇨🇷⚖️️",
                         frontText: "Abolición del Ejército y la 49°",
                         backTitle: "Definición MEP 2026",
                         backText: "Hito histórico que transformó la institucionalidad costarricense, creando el TSE y nacionalizando la banca.",
@@ -487,8 +534,11 @@
         };
 
         let currentSubjectKey = 'ciencias';
+        let currentCardIdx = 0;
         let currentQuestionIdx = 0;
+        let cardStatuses = {}; // { subjectKey_cardIdx: 'comprendido' | 'repasar' }
         let selectedAnswers = {};
+        let stats = { answered: 0, correct: 0 };
 
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
@@ -554,65 +604,105 @@
 
         function selectSubject(key) {
             currentSubjectKey = key;
+            currentCardIdx = 0;
             currentQuestionIdx = 0;
+            selectedAnswers = {};
             renderSubjects();
-            renderFlashcards();
+            renderFlashcardSingle();
             renderQuestion();
+            updateLiveStats();
         }
 
-        function renderFlashcards() {
+        function renderFlashcardSingle() {
             const sub = database[currentSubjectKey];
-            document.getElementById('currentSubjectTitle').innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name} (${sub.flashcards.length} fichas)</span>`;
-            document.getElementById('cardCounter').className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
-            document.getElementById('cardCounter').innerText = `${sub.flashcards.length} Fichas MEP`;
+            const card = sub.flashcards[currentCardIdx];
             
-            const container = document.getElementById('flashcardsContainer');
-            container.innerHTML = '';
-
-            sub.flashcards.forEach((card, idx) => {
-                const cardEl = document.createElement('div');
-                cardEl.className = 'perspective-1000 h-72 cursor-pointer';
-                cardEl.onclick = () => {
-                    const inner = cardEl.querySelector('.card-inner');
-                    inner.classList.toggle('rotate-y-180');
-                };
-
-                cardEl.innerHTML = `
-                    <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-2xl">
-                        <!-- Frente de la Ficha con borde Neón -->
-                        <div class="absolute inset-0 backface-hidden bg-slate-950 border ${sub.borderNeon} rounded-2xl p-5 flex flex-col justify-between shadow-inner">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">Ficha #${idx + 1}</span>
-                                <span class="text-[11px] text-slate-400 font-medium">${card.block}</span>
-                            </div>
-                            <div class="text-center space-y-2 my-auto">
-                                <span class="text-4xl block">${card.frontEmoji}</span>
-                                <h4 class="font-bold text-sm text-white">${card.title}</h4>
-                                <p class="text-xs text-slate-300 font-mono">${card.frontText}</p>
-                            </div>
-                            <div class="text-center">
-                                <span class="text-[10px] ${sub.badgeNeon} px-2.5 py-1 rounded-lg border inline-block">👆 Toca para girar y ver significado</span>
-                            </div>
+            document.getElementById('currentSubjectTitle').innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name}</span>`;
+            document.getElementById('cardCounter').className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
+            document.getElementById('cardCounter').innerText = `Ficha ${currentCardIdx + 1} de ${sub.flashcards.length}`;
+            
+            const container = document.getElementById('flashcardSingleContainer');
+            container.innerHTML = `
+                <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-2xl rounded-2xl cursor-pointer" onclick="this.classList.toggle('rotate-y-180')">
+                    <!-- Frente de la Ficha -->
+                    <div class="absolute inset-0 backface-hidden bg-slate-950 border ${sub.borderNeon} rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">Ficha #${currentCardIdx + 1}</span>
+                            <span class="text-xs text-slate-400 font-medium">${card.block}</span>
                         </div>
-
-                        <!-- Dorso de la Ficha (Significado y Tip en Neón) -->
-                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-slate-900 to-slate-950 border ${sub.borderNeon} rounded-2xl p-5 flex flex-col justify-between shadow-2xl">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">${card.backTitle}</span>
-                                <span class="text-[11px] text-slate-400 font-medium">MEP 2026</span>
-                            </div>
-                            <div class="space-y-2 my-auto">
-                                <h5 class="font-bold text-xs text-white">${card.title}</h5>
-                                <p class="text-xs text-slate-200 leading-relaxed">${card.backText}</p>
-                            </div>
-                            <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 text-[11px] text-slate-300 font-medium">
-                                🎯 <strong>Tip:</strong> ${card.tip}
-                            </div>
+                        <div class="text-center space-y-3 my-auto">
+                            <span class="text-5xl block">${card.frontEmoji}</span>
+                            <h4 class="font-bold text-base text-white">${card.title}</h4>
+                            <p class="text-xs sm:text-sm text-slate-300 font-mono">${card.frontText}</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-[11px] ${sub.badgeNeon} px-3 py-1.5 rounded-lg border inline-block">👆 Toca para girar y ver significado MEP</span>
                         </div>
                     </div>
-                `;
-                container.appendChild(cardEl);
-            });
+
+                    <!-- Dorso de la Ficha -->
+                    <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-slate-900 to-slate-950 border ${sub.borderNeon} rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">${card.backTitle}</span>
+                            <span class="text-xs text-slate-400 font-medium">MEP 2026</span>
+                        </div>
+                        <div class="space-y-3 my-auto">
+                            <h5 class="font-bold text-sm text-white">${card.title}</h5>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${card.backText}</p>
+                        </div>
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 font-medium">
+                            🎯 <strong>Tip:</strong> ${card.tip}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            updateCardStatusButtons();
+        }
+
+        function setCardStatus(status) {
+            const key = `${currentSubjectKey}_${currentCardIdx}`;
+            cardStatuses[key] = status;
+            updateCardStatusButtons();
+        }
+
+        function updateCardStatusButtons() {
+            const key = `${currentSubjectKey}_${currentCardIdx}`;
+            const currentStatus = cardStatuses[key];
+            
+            const btnComp = document.getElementById('btnComprendido');
+            const btnRep = document.getElementById('btnRepasar');
+
+            if (currentStatus === 'comprendido') {
+                btnComp.className = "px-4 py-2 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-xl border border-emerald-500/50 transition-all flex items-center gap-1.5 shadow-lg shadow-emerald-500/10";
+                btnRep.className = "px-4 py-2 bg-slate-900 hover:bg-amber-950/40 text-slate-300 hover:text-amber-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
+            } else if (currentStatus === 'repasar') {
+                btnComp.className = "px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
+                btnRep.className = "px-4 py-2 bg-amber-500/20 text-amber-300 text-xs font-semibold rounded-xl border border-amber-500/50 transition-all flex items-center gap-1.5 shadow-lg shadow-amber-500/10";
+            } else {
+                btnComp.className = "px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
+                btnRep.className = "px-4 py-2 bg-slate-900 hover:bg-amber-950/40 text-slate-300 hover:text-amber-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
+            }
+        }
+
+        function nextCard() {
+            const sub = database[currentSubjectKey];
+            if (currentCardIdx < sub.flashcards.length - 1) {
+                currentCardIdx++;
+                renderFlashcardSingle();
+            }
+        }
+
+        function prevCard() {
+            if (currentCardIdx > 0) {
+                currentCardIdx--;
+                renderFlashcardSingle();
+            }
+        }
+
+        function resetCards() {
+            currentCardIdx = 0;
+            renderFlashcardSingle();
         }
 
         function renderQuestion() {
@@ -671,19 +761,29 @@
                     ${rationaleHTML}
                 </div>
             `;
-
-            const status = document.getElementById('questionStatusIndicator');
-            if (selectedAnswers[currentQuestionIdx] !== undefined) {
-                const correct = selectedAnswers[currentQuestionIdx] === q.correct;
-                status.innerHTML = correct ? '<span class="text-emerald-400 font-bold">¡Respuesta correcta! 🎉</span>' : '<span class="text-rose-400 font-bold">Respuesta incorrecta. Revisa la justificación.</span>';
-            } else {
-                status.innerText = "Selecciona una opción de respuesta";
-            }
         }
 
         function selectOption(idx) {
+            const sub = database[currentSubjectKey];
+            const q = sub.questions[currentQuestionIdx];
+            
+            if (selectedAnswers[currentQuestionIdx] === undefined) {
+                stats.answered++;
+                if (idx === q.correct) {
+                    stats.correct++;
+                }
+            } else {
+                const prevChoice = selectedAnswers[currentQuestionIdx];
+                if (prevChoice !== q.correct && idx === q.correct) {
+                    stats.correct++;
+                } else if (prevChoice === q.correct && idx !== q.correct) {
+                    stats.correct--;
+                }
+            }
+
             selectedAnswers[currentQuestionIdx] = idx;
             renderQuestion();
+            updateLiveStats();
         }
 
         function nextQuestion() {
@@ -701,18 +801,32 @@
             }
         }
 
+        function resetQuestions() {
+            selectedAnswers = {};
+            currentQuestionIdx = 0;
+            stats = { answered: 0, correct: 0 };
+            renderQuestion();
+            updateLiveStats();
+        }
+
+        function updateLiveStats() {
+            const sub = database[currentSubjectKey];
+            const totalQ = sub.questions.length;
+            const pct = stats.answered > 0 ? Math.round((stats.correct / stats.answered) * 100) : 0;
+            
+            document.getElementById('answeredCount').innerText = `${stats.answered} / ${totalQ}`;
+            document.getElementById('correctCount').innerText = stats.correct;
+            document.getElementById('liveScoreBadge').innerText = `${pct}% Aciertos`;
+            document.getElementById('liveProgressBar').style.width = `${pct}%`;
+        }
+
         window.onload = function() {
             renderSubjects();
-            renderFlashcards();
+            renderFlashcardSingle();
             renderQuestion();
+            updateLiveStats();
         };
     </script>
 </body>
 </html>
 ```eof
-
-### Resumen del Repaso Generado:
-1. **Fichas Mnemotécnicas Masivas en Ciencias:** Se han generado automáticamente **50 fichas de Química**, **50 fichas de Física** y **50 de Biología** (150 en total para Ciencias), con sus respectivos conceptos, bloques MEP y tips.
-2. **Sistema de Banco de Preguntas MEP:** Reactivos oficiales de selección única con cuatro opciones ($A, B, C, D$) y retroalimentación interactiva con justificación detallada.
-3. **Avance por Materias y Estética Neón:** Panel principal con barras de porcentajes y paleta cromática diferenciada (Verde Esmeralda para Ciencias, Amarillo para Matemáticas, Celeste para Español, Azul para Sociales y Rosado para Cívica).
-4. **Autoría Prominente:** Creado por el **Prof. Jorge Carvajal Vanegas** visible en el encabezado y pie de página.
