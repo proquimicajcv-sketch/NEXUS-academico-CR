@@ -192,7 +192,7 @@
 
     <script>
         // ==========================================
-        // 1. CIENCIAS (90 Ítems Oficiales: 30 Bio, 30 Qui, 30 Fis)
+        // 1. CIENCIAS (Exactamente 30 Ítems Únicos sin repetición)
         // ==========================================
         function getCienciasFlashcards() {
             return [
@@ -209,53 +209,188 @@
         }
 
         function getCienciasQuestions() {
-            const list = [];
-            // 30 Biología
-            const bioPool = [
-                { q: "1. [Biología] En los bosques nubosos de Costa Rica, las aves colibríes presentan picos curvados de diferentes longitudes que coinciden exactamente con la geometría tubular de las flores de las que se alimentan. Esta característica anatómica estructural que les permite optimizar la obtención de néctar se clasifica como", opts: ["Opción A: una adaptación fisiológica.", "Opción B: una adaptación etológica.", "Opción C: una adaptación morfológica.", "Opción D: un cambio en el nicho fundamental."], corr: 2, rat: "Corresponde a una adaptación morfológica ya que se trata de modificaciones físicas visibles en la estructura externa del organismo." },
-                { q: "2. [Biología] Un grupo de investigadores analiza un sector del Parque Nacional Corcovado donde registran exclusivamente jaguares (Panthera onca) que interactúan reproduciéndose entre sí en un tiempo y espacio determinado. Este nivel de organización biológica se define como", opts: ["Opción A: población.", "Opción B: ecosistema.", "Opción C: comunidad biológica.", "Opción D: bioma global."], corr: 0, rat: "Una población comprende a todos los individuos de una misma especie que habitan en un área geográfica delimitada y comparten cohesión reproductiva." },
-                { q: "3. [Biología] Al aplicar índices de biodiversidad en dos reservas forestales distintas, se determina que la Reserva A posee alta riqueza de especies con abundancias muy equitativas, mientras que la Reserva B está dominada casi en su totalidad por una sola especie de árbol invasor. A partir de esto, se deduce que", opts: ["Opción A: la Reserva B presenta mayor estabilidad.", "Opción B: la Reserva A posee un índice de diversidad superior debido a su mayor equidad y riqueza de especies.", "Opción C: ambas reservas poseen idénticos niveles de resiliencia.", "Opción D: la dominancia absoluta de una sola especie incrementa la biodiversidad genética."], corr: 1, rat: "Un mayor índice de biodiversidad se asocia a una mayor riqueza y equidad en la distribución de las abundancias de las especies." },
-                { q: "4. [Biología] Las aves martín pescador habitan en las riberas de los ríos nacionales y cumplen un rol estricto como depredadores carnívoros de peces pequeños. Mientras que el río representa su hábitat, la función trófica que ejerce en el ecosistema acuático corresponde a su", opts: ["Opción A: medio ambiente abiótico.", "Opción B: nicho ecológico.", "Opción C: potencial biótico.", "Opción D: resistencia ambiental."], corr: 1, rat: "El hábitat es el espacio físico, mientras que el nicho ecológico define su función y papel trófico en la comunidad." },
-                { q: "5. [Biología] Durante la observación del crecimiento poblacional de roedores en un cultivo agrícola, se registra un incremento abrupto de nacimientos y una baja tasa de mortalidad debido a la abundancia de recursos. Este fenómeno refleja directamente un aumento en", opts: ["Opción A: la resistencia ambiental.", "Opción B: el potencial biótico de la población.", "Opción C: la capacidad de carga máxima del sistema.", "Opción D: la tasa neta de emigración."], corr: 1, rat: "El potencial biótico representa la máxima capacidad de reproducción de una población bajo condiciones óptimas sin factores limitantes." }
+            return [
+                {
+                    q: "1. [Biología] En los bosques nubosos de Costa Rica, las aves colibríes presentan picos curvados de diferentes longitudes que coinciden exactamente con la geometría tubular de las flores de las que se alimentan. Esta característica anatómica estructural que les permite optimizar la obtención de néctar se clasifica como",
+                    options: ["Opción A: una adaptación fisiológica.", "Opción B: una adaptación etológica.", "Opción C: una adaptación morfológica.", "Opción D: un cambio en el nicho fundamental."],
+                    correct: 2,
+                    rationale: "Corresponde a una adaptación morfológica ya que se trata de modificaciones físicas visibles en la estructura externa del organismo."
+                },
+                {
+                    q: "2. [Biología] Un grupo de investigadores analiza un sector del Parque Nacional Corcovado donde registran exclusivamente jaguares (Panthera onca) que interactúan reproduciéndose entre sí en un tiempo y espacio determinado. Este nivel de organización biológica se define como",
+                    options: ["Opción A: población.", "Opción B: ecosistema.", "Opción C: comunidad biológica.", "Opción D: bioma global."],
+                    correct: 0,
+                    rationale: "Una población comprende a todos los individuos de una misma especie que habitan en un área geográfica delimitada y comparten cohesión reproductiva."
+                },
+                {
+                    q: "3. [Biología] Al aplicar índices de biodiversidad en dos reservas forestales distintas, se determina que la Reserva A posee alta riqueza de especies con abundancias muy equitativas, mientras que la Reserva B está dominada casi en su totalidad por una sola especie de árbol invasor. A partir de esto, se deduce que",
+                    options: ["Opción A: la Reserva B presenta mayor estabilidad.", "Opción B: la Reserva A posee un índice de diversidad superior debido a su mayor equidad y riqueza de especies.", "Opción C: ambas reservas poseen idénticos niveles de resiliencia.", "Opción D: la dominancia absoluta de una sola especie incrementa la biodiversidad genética."],
+                    correct: 1,
+                    rationale: "Un mayor índice de biodiversidad se asocia a una mayor riqueza y equidad en la distribución de las abundancias de las especies."
+                },
+                {
+                    q: "4. [Biología] Las aves martín pescador habitan en las riberas de los ríos nacionales y cumplen un rol estricto como depredadores carnívoros de peces pequeños. Mientras que el río representa su hábitat, la función trófica que ejerce en el ecosistema acuático corresponde a su",
+                    options: ["Opción A: medio ambiente abiótico.", "Opción B: nicho ecológico.", "Opción C: potencial biótico.", "Opción D: resistencia ambiental."],
+                    correct: 1,
+                    rationale: "El hábitat es el espacio físico, mientras que el nicho ecológico define su función y papel trófico en la comunidad."
+                },
+                {
+                    q: "5. [Biología] Durante la observación del crecimiento poblacional de roedores en un cultivo agrícola, se registra un incremento abrupto de nacimientos y una baja tasa de mortalidad debido a la abundancia de recursos. Este fenómeno refleja directamente un aumento en",
+                    options: ["Opción A: la resistencia ambiental.", "Opción B: el potencial biótico de la población.", "Opción C: la capacidad de carga máxima del sistema.", "Opción D: la tasa neta de emigración."],
+                    correct: 1,
+                    rationale: "El potencial biótico representa la máxima capacidad de reproducción de una población bajo condiciones óptimas sin factores limitantes."
+                },
+                {
+                    q: "6. [Biología] En un ecosistema insular, una población de aves alcanza un punto donde los recursos como alimento y espacio se vuelven estrictamente limitados, estabilizando su curva de crecimiento en forma de S. Este límite superior de individuos que el ambiente puede sostener se denomina",
+                    options: ["Opción A: potencial biótico absoluto.", "Opción B: tasa de natalidad exponencial.", "Opción C: capacidad de carga ambiental (K).", "Opción D: resistencia biológica negativa."],
+                    correct: 2,
+                    rationale: "La capacidad de carga (K) es el número máximo de individuos que un entorno puede soportar de manera sostenible."
+                },
+                {
+                    q: "7. [Biología] Las abejas silvestres recolectan néctar y polen de las flores para su alimentación, mientras que simultáneamente transportan los granos de polen permitiendo la fecundación y reproducción de las plantas con flores. Esta relación interespecífica se clasifica como",
+                    options: ["Opción A: parasitismo (+/-).", "Opción B: comensalismo (+/0).", "Opción C: mutualismo (+/+).", "Opción D: amensalismo (-/0)."],
+                    correct: 2,
+                    rationale: "El mutualismo es una interacción simbiótica donde ambas especies involucradas obtienen un beneficio recíproco (+/+)."
+                },
+                {
+                    q: "8. [Biología] Para mitigar la proliferación de mosquitos del género Aedes aegypti transmisores del dengue en comunidades tropicales, las autoridades de salud recomiendan eliminar criaderos y aplicar medidas de control biológico. ¿Cuál acción preventiva corresponde a este manejo?",
+                    options: ["Opción A: Incrementar el vertido de residuos en los cauces.", "Opción B: Eliminar recipientes estancados con agua limpia y usar peces larvífagos en estanques.", "Opción C: Fomentar la deforestación de charcas naturales.", "Opción D: Introducir químicos sintéticos no regulados en fuentes de agua."],
+                    correct: 1,
+                    rationale: "La eliminación de depósitos de agua estancada y el uso de controles biológicos evitan el desarrollo del ciclo larvario del vector."
+                },
+                {
+                    q: "9. [Biología] En una cadena trófica de un ecosistema terrestre, la mayor cantidad de energía disponible transferible se concentra en el nivel trófico correspondiente a los",
+                    options: ["Opción A: productores primarios (plantas y fitoplancton).", "Opción B: consumidores terciarios o carnívoros cimeros.", "Opción C: descomponedores bacterianos finales.", "Opción D: herbívoros de primer orden."],
+                    correct: 0,
+                    rationale: "Los productores capturan la energía solar directamente, acumulando la biomasa y energía primaria más alta de la pirámide."
+                },
+                {
+                    q: "10. [Biología] El proceso biológico celular mediante el cual los organismos autótrofos fijan el carbono inorgánico del dióxido de carbono atmosférico para transformarlo en glucosa orgánica se denomina",
+                    options: ["Opción A: respiración celular aerobia.", "Opción B: fermentación láctica.", "Opción C: fotosíntesis.", "Opción D: desnitrificación bacteriana."],
+                    correct: 2,
+                    rationale: "La fotosíntesis utiliza la energía lumínica para convertir CO₂ y agua en compuestos orgánicos oxigenados."
+                },
+                {
+                    q: "11. [Biología] En la estructura molecular del ácido desoxirribonucleico (ADN), la complementariedad estricta de las bases nitrogenadas establece que la adenina se empareja siempre con",
+                    options: ["Opción A: la citosina mediante enlaces covalentes triples.", "Opción B: la timina mediante puentes de hidrógeno.", "Opción C: el uracilo en sustitución directa.", "Opción D: la guanina exclusivamente."],
+                    correct: 1,
+                    rationale: "En el ADN, la adenina (A) se une específicamente con la timina (T) por puentes de hidrógeno."
+                },
+                {
+                    q: "12. [Biología] El proceso molecular mediante el cual la información genética contenida en una cadena molde de ADN se copia en una molécula mensajera de ARN en el núcleo celular se conoce como",
+                    options: ["Opción A: duplicación semiconservativa.", "Opción B: transcripción del ADN.", "Opción C: traducción ribosómica.", "Opción D: mutación puntual."],
+                    correct: 1,
+                    rationale: "La transcripción sintetiza el ARN mensajero a partir del molde de ADN en el núcleo."
+                },
+                {
+                    q: "13. [Biología] El síndrome de Down en humanos es una anomalía cromosómica numérica que se origina comúnmente debido a la presencia de un cromosoma extra en el par 21. Esta alteración se clasifica específicamente como una",
+                    options: ["Opción A: trisomía autosómica.", "Opción B: monosomía sexual.", "Opción C: delección estructural.", "Opción D: inversión pericéntrica."],
+                    correct: 0,
+                    rationale: "La presencia de tres cromosomas en lugar de un par homólogo en el cromosoma 21 se denomina trisomía."
+                },
+                {
+                    q: "14. [Biología] Al cruzar dos plantas heterocigotas para un carácter monohíbrido con dominancia completa (Aa × Aa), el porcentaje esperado de la descendencia que exprese el fenotipo recesivo corresponde a",
+                    options: ["Opción A: 0%", "Opción B: 25%", "Opción C: 50%", "Opción D: 75%"],
+                    correct: 1,
+                    rationale: "Según el cuadro de Punnett para un cruce monohíbrido heterocigoto, la proporción fenotípica recesiva es del 25% (1/4)."
+                },
+                {
+                    q: "15. [Biología] En ciertas plantas de flores rojas cruzadas con flores blancas se obtiene una descendencia de flores totalmente rosadas (fenotipo intermedio). Este tipo de herencia genética se denomina",
+                    options: ["Opción A: codominancia estricta.", "Opción B: dominancia incompleta o intermedia.", "Opción C: herencia ligada al cromosoma X.", "Opción D: alelos múltiples."],
+                    correct: 1,
+                    rationale: "La dominancia incompleta ocurre cuando ninguno de los alelos es completamente dominante, mezclando los rasgos en el heterocigoto."
+                },
+                {
+                    q: "16. [Química] Un recipiente contiene una mezcla formada por agua y aceite de cocina bien agitada. Al cabo de unos minutos se observa una separación de fases bien definida. Esta mezcla se clasifica como",
+                    options: ["Opción A: disolución homogénea verdadera.", "Opción B: mezcla heterogénea.", "Opción C: sustancia pura compuesta.", "Opción D: coloide estable."],
+                    correct: 1,
+                    rationale: "Una mezcla heterogénea presenta fases distinguibles a simple vista debido a la insolubilidad entre sus componentes."
+                },
+                {
+                    q: "17. [Química] Un átomo neutro del elemento cloro presenta un número atómico Z = 17 y un número másico A = 35. El número exacto de protones, electrones y neutrones presentes en este átomo neutro es",
+                    options: ["Opción A: 17 protones, 17 electrones y 35 neutrones.", "Opción B: 17 protones, 17 electrones y 18 neutrones.", "Opción C: 35 protones, 17 electrones y 17 neutrones.", "Opción D: 18 protones, 18 electrones y 17 neutrones."],
+                    correct: 1,
+                    rationale: "Z = 17 indica protones y electrones. Neutrones = A - Z = 35 - 17 = 18."
+                },
+                {
+                    q: "18. [Química] Dos átomos del elemento carbono poseen ambos 6 protones en su núcleo, pero uno tiene 6 neutrones y el otro tiene 8 neutrones. Estos átomos se denominan químicamente",
+                    options: ["Opción A: isóbaros.", "Opción B: isótopos.", "Opción C: isómeros estructurales.", "Opción D: iones poliatómicos."],
+                    correct: 1,
+                    rationale: "Los isótopos son átomos de un mismo elemento con igual número atómico pero diferente número másico debido a sus neutrones."
+                },
+                {
+                    q: "19. [Química] Para el átomo de oxígeno (Z = 8), su configuración electrónica estándar en estado fundamental corresponde a",
+                    options: ["Opción A: 1s² 2s² 2p⁶", "Opción B: 1s² 2s² 2p⁴", "Opción C: 1s² 2s⁶", "Opción D: 1s¹ 2s² 2p⁵"],
+                    correct: 1,
+                    rationale: "Sumando los exponentes de los orbitales se obtiene el número total de electrones (2 + 2 + 4 = 8)."
+                },
+                {
+                    q: "20. [Química] El cloruro de sodio (NaCl), comúnmente conocido como sal de mesa, presenta un enlace químico formado por la transferencia de electrones entre un metal y un no metal, originando un enlace de tipo",
+                    options: ["Opción A: iónico.", "Opción B: covalente no polar.", "Opción C: metálico libre.", "Opción D: puente de hidrógeno."],
+                    correct: 0,
+                    rationale: "El enlace iónico ocurre por transferencia de electrones entre especies con alta diferencia de electronegatividad."
+                },
+                {
+                    q: "21. [Química] En la molécula de agua (H₂O), los enlaces formados entre el hidrógeno y el oxígeno se caracterizan por compartir electrones de manera asimétrica debido a la diferencia de electronegatividad, definiendo un enlace",
+                    options: ["Opción A: iónico puro.", "Opción B: covalente polar.", "Opción C: covalente apolar.", "Opción D: metálico deslocalizado."],
+                    correct: 1,
+                    rationale: "La compartición desigual de electrones entre no metales con diferente electronegatividad genera un enlace covalente polar."
+                },
+                {
+                    q: "22. [Química] Según las reglas de nomenclatura IUPAC en el sistema Stock, el compuesto FeCl₃ (donde el hierro actúa con valencia 3) se nombra correctamente como",
+                    options: ["Opción A: tricloruro de hierro.", "Opción B: cloruro de hierro (III).", "Opción C: óxido férrico ferroso.", "Opción D: clorito férrico."],
+                    correct: 1,
+                    rationale: "El sistema Stock indica el número de oxidación del catión metálico en números romanos entre paréntesis."
+                },
+                {
+                    q: "23. [Química] El concepto de 'mol' en química representa la cantidad de sustancia que contiene exactamente el número de Avogadro de partículas elementales, equivalente a",
+                    options: ["Opción A: 6.02 × 10²⁰ partículas.", "Opción B: 6.02 × 10²³ partículas (átomos, moléculas o iones).", "Opción C: 22.4 litros exactos.", "Opción D: 1 gramo de masa."],
+                    correct: 1,
+                    rationale: "El número de Avogadro (6.02 × 10²³) es la constante física que define el número de entidades elementales en un mol."
+                },
+                {
+                    q: "24. [Química] La molaridad (M) de una disolución se define cuantitativamente como el número de moles de soluto disueltos en",
+                    options: ["Opción A: un kilogramo de disolvente puro.", "Opción B: un litro de disolución total.", "Opción C: cien gramos de solución acuosa.", "Opción D: un litro de disolvente exclusivo."],
+                    correct: 1,
+                    rationale: "La molaridad expresa la concentración en moles de soluto por cada litro de disolución (mol/L)."
+                },
+                {
+                    q: "25. [Química] Cuando se añade un soluto no volátil (como la sal) al agua pura, se observa un fenómeno coligativo caracterizado por",
+                    options: ["Opción A: un aumento en el punto de congelación.", "Opción B: un ascenso ebulloscópico (aumento en el punto de ebullición).", "Opción C: una disminución en la presión osmótica.", "Opción D: la pérdida de polaridad."],
+                    correct: 1,
+                    rationale: "La adición de soluto eleva el punto de ebullición y desciende el punto de congelación del disolvente."
+                },
+                {
+                    q: "26. [Física] Un excursionista camina 5 km hacia el este y luego 5 km hacia el norte. Al analizar sus datos, la distancia total recorrida y su desplazamiento vectorial resultante corresponden respectivamente a",
+                    options: ["Opción A: 10 km (escalar) y 10 km hacia el noreste.", "Opción B: 10 km (escalar) y 7.07 km hacia el noreste.", "Opción C: 0 km y 0 km.", "Opción D: 7.07 km y 10 km."],
+                    correct: 1,
+                    rationale: "La distancia es la suma escalar (5+5=10 km), y el desplazamiento es la hipotenusa vectorial (√(5²+5²) = 7.07 km)."
+                },
+                {
+                    q: "27. [Física] Un automóvil viaja por una carretera recta con velocidad constante de 20 m/s. El tiempo necesario para recorrer una distancia lineal de 100 metros es",
+                    options: ["Opción A: 2 segundos.", "Opción B: 5 segundos.", "Opción C: 20 segundos.", "Opción D: 2000 segundos."],
+                    correct: 1,
+                    rationale: "Utilizando la fórmula t = d / v = 100 / 20 = 5 segundos."
+                },
+                {
+                    q: "28. [Física] Si se deja caer libremente un objeto desde lo alto de un edificio despreciando la resistencia del aire, la aceleración que experimenta el cuerpo durante su descenso es",
+                    options: ["Opción A: cero, porque parte del reposo.", "Opción B: constante e igual a la aceleración de la gravedad (g ≈ 9.8 m/s²).", "Opción C: inversamente proporcional a su masa.", "Opción D: variable en función del tiempo."],
+                    correct: 1,
+                    rationale: "En caída libre ideal, todos los cuerpos experimentan una aceleración vertical constante debida a la gravedad terrestre."
+                },
+                {
+                    q: "29. [Física] Sobre un bloque de 4 kg de masa ubicado sobre una superficie horizontal sin fricción se aplica una fuerza neta de 12 N. La aceleración que adquiere el bloque es",
+                    options: ["Opción A: 48 m/s²", "Opción B: 3 m/s²", "Opción C: 8 m/s²", "Opción D: 0.33 m/s²"],
+                    correct: 1,
+                    rationale: "Aplicando la segunda ley de Newton: a = F / m = 12 N / 4 kg = 3 m/s²."
+                },
+                {
+                    q: "30. [Física] Se realiza un trabajo mecánico positivo sobre un objeto cuando la fuerza aplicada y el desplazamiento consiguiente del cuerpo forman un ángulo de",
+                    options: ["Opción A: 0° (en la misma dirección y sentido).", "Opción B: 90° (perpendiculares).", "Opción C: 180° (en sentido contrario).", "Opción D: 270°."],
+                    correct: 0,
+                    rationale: "El trabajo se calcula como W = F · d · cos(θ). Si θ = 0°, el coseno es 1, obteniendo el trabajo máximo positivo."
+                }
             ];
-            for(let i=1; i<=30; i++) {
-                const b = bioPool[(i-1) % bioPool.length];
-                list.push({
-                    question: `${i}. [Biología MEP 2026] ${b.q.replace(/^\d+\.\s*\[Biología\]\s*/, '')}`,
-                    options: b.opts, correct: b.corr, rationale: `Justificación oficial MEP (Biología Ítems #1-30):\n${b.rat}`
-                });
-            }
-
-            // 30 Química
-            const quiPool = [
-                { q: "1. [Química] Un recipiente contiene una mezcla formada por agua y aceite de cocina bien agitada. Al cabo de unos minutos se observa una separación de fases bien definida. Esta mezcla se clasifica como", opts: ["Opción A: disolución homogénea verdadera.", "Opción B: mezcla heterogénea.", "Opción C: sustancia pura compuesta.", "Opción D: coloide estable."], corr: 1, rat: "Una mezcla heterogénea presenta fases distinguibles a simple vista debido a la insolubilidad entre sus componentes." },
-                { q: "2. [Química] Un átomo neutro del elemento cloro presenta un número atómico Z = 17 y un número másico A = 35. El número exacto de protones, electrones y neutrones presentes en este átomo neutro es", opts: ["Opción A: 17 protones, 17 electrones y 35 neutrones.", "Opción B: 17 protones, 17 electrones y 18 neutrones.", "Opción C: 35 protones, 17 electrones y 17 neutrones.", "Opción D: 18 protones, 18 electrones y 17 neutrones."], corr: 1, rat: "Z = 17 indica protones y electrones. Neutrones = A - Z = 35 - 17 = 18." },
-                { q: "3. [Química] Dos átomos del elemento carbono poseen ambos 6 protones en su núcleo, pero uno tiene 6 neutrones y el otro tiene 8 neutrones. Estos átomos se denominan químicamente", opts: ["Opción A: isóbaros.", "Opción B: isótopos.", "Opción C: isómeros estructurales.", "Opción D: iones poliatómicos."], corr: 1, rat: "Los isótopos son átomos de un mismo elemento con igual número atómico pero diferente número másico por sus neutrones." }
-            ];
-            for(let i=31; i<=60; i++) {
-                const qNum = i - 30;
-                const qObj = quiPool[(qNum-1) % quiPool.length];
-                list.push({
-                    question: `${i}. [Química MEP 2026] ${qObj.q.replace(/^\d+\.\s*\[Química\]\s*/, '')}`,
-                    options: qObj.opts, correct: qObj.corr, rationale: `Justificación oficial MEP (Química Ítems #31-60):\n${qObj.rat}`
-                });
-            }
-
-            // 30 Física
-            const fisPool = [
-                { q: "1. [Física] Un excursionista camina 5 km hacia el este y luego 5 km hacia el norte. Al analizar sus datos, la distancia total recorrida y su desplazamiento vectorial resultante corresponden respectivamente a", opts: ["Opción A: 10 km (escalar) y 10 km hacia el noreste.", "Opción B: 10 km (escalar) y 7.07 km hacia el noreste con dirección precisa.", "Opción C: 0 km y 0 km.", "Opción D: 7.07 km y 10 km."], corr: 1, rat: "La distancia es la suma escalar (5+5=10 km), y el desplazamiento es la hipotenusa vectorial (√(5²+5²) = 7.07 km)." },
-                { q: "2. [Física] Un automóvil viaja por una carretera recta con velocidad constante de 20 m/s. El tiempo necesario para recorrer una distancia lineal de 100 metros es", opts: ["Opción A: 2 segundos.", "Opción B: 5 segundos.", "Opción C: 20 segundos.", "Opción D: 2000 segundos."], corr: 1, rat: "Utilizando la fórmula t = d / v = 100 / 20 = 5 segundos." },
-                { q: "3. [Física] Si se deja caer libremente un objeto desde lo alto de un edificio despreciando la resistencia del aire, la aceleración que experimenta el cuerpo durante su descenso es", opts: ["Opción A: cero, porque parte del reposo.", "Opción B: constante e igual a la aceleración de la gravedad (g ≈ 9.8 m/s²).", "Opción C: inversamente proporcional a su masa.", "Opción D: variable en función del tiempo."], corr: 1, rat: "En caída libre ideal, todos los cuerpos experimentan una aceleración vertical constante debida a la gravedad terrestre." }
-            ];
-            for(let i=61; i<=90; i++) {
-                const qNum = i - 60;
-                const qObj = fisPool[(qNum-1) % fisPool.length];
-                list.push({
-                    question: `${i}. [Física MEP 2026] ${qObj.q.replace(/^\d+\.\s*\[Física\]\s*/, '')}`,
-                    options: qObj.opts, correct: qObj.corr, rationale: `Justificación oficial MEP (Física Ítems #61-90):\n${qObj.rat}`
-                });
-            }
-            return list;
         }
 
         // ==========================================
@@ -303,7 +438,7 @@
         function getEspanolFlashcards() {
             const list = [];
             const espTopics = [
-                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖️️", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
+                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖️", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
                 {t: "Metáfora", b: "Recursos Retóricos", e: "💎", f: "Identificación implícita sin nexos", d: "Sustitución de un término por otro debido a una semejanza implícita."},
                 {t: "Prosopopeya", b: "Recursos Retóricos", e: "🌳", f: "Cualidades humanas a inanimados", d: "Dota a objetos o conceptos de acciones o sentimientos humanos."},
                 {t: "Hipérbole", b: "Recursos Retóricos", e: "📈", f: "Exageración desproporcionada", d: "Aumento o disminución exagerada de cualidades con finalidad expresiva."},
@@ -416,7 +551,7 @@
         // ==========================================
         const database = {
             ciencias: {
-                name: "Ciencias", icon: "🧬", desc: "Física, Química, Biología (90 Ítems)", neonColor: "emerald",
+                name: "Ciencias", icon: "🧬", desc: "Física, Química, Biología (30 Ítems)", neonColor: "emerald",
                 borderNeon: "border-emerald-500/60 shadow-emerald-500/20", badgeNeon: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: getCienciasFlashcards(), questions: getCienciasQuestions()
