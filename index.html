@@ -9,22 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="w-full max-w-5xl mx-auto px-4 md:px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-4 border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="flex items-center gap-3.5">
-            <!-- Logotipo -->
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 transform hover:scale-105 transition-transform duration-300">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <header class="w-full max-w-5xl mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 transform hover:scale-105 transition-transform duration-300">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                 </svg>
             </div>
             <div>
-                <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-indigo-300 to-fuchsia-400 bg-clip-text text-transparent">Nexus Académico CR</h1>
-                <p class="text-xs text-slate-400 font-medium">Pruebas Nacionales Estandarizadas 2026 &bull; MEP Costa Rica</p>
+                <h1 class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-indigo-300 to-fuchsia-400 bg-clip-text text-transparent">Nexus Académico CR</h1>
+                <p class="text-[11px] text-slate-400 font-medium">Pruebas Nacionales Estandarizadas 2026 &bull; MEP</p>
             </div>
         </div>
         <div class="flex items-center gap-3">
@@ -32,121 +35,403 @@
                 <p class="text-xs font-semibold text-indigo-300">Prof. Jorge Carvajal Vanegas</p>
                 <p class="text-[10px] text-slate-400">Excelencia Académica 11°</p>
             </div>
-            <span class="px-3.5 py-1.5 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold rounded-full shadow-inner">11° Año</span>
+            <span class="px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold rounded-full">11° Año</span>
         </div>
     </header>
 
     <!-- Main Content Area -->
-    <main class="w-full max-w-5xl mx-auto px-4 md:px-6 my-8 space-y-10">
+    <main class="w-full max-w-5xl mx-auto px-4 md:px-6 my-6 space-y-8">
         
-        <!-- Hero section with Logo Showcase -->
-        <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -left-10 -top-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Hero section -->
+        <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
-                <!-- Logotipo Versión Ampliada -->
-                <div class="w-24 h-24 md:w-28 md:h-28 rounded-3xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-xl shadow-indigo-500/30 shrink-0 transform hover:rotate-3 transition-transform">
-                    <svg class="w-14 h-14 md:w-16 md:h-16 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <div class="flex flex-col md:flex-row items-center gap-6 relative z-10">
+                <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-xl shadow-indigo-500/30 shrink-0">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                     </svg>
                 </div>
-                <div class="text-center md:text-left space-y-3">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
+                <div class="text-center md:text-left space-y-2">
+                    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
                         <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
                         Plataforma Oficial de Repaso 2026
                     </div>
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">¡Bienvenido al núcleo de tu éxito académico!</h2>
-                    <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl">
-                        Tu plataforma unificada para repasar Matemáticas, Español, Estudios Sociales, Cívica y Ciencias mediante fichas interactivas con imágenes, trivias y preguntas de selección única basadas estrictamente en las normativas del MEP 2026.
+                    <h2 class="text-xl md:text-3xl font-extrabold text-white tracking-tight">¡Bienvenido al núcleo de tu éxito académico!</h2>
+                    <p class="text-slate-300 text-xs md:text-sm leading-relaxed max-w-2xl">
+                        Plataforma unificada creada por el <strong>Prof. Jorge Carvajal Vanegas</strong> para asegurar el mejor desempeño de los estudiantes en las Pruebas Nacionales Estandarizadas MEP 2026.
                     </p>
-                    <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-slate-400 font-medium">
-                        <span class="flex items-center gap-1.5 bg-slate-950/60 px-3 py-1.5 rounded-xl border border-slate-800">
-                            <span class="text-indigo-400 font-bold">✨ Creado por:</span> Prof. Jorge Carvajal Vanegas
-                        </span>
-                        <span class="flex items-center gap-1.5 bg-slate-950/60 px-3 py-1.5 rounded-xl border border-slate-800">
-                            <span class="text-emerald-400 font-bold">🎯 Enfoque:</span> Pruebas Nacionales 2026
-                        </span>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Grid de Materias Disponibles -->
+        <!-- Áreas de Estudio Activas & Dashboard de Progreso -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
-                <h3 class="text-lg md:text-xl font-bold text-white flex items-center gap-2.5">
-                    <div class="p-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2">
+                    <div class="p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"></path></svg>
                     </div>
-                    Áreas de Estudio Activas
+                    Áreas de Estudio & Avance por Materia
                 </h3>
-                <span class="text-xs text-slate-400 font-medium">Selecciona una materia</span>
+                <span class="text-xs text-slate-400">Haz clic para filtrar</span>
             </div>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                <div class="bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-5 text-center transition-all duration-300 cursor-pointer group hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/10">
-                    <span class="text-3xl mb-2 block group-hover:scale-110 transition-transform">🧬</span>
-                    <h4 class="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors">Ciencias</h4>
-                    <p class="text-[11px] text-slate-400 mt-1">Física, Química, Biología</p>
-                </div>
-                <div class="bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-5 text-center transition-all duration-300 cursor-pointer group hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/10">
-                    <span class="text-3xl mb-2 block group-hover:scale-110 transition-transform">📐</span>
-                    <h4 class="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors">Matemáticas</h4>
-                    <p class="text-[11px] text-slate-400 mt-1">Álgebra y Geometría</p>
-                </div>
-                <div class="bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-5 text-center transition-all duration-300 cursor-pointer group hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/10">
-                    <span class="text-3xl mb-2 block group-hover:scale-110 transition-transform">✍️</span>
-                    <h4 class="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors">Español</h4>
-                    <p class="text-[11px] text-slate-400 mt-1">Comprensión y Gramática</p>
-                </div>
-                <div class="bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-5 text-center transition-all duration-300 cursor-pointer group hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/10">
-                    <span class="text-3xl mb-2 block group-hover:scale-110 transition-transform">🌍</span>
-                    <h4 class="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors">Sociales</h4>
-                    <p class="text-[11px] text-slate-400 mt-1">Historia y Geografía CR</p>
-                </div>
-                <div class="bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-5 text-center transition-all duration-300 cursor-pointer group hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/10 col-span-2 sm:col-span-1">
-                    <span class="text-3xl mb-2 block group-hover:scale-110 transition-transform">⚖️</span>
-                    <h4 class="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors">Cívica</h4>
-                    <p class="text-[11px] text-slate-400 mt-1">Derechos y Constitución</p>
-                </div>
+            <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <!-- Se inyecta dinámicamente con JS para mostrar progreso y selección -->
             </div>
         </section>
 
-        <!-- Preview Tarjeta de Memoria / Ficha Interactiva -->
-        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
+        <!-- Fichas Mnemotécnicas Interactivas con Rotación 3D -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3.5 py-1.5 rounded-full border border-cyan-500/20 w-fit">Ficha Destacada #1</span>
-                <span class="text-xs text-slate-400 font-medium">Bloque: Sistemas Biológicos &bull; Biología MEP</span>
+                <div>
+                    <h3 id="currentSubjectTitle" class="text-lg font-bold text-white flex items-center gap-2">
+                        <span>🧬 Fichas Mnemotécnicas: Ciencias</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Toca cualquier tarjeta para girarla y revelar su significado y tip oficial MEP</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="cardCounter" class="text-xs bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 px-3 py-1 rounded-full font-semibold">Ficha 1 de 3</span>
+                </div>
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-4">
-                    <h4 class="text-xl md:text-2xl font-bold text-white">Adaptaciones Morfológicas</h4>
-                    <p class="text-sm md:text-base text-slate-300 leading-relaxed">
-                        Modificaciones en la estructura física externa de un organismo para camuflarse, defenderse o desplazarse mejor en su hábitat natural (ej. forma de las hojas o coloración críptica).
-                    </p>
-                    <div class="flex items-center gap-2.5 text-xs text-indigo-400 font-medium bg-indigo-500/10 p-3 rounded-2xl border border-indigo-500/20">
-                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span>Tip para estudiantes: Dominar este concepto asegura aciertos en preguntas de selección única sobre evolución y ecología.</span>
-                    </div>
-                </div>
-                <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 text-center flex flex-col items-center justify-center h-48 shadow-inner relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-indigo-500/5 opacity-50"></div>
-                    <span class="text-5xl mb-3 transform group-hover:scale-110 transition-transform">🌿🦎</span>
-                    <span class="text-xs text-slate-200 font-semibold relative z-10">Insecto palo mimetizado sobre rama</span>
-                    <span class="text-[11px] text-cyan-400 mt-1 font-medium relative z-10">Recurso mnemotécnico oficial MEP</span>
-                </div>
+
+            <!-- Contenedor de Tarjetas 3D -->
+            <div id="flashcardsContainer" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Renderizado por JS -->
+            </div>
+
+            <div class="flex justify-between items-center pt-2">
+                <button onclick="prevCard()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5">
+                    &larr; Anterior
+                </button>
+                <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow-lg shadow-indigo-500/20 transition-all flex items-center gap-1.5">
+                    Siguiente &rarr;
+                </button>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="w-full max-w-5xl mx-auto px-4 md:px-6 py-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <p>Nexus Académico CR &copy; 2026 &bull; Todos los derechos reservados.</p>
+    <footer class="w-full max-w-5xl mx-auto px-4 md:px-6 py-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <p>Nexus Académico CR &copy; 2026 &bull; Preparación Estándar MEP</p>
         <p class="text-slate-400 font-medium">Creado por: <span class="text-indigo-400 font-bold">Prof. Jorge Carvajal Vanegas</span></p>
     </footer>
 
+    <!-- Script de Interactividad Completa -->
+    <script>
+        // Base de datos de materias con conceptos, actividades, preguntas y fichas
+        const database = {
+            ciencias: {
+                name: "Ciencias",
+                icon: "🧬",
+                desc: "Física, Química, Biología",
+                progress: { concepts: 85, activities: 70, questions: 78 },
+                flashcards: [
+                    {
+                        title: "Adaptaciones Morfológicas",
+                        block: "Sistemas Biológicos",
+                        frontEmoji: "🌿🦎",
+                        frontText: "Insecto palo mimetizado",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Modificaciones en la estructura física externa de un organismo para camuflarse o defenderse.",
+                        tip: "Tip 11°: Clave para preguntas de selección sobre evolución y ecología."
+                    },
+                    {
+                        title: "Ley de Conservación de la Materia",
+                        block: "Química Orgánica",
+                        frontEmoji: "⚖️🔥",
+                        frontText: "Lavoisier: La masa ni se crea ni se destruye",
+                        backTitle: "Definición MEP 2026",
+                        backText: "En toda reacción química ordinaria, la masa total de los reactivos es igual a la masa total de los productos.",
+                        tip: "Tip 11°: Fundamental para balanceo de ecuaciones químicas."
+                    },
+                    {
+                        title: "Cinética y Movimiento Rectilíneo",
+                        block: "Física Mecánica",
+                        frontEmoji: "🏎️💨",
+                        frontText: "Velocidad constante y aceleración",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Estudio del movimiento de los cuerpos sin considerar las causas que lo originan (MRU y MRUV).",
+                        tip: "Tip 11°: Domina las fórmulas de distancia y tiempo en problemas prácticos."
+                    }
+                ]
+            },
+            matematicas: {
+                name: "Matemáticas",
+                icon: "📐",
+                desc: "Álgebra y Geometría",
+                progress: { concepts: 90, activities: 82, questions: 85 },
+                flashcards: [
+                    {
+                        title: "Funciones Exponenciales",
+                        block: "Álgebra Avanzada",
+                        frontEmoji: "📈⚡",
+                        frontText: "Crecimiento y decrecimiento poblacional",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Función de la forma f(x) = a^x con a > 0 y a != 1, caracterizada por su asíntota horizontal.",
+                        tip: "Tip 11°: Evalúa correctamente la base para determinar si es creciente o decreciente."
+                    },
+                    {
+                        title: "Geometría Analítica del Espacio",
+                        block: "Geometría 3D",
+                        frontEmoji: "🌐📐",
+                        frontText: "Esferas y Planos cartesianos",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Ecuación de la esfera: (x-h)² + (y-k)² + (z-l)² = r², determinando su centro y radio.",
+                        tip: "Tip 11°: Identifica los signos opuestos al extraer el centro (h, k, l)."
+                    },
+                    {
+                        title: "Estadística y Probabilidad",
+                        block: "Análisis de Datos",
+                        frontEmoji: "📊🎲",
+                        frontText: "Distribución Normal y Probabilidad",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Cálculo de probabilidades bajo la curva normal estándar z = (X - μ) / σ.",
+                        tip: "Tip 11°: Memoriza las propiedades de simetría de la campana de Gauss."
+                    }
+                ]
+            },
+            espanol: {
+                name: "Español",
+                icon: "✍️",
+                desc: "Comprensión y Gramática",
+                progress: { concepts: 78, activities: 65, questions: 72 },
+                flashcards: [
+                    {
+                        title: "Vanguardismo Literario CR",
+                        block: "Literatura Costarricense",
+                        frontEmoji: "🎭📖",
+                        frontText: "Ruptura con las formas tradicionales",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Movimiento literario del siglo XX que buscó la libertad de expresión, verso libre y crítica social.",
+                        tip: "Tip 11°: Relaciona las obras con el contexto sociohistórico costarricense."
+                    },
+                    {
+                        title: "Cohesión y Coherencia Textual",
+                        block: "Gramática Superior",
+                        frontEmoji: "🔗📝",
+                        frontText: "Conectores y estructura lógica",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Propiedades textuales que garantizan la unidad temática y el correcto uso de nexos gramaticales.",
+                        tip: "Tip 11°: Analiza la intención comunicativa del autor en textos argumentativos."
+                    },
+                    {
+                        title: "Funciones del Lenguaje",
+                        block: "Lingüística",
+                        frontEmoji: "💬🎯",
+                        frontText: "Emotiva, Conativa, Referencial",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Clasificación de los enunciados según el propósito del emisor (centrado en el mensaje, receptor, etc.).",
+                        tip: "Tip 11°: Distingue con claridad entre la función metalingüística y la fática."
+                    }
+                ]
+            },
+            sociales: {
+                name: "Sociales",
+                icon: "🌍",
+                desc: "Historia y Geografía CR",
+                progress: { concepts: 88, activities: 75, questions: 80 },
+                flashcards: [
+                    {
+                        title: "Guerra Civil de 1948",
+                        block: "Historia de Costa Rica",
+                        frontEmoji: "🇨🇷⚖️",
+                        frontText: "Abolición del Ejército y la 49°",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Hito histórico que transformó la institucionalidad costarricense, creando el TSE y nacionalizando la banca.",
+                        tip: "Tip 11°: Recuerda las reformas sociales de 1940 y su impacto en la Constitución de 1949."
+                    },
+                    {
+                        title: "Globalización y Geopolítica",
+                        block: "Geografía Mundial",
+                        frontEmoji: "🌐🤝",
+                        frontText: "Interdependencia económica y bloques",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Proceso de integración mundial en los ámbitos político, económico, cultural y tecnológico.",
+                        tip: "Tip 11°: Comprende las ventajas y desafíos socioambientales de la globalización."
+                    },
+                    {
+                        title: "Derechos Humanos y OI",
+                        block: "Organismos Internacionales",
+                        frontEmoji: "🏛️📜",
+                        frontText: "Corte IDH con sede en San José",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Instituciones globales y regionales encargadas de velar por la paz, el desarrollo y las garantías individuales.",
+                        tip: "Tip 11°: Costa Rica destaca como sede de la Corte Interamericana de Derechos Humanos."
+                    }
+                ]
+            },
+            civica: {
+                name: "Cívica",
+                icon: "⚖️",
+                desc: "Derechos y Constitución",
+                progress: { concepts: 92, activities: 85, questions: 89 },
+                flashcards: [
+                    {
+                        title: "Estado de Derecho en CR",
+                        block: "Constitución Política",
+                        frontEmoji: "🏛️⚖️",
+                        frontText: "Principio de legalidad y división de poderes",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Sistema donde gobernantes y gobernados están sometidos por igual a la Constitución y leyes vigentes.",
+                        tip: "Tip 11°: Identifica los contrapesos de la Sala Constitucional (Sala IV)."
+                    },
+                    {
+                        title: "Participación Ciudadana",
+                        block: "Democracia y Deberes",
+                        frontEmoji: "🗳️👥",
+                        frontText: "Voto, Referéndum, Cabildo y Plebiscito",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Mecanismos legales mediante los cuales los ciudadanos inciden en la toma de decisiones públicas.",
+                        tip: "Tip 11°: Diferencia los requisitos constitucionales para un referéndum vs una iniciativa popular."
+                    },
+                    {
+                        title: "Cultura de Paz y Mediación",
+                        block: "Convivencia Social",
+                        frontEmoji: "🕊️🤝",
+                        frontText: "Resolución pacífica de conflictos",
+                        backTitle: "Definición MEP 2026",
+                        backText: "Conjunto de valores, actitudes y comportamientos que rechazan la violencia y previenen conflictos.",
+                        tip: "Tip 11°: Valora el diálogo intercultural y la tolerancia en la sociedad democrática."
+                    }
+                ]
+            }
+        };
+
+        let currentSubjectKey = 'ciencias';
+        let activeCardIndex = 0;
+
+        function renderSubjects() {
+            const grid = document.getElementById('subjectsGrid');
+            grid.innerHTML = '';
+
+            Object.keys(database).forEach(key => {
+                const sub = database[key];
+                const isSelected = key === currentSubjectKey;
+                
+                const card = document.createElement('div');
+                card.className = `bg-slate-900 border ${isSelected ? 'border-indigo-500 shadow-indigo-500/20 shadow-lg ring-2 ring-indigo-500/30' : 'border-slate-800 hover:border-slate-700'} rounded-2xl p-4 cursor-pointer transition-all duration-300 flex flex-col justify-between group`;
+                card.onclick = () => selectSubject(key);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-2xl group-hover:scale-110 transition-transform">${sub.icon}</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full ${isSelected ? 'bg-indigo-500/20 text-indigo-300 font-bold' : 'bg-slate-800 text-slate-400'}">${sub.progress.concepts}% Avance</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-white">${sub.name}</h4>
+                        <p class="text-[11px] text-slate-400 mt-0.5">${sub.desc}</p>
+                    </div>
+                    
+                    <!-- Barras de Porcentajes de Colores -->
+                    <div class="mt-4 space-y-1.5 pt-3 border-t border-slate-800/80">
+                        <div class="flex justify-between text-[10px] text-slate-400 font-medium">
+                            <span>Conceptos</span>
+                            <span class="text-cyan-400">${sub.progress.concepts}%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full rounded-full" style="width: ${sub.progress.concepts}%"></div>
+                        </div>
+
+                        <div class="flex justify-between text-[10px] text-slate-400 font-medium pt-0.5">
+                            <span>Actividades</span>
+                            <span class="text-indigo-400">${sub.progress.activities}%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-indigo-500 to-fuchsia-500 h-full rounded-full" style="width: ${sub.progress.activities}%"></div>
+                        </div>
+
+                        <div class="flex justify-between text-[10px] text-slate-400 font-medium pt-0.5">
+                            <span>Preguntas MEP</span>
+                            <span class="text-emerald-400">${sub.progress.questions}%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full" style="width: ${sub.progress.questions}%"></div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function selectSubject(key) {
+            currentSubjectKey = key;
+            activeCardIndex = 0;
+            renderSubjects();
+            renderFlashcards();
+        }
+
+        function renderFlashcards() {
+            const sub = database[currentSubjectKey];
+            document.getElementById('currentSubjectTitle').innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name}</span>`;
+            
+            const container = document.getElementById('flashcardsContainer');
+            container.innerHTML = '';
+
+            sub.flashcards.forEach((card, idx) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'perspective-1000 h-72 cursor-pointer';
+                cardEl.onclick = () => {
+                    const inner = cardEl.querySelector('.card-inner');
+                    inner.classList.toggle('rotate-y-180');
+                };
+
+                cardEl.innerHTML = `
+                    <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-2xl">
+                        <!-- Frente de la Ficha -->
+                        <div class="absolute inset-0 backface-hidden bg-slate-950 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between shadow-inner">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Ficha #${idx + 1}</span>
+                                <span class="text-[11px] text-slate-400 font-medium">${card.block}</span>
+                            </div>
+                            <div class="text-center space-y-2 my-auto">
+                                <span class="text-4xl block">${card.frontEmoji}</span>
+                                <h4 class="font-bold text-sm text-white">${card.title}</h4>
+                                <p class="text-xs text-slate-300">${card.frontText}</p>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-[10px] text-indigo-400 font-semibold bg-indigo-500/10 px-2.5 py-1 rounded-lg border border-indigo-500/20 inline-block">👆 Toca para girar y ver significado</span>
+                            </div>
+                        </div>
+
+                        <!-- Dorso de la Ficha (Significado y Tip) -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-indigo-950/90 to-slate-950 border border-indigo-500/40 rounded-2xl p-5 flex flex-col justify-between shadow-2xl">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-fuchsia-400 bg-fuchsia-500/10 px-3 py-1 rounded-full border border-fuchsia-500/20">${card.backTitle}</span>
+                                <span class="text-[11px] text-slate-400 font-medium">MEP 2026</span>
+                            </div>
+                            <div class="space-y-2 my-auto">
+                                <h5 class="font-bold text-xs text-indigo-300">${card.title}</h5>
+                                <p class="text-xs text-slate-200 leading-relaxed">${card.backText}</p>
+                            </div>
+                            <div class="bg-indigo-500/10 p-2.5 rounded-xl border border-indigo-500/20 text-[11px] text-indigo-300 font-medium">
+                                🎯 <strong>Tip:</strong> ${card.tip}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(cardEl);
+            });
+
+            document.getElementById('cardCounter').innerText = `Mostrando ${sub.flashcards.length} fichas MEP`;
+        }
+
+        function nextCard() {
+            // Rotación o aviso visual opcional
+        }
+
+        function prevCard() {
+            // Rotación o aviso visual opcional
+        }
+
+        // Inicialización al cargar la ventana
+        window.onload = function() {
+            renderSubjects();
+            renderFlashcards();
+        };
+    </script>
 </body>
 </html>
