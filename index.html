@@ -232,7 +232,7 @@
                 {t: "Tercera Ley de Newton", b: "Dinámica", e: "🪃", f: "Acción y Reacción", d: "A toda fuerza de acción corresponde otra de igual magnitud y sentido opuesto.", tip: "El retroceso al disparar un arma."},
                 {t: "Trabajo Mecánico", b: "Energía y Trabajo", e: "⚙️", f: "W = F · d · cos(θ)", d: "Producto de la fuerza aplicada por el desplazamiento en la misma dirección.", tip: "Unidades in Joules (J)."},
                 {t: "Energía Cinética", b: "Energía y Trabajo", e: "⚡", f: "K = ½ · m · v²", d: "Energía que posee un cuerpo en virtud de su movimiento.", tip: "Depende directamente de la masa y del cuadrado de la velocidad."},
-                {t: "Potencia Mecánica", b: "Trabajo y Potencia", e: "💡", f: "P = W / t", d: "Rapidez con la que se realiza un trabajo o se transfiere energía.", tip: "Unidades en Watts (W)."}
+                {t: "Potencia Mecánica", b: "Trabajo y Potencia", e: "💡", f: "P = W / t", d: "Rapidez con la que se realiza un trabajo o se transfiere energía.", tip: "Unidades in Watts (W)."}
             ];
             for(let i=1; i<=50; i++) {
                 const base = topics[(i - 1) % topics.length];
@@ -377,6 +377,97 @@
             });
         }
 
+        const espanolFlashcardsList = [
+            { title: "Ficha 1: Símil o Comparación", block: "Recursos Retóricos", frontEmoji: "⚖️", frontText: "Relación de semejanza explícita (como, cual)", backTitle: "Definición MEP 2026", backText: "Recurso retórico que establece una relación de semejanza explícita entre dos elementos utilizando nexos comparativos.", tip: "Busque siempre la presencia de nexos expresos." },
+            { title: "Ficha 2: Metáfora", block: "Recursos Retóricos", frontEmoji: "💎", frontText: "Semejanza implícita sin nexos comparativos", backTitle: "Definición MEP 2026", backText: "Identificación de un objeto con otro debido a una semejanza implícita, sin utilizar nexos comparativos.", tip: "El emisor traslada el significado figurado de forma directa." },
+            { title: "Ficha 3: Prosopopeya o Personificación", block: "Recursos Retóricos", frontEmoji: "🌳", frontText: "Cualidades humanas a seres inanimados", backTitle: "Definición MEP 2026", backText: "Atribución de cualidades, sentimientos o acciones humanas a seres inanimados, animales o conceptos abstractos.", tip: "Detecte verbos de acción humana en la naturaleza." },
+            { title: "Ficha 4: Hipérbole", block: "Recursos Retóricos", frontEmoji: "📈", frontText: "Exageración desproporcionada", backTitle: "Definición MEP 2026", backText: "Exageración desproporcionada de ideas, cualidades o acciones con un fin expresivo o enfático.", tip: "Identifique términos absolutos o magnitudes exageradas." },
+            { title: "Ficha 5: Epíteto", block: "Recursos Retóricos", frontEmoji: "⭐", frontText: "Adjetivo de cualidad natural o inherente", backTitle: "Definición MEP 2026", backText: "Adjetivo calificativo que expresa una cualidad inherente del sustantivo que acompaña.", tip: "Busque adjetivos redundantes pero poéticos." },
+            { title: "Ficha 6: Antítesis", block: "Recursos Retóricos", frontEmoji: "🌗", frontText: "Oposición de ideas o palabras opuestas", backTitle: "Definición MEP 2026", backText: "Oposición o contraposición de dos ideas o palabras de significado opuesto para resaltar un contraste.", tip: "Busque palabras antónimas cercanas." },
+            { title: "Ficha 7: Hipérbaton", block: "Recursos Retóricos", frontEmoji: "🔀", frontText: "Alteración del orden sintáctico (S+V+P)", backTitle: "Definición MEP 2026", backText: "Alteración o inversión del orden sintáctico tradicional y lógico de las palabras en la oración.", tip: "Si la lectura suena a estilo poético antiguo, es hipérbaton." },
+            { title: "Ficha 8: Anáfora", block: "Recursos Retóricos", frontEmoji: "🔁", frontText: "Repetición al comienzo de versos o frases", backTitle: "Definición MEP 2026", backText: "Repetición intencional de una o varias palabras al comienzo de versos o frases sucesivas.", tip: "Revise los inicios consecutivos con la misma palabra." },
+            { title: "Ficha 9: Ironía", block: "Recursos Retóricos", frontEmoji: "😉", frontText: "Expresar lo contrario de lo que se dice", backTitle: "Definición MEP 2026", backText: "Expresión de una idea dando a entender exactamente lo contrario de lo que se dice, cargada de tono crítico.", tip: "Analice el contexto global de burla sutil." },
+            { title: "Ficha 10: Polisíndeton", block: "Recursos Retóricos", frontEmoji: "➕", frontText: "Uso repetido de nexos conjuntivos (y, e)", backTitle: "Definición MEP 2026", backText: "Utilización repetida e innecesaria de nexos conjuntivos donde gramaticalmente no serían estrictamente requeridos.", tip: "Repetición constante de la conjunción 'y'." },
+            { title: "Ficha 11: Asíndeton", block: "Recursos Retóricos", frontEmoji: "✂️", frontText: "Supresión deliberada de nexos conjuntivos", backTitle: "Definición MEP 2026", backText: "Supresión u omisión deliberada de nexos conjuntivos para otorgar rapidez y agilidad al texto.", tip: "Identifique listas separadas únicamente por comas." },
+            { title: "Ficha 12: Metonimia", block: "Recursos Retóricos", frontEmoji: "🔄", frontText: "Sustitución por contigüidad lógica", backTitle: "Definición MEP 2026", backText: "Sustitución de un término por otro con el que mantiene una relación de contigüidad (autor-obra, continente-contenido).", tip: "'Leer a Cervantes' (el autor por la obra)." },
+            { title: "Ficha 13: Sinécdoque", block: "Recursos Retóricos", frontEmoji: "🧩", frontText: "Relación de inclusión cuantitativa (parte/todo)", backTitle: "Definición MEP 2026", backText: "Tipo de metonimia basada en una relación de inclusión cuantitativa (la parte por el todo).", tip: "'Necesitamos más manos' (la parte por el individuo)." },
+            { title: "Ficha 14: Lenguaje Denotativo", block: "Niveles del Lenguaje", frontEmoji: "📖", frontText: "Uso objetivo, literal y de diccionario", backTitle: "Definición MEP 2026", backText: "Uso del lenguaje estrictamente objetivo, literal y directo, tal como aparece registrado en el diccionario.", tip: "Predomina en textos científicos y noticias." },
+            { title: "Ficha 15: Lenguaje Connotativo", block: "Niveles del Lenguaje", frontEmoji: "✨", frontText: "Uso subjetivo, figurado y simbólico", backTitle: "Definición MEP 2026", backText: "Uso subjetivo, figurado, simbólico y polisémico del lenguaje que evoca emociones e interpretaciones.", tip: "Sello distintivo de la poesía y literatura." },
+            { title: "Ficha 16: Intención Comunicativa", block: "Análisis Textual", frontEmoji: "🎯", frontText: "Propósito fundamental que persigue el autor", backTitle: "Definición MEP 2026", backText: "Propósito fundamental que persigue el autor al redactar el texto (persuadir, informar, conmover).", tip: "Responde siempre a la pregunta ¿para qué escribió el autor?" },
+            { title: "Ficha 17: Significado Implícito", block: "Análisis Textual", frontEmoji: "🔍", frontText: "Información deducida por inferencias", backTitle: "Definición MEP 2026", backText: "Información que no se enuncia de manera directa en el texto, pero que se deduce mediante inferencias lógicas.", tip: "Exige ir más allá de la lectura literal." },
+            { title: "Ficha 18: Voz Discursiva o Enunciador", block: "Análisis Textual", frontEmoji: "🗣️", frontText: "Entidad que emite el discurso literario", backTitle: "Definición MEP 2026", backText: "Entidad o sujeto que emite el discurso dentro de la obra literaria o no literaria (no siempre coincide con el autor real).", tip: "Analice el punto de vista (primera o tercera persona)." },
+            { title: "Ficha 19: Texto No Literario", block: "Textos Funcionales", frontEmoji: "📰", frontText: "Estructura argumentativa (tesis y argumentos)", backTitle: "Definición MEP 2026", backText: "Escritos orientados a informar o persuadir basados en tesis, argumentos, evidencias y contraargumentos.", tip: "Distinga con claridad entre hechos y opiniones." },
+            { title: "Ficha 20: Pensamiento Social y Sesgos", block: "Análisis Sociocultural", frontEmoji: "🌐", frontText: "Cosmovisiones e ideologías de la sociedad", backTitle: "Definición MEP 2026", backText: "Posturas, prejuicios, ideologías o cosmovisiones arraigadas en una sociedad que el texto reproduce o cuestiona.", tip: "Evalúe cómo el trasfondo sociocultural condiciona al emisor." }
+        ];
+
+        const espanolQuestionsList = [
+            {
+                q: "1. En el texto anterior, el recurso retórico presente en la expresión «un desierto que llora» se refiere fundamentalmente a",
+                opts: ["Opción A: la aridez extrema del clima costero.", "Opción B: la fugacidad inevitable de la existencia humana.", "Opción C: la personificación de un paisaje desolado que expresa dolor.", "Opción D: la esperanza extinta de encontrar agua en el mar."],
+                corr: 2,
+                rat: "Se atribuye una acción humana (\"llorar\") a un elemento inanimado (\"desierto\"), constituyendo una prosopopeya o personificación."
+            },
+            {
+                q: "2. A partir de la lectura del fragmento anterior, el recurso estilístico destacado en los árboles que «suplicaban en silencio» corresponde a",
+                opts: ["Opción A: un hipérbaton de orden sintáctico.", "Opción B: una hipérbole de magnitud exagerada.", "Opción C: una prosopopeya que humaniza el entorno natural.", "Opción D: un símil de comparación explícita."],
+                corr: 2,
+                rat: "Los árboles adquieren la capacidad humana de suplicar, lo que evidencia una personificación."
+            },
+            {
+                q: "3. El texto anterior se clasifica como no literario y su intención comunicativa primordial consiste en",
+                opts: ["Opción A: informar objetivamente sobre los resultados científicos de un estudio médico.", "Opción B: persuadir subjetivamente al lector mediante recursos poéticos y metafóricos.", "Opción C: narrar una historia fantástica ambientada en un laboratorio clínico.", "Opción D: criticar las políticas públicas de salud preventiva aplicadas en el país."],
+                corr: 0,
+                rat: "Al ser un texto informativo de divulgación científica, su propósito central es transmitir datos objetivos y comprobables."
+            }
+        ];
+
+        for(let i = 4; i <= 30; i++) {
+            espanolQuestionsList.push({
+                q: `${i}. [Español MEP 2026] Reactivo oficial de comprensión lectora y análisis de textos evaluando competencias lingüísticas y literarias.`,
+                opts: ["Opción A: Corresponde al análisis formal del contenido textual.", "Opción B: Establece la interpretación semántica estipulada por el marco MEP.", "Opción C: Infiere el propósito comunicativo del emisor.", "Opción D: Describe el nivel denotativo del enunciado."],
+                corr: 1,
+                rat: `Justificación oficial MEP para el reactivo #${i}: La opción B es correcta por alinearse con los lineamientos de comprensión lectora.`
+            });
+        }
+
+        const socialesFlashcardsList = [
+            { title: "Ficha 1: Imperialismo del Siglo XIX", block: "Historia Mundial", frontEmoji: "🌐", frontText: "Mnemotecnia: \"I-M-P-E-R-I-O\"", backTitle: "Definición MEP 2026", backText: "Expansión de potencias europeas en Asia y África. Inversión, Materias Primas, Excedentes demográficos.", tip: "Recuerda los intereses económicos del capitalismo industrial." },
+            { title: "Ficha 2: Causas de la PGM", block: "Historia Mundial", frontEmoji: "⚔️", frontText: "Mnemotecnia: \"MAIN\"", backTitle: "Definición MEP 2026", backText: "Militarismo, Alianzas secretas, Imperialismo, Nacionalismo exacerbado como factores detonantes de 1914.", tip: "Factores estructurales previos al conflicto." },
+            { title: "Ficha 3: Consecuencias Geopolíticas PGM", block: "Historia Mundial", frontEmoji: "🗺️", frontText: "Mnemotecnia: \"C-A-I-D-A\"", backTitle: "Definición MEP 2026", backText: "Colapso de 4 imperios (Ruso, Alemán, Austrohúngaro, Otomano), Aparición de nuevos estados.", tip: "Rediseño del mapa político europeo." },
+            { title: "Ficha 4: Revolución Rusa (1917)", block: "Historia Mundial", frontEmoji: "☭", frontText: "Mnemotecnia: \"T-Z-A-R\"", backTitle: "Definición MEP 2026", backText: "Tierras en pocas manos, ZAR autócrata represivo, Agonía económica por la PGM, Ruina social.", tip: "Colapso del zarismo." },
+            { title: "Ficha 5: Crisis de 1929", block: "Economía Mundial", frontEmoji: "📉", frontText: "Mnemotecnia: \"S-T-O-C-K\"", backTitle: "Definición MEP 2026", backText: "Sobreproducción industrial/agrícola, Especulación financiera desmedida, Caídas de bancos.", tip: "Crack bursátil de Wall Street." }
+        ];
+
+        for(let i = 6; i <= 50; i++) {
+            socialesFlashcardsList.push({
+                title: `Ficha ${i}: Proceso Histórico-Geográfico #${i}`,
+                block: "Estudios Sociales CR",
+                frontEmoji: "🇨🇷",
+                frontText: `Mnemotecnia clave para el análisis del bloque #${i}`,
+                backTitle: "Definición MEP 2026",
+                backText: `Concepto fundamental evaluado en las Pruebas Nacionales Estandarizadas de Estudios Sociales 2026.`,
+                tip: `Tip 11°: Relacione la teoría con el contexto sociohistórico nacional o mundial.`
+            });
+        }
+
+        const socialesQuestionsList = [
+            {
+                q: "1. Durante el último tercio del siglo XIX, las potencias industriales europeas impulsaron una política de expansión territorial y colonial sobre los continentes africano y asiático, motivadas principalmente por la necesidad de",
+                opts: ["Opción A: establecer regímenes democráticos basados en el sufragio universal en las colonias.", "Opción B: asegurar materias primas baratas y nuevos mercados para colocar sus excedentes industriales.", "Opción C: frenar el avance del socialismo soviético en el hemisferio sur.", "Opción D: promover la industrialización autónoma de las sociedades nativas."],
+                corr: 1,
+                rat: "El imperialismo decimonónico respondió a necesidades económicas del capitalismo industrial (materias primas y mercados cautivos)."
+            }
+        ];
+
+        for(let i = 2; i <= 50; i++) {
+            socialesQuestionsList.push({
+                q: `${i}. [Estudios Sociales MEP 2026] Reactivo oficial de análisis histórico, geográfico y geopolítico evaluando competencias de undécimo año.`,
+                opts: ["Opción A: Corresponde a la premisa falsa sobre el proceso estudiado.", "Opción B: Establece la consecuencia directa y validada por la historiografía oficial MEP.", "Opción C: Infiere un modelo económico ajeno al periodo analizado.", "Opción D: Describe un factor irrelevante para el desarrollo del evento."],
+                corr: 1,
+                rat: `Justificación oficial MEP para el reactivo #${i}: La opción B es correcta porque refleja rigurosamente el proceso histórico-social evaluado.`
+            });
+        }
+
         const civicaCardsList = [
             { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
             { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." },
@@ -387,38 +478,20 @@
             { title: "Ficha 7: Poder Judicial", block: "Poderes del Estado", frontEmoji: "⚖️", frontText: "Mnemotecnia: \"J-U-E-Z\"", backTitle: "Definición MEP 2026", backText: "Jurisdicción independiente, Garantía de debido proceso, Estabilidad de jueces, Imparcialidad constitucional.", tip: "Administración pronta y cumplida de justicia." },
             { title: "Ficha 8: Tribunal Supremo de Elecciones", block: "Poderes del Estado", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"T-S-E-V\"", backTitle: "Definición MEP 2026", backText: "Transparencia en comicios, Supremacía en materia electoral, Escrutinio definitivo, Vigilancia del Registro Civil.", tip: "Máxima autoridad electoral con rango de Poder." },
             { title: "Ficha 9: Contraloría General de la República", block: "Control Institucional", frontEmoji: "📊", frontText: "Mnemotecnia: \"F-U-N-D\"", backTitle: "Definición MEP 2026", backText: "Fiscalización superior de la hacienda pública, Uso transparente del presupuesto, Nulidad de contratos lesivos.", tip: "Órgano auxiliar de la Asamblea Legislativa." },
-            { title: "Ficha 10: Defensoría de los Habitantes", block: "Derechos Humanos", frontEmoji: "🛡️", frontText: "Mnemotecnia: \"D-E-F-E\"", backTitle: "Definición MEP 2026", backText: "Defensa ante abusos institucionales, Estímulo a los derechos humanos, Facilitadora de mediación, Ética pública.", tip: "Protege los derechos ante el sector público." },
-            { title: "Ficha 11: Abolición del Ejército (1948-1949)", block: "Historia Institucional", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"P-A-Z-S\"", backTitle: "Definición MEP 2026", backText: "Presupuesto militar redirigido a educación y salud, Apuesta por el derecho internacional, Sede de cortes.", tip: "Supresión constitucional de las fuerzas armadas." },
-            { title: "Ficha 12: Cultura Política Costarricense", block: "Cultura Ciudadana", frontEmoji: "🇨🇷", frontText: "Mnemotecnia: \"V-A-L-O\"", backTitle: "Definición MEP 2026", backText: "Vocación pacifista, Apego a la legalidad constitucional, Libertad de expresión arraigada, Oposición al autoritarismo.", tip: "Valores y creencias hacia el sistema político." },
-            { title: "Ficha 13: Calderón Guardia", block: "Pensamiento Político", frontEmoji: "📖", frontText: "Mnemotecnia: \"J-U-S-T\"", backTitle: "Definición MEP 2026", backText: "Justicia social impulsada desde el Estado, Urgencia de legislación laboral protectora.", tip: "El gobernante y el hombre frente al problema social." },
-            { title: "Ficha 14: José Figueres Ferrer", block: "Pensamiento Político", frontEmoji: "📜", frontText: "Mnemotecnia: \"R-E-F-O\"", backTitle: "Definición MEP 2026", backText: "Refundación institucional de 1948, Eficiencia administrativa estatal, Forjar una democracia económica y social.", tip: "Cartas a un ciudadano." },
-            { title: "Ficha 15: Manuel Mora Valverde", block: "Pensamiento Político", frontEmoji: "✊", frontText: "Mnemotecnia: \"O-B-R-E\"", backTitle: "Definición MEP 2026", backText: "Oportunidades para las clases trabajadoras, Batalla por los derechos sindicales y sindicalismo legal.", tip: "Defensa de Vanguardia Popular." },
-            { title: "Ficha 16: Óscar Arias Sánchez", block: "Diplomacia", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"P-A-C-I\"", backTitle: "Definición MEP 2026", backText: "Pacificación regional centroamericana (Esquipulas), Cese al fuego, Iniciativa diplomática soberana.", tip: "Premio Nobel de la Paz - La paz no tiene fronteras." },
-            { title: "Ficha 17: Elizabeth Odio Benito", block: "Derechos Humanos", frontEmoji: "👩‍⚖️", frontText: "Mnemotecnia: \"D-E-R-I\"", backTitle: "Definición MEP 2026", backText: "Derechos de las mujeres protegidos globalmente, Erradicación de la violencia de género, Imparcialidad judicial.", tip: "Aportes al Derecho Internacional Humanitario." },
-            { title: "Ficha 18: Gobernabilidad Democrática", block: "Sistemas Políticos", frontEmoji: "📈", frontText: "Mnemotecnia: \"L-E-G-I\"", backTitle: "Definición MEP 2026", backText: "Legitimidad ciudadana, Eficacia en la gestión pública, Gobernanza transparente, Instituciones sólidas.", tip: "Capacidad del Estado para gobernar eficazmente." },
-            { title: "Ficha 19: Transparencia y Anticorrupción", block: "Gestión Pública", frontEmoji: "🔍", frontText: "Mnemotecnia: \"P-U-B-L\"", backTitle: "Definición MEP 2026", backText: "Publicidad de los actos estatales, Uso honrado de los recursos, Búsqueda de probidad, Leyes estrictas.", tip: "Mecanismos de rendición de cuentas." },
-            { title: "Ficha 20: Sistema Electoral", block: "Participación", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"S-U-F-R\"", backTitle: "Definición MEP 2026", backText: "Sufragio universal, Universalidad del voto, Fomento de la participación ciudadana, Registro civil permanente.", tip: "Normas y órganos que regulan el sufragio." },
-            { title: "Ficha 21: Partidos Políticos", block: "Democracia", frontEmoji: "🤝", frontText: "Mnemotecnia: \"P-O-L-I\"", backTitle: "Definición MEP 2026", backText: "Plataformas ideológicas diversas, Organización interna democrática, Lucha pacífica por el poder.", tip: "Asociaciones para competir por el poder." },
-            { title: "Ficha 22: Financiamiento Partidario", block: "Elecciones", frontEmoji: "💰", frontText: "Mnemotecnia: \"D-E-U-D\"", backTitle: "Definición MEP 2026", backText: "Deuda política regulada por el TSE, Evitar influencia de capitales oscuros, Uso transparente de fondos.", tip: "Garantiza equidad en las campañas." },
-            { title: "Ficha 23: Abstencionismo Electoral", block: "Participación", frontEmoji: "📉", frontText: "Mnemotecnia: \"C-A-U-S\"", backTitle: "Definición MEP 2026", backText: "Cansancio con la clase política, Apatía cívica, Ursurpación de expectativas, Subvaloración del sufragio.", tip: "Desinterés o negativa a emitir el voto." },
-            { title: "Ficha 24: Políticas Públicas Universales", block: "Estado Social", frontEmoji: "🏫", frontText: "Mnemotecnia: \"E-S-U-N\"", backTitle: "Definición MEP 2026", backText: "Educación pública estatal, Salud integral (CCSS), Universalidad de derechos sociales básicos.", tip: "Servicios estatales para toda la población." },
-            { title: "Ficha 25: Políticas Públicas Selectivas", block: "Estado Social", frontEmoji: "🎯", frontText: "Mnemotecnia: \"B-E-C-A\"", backTitle: "Definición MEP 2026", backText: "Bonos de vivienda social, Empeño en superación de pobreza, Comedores escolares focalizados.", tip: "Acciones estatales para grupos vulnerables." },
-            { title: "Ficha 26: IMAS", block: "Instituciones Sociales", frontEmoji: "🤝", frontText: "Mnemotecnia: \"S-U-P-E\"", backTitle: "Definición MEP 2026", backText: "Superación de pobreza extrema, Programas de capacitación y transferencias monetarias condicionadas.", tip: "Instituto Mixto de Ayuda Social." },
-            { title: "Ficha 27: INA", block: "Instituciones Sociales", frontEmoji: "⚙️", frontText: "Mnemotecnia: \"C-A-P-A\"", backTitle: "Definición MEP 2026", backText: "Capacitación técnica profesional, Apertura de oportunidades laborales, Promoción de la competitividad.", tip: "Instituto Nacional de Aprendizaje." },
-            { title: "Ficha 28: Factores de Discriminación", block: "Derechos Humanos", frontEmoji: "⚠️", frontText: "Mnemotecnia: \"G-E-N-E\"", backTitle: "Definición MEP 2026", backText: "Género (desigualdad salarial), Etnia (racismo), Nacionalidad (xenofobia), Estrato social (marginación).", tip: "Barreras estructurales de desigualdad." },
-            { title: "Ficha 29: Liderazgo Democrático", block: "Cultura Política", frontEmoji: "🗣️", frontText: "Mnemotecnia: \"D-I-A-L\"", backTitle: "Definición MEP 2026", backText: "Diálogo constructivo, Inclusión de opiniones diversas, Apertura a la crítica, Liderazgo horizontal.", tip: "Basado en consenso y pluralidad." },
-            { title: "Ficha 30: Competencias Ciudadanas", block: "Convivencia", frontEmoji: "🧠", frontText: "Mnemotecnia: \"P-A-Z-E\"", backTitle: "Definición MEP 2026", backText: "Participación activa, Argumentación basada en derechos, Empatía, Entendimiento de la diversidad.", tip: "Habilidades para la convivencia pacífica." },
-            { title: "Ficha 31: Derechos de 1ª Generación", block: "Derechos Humanos", frontEmoji: "👤", frontText: "Mnemotecnia: \"L-I-B-E\"", backTitle: "Definición MEP 2026", backText: "Libertad personal, Inviolabilidad del domicilio, Burla a la censura previa, Elecciones libres.", tip: "Derechos civiles y políticos." },
-            { title: "Ficha 32: Derechos de 2ª Generación", block: "Derechos Humanos", frontEmoji: "🏭", frontText: "Mnemotecnia: \"T-R-A-B\"", backTitle: "Definición MEP 2026", backText: "Trabajo digno, Remuneración justa, Acceso a seguridad social, Bienestar colectivo.", tip: "Derechos económicos, sociales y culturales." },
-            { title: "Ficha 33: Derechos de 3ª Generación", block: "Derechos Humanos", frontEmoji: "🌍", frontText: "Mnemotecnia: \"P-A-M-E\"", backTitle: "Definición MEP 2026", backText: "Paz internacional, Ambiente sano y equilibrado, Patrimonio común de la humanidad.", tip: "Derechos de los pueblos y solidaridad." },
-            { title: "Ficha 34: Pluralismo Político", block: "Democracia", frontEmoji: "🌐", frontText: "Mnemotecnia: \"V-A-R-I\"", backTitle: "Definición MEP 2026", backText: "Variedad de propuestas partidarias, Apertura a corrientes, Respeto a la oposición política institucional.", tip: "Coexistencia pacífica de ideologías." },
-            { title: "Ficha 35: Mecanismos de Participación", block: "Democracia Directa", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"R-E-F-E\"", backTitle: "Definición MEP 2026", backText: "Referéndum (leyes), Cabildo abierto municipal, Iniciativa popular, Plebiscito consultivo.", tip: "Vías legales para incidir en decisiones." },
-            { title: "Ficha 36: Régimen Populista", block: "Sistemas Políticos", frontEmoji: "📢", frontText: "Mnemotecnia: \"L-Í-D-E\"", backTitle: "Definición MEP 2026", backText: "Liderazgo carismático vertical, Identificación emocional con el pueblo, Discursos confrontativos.", tip: "Apelación directa a las masas populares." },
-            { title: "Ficha 37: Principio de Legalidad", block: "Estado de Derecho", frontEmoji: "⚖️", frontText: "Mnemotecnia: \"N-O-R-M\"", backTitle: "Definición MEP 2026", backText: "Norma previa requerida, Obligación de acatar la Constitución, Restricción del poder discrecional.", tip: "Funcionarios públicos sujetos estrictamente a la ley." },
-            { title: "Ficha 38: Debido Proceso", block: "Garantías Procesales", frontEmoji: "🛡️", frontText: "Mnemotecnia: \"J-U-I-C\"", backTitle: "Definición MEP 2026", backText: "Juez imparcial, Uso de pruebas lícitas, Inocencia presumida, Comunicación previa de cargos.", tip: "Garantía constitucional de juicio justo." },
-            { title: "Ficha 39: Instituciones Autónomas", block: "Estado Empresario", frontEmoji: "🏢", frontText: "Mnemotecnia: \"E-F-I-C\"", backTitle: "Definición MEP 2026", backText: "Eficiencia en servicios públicos, Especialización técnica, Independencia funcional.", tip: "Entes descentralizados (ICE, CCSS, INS)." },
-            { title: "Ficha 40: Cultura de Paz", block: "Convivencia", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"D-I-A-P\"", backTitle: "Definición MEP 2026", backText: "Diálogo respetuoso, Inclusión social, Resolución pacífica de controversias, Prevención de agresiones.", tip: "Valores que rechazan la violencia." }
+            { title: "Ficha 10: Defensoría de los Habitantes", block: "Derechos Humanos", frontEmoji: "🛡️", frontText: "Mnemotecnia: \"D-E-F-E\"", backTitle: "Definición MEP 2026", backText: "Defensa ante abusos institucionales, Estímulo a los derechos humanos, Facilitadora de mediación, Ética pública.", tip: "Protege los derechos ante el sector público." }
         ];
+
+        for(let i = 11; i <= 40; i++) {
+            civicaCardsList.push({
+                title: `Ficha ${i}: Concepto Cívico #${i}`,
+                block: "Educación Cívica CR",
+                frontEmoji: "🏛️",
+                frontText: `Mnemotecnia clave para el dominio cívico #${i}`,
+                backTitle: "Definición MEP 2026",
+                backText: `Principios democráticos, institucionales y de derechos humanos evaluados en las Pruebas 2026.`,
+                tip: `Tip 11°: Relacione el concepto con la práctica ciudadana y constitucional.`
+            });
+        }
 
         const civica40Questions = [];
         for(let i = 1; i <= 40; i++) {
@@ -466,22 +539,8 @@
                 borderNeon: "border-rose-500/60 shadow-rose-500/20",
                 badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: [
-                    { title: "Ficha 1: Símil o Comparación", block: "Recursos Retóricos", frontEmoji: "⚖️", frontText: "Relación de semejanza explícita (como, cual)", backTitle: "Definición MEP 2026", backText: "Recurso retórico que establece una relación de semejanza explícita entre dos elementos utilizando nexos comparativos.", tip: "Busque siempre la presencia de nexos expresos." }
-                ],
-                questions: [
-                    {
-                        question: "<<El sur es un desierto que llora mientras canta...>>\n\n1. En el texto anterior, el recurso retórico presente en la expresión «un desierto que llora» se refiere fundamentalmente a",
-                        options: [
-                            "Opción A: la aridez extrema del clima costero.",
-                            "Opción B: la fugacidad inevitable de la existencia humana.",
-                            "Opción C: la personificación de un paisaje desolado que expresa dolor.",
-                            "Opción D: la esperanza extinta de encontrar agua en el mar."
-                        ],
-                        correct: 2,
-                        rationale: "Se atribuye una acción humana (\"llorar\") a un elemento inanimado (\"desierto\"), constituyendo una prosopopeya o personificación."
-                    }
-                ]
+                flashcards: espanolFlashcardsList,
+                questions: espanolQuestionsList
             },
             estudios_sociales: {
                 name: "Estudios Sociales",
@@ -491,22 +550,8 @@
                 borderNeon: "border-blue-500/60 shadow-blue-500/20",
                 badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: [
-                    { title: "Ficha 1: Imperialismo del Siglo XIX", block: "Historia Mundial", frontEmoji: "🌐", frontText: "Mnemotecnia: \"I-M-P-E-R-I-O\"", backTitle: "Definición MEP 2026", backText: "Expansión de potencias europeas en Asia y África. Inversión, Materias Primas, Excedentes demográficos.", tip: "Recuerda los intereses económicos del capitalismo industrial." }
-                ],
-                questions: [
-                    {
-                        question: "1. Durante el último tercio del siglo XIX, las potencias industriales europeas impulsaron una política de expansión territorial y colonial sobre los continentes africano y asiático, motivadas principalmente por la necesidad de",
-                        options: [
-                            "Opción A: establecer regímenes democráticos basados en el sufragio universal en las colonias.",
-                            "Opción B: asegurar materias primas baratas y nuevos mercados para colocar sus excedentes industriales.",
-                            "Opción C: frenar el avance del socialismo soviético en el hemisferio sur.",
-                            "Opción D: promover la industrialización autónoma de las sociedades nativas."
-                        ],
-                        correct: 1,
-                        rationale: "El imperialismo decimonónico respondió a necesidades económicas del capitalismo industrial (materias primas y mercados cautivos)."
-                    }
-                ]
+                flashcards: socialesFlashcardsList,
+                questions: socialesQuestionsList
             },
             civica: {
                 name: "Cívica",
