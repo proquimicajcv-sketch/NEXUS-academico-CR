@@ -226,7 +226,7 @@
                 {t: "Magnitud Escalar", b: "Vectores y Escalares", e: "📏", f: "Valor numérico y unidad", d: "Cantidad física definida únicamente por su valor numérico y unidad.", tip: "Masa, temperatura y rapidez."},
                 {t: "Magnitud Vectorial", b: "Vectores y Escalares", e: "↗️", f: "Valor, dirección y sentido", d: "Cantidad física que requiere valor numérico, unidad, dirección y sentido.", tip: "Velocidad, fuerza y aceleración."},
                 {t: "MRU", b: "Cinemática", e: "🚗", f: "v = d / t (a = 0)", d: "Movimiento rectilíneo uniforme con velocidad constante y aceleración nula.", tip: "Distancia proporcional al tiempo."},
-                {t: "MRUV", b: "Cinemática", e: "🏎️", f: "d = vᵢ·t + ½·a·t²", d: "Estudio del movimiento acelerado considerando variación de velocidad.", tip: "La aceleración es constante."},
+                {t: "MRUV", b: "Cinemática", e: "🏎️️", f: "d = vᵢ·t + ½·a·t²", d: "Estudio del movimiento acelerado considerando variación de velocidad.", tip: "La aceleración es constante."},
                 {t: "Primera Ley de Newton", b: "Dinámica", e: "🧱", f: "Inercia (ΣF = 0)", d: "Un cuerpo mantiene su estado a menos que actúe una fuerza neta.", tip: "Frenado brusco de un autobús."},
                 {t: "Segunda Ley de Newton", b: "Dinámica", e: "🏋️", f: "F = m·a", d: "La aceleración es directamente proporcional a la fuerza e inversamente a la masa.", tip: "Empujar un carrito vacío vs lleno."},
                 {t: "Tercera Ley de Newton", b: "Dinámica", e: "🪃", f: "Acción y Reacción", d: "A toda fuerza de acción corresponde otra de igual magnitud y sentido opuesto.", tip: "El retroceso al disparar un arma."},
@@ -278,6 +278,88 @@
             return list;
         }
 
+        function generateMathCards() {
+            const list = [];
+            const topics = [
+                {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)² + (y - k)² = r²", d: "Representación analítica de una circunferencia con centro (h,k) y radio r.", tip: "Identifique el cambio de signo en las coordenadas del centro."},
+                {t: "Pendiente de la Recta", b: "Relaciones y Álgebra", e: "📈", f: "m = (y₂ - y₁) / (x₂ - x₁)", d: "Medida de la inclinación de una recta respecto al eje de las abscisas.", tip: "Si m > 0 es creciente; si m < 0 es decreciente."},
+                {t: "Función Cuadrática", b: "Relaciones y Álgebra", e: "📉", f: "f(x) = ax² + bx + c", d: "Función polinómica de segundo grado cuya representación gráfica es una parábola.", tip: "El vértice se calcula con (-b / 2a, -Δ / 4a)."},
+                {t: "Función Inversa", b: "Relaciones y Álgebra", e: "🔄", f: "f⁻¹(x) intercambiando x e y", d: "Función que deshace la acción de la función original.", tip: "Se despeja x en función de y y luego se intercambian variables."},
+                {t: "Media Aritmética Ponderada", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ · wᵢ) / Σwᵢ", d: "Promedio que asigna pesos o ponderaciones específicas a cada valor.", tip: "Multiplique cada dato por su respectivo peso antes de sumar."},
+                {t: "Desviación Estándar", b: "Estadística", e: "📐", f: "σ = √[Σ(xᵢ - x̄)² / n]", d: "Medida de dispersión que indica qué tan alejados están los datos de la media.", tip: "A mayor desviación, mayor dispersión de los datos."}
+            ];
+            for(let i=1; i<=50; i++) {
+                const base = topics[(i - 1) % topics.length];
+                list.push({
+                    title: `${base.t} #${i}`,
+                    block: base.b,
+                    frontEmoji: base.e,
+                    frontText: base.f,
+                    backTitle: `Definición MEP 2026 (#${i})`,
+                    backText: `${base.d} (Reactivo oficial de Matemáticas 11°).`,
+                    tip: `Tip 11°: ${base.tip}`
+                });
+            }
+            return list;
+        }
+
+        function generateMathQuestions() {
+            const list = [];
+            const questionsPool = [
+                {
+                    q: "1. Considere una circunferencia con ecuación (x - 2)² + (y + 3)² = 25. ¿Cuál es la medida de su radio?",
+                    opts: ["A) 5", "B) 25", "C) 2", "D) -3"],
+                    corr: 0,
+                    formula: "Ecuación canónica: (x - h)² + (y - k)² = r²",
+                    steps: "1. Identifique el término independiente que representa r² en la ecuación dada.\n2. Se tiene que r² = 25.\n3. Aplique raíz cuadrada a ambos lados: r = √25 = 5.",
+                    ans: "Opción A"
+                },
+                {
+                    q: "2. Si una recta pasa por los puntos (1, 2) y (3, 8), ¿cuál es el valor de su pendiente (m)?",
+                    opts: ["A) 2", "B) 3", "C) 6", "D) 4"],
+                    corr: 1,
+                    formula: "Fórmula de la pendiente: m = (y₂ - y₁) / (x₂ - x₁)",
+                    steps: "1. Sustituya los puntos en la fórmula: m = (8 - 2) / (3 - 1).\n2. Resuelva las operaciones: m = 6 / 2 = 3.",
+                    ans: "Opción B"
+                },
+                {
+                    q: "3. ¿Cuál es el criterio de la función inversa de f(x) = 3x - 6?",
+                    opts: ["A) f⁻¹(x) = (x + 6) / 3", "B) f⁻¹(x) = 3x + 6", "C) f⁻¹(x) = (x - 6) / 3", "D) f⁻¹(x) = -3x + 6"],
+                    corr: 0,
+                    formula: "Despeje algebraico de x intercambiando variables y = 3x - 6",
+                    steps: "1. Sustituya f(x) por y: y = 3x - 6.\n2. Despeje x: y + 6 = 3x => x = (y + 6) / 3.\n3. Intercambie x e y: f⁻¹(x) = (x + 6) / 3.",
+                    ans: "Opción A"
+                },
+                {
+                    q: "4. Considere la función cuadrática f(x) = x² - 4x + 3. ¿Cuál es la coordenada en y de su valor mínimo (vértice)?",
+                    opts: ["A) -1", "B) 1", "C) 3", "D) -4"],
+                    corr: 0,
+                    formula: "Coordenada y del vértice: y_v = -Δ / (4a) o evaluando f(-b / 2a)",
+                    steps: "1. Identifique a = 1, b = -4, c = 3.\n2. Calcule la abscisa del vértice: x = -(-4) / (2·1) = 2.\n3. Evalúe f(2): (2)² - 4(2) + 3 = 4 - 8 + 3 = -1.",
+                    ans: "Opción A"
+                },
+                {
+                    q: "5. Al resolver la ecuación exponencial 2ˣ = 32, ¿cuál es el valor de x?",
+                    opts: ["A) 3", "B) 4", "C) 5", "D) 6"],
+                    corr: 2,
+                    formula: "Igualdad de bases: a^m = a^n => m = n",
+                    steps: "1. Exprese 32 como potencia de base 2: 32 = 2⁵.\n2. Iguale las bases: 2ˣ = 2⁵.\n3. Por propiedad de inyectividad, se concluye que x = 5.",
+                    ans: "Opción C"
+                }
+            ];
+
+            for(let i = 1; i <= 60; i++) {
+                const base = questionsPool[(i - 1) % questionsPool.length];
+                list.push({
+                    question: `${i}. [Matemáticas MEP 2026] ${base.q.replace(/^\d+\.\s*/, '')}`,
+                    options: base.opts,
+                    correct: base.corr,
+                    rationale: `Fórmula / Concepto:\n${base.formula}\n\nPasos de resolución:\n${base.steps}\n\nRespuesta correcta: ${base.ans}`
+                });
+            }
+            return list;
+        }
+
         const ciencias90Questions = [];
         for(let i = 1; i <= 90; i++) {
             const types = ['Biología', 'Química', 'Física'];
@@ -319,25 +401,8 @@
                 borderNeon: "border-amber-400/60 shadow-amber-400/20",
                 badgeNeon: "bg-amber-400/10 text-amber-300 border-amber-400/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: [
-                    {
-                        title: "Funciones Exponenciales",
-                        block: "Álgebra Avanzada",
-                        frontEmoji: "📈⚡",
-                        frontText: "f(x) = a<sup>x</sup> con a &gt; 0 y a &ne; 1",
-                        backTitle: "Definición MEP 2026",
-                        backText: "Función exponencial caracterizada por su crecimiento o decrecimiento poblacional y asíntota horizontal.",
-                        tip: "Tip 11°: Evalúa correctamente la base para determinar si es creciente o decreciente."
-                    }
-                ],
-                questions: [
-                    {
-                        question: "Considere la función exponencial f(x) = 2<sup>x</sup>. ¿Cuál es la ecuación de su asíntota horizontal?",
-                        options: ["y = 0", "x = 0", "y = 1", "y = 2"],
-                        correct: 0,
-                        rationale: "La gráfica de toda función exponencial básica de la forma f(x) = a<sup>x</sup> tiende a cero cuando x tiende a menos infinito, siendo y = 0 su asíntota horizontal."
-                    }
-                ]
+                flashcards: generateMathCards(),
+                questions: generateMathQuestions()
             },
             espanol: {
                 name: "Español",
@@ -348,30 +413,11 @@
                 badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
-                    { title: "Ficha 1: Símil o Comparación", block: "Recursos Retóricos", frontEmoji: "⚖️", frontText: "Relación de semejanza explícita (como, cual)", backTitle: "Definición MEP 2026", backText: "Recurso retórico que establece una relación de semejanza explícita entre dos elementos utilizando nexos comparativos.", tip: "Busque siempre la presencia de nexos expresos." },
-                    { title: "Ficha 2: Metáfora", block: "Recursos Retóricos", frontEmoji: "💎", frontText: "Semejanza implícita sin nexos comparativos", backTitle: "Definición MEP 2026", backText: "Identificación de un objeto con otro debido a una semejanza implícita, sin utilizar nexos comparativos.", tip: "El emisor traslada el significado figurado de forma directa." },
-                    { title: "Ficha 3: Prosopopeya o Personificación", block: "Recursos Retóricos", frontEmoji: "🌳", frontText: "Cualidades humanas a seres inanimados", backTitle: "Definición MEP 2026", backText: "Atribución de cualidades, sentimientos o acciones humanas a seres inanimados, animales o conceptos abstractos.", tip: "Detecte verbos de acción humana en la naturaleza." },
-                    { title: "Ficha 4: Hipérbole", block: "Recursos Retóricos", frontEmoji: "📈", frontText: "Exageración desproporcionada", backTitle: "Definición MEP 2026", backText: "Exageración desproporcionada de ideas, cualidades o acciones con un fin expresivo o enfático.", tip: "Identifique términos absolutos o magnitudes exageradas." },
-                    { title: "Ficha 5: Epíteto", block: "Recursos Retóricos", frontEmoji: "⭐", frontText: "Adjetivo de cualidad natural o inherente", backTitle: "Definición MEP 2026", backText: "Adjetivo calificativo que expresa una cualidad inherente del sustantivo que acompaña.", tip: "Busque adjetivos redundantes pero poéticos." },
-                    { title: "Ficha 6: Antítesis", block: "Recursos Retóricos", frontEmoji: "🌗", frontText: "Oposición de ideas o palabras opuestas", backTitle: "Definición MEP 2026", backText: "Oposición o contraposición de dos ideas o palabras de significado opuesto para resaltar un contraste.", tip: "Busque palabras antónimas cercanas." },
-                    { title: "Ficha 7: Hipérbaton", block: "Recursos Retóricos", frontEmoji: "🔀", frontText: "Alteración del orden sintáctico (S+V+P)", backTitle: "Definición MEP 2026", backText: "Alteración o inversión del orden sintáctico tradicional y lógico de las palabras en la oración.", tip: "Si la lectura suena a estilo poético antiguo, es hipérbaton." },
-                    { title: "Ficha 8: Anáfora", block: "Recursos Retóricos", frontEmoji: "🔁", frontText: "Repetición al comienzo de versos o frases", backTitle: "Definición MEP 2026", backText: "Repetición intencional de una o varias palabras al comienzo de versos o frases sucesivas.", tip: "Revise los inicios consecutivos con la misma palabra." },
-                    { title: "Ficha 9: Ironía", block: "Recursos Retóricos", frontEmoji: "😉", frontText: "Expresar lo contrario de lo que se dice", backTitle: "Definición MEP 2026", backText: "Expresión de una idea dando a entender exactamente lo contrario de lo que se dice, cargada de tono crítico.", tip: "Analice el contexto global de burla sutil." },
-                    { title: "Ficha 10: Polisíndeton", block: "Recursos Retóricos", frontEmoji: "➕", frontText: "Uso repetido de nexos conjuntivos (y, e)", backTitle: "Definición MEP 2026", backText: "Utilización repetida e innecesaria de nexos conjuntivos donde gramaticalmente no serían estrictamente requeridos.", tip: "Repetición constante de la conjunción 'y'." },
-                    { title: "Ficha 11: Asíndeton", block: "Recursos Retóricos", frontEmoji: "✂️", frontText: "Supresión deliberada de nexos conjuntivos", backTitle: "Definición MEP 2026", backText: "Supresión u omisión deliberada de nexos conjuntivos para otorgar rapidez y agilidad al texto.", tip: "Identifique listas separadas únicamente por comas." },
-                    { title: "Ficha 12: Metonimia", block: "Recursos Retóricos", frontEmoji: "🔄", frontText: "Sustitución por contigüidad lógica", backTitle: "Definición MEP 2026", backText: "Sustitución de un término por otro con el que mantiene una relación de contigüidad (autor-obra, continente-contenido).", tip: "'Leer a Cervantes' (el autor por la obra)." },
-                    { title: "Ficha 13: Sinécdoque", block: "Recursos Retóricos", frontEmoji: "🧩", frontText: "Relación de inclusión cuantitativa (parte/todo)", backTitle: "Definición MEP 2026", backText: "Tipo de metonimia basada en una relación de inclusión cuantitativa (la parte por el todo).", tip: "'Necesitamos más manos' (la parte por el individuo)." },
-                    { title: "Ficha 14: Lenguaje Denotativo", block: "Niveles del Lenguaje", frontEmoji: "📖", frontText: "Uso objetivo, literal y de diccionario", backTitle: "Definición MEP 2026", backText: "Uso del lenguaje estrictamente objetivo, literal y directo, tal como aparece registrado en el diccionario.", tip: "Predomina en textos científicos y noticias." },
-                    { title: "Ficha 15: Lenguaje Connotativo", block: "Niveles del Lenguaje", frontEmoji: "✨", frontText: "Uso subjetivo, figurado y simbólico", backTitle: "Definición MEP 2026", backText: "Uso subjetivo, figurado, simbólico y polisémico del lenguaje que evoca emociones e interpretaciones.", tip: "Sello distintivo de la poesía y literatura." },
-                    { title: "Ficha 16: Intención Comunicativa", block: "Análisis Textual", frontEmoji: "🎯", frontText: "Propósito fundamental que persigue el autor", backTitle: "Definición MEP 2026", backText: "Propósito fundamental que persigue el autor al redactar el texto (persuadir, informar, conmover).", tip: "Responde siempre a la pregunta ¿para qué escribió el autor?" },
-                    { title: "Ficha 17: Significado Implícito", block: "Análisis Textual", frontEmoji: "🔍", frontText: "Información deducida por inferencias", backTitle: "Definición MEP 2026", backText: "Información que no se enuncia de manera directa en el texto, pero que se deduce mediante inferencias lógicas.", tip: "Exige ir más allá de la lectura literal." },
-                    { title: "Ficha 18: Voz Discursiva o Enunciador", block: "Análisis Textual", frontEmoji: "🗣️", frontText: "Entidad que emite el discurso literario", backTitle: "Definición MEP 2026", backText: "Entidad o sujeto que emite el discurso dentro de la obra literaria o no literaria (no siempre coincide con el autor real).", tip: "Analice el punto de vista (primera o tercera persona)." },
-                    { title: "Ficha 19: Texto No Literario", block: "Textos Funcionales", frontEmoji: "📰", frontText: "Estructura argumentativa (tesis y argumentos)", backTitle: "Definición MEP 2026", backText: "Escritos orientados a informar o persuadir basados en tesis, argumentos, evidencias y contraargumentos.", tip: "Distinga con claridad entre hechos y opiniones." },
-                    { title: "Ficha 20: Pensamiento Social y Sesgos", block: "Análisis Sociocultural", frontEmoji: "🌐", frontText: "Cosmovisiones e ideologías de la sociedad", backTitle: "Definición MEP 2026", backText: "Posturas, prejuicios, ideologías o cosmovisiones arraigadas en una sociedad que el texto reproduce o cuestiona.", tip: "Evalúe cómo el trasfondo sociocultural condiciona al emisor." }
+                    { title: "Ficha 1: Símil o Comparación", block: "Recursos Retóricos", frontEmoji: "⚖️", frontText: "Relación de semejanza explícita (como, cual)", backTitle: "Definición MEP 2026", backText: "Recurso retórico que establece una relación de semejanza explícita entre dos elementos utilizando nexos comparativos.", tip: "Busque siempre la presencia de nexos expresos." }
                 ],
                 questions: [
                     {
-                        question: "<<El sur es un desierto que llora mientras canta, y esa voz no se extingue como pájaro muerto; hacia el mar encamina sus deseos amargos abriendo un eco débil que vive lentamente>>.\n\n1. En el texto anterior, el recurso retórico presente en la expresión «un desierto que llora» se refiere fundamentalmente a",
+                        question: "<<El sur es un desierto que llora mientras canta...>>\n\n1. En el texto anterior, el recurso retórico presente en la expresión «un desierto que llora» se refiere fundamentalmente a",
                         options: [
                             "Opción A: la aridez extrema del clima costero.",
                             "Opción B: la fugacidad inevitable de la existencia humana.",
@@ -392,56 +438,7 @@
                 badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
-                    { title: "Ficha 1: Imperialismo del Siglo XIX", block: "Historia Mundial", frontEmoji: "🌐", frontText: "Mnemotecnia: \"I-M-P-E-R-I-O\"", backTitle: "Definición MEP 2026", backText: "Expansión de potencias europeas en Asia y África. Inversión, Materias Primas, Excedentes demográficos, Rivalidad nacionalista, Ideología racista, Ocupación militar.", tip: "Recuerda los intereses económicos del capitalismo industrial." },
-                    { title: "Ficha 2: Causas de la Primera Guerra Mundial", block: "Historia Mundial", frontEmoji: "⚔️", frontText: "Mnemotecnia: \"MAIN\"", backTitle: "Definición MEP 2026", backText: "Militarismo, Alianzas secretas, Imperialismo, Nacionalismo exacerbado como factores detonantes de 1914.", tip: "Identifica los factores estructurales previos al conflicto." },
-                    { title: "Ficha 3: Consecuencias Geopolíticas PGM", block: "Historia Mundial", frontEmoji: "🗺️", frontText: "Mnemotecnia: \"C-A-I-D-A\"", backTitle: "Definición MEP 2026", backText: "Colapso de 4 imperios (Ruso, Alemán, Austrohúngaro, Otomano), Aparición de nuevos estados, Irrupción de la Sociedad de Naciones.", tip: "Analiza el nuevo orden europeo postratados de paz." },
-                    { title: "Ficha 4: Causas de la Revolución Rusa", block: "Historia Mundial", frontEmoji: "☭", frontText: "Mnemotecnia: \"T-Z-A-R\"", backTitle: "Definición MEP 2026", backText: "Tierras en pocas manos, ZAR autócrata represivo, Agonía económica por la PGM, Ruina social del campesinado y proletariado.", tip: "Contextualiza el colapso del zarismo en 1917." },
-                    { title: "Ficha 5: Crisis del 29 y Gran Depresión", block: "Economía Mundial", frontEmoji: "📉", frontText: "Mnemotecnia: \"S-T-O-C-K\"", backTitle: "Definición MEP 2026", backText: "Sobreproducción industrial/agrícola, Especulación financiera desmedida, Caídas de bancos, Quiebras masivas de empresas.", tip: "Comprende el impacto del colapso bursátil de Wall Street." },
-                    { title: "Ficha 6: Causas de la Segunda Guerra Mundial", block: "Historia Mundial", frontEmoji: "🪖", frontText: "Mnemotecnia: \"T-F-I-T\"", backTitle: "Definición MEP 2026", backText: "Tratado de Versalles (revanchismo), Fascismo/Nazismo expansivo, Ineficiencia de la Sociedad de Naciones, Expansionismo territorial (Lebensraum).", tip: "Relaciona el expansionismo totalitario con el estallido." },
-                    { title: "Ficha 7: Holocausto y Persecución Nazi", block: "Derechos Humanos", frontEmoji: "⚠️", frontText: "Mnemotecnia: \"R-A-Z-A\"", backTitle: "Definición MEP 2026", backText: "Racismo aria supremacista, Antisemitismo institucionalizado, Zonas de concentración y guetos, Aniquilación en campos de exterminio.", tip: "Comprende la vulneración sistemática de derechos humanos." },
-                    { title: "Ficha 8: Orígenes de la Guerra Fría", block: "Guerra Fría", frontEmoji: "🧊", frontText: "Mnemotecnia: \"C-O-L-A-R\"", backTitle: "Definición MEP 2026", backText: "Capitalismo vs. Socialismo, Oposición ideológica irreconciliable, Lucha por la hegemonía global, Armamentismo nuclear.", tip: "Identifica la pugna bipolar entre EE. UU. y la URSS." },
-                    { title: "Ficha 9: Procesos de Descolonización", block: "Geopolítica", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"A-D-I-O-S\"", backTitle: "Definición MEP 2026", backText: "Autodeterminación de los pueblos, Debilitamiento europeo postguerra, Influencia de la ONU, Olas independentistas en Asia y África.", tip: "Valora el surgimiento de nuevos Estados nacionales." },
-                    { title: "Ficha 10: Colapso del Socialismo Real", block: "Guerra Fría", frontEmoji: "🧱", frontText: "Mnemotecnia: \"P-E-R-S-A\"", backTitle: "Definición MEP 2026", backText: "Perestroika (reforma), Estancamiento tecnológico, Ruptura del Pacto de Varsovia, Glasnost (apertura), Autonomías nacionales (1989-1991).", tip: "Analiza el fin de la URSS y el bloque soviético." },
-                    { title: "Ficha 11: Globalización y Aldea Global", block: "Mundo Contemporáneo", frontEmoji: "🌍", frontText: "Mnemotecnia: \"G-L-O-B-O\"", backTitle: "Definición MEP 2026", backText: "Gustos homogeneizados, Libre flujo de capitales, Open borders informáticos, Bloques comerciales transnacionales, Omnipresencia tecnológica.", tip: "Reconoce las dimensiones económicas y culturales globales." },
-                    { title: "Ficha 12: Empresas Transnacionales", block: "Economía Global", frontEmoji: "🏢", frontText: "Mnemotecnia: \"F-L-E-X\"", backTitle: "Definición MEP 2026", backText: "Fragmentación de la producción, Localización en países con mano de obra barata, Explotación de economías de escala.", tip: "Comprende la lógica corporativa actual." },
-                    { title: "Ficha 13: Economía Agroexportadora en CR", block: "Historia de Costa Rica", frontEmoji: "☕", frontText: "Mnemotecnia: \"C-A-F-E\"", backTitle: "Definición MEP 2026", backText: "Café y Banano como ejes vitales, Alta dependencia externa, Financiamiento de capital extranjero, Enclave bananero.", tip: "Identifica el modelo primario exportador (1850-1950)." },
-                    { title: "Ficha 14: Causas de la Crisis de 1929 en CR", block: "Historia de CR", frontEmoji: "📉", frontText: "Mnemotecnia: \"C-A-I-D-A\"", backTitle: "Definición MEP 2026", backText: "Caída abrupta de precios del café y banano, Aislamiento de mercados europeos, Ínfimos ingresos fiscales, Déficit estatal.", tip: "Evalúa el impacto de la Gran Depresión nacional." },
-                    { title: "Ficha 15: Reformas Electorales en CR (Años 40)", block: "Historia de CR", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"T-S-E-C\"", backTitle: "Definición MEP 2026", backText: "Tribunal Supremo de Elecciones autónomo, Sufragio universal garantizado, Cédula de identidad física obligatoria, Código Electoral transparente.", tip: "Valora la pureza y autonomía del sufragio." },
-                    { title: "Ficha 16: Reforma Social de la Década de 1940", block: "Historia de CR", frontEmoji: "🤝", frontText: "Mnemotecnia: \"G-A-C-I-S\"", backTitle: "Definición MEP 2026", backText: "Garantías Sociales constitucionales, Asistencia social (CCSS), Código de Trabajo, Invalidez/Vejez/Muerte, Seguro Social obligatorio.", tip: "Reconoce el nacimiento del Estado social de derecho." },
-                    { title: "Ficha 17: Causas de la Guerra Civil de 1948", block: "Historia de CR", frontEmoji: "🇨🇷", frontText: "Mnemotecnia: \"F-R-A-U-D\"", backTitle: "Definición MEP 2026", backText: "Fraude electoral denunciado, Ruptura institucional, Anulación de elecciones de 1948, Unicidad de crisis política y social.", tip: "Identifica el detonante del conflicto armado." },
-                    { title: "Ficha 18: Constitución Política de 1949", block: "Historia de CR", frontEmoji: "📜", frontText: "Mnemotecnia: \"A-B-O-L-E\"", backTitle: "Definición MEP 2026", backText: "Abolición del ejército, Bases del Estado Social de Derecho, Organización de poderes independientes, Elecciones limpias (TSE).", tip: "Comprende la refundación democrática institucional." },
-                    { title: "Ficha 19: Modelo ISI (Sustitución de Importaciones)", block: "Economía de CR", frontEmoji: "🏭", frontText: "Mnemotecnia: \"I-N-D-U-S\"", backTitle: "Definición MEP 2026", backText: "Industrialización protegida por aranceles, Nacionalización bancaria, Diversificación agrícola, Creación de instituciones autónomas.", tip: "Analiza el desarrollo del mercado interno (1950-1980)." },
-                    { title: "Ficha 20: Crisis Económica de 1980 en CR", block: "Historia de CR", frontEmoji: "⚠️", frontText: "Mnemotecnia: \"S-H-O-C\"", backTitle: "Definición MEP 2026", backText: "Shock petrolero internacional, Hiperinflación galopante, Onerosa deuda externa, Caída de precios centroamericanos.", tip: "Identifica el agotamiento del modelo ISI." },
-                    { title: "Ficha 21: Programas de Ajuste Estructural (PAE)", block: "Economía de CR", frontEmoji: "📊", frontText: "Mnemotecnia: \"P-A-E-S\"", backTitle: "Definición MEP 2026", backText: "Privatización de activos estatales, Apertura comercial y arancelaria, Estímulo a exportaciones no tradicionales, Supresión de subsidios.", tip: "Comprende la transición al modelo neoliberal." },
-                    { title: "Ficha 22: Democracia y Derechos Humanos", block: "Cívica y Política", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Libertad de expresión y prensa, Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Valora los pilares del régimen democrático." },
-                    { title: "Ficha 23: Migraciones Internacionales", block: "Geografía Humana", frontEmoji: "🚶", frontText: "Mnemotecnia: \"P-U-S-H\"", backTitle: "Definición MEP 2026", backText: "Pobreza extrema, Violencia armada, Inseguridad ciudadana, Hostilidad ambiental y climática como factores de expulsión.", tip: "Analiza las causas de los flujos migratorios globales." },
-                    { title: "Ficha 24: Demografía y Transición Poblacional", block: "Geografía Humana", frontEmoji: "👥", frontText: "Mnemotecnia: \"V-I-D-A\"", backTitle: "Definición MEP 2026", backText: "Baja la mortalidad infantil, Incremento de la esperanza de vida, Descenso de la fecundidad, Envejecimiento demográfico.", tip: "Interpreta los cambios en la pirámide de población." },
-                    { title: "Ficha 25: Conflictos Geopolíticos Contemporáneos", block: "Geopolítica", frontEmoji: "⚔️", frontText: "Mnemotecnia: \"O-R-I-E-N\"", backTitle: "Definición MEP 2026", backText: "Oriente Medio (Israel-Palestina), Rusia-Ucrania, Islas en disputa en el mar de China, Península de Corea.", tip: "Identifica los principales puntos de fricción del siglo XXI." },
-                    { title: "Ficha 26: Desigualdades Espaciales Globales", block: "Geografía Económica", frontEmoji: "🌐", frontText: "Mnemotecnia: \"N-O-R-T-E\"", backTitle: "Definición MEP 2026", backText: "Niveles de industrialización avanzados, Opulencia tecnológica, Recursos financieros concentrados, Exportación de manufactura cara.", tip: "Comprende la brecha de desarrollo Norte-Sur." },
-                    { title: "Ficha 27: Movimientos Sociales en CR", block: "Sociedad Civil", frontEmoji: "✊", frontText: "Mnemotecnia: \"D-E-F-E-N\"", backTitle: "Definición MEP 2026", backText: "Defensa de la caja (CCSS), Educación pública superior, Fondos para el agro, Estabilidad laboral, No privatización de telecomunicaciones.", tip: "Reconoce la participación ciudadana post-1980." },
-                    { title: "Ficha 28: Crisis del Bipartidismo en CR", block: "Política Nacional", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"M-U-L-T-I\"", backTitle: "Definición MEP 2026", backText: "Multipartidismo legislativo, Urgencia de alianzas partidarias, Desencanto ciudadano con partidos tradicionales, Irrupción electoral.", tip: "Analiza el quiebre histórico del PLN-PUSC." },
-                    { title: "Ficha 29: Refugiados Ambientales", block: "Medio Ambiente", frontEmoji: "🌪️", frontText: "Mnemotecnia: \"C-L-I-M-A\"", backTitle: "Definición MEP 2026", backText: "Catástrofes naturales recurrentes, Sequías prolongadas, Inundaciones costeras, Amenaza a la seguridad alimentaria.", tip: "Estudia el desplazamiento forzado por cambio climático." },
-                    { title: "Ficha 30: Ciudades Globales", block: "Geografía Urbana", frontEmoji: "🌆", frontText: "Mnemotecnia: \"N-Y-T-O-K\"", backTitle: "Definición MEP 2026", backText: "Nueva York, Londres, Tokio como centros de toma de decisiones corporativas, bolsas de valores y flujos globales de información.", tip: "Reconoce los nodos neurálgicos de la economía mundial." },
-                    { title: "Ficha 31: Descolonización de África", block: "Historia Mundial", frontEmoji: "🌍", frontText: "Mnemotecnia: \"F-L-N-A\"", backTitle: "Definición MEP 2026", backText: "Fronteras artificiales europeas, Luchas armadas de liberación nacional, Neocolonialismo económico subsiguiente, Apartheid en Sudáfrica.", tip: "Analiza las secuelas del dominio colonial africano." },
-                    { title: "Ficha 32: Carrera Espacial (Guerra Fría)", block: "Guerra Fría", frontEmoji: "🚀", frontText: "Mnemotecnia: \"S-P-U-T\"", backTitle: "Definición MEP 2026", backText: "Sputnik (primer satélite), Perro Laika, Yuri Gagarin (primer humano), Tripulación Apolo XI en la Luna.", tip: "Comprende la rivalidad científico-tecnológica." },
-                    { title: "Ficha 33: Revolución Cubana (1959)", block: "América Latina", frontEmoji: "🇨🇺", frontText: "Mnemotecnia: \"F-I-D-E-L\"", backTitle: "Definición MEP 2026", backText: "Fidel Castro y el Movimiento 26 de Julio, Influencia soviética en América Latina, Desafío a la hegemonía estadounidense.", tip: "Valora el impacto geopolítico del socialismo en el Caribe." },
-                    { title: "Ficha 34: Regímenes Dictatoriales Cono Sur", block: "América Latina", frontEmoji: "🎖️", frontText: "Mnemotecnia: \"O-P-E-R\"", backTitle: "Definición MEP 2026", backText: "Operación Cóndor (coordinación represiva), Persecución sistemática de opositores, Violación masiva de derechos humanos en los 70.", tip: "Estudia las dictaduras militares suramericanas." },
-                    { title: "Ficha 35: Huelga Bananera de 1934 en CR", block: "Historia Social CR", frontEmoji: "🍌", frontText: "Mnemotecnia: \"U-F-C-O\"", backTitle: "Definición MEP 2026", backText: "Unificación obrera liderada por Carlos Luis Fallas y el Partido Comunista, Reclamo por salarios dignos frente a la UFCO.", tip: "Valora la protesta obrera histórica en el Caribe." },
-                    { title: "Ficha 36: Creación de la CCSS (1941)", block: "Seguridad Social CR", frontEmoji: "🏥", frontText: "Mnemotecnia: \"S-A-L-U-D\"", backTitle: "Definición MEP 2026", backText: "Seguro de enfermedad, Maternidad, Invalidez, Vejez y Muerte, Solidaridad intergeneracional en la atención médica.", tip: "Comprende el pilar fundamental de la salud pública." },
-                    { title: "Ficha 37: Creación del ICE (1949)", block: "Estado Empresario CR", frontEmoji: "⚡", frontText: "Mnemotecnia: \"E-N-E-R\"", backTitle: "Definición MEP 2026", backText: "Electrificación nacional impulsada por el Estado, Rompimiento de monopolios extranjeros privados, Desarrollo hidroeléctrico.", tip: "Valora la infraestructura energética pública." },
-                    { title: "Ficha 38: Nacionalización Bancaria (1948)", block: "Economía Nacional CR", frontEmoji: "🏦", frontText: "Mnemotecnia: \"C-R-E-D\"", backTitle: "Definición MEP 2026", backText: "Centralización del ahorro nacional, Reorientación de préstamos hacia la agricultura y la naciente industria nacional.", tip: "Analiza el control estatal del crédito." },
-                    { title: "Ficha 39: Desarme Constitucional en CR (1949)", block: "Paz y Derechos Humanos", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"P-A-Z-S\"", backTitle: "Definición MEP 2026", backText: "Presupuesto militar desviado a educación y salud, Apuesta diplomática por el derecho internacional, Sede de la Corte IDH.", tip: "Destaca la abolición del ejército permanente." },
-                    { title: "Ficha 40: Modelo de Promoción de Exportaciones", block: "Economía Actual CR", frontEmoji: "📦", frontText: "Mnemotecnia: \"Z-O-N-A\"", backTitle: "Definición MEP 2026", backText: "Zonas francas exentas de impuestos, Óptima atracción de IED, Nuevas agroexportaciones (melón, piña, ornamentales).", tip: "Comprende la diversificación comercial post-1980." },
-                    { title: "Ficha 41: Narcotráfico y Seguridad Regional", block: "Seguridad Ciudadana", frontEmoji: "🚨", frontText: "Mnemotecnia: \"C-A-R-T\"", backTitle: "Definición MEP 2026", backText: "Corrupción institucional, Armas de fuego ilegales, Rutas de trasiego de drogas hacia Norteamérica, Violencia urbana y rural.", tip: "Analiza los retos del crimen organizado actual." },
-                    { title: "Ficha 42: Envejecimiento Demográfico", block: "Retos Sociales CR", frontEmoji: "👴", frontText: "Mnemotecnia: \"P-E-N-S\"", backTitle: "Definición MEP 2026", backText: "Presión sobre el sistema de pensiones, Exigencia de servicios geriátricos especializados, Sostenibilidad fiscal.", tip: "Estudia los desafíos presupuestarios de la longevidad." },
-                    { title: "Ficha 43: Migración Nicaragüense en CR", block: "Sociedad y Migración", frontEmoji: "🇨🇷", frontText: "Mnemotecnia: \"M-A-N-O\"", backTitle: "Definición MEP 2026", backText: "Mano de obra esencial en agricultura (café, caña, construcción) y servicios, Oportunidades de integración socioeconómica.", tip: "Reconoce el aporte laboral de la población migrante." },
-                    { title: "Ficha 44: Tratados de Libre Comercio (TLC)", block: "Comercio Exterior", frontEmoji: "🤝", frontText: "Mnemotecnia: \"A-R-E-A\"", backTitle: "Definición MEP 2026", backText: "Acceso a nuevos mercados internacionales, Reglas claras para inversionistas, Eliminación gradual de barreras arancelarias.", tip: "Evalúa los acuerdos comerciales multilaterales." },
-                    { title: "Ficha 45: Crisis de los Misiles en Cuba (1962)", block: "Guerra Fría", frontEmoji: "🎯", frontText: "Mnemotecnia: \"M-E-D-I\"", backTitle: "Definición MEP 2026", backText: "Misiles soviéticos instalados en Cuba, Enérgico bloqueo naval estadounidense, Diplomacia al borde de la guerra nuclear.", tip: "Analiza el clímax de tensión atómica bipodár." },
-                    { title: "Ficha 46: Apartheid en Sudáfrica", block: "Derechos Humanos", frontEmoji: "⚖️", frontText: "Mnemotecnia: \"N-E-L-S\"", backTitle: "Definición MEP 2026", backText: "Nelson Mandela como símbolo de resistencia, Eliminación de derechos civiles a la mayoría negra, Superación democrática en 1994.", tip: "Estudia la superación de la segregación racial legal." },
-                    { title: "Ficha 47: Genocidio en Ruanda (1994)", block: "Derechos Humanos", frontEmoji: "🇺🇳", frontText: "Mnemotecnia: \"O-N-U-S\"", backTitle: "Definición MEP 2026", backText: "Omisión e inacción de la comunidad internacional, Violencia extrema interétnica entre hutus y tutsis en la región de los Grandes Lagos.", tip: "Valora la respuesta humanitaria global ante crisis." },
-                    { title: "Ficha 48: Crisis Climática Global", block: "Medio Ambiente", frontEmoji: "🌡️", frontText: "Mnemotecnia: \"C-O-2-S\"", backTitle: "Definición MEP 2026", backText: "Combustibles fósiles quemados masivamente, Océanos acidificados, Deshielo acelerado de glaciares polares, Subida del nivel del mar.", tip: "Comprende las causas y efectos del calentamiento global." },
-                    { title: "Ficha 49: Revolución Tecnológica y Teletrabajo", block: "Mundo Digital", frontEmoji: "💻", frontText: "Mnemotecnia: \"C-L-O-U-D\"", backTitle: "Definición MEP 2026", backText: "Conectividad permanente por internet, Labor a distancia sin barreras físicas, Optimización de procesos informáticos.", tip: "Analiza la transformación digital del espacio laboral." },
-                    { title: "Ficha 50: Principio de Autodeterminación", block: "Derecho Internacional", frontEmoji: "🌐", frontText: "Mnemotecnia: \"S-O-B-E\"", backTitle: "Definición MEP 2026", backText: "Soberanía nacional respetada, Oposición al intervencionismo militar, Bases del derecho internacional democrático.", tip: "Valora el derecho soberano de los pueblos." }
+                    { title: "Ficha 1: Imperialismo del Siglo XIX", block: "Historia Mundial", frontEmoji: "🌐", frontText: "Mnemotecnia: \"I-M-P-E-R-I-O\"", backTitle: "Definición MEP 2026", backText: "Expansión de potencias europeas en Asia y África. Inversión, Materias Primas, Excedentes demográficos.", tip: "Recuerda los intereses económicos del capitalismo industrial." }
                 ],
                 questions: [
                     {
@@ -454,551 +451,12 @@
                         ],
                         correct: 1,
                         rationale: "El imperialismo decimonónico respondió a necesidades económicas del capitalismo industrial (materias primas y mercados cautivos)."
-                    },
-                    {
-                        question: "2. Uno de los factores políticos e ideológicos subyacentes que propició el estallido de la Primera Guerra Mundial en 1914 fue",
-                        options: [
-                            "Opción A: el nacionalismo exacerbado y la compleja red de alianzas militares secretas entre potencias.",
-                            "Opción B: la crisis bursátil desatada en Wall Street por la especulación financiera.",
-                            "Opción C: el proceso de descolonización pacífica impulsado por la Organización de las Naciones Unidas.",
-                            "Opción D: la rivalidad espacial y armamentista entre Estados Unidos y la Unión Soviética."
-                        ],
-                        correct: 0,
-                        rationale: "Las alianzas secretas y el nacionalismo radical europeo configuraron el polvorín que detonó la Gran Guerra."
-                    },
-                    {
-                        question: "3. Como consecuencia directa de la Primera Guerra Mundial y la firma de los tratados de paz en 1919, el mapa geopolítico europeo experimentó",
-                        options: [
-                            "Opción A: la consolidación definitiva del imperio austrohúngaro y otomano.",
-                            "Opción B: el colapso de los imperios centrales y el surgimiento de nuevos Estados nacionales.",
-                            "Opción C: la unificación económica bajo el liderazgo del bloque socialista soviético.",
-                            "Opción D: la disolución inmediata de todas las fronteras nacionales en el continente."
-                        ],
-                        correct: 1,
-                        rationale: "La caída de los imperios ruso, alemán, austrohúngaro y otomano rediseñó por completo el mapa político europeo."
-                    },
-                    {
-                        question: "4. Las condiciones socioeconómicas y políticas extremas que experimentó Rusia durante la Primera Guerra Mundial, sumadas al régimen autocrático del zar, propiciaron el estallido de la Revolución de 1917, cuyo impacto geopolítico mundial incluyó",
-                        options: [
-                            "Opción A: la creación del primer Estado socialista de la historia y la posterior fundación de la URSS.",
-                            "Opción B: la instauración de una monarquía parlamentaria de corte capitalista liberal.",
-                            "Opción C: la adhesión inmediata de Rusia al bloque de potencias imperialistas occidentales.",
-                            "Opción D: la abolición absoluta de la industrialización en toda Europa oriental."
-                        ],
-                        correct: 0,
-                        rationale: "La Revolución Rusa fracturó el orden capitalista global al establecer la Unión Soviética bajo principios socialistas."
-                    },
-                    {
-                        question: "5. La Gran Depresión económica mundial desatada a partir del crack bursátil de 1929 en Estados Unidos se caracterizó estructuralmente por",
-                        options: [
-                            "Opción A: el pleno empleo y el incremento salarial en el sector agrícola europeo.",
-                            "Opción B: la superproducción industrial y agrícola combinada con una especulación financiera desmedida.",
-                            "Opción C: la intervención nula del Estado en los mercados financieros internacionales.",
-                            "Opción D: la eliminación de los aranceles aduaneros a nivel planetario."
-                        ],
-                        correct: 1,
-                        rationale: "La acumulación de inventarios sin capacidad de consumo y la burbuja bursátil provocaron el desplome económico global."
-                    },
-                    {
-                        question: "6. Entre las causas político-ideológicas que impulsaron el estallido de la Segunda Guerra Mundial en 1939 destaca",
-                        options: [
-                            "Opción A: el respeto irrestricto a los acuerdos democráticos del Tratado de Versalles.",
-                            "Opción B: el expansionismo agresivo de los regímenes nazi-fascistas y su ideología de superioridad racial.",
-                            "Opción C: la cooperación económica pacífica entre las potencias del Eje y los Aliados.",
-                            "Opción D: la descolonización inmediata de los territorios africanos por parte de Alemania."
-                        ],
-                        correct: 1,
-                        rationale: "El afán expansionista (Lebensraum) y el totalitarismo fascista condujeron inevitablemente al conflicto bélico global."
-                    },
-                    {
-                        question: "7. El exterminio sistemático de millones de personas —principalmente población judía— perpetrado por el régimen nazi durante la Segunda Guerra Mundial evidenció la necesidad imperiosa de",
-                        options: [
-                            "Opción A: tutelar y garantizar los derechos fundamentales universales para salvaguardar la dignidad humana.",
-                            "Opción B: suprimir los tribunales internacionales de justicia penal.",
-                            "Opción C: fomentar la discriminación étnica institucionalizada en las constituciones.",
-                            "Opción D: otorgar impunidad absoluta a los crímenes de Estado."
-                        ],
-                        correct: 0,
-                        rationale: "Las atrocidades del Holocausto motivaron la creación del sistema internacional de protección a los derechos humanos."
-                    },
-                    {
-                        question: "8. El conflicto geopolítico denominado «Guerra Fría», desarrollado en la segunda mitad del siglo XX, se caracterizó fundamentalmente por",
-                        options: [
-                            "Opción A: enfrentamientos armados directos y masivos entre los ejércitos de Estados Unidos y la URSS.",
-                            "Opción B: una rivalidad ideológica, económica y tecnológica indirecta, con conflictos periféricos y carrera armamentista.",
-                            "Opción C: la integración económica total y pacífica de los bloques capitalista y socialista.",
-                            "Opción D: el predominio absoluto del aislacionismo diplomático en ambas superpotencias."
-                        ],
-                        correct: 1,
-                        rationale: "La Guerra Fría evitó el choque nuclear directo, canalizando la tensión a través de propaganda, espionaje y guerras subsidiarias."
-                    },
-                    {
-                        question: "9. El proceso histórico de descolonización en Asia y África, acelerado tras la Segunda Guerra Mundial, generó como repercusión geopolítica actual",
-                        options: [
-                            "Opción A: la superación inmediata de los problemas de pobreza y desigualdad en todos los nuevos Estados.",
-                            "Opción B: la persistencia de fronteras artificiales heredadas que continúan generando tensiones étnicas y políticas.",
-                            "Opción C: el restablecimiento total del dominio colonial europeo en el hemisferio sur.",
-                            "Opción D: la eliminación absoluta del neocolonialismo económico internacional."
-                        ],
-                        correct: 1,
-                        rationale: "El trazado arbitrario de fronteras coloniales sin considerar grupos étnicos causó conflictos internos crónicos en dichos continentes."
-                    },
-                    {
-                        question: "10. A finales del siglo XX, el colapso del bloque soviético (socialismo real) trajo como consecuencia geopolítica inmediata en Europa y Asia",
-                        options: [
-                            "Opción A: la unificación económica bajo el liderazgo exclusivo del Pacto de Varsovia.",
-                            "Opción B: la fragmentación de la URSS y Yugoslavia, dando origen a múltiples repúblicas independientes.",
-                            "Opción C: la instauración del comunismo radical en Europa occidental.",
-                            "Opción D: la desaparición total de las desigualdades socioeconómicas globales."
-                        ],
-                        correct: 1,
-                        rationale: "La caída de la URSS reconfiguró el mapa con la emancipación de repúblicas bálticas, eslavas y centroasiáticas."
-                    },
-                    {
-                        question: "11. Un ejemplo claro de cómo la globalización impacta la vida cotidiana y las prácticas culturales en la sociedad contemporánea se manifiesta en",
-                        options: [
-                            "Opción A: el aislamiento informativo absoluto de las comunidades rurales.",
-                            "Opción B: el consumo masivo de contenidos digitales, marcas y pautas culturales estandarizadas a escala planetaria.",
-                            "Opción C: la supresión de cualquier forma de comercio internacional de mercancías.",
-                            "Opción D: la eliminación de las diferencias idiomáticas entre los países."
-                        ],
-                        correct: 1,
-                        rationale: "La globalización cultural estandariza hábitos de consumo, entretenimiento y flujos de información instantáneos."
-                    },
-                    {
-                        question: "12. En el contexto de la economía globalizada actual, el papel estratégico de las empresas transnacionales (ETN) radica en que",
-                        options: [
-                            "Opción A: centralizan todos sus procesos de manufactura exclusivamente en el país de origen corporativo.",
-                            "Opción B: fragmentan su cadena productiva globalmente, instalando fases en países con menores costos laborales.",
-                            "Opción C: operan sin fines de lucro bajo estrictas regulaciones gubernamentales locales.",
-                            "Opción D: impiden la circulación de tecnologías de información entre economías emergentes."
-                        ],
-                        correct: 1,
-                        rationale: "Las ETN fragmentan la producción mundial buscando ventajas comparativas de costos y desregulación laboral."
-                    },
-                    {
-                        question: "13. Durante la primera mitad del siglo XX, la estructura económica de Costa Rica se fundamentó en el modelo agroexportador, el cual se caracterizó principalmente por",
-                        options: [
-                            "Opción A: la alta dependencia de la exportación de café y banano hacia los mercados norteamericano y europeo.",
-                            "Opción B: la industrialización pesada orientada al consumo interno autosuficiente.",
-                            "Opción C: la ausencia total de capitales extranjeros en las actividades productivas.",
-                            "Opción D: la diversificación tecnológica avanzada en el sector de alta tecnología."
-                        ],
-                        correct: 0,
-                        rationale: "El modelo agroexportador subordinó la economía costarricense a los precios internacionales del café y el banano."
-                    },
-                    {
-                        question: "14. Las repercusiones de la crisis económica mundial de 1929 en la sociedad costarricense se tradujeron en",
-                        options: [
-                            "Opción A: un incremento salarial masivo para los trabajadores agrícolas del sector bananero.",
-                            "Opción B: el desplome de los ingresos estatales, escasez de circulante y deterioro de las condiciones de vida populares.",
-                            "Opción C: la diversificación inmediata de las exportaciones hacia Asia.",
-                            "Opción D: la abolición de la deuda externa contraída con la banca británica."
-                        ],
-                        correct: 1,
-                        rationale: "La caída de compras internacionales de café y banano colapsó las finanzas públicas y aumentó la pobreza urbana y rural."
-                    },
-                    {
-                        question: "15. Como producto de las tensiones políticas y las demandas de transparencia en la primera mitad del siglo XX, la creación del Tribunal Supremo de Elecciones (TSE) en Costa Rica buscó fundamentalmente",
-                        options: [
-                            "Opción A: garantizar la independencia y pureza del sufragio frente a la injerencia del Poder Ejecutivo.",
-                            "Opción B: centralizar el control de los partidos políticos bajo la autoridad directa del Presidente.",
-                            "Opción C: suprimir el derecho al voto secreto para los ciudadanos mayores de edad.",
-                            "Opción D: eliminar la obligatoriedad de la cédula de identidad en los comicios."
-                        ],
-                        correct: 0,
-                        rationale: "El TSE blindó la democracia costarricense al dotar al sistema electoral de autonomía e imparcialidad institucional."
-                    },
-                    {
-                        question: "16. La promulgación de las Garantías Sociales y la fundación de la Caja Costarricense de Seguro Social (CCSS) en la década de 1940 representaron un hito histórico porque",
-                        options: [
-                            "Opción A: eliminaron por completo la intervención del Estado en materia de salud pública.",
-                            "Opción B: institucionalizaron derechos laborales y de protección social obligatorios para mejorar las condiciones de vida.",
-                            "Opción C: privatizaron los servicios hospitalarios en beneficio del capital extranjero.",
-                            "Opción D: suprimieron el Código de Trabajo en favor del libre mercado absoluto."
-                        ],
-                        correct: 1,
-                        rationale: "La Reforma Social consagró los derechos de los trabajadores y estructuró el Estado de bienestar en el país."
-                    },
-                    {
-                        question: "17. Entre las transformaciones políticas e institucionales más trascendentales derivadas de la Guerra Civil de 1948 en Costa Rica figura",
-                        options: [
-                            "Opción A: el fortalecimiento de las fuerzas armadas permanentes en el presupuesto nacional.",
-                            "Opción B: la redacción de la Constitución Política de 1949 y la abolición del ejército.",
-                            "Opción C: el restablecimiento del modelo agroexportador tradicional sin intervención estatal.",
-                            "Opción D: la supresión definitiva del sufragio femenino en las elecciones nacionales."
-                        ],
-                        correct: 1,
-                        rationale: "La Constitución de 1949 refundó la institucionalidad democrática, destacando la abolición del ejército."
-                    },
-                    {
-                        question: "18. La decisión institucional de abolir el ejército en la Constitución Política de 1949 permitió a Costa Rica consolidar históricamente",
-                        options: [
-                            "Opción A: una mayor inversión pública en educación, salud y desarrollo social.",
-                            "Opción B: la participación activa en conflictos armados regionales en Centroamérica.",
-                            "Opción C: la militarización de las fronteras norte y sur del territorio nacional.",
-                            "Opción D: el abandono de los tratados internacionales de derechos humanos."
-                        ],
-                        correct: 0,
-                        rationale: "Al prescindir de gastos militares, el Estado destinó cuantiosos recursos a la salud y la educación pública."
-                    },
-                    {
-                        question: "19. El modelo de Sustitución de Importaciones (ISI) implementado en Costa Rica a partir de 1950 se caracterizó fundamentalmente por",
-                        options: [
-                            "Opción A: la apertura comercial absoluta sin aranceles de importación.",
-                            "Opción B: la industrialización orientada al mercado interno protegida por aranceles y el impulso de instituciones autónomas.",
-                            "Opción C: la dependencia exclusiva de la exportación de manufactura pesada internacional.",
-                            "Opción D: la privatización total de la banca comercial y los servicios eléctricos."
-                        ],
-                        correct: 1,
-                        rationale: "El modelo ISI fomentó la producción nacional industrial y la diversificación económica bajo la rectoría del Estado."
-                    },
-                    {
-                        question: "20. La crisis económica que afectó a Costa Rica a principios de la década de 1980 tuvo su origen en factores combinados como",
-                        options: [
-                            "Opción A: el superávit fiscal y la estabilidad absoluta de los precios internacionales del café.",
-                            "Opción B: el incremento en los precios del petróleo, el endeudamiento externo y la caída del Mercado Común Centroamericano.",
-                            "Opción C: la eliminación total de la deuda pública y la bonanza cambiaria.",
-                            "Opción D: la aplicación rigurosa de aranceles proteccionistas en Asia."
-                        ],
-                        correct: 1,
-                        rationale: "Factores externos (shocks petroleros, tasas de interés) e internos colapsaron las finanzas públicas costarricenses en 1980."
-                    },
-                    {
-                        question: "21. Como respuesta a la crisis de los ochenta, los sucesivos gobiernos implementaron los Programas de Ajuste Estructural (PAE), orientados económicamente a",
-                        options: [
-                            "Opción A: fortalecer el modelo ISI y estatizar la totalidad del comercio exterior.",
-                            "Opción B: liberalizar la economía, privatizar empresas estatales y promover las exportaciones no tradicionales.",
-                            "Opción C: suprimir los tratados de libre comercio con Norteamérica.",
-                            "Opción D: incrementar los subsidios agrícolas proteccionistas internos."
-                        ],
-                        correct: 1,
-                        rationale: "Los PAE marcaron la transición hacia el modelo neoliberal de apertura comercial, exportaciones no tradicionales y zonas francas."
-                    },
-                    {
-                        question: "22. En un sistema político democrático representativo, el ejercicio de la libertad de pensamiento, opinión y expresión constituye un derecho fundamental porque",
-                        options: [
-                            "Opción A: imposibilita la crítica ciudadana hacia las decisiones de la administración pública.",
-                            "Opción B: fomenta el pluralismo político, la participación informada y el control ciudadano del poder.",
-                            "Opción C: centraliza la verdad ideológica en una única organización partidaria.",
-                            "Opción D: restringe el debate legislativo en épocas electorales."
-                        ],
-                        correct: 1,
-                        rationale: "Las libertades civiles garantizan el debate plural y la fiscalización ciudadana indispensables en democracia."
-                    },
-                    {
-                        question: "23. Un factor estructural de carácter socioeconómico y de violencia que impulsa masivamente las migraciones internacionales contemporáneas hacia los centros desarrollados es",
-                        options: [
-                            "Opción A: el pleno empleo y la estabilidad salarial en los países de origen.",
-                            "Opción B: la pobreza persistente, la falta de oportunidades y la violencia generada por el crimen organizado.",
-                            "Opción C: la ausencia absoluta de fronteras geográficas en el planeta.",
-                            "Opción D: el fomento estatal de políticas de retorno obligatorio."
-                        ],
-                        correct: 1,
-                        rationale: "Los factores de expulsión (pobreza, violencia, falta de empleo) fuerzan los desplazamientos humanos globales."
-                    },
-                    {
-                        question: "24. Las proyecciones demográficas actuales en Costa Rica y el mundo evidencian una transición caracterizada por el descenso de la fecundidad y",
-                        options: [
-                            "Opción A: el incremento acelerado de la mortalidad infantil en zonas urbanas.",
-                            "Opción B: el aumento de la esperanza de vida y el envejecimiento progresivo de la población.",
-                            "Opción C: la estabilización absoluta de la pirámide poblacional sin cambios etarios.",
-                            "Opción D: la reducción drástica de la población urbana mundial."
-                        ],
-                        correct: 1,
-                        rationale: "Menor natalidad y mayor longevidad transforman la estructura por edades, planteando desafíos a los sistemas de pensiones."
-                    },
-                    {
-                        question: "25. Los conflictos geopolíticos contemporáneos en regiones como Oriente Medio (Israel-Palestina) reflejan tensiones históricas complejas asociadas a",
-                        options: [
-                            "Opción A: disputas territoriales, soberanía nacional, recursos estratégicos y diferencias religiosas y culturales.",
-                            "Opción B: la ausencia total de interés de las potencias globales en la zona.",
-                            "Opción C: acuerdos pacíficos definitivos firmados en el siglo XIX.",
-                            "Opción D: la unificación administrativa bajo un único gobierno democrático."
-                        ],
-                        correct: 0,
-                        rationale: "Las disputas territoriales en Oriente Medio combinan factores históricos, religiosos, políticos y geopolíticos globales."
-                    },
-                    {
-                        question: "26. Desde una perspectiva geográfica, la persistencia de inequidades socioeconómicas entre los países desarrollados (Norte) y en vías de desarrollo (Sur) se explica estructuralmente por",
-                        options: [
-                            "Opción A: la igualdad de condiciones en el acceso tecnológico global.",
-                            "Opción B: la asimetría en el control de capitales, la transferencia tecnológica y la inserción desigual en el comercio internacional.",
-                            "Opción C: el aislamiento comercial voluntario de las regiones empobrecidas.",
-                            "Opción D: la inexistencia de recursos naturales en el hemisferio sur."
-                        ],
-                        correct: 1,
-                        rationale: "La división internacional del trabajo y el control financiero asimétrico reproducen la brecha de desigualdad global."
-                    },
-                    {
-                        question: "27. Los movimientos sociales desarrollados en Costa Rica a partir de la década de 1980 han tenido como eje central de movilización ciudadana",
-                        options: [
-                            "Opción A: la exigencia de instaurar un régimen militar permanente.",
-                            "Opción B: la defensa de los servicios públicos, la seguridad social y los derechos laborales frente a la privatización.",
-                            "Opción C: el apoyo irrestricto a los programas de ajuste estructural fiscal.",
-                            "Opción D: la supresión de las autonomías universitarias estatales."
-                        ],
-                        correct: 1,
-                        rationale: "Diversos sectores se han organizado históricamente para defender la institucionalidad solidaria frente a políticas de corte neoliberal."
-                    },
-                    {
-                        question: "28. A finales del siglo XX e inicios del XXI, el sistema político costarricense experimentó el fenómeno conocido como la «crisis del bipartidismo», el cual se tradujo en",
-                        options: [
-                            "Opción A: el fortalecimiento absoluto del predominio histórico de los partidos tradicionales.",
-                            "Opción B: la fragmentación legislativa, el surgimiento de nuevas fuerzas políticas y el desencanto ciudadano.",
-                            "Opción C: la abolición definitiva del sufragio universal en las elecciones presidenciales.",
-                            "Opción D: la concentración de todo el poder político en el Poder Judicial."
-                        ],
-                        correct: 1,
-                        rationale: "El desgaste de los partidos tradicionales abrió paso a un escenario multipartidista y a una mayor volatilidad electoral."
-                    },
-                    {
-                        question: "29. El fenómeno contemporáneo de los «refugiados ambientales» surge como consecuencia directa de",
-                        options: [
-                            "Opción A: la degradación ecológica extrema, eventos climáticos severos y pérdida de medios de subsistencia por cambio climático.",
-                            "Opción B: la bonanza agrícola en zonas desérticas tropicales.",
-                            "Opción C: las políticas exitosas de conservación forestal internacional.",
-                            "Opción D: el incremento en la producción de energías renovables limpias."
-                        ],
-                        correct: 0,
-                        rationale: "La alteración ambiental y los desastres climáticos fuerzan el desplazamiento involuntario de poblaciones vulnerables."
-                    },
-                    {
-                        question: "30. Un factor geopolítico que aceleró significativamente los procesos de independencia en el continente africano tras la Segunda Guerra Mundial fue",
-                        options: [
-                            "Opción A: el apoyo militar incondicional de los imperios para mantener colonias perpetuas.",
-                            "Opción B: el debilitamiento económico y militar de las potencias europeas y el surgimiento del anticolonialismo global.",
-                            "Opción C: la unificación pacífica bajo la corona británica.",
-                            "Opción D: la ausencia de movimientos nacionalistas locales."
-                        ],
-                        correct: 1,
-                        rationale: "Las potencias europeas quedaron arruinadas tras la SGM, facilitando la presión independentista en sus colonias."
-                    },
-                    {
-                        question: "31. Durante la Guerra Fría, la carrera espacial protagonizada por Estados Unidos y la Unión Soviética tuvo como principal significado geopolítico",
-                        options: [
-                            "Opción A: la cooperación pacífica científica sin fines militares de espionaje.",
-                            "Opción B: una demostración de superioridad tecnológica, ideológica y de propaganda entre ambas superpotencias.",
-                            "Opción C: la colonización conjunta de los recursos minerales lunares.",
-                            "Opción D: el abandono de la industria armamentista terrestre."
-                        ],
-                        correct: 1,
-                        rationale: "La conquista del espacio fue el escaparate propagandístico definitivo para demostrar la supremacía del modelo socioeconómico."
-                    },
-                    {
-                        question: "32. El triunfo de la Revolución Cubana en 1959 alteró significativamente el equilibrio geopolítico del continente americano al",
-                        options: [
-                            "Opción A: consolidar la hegemonía democrática liberal de Estados Unidos en el Caribe.",
-                            "Opción B: instaurar el primer régimen socialista en el hemisferio occidental bajo la órbita de influencia soviética.",
-                            "Opción C: promover la integración pacífica con el Banco Mundial.",
-                            "Opción D: eliminar por completo las tensiones de la Guerra Fría en América Latina."
-                        ],
-                        correct: 1,
-                        rationale: "Cuba se convirtió en el bastión socialista en América Latina, desafiando directamente la seguridad nacional estadounidense."
-                    },
-                    {
-                        question: "33. En las décadas de 1970 y 1980, diversos países del Cono Sur americano sufrieron regímenes dictatoriales militares cuya represión sistemática se articuló mediante",
-                        options: [
-                            "Opción A: la extensión plena de las garantías constitucionales y sindicales.",
-                            "Opción B: la Doctrina de Seguridad Nacional, el terrorismo de Estado y la Operación Cóndor.",
-                            "Opción C: el desarme militar incondicional promovido por la OEA.",
-                            "Opción D: la celebración de elecciones libres y pluralistas anuales."
-                        ],
-                        correct: 1,
-                        rationale: "Las dictaduras suramericanas coordinaron la persecución transnacional de opositores bajo el paraguas de la seguridad nacional."
-                    },
-                    {
-                        question: "34. La emblemática huelga bananera de 1934 en la región atlántica de Costa Rica marcó un punto de inflexión en la historia social del país porque",
-                        options: [
-                            "Opción A: consolidó los privilegios corporativos de la United Fruit Company.",
-                            "Opción B: evidenció la capacidad de organización obrera y el protagonismo de nuevos actores sociales liderados por la izquierda.",
-                            "Opción C: logró la abolición inmediata de las transnacionales fruteras en el Caribe.",
-                            "Opción D: suprimió los derechos sindicales en la Constitución."
-                        ],
-                        correct: 1,
-                        rationale: "La protesta obrera de 1934 contra la UFCO visibilizó las precarias condiciones laborales y fortaleció el movimiento social."
-                    },
-                    {
-                        question: "35. La promulgación del Código de Trabajo y la creación de la Caja Costarricense de Seguro Social en la década de 1940 fueron posibles gracias a una alianza política inédita entre",
-                        options: [
-                            "Opción A: los terratenientes cafetaleros conservadores y las empresas bananeras.",
-                            "Opción B: el gobierno de Rafael Ángel Calderón Guardia, la Iglesia católica (Mons. Sanabria) y el Partido Comunista (Manuel Mora).",
-                            "Opción C: los banqueros tradicionales y el ejército permanente.",
-                            "Opción D: los inversionistas extranjeros y la oligarquía liberal."
-                        ],
-                        correct: 1,
-                        rationale: "La confluencia reformista del calderonismo, la Iglesia y los comunistas hizo posible la legislación social más avanzada de la historia nacional."
-                    },
-                    {
-                        question: "36. La fundación del Instituto Costarricense de Electricidad (ICE) en 1949 respondió a la necesidad estatal de",
-                        options: [
-                            "Opción A: privatizar los servicios de telecomunicaciones para atraer capital extranjero.",
-                            "Opción B: garantizar la electrificación nacional y el desarrollo de infraestructura energética estratégica bajo control público.",
-                            "Opción C: suspender la producción de energía hidroeléctrica en el territorio nacional.",
-                            "Opción D: monopolizar la exportación cafetalera hacia Europa."
-                        ],
-                        correct: 1,
-                        rationale: "El ICE impulsó el desarrollo nacional electrificando zonas rurales y democratizando el servicio eléctrico como motor del Estado empresario."
-                    },
-                    {
-                        question: "37. La nacionalización de la banca en Costa Rica, decretada en 1948, tuvo como repercusión económica fundamental",
-                        options: [
-                            "Opción A: concentrar el crédito exclusivamente en manos de la oligarquía cafetalera tradicional.",
-                            "Opción B: centralizar el ahorro público para canalizarlo hacia la diversificación productiva y el desarrollo industrial.",
-                            "Opción C: eliminar por completo el uso de moneda nacional.",
-                            "Opción D: suprimir la intervención estatal en la política monetaria."
-                        ],
-                        correct: 1,
-                        rationale: "La banca estatal permitió orientar el crédito hacia sectores prioritarios como la agricultura y la naciente industria ISI."
-                    },
-                    {
-                        question: "38. A partir del segundo lustro de la década de 1980, el nuevo modelo de desarrollo costarricense priorizó la promoción de exportaciones no tradicionales, lo cual implicó",
-                        options: [
-                            "Opción A: el retorno exclusivo al monocultivo del café y el banano.",
-                            "Opción B: la atracción de inversión extranjera directa, zonas francas y la diversificación hacia la manufactura avanzada.",
-                            "Opción C: la prohibición absoluta de comerciar con América del Norte.",
-                            "Opción D: la estatización de las empresas exportadoras agrícolas."
-                        ],
-                        correct: 1,
-                        rationale: "Las zonas francas y la exportación de bienes de alto valor agregado diversificaron la matriz comercial del país."
-                    },
-                    {
-                        question: "39. El problema del narcotráfico y el crimen organizado transnacional representa en la actualidad una grave amenaza para la estabilidad sociopolítica de América Latina debido a que",
-                        options: [
-                            "Opción A: fomenta el fortalecimiento de los sistemas democráticos y la transparencia fiscal.",
-                            "Opción B: debilita las instituciones democráticas mediante la corrupción, incrementa la violencia y vulnera los derechos humanos.",
-                            "Opción C: promueve la distribución equitativa de la riqueza en las comunidades rurales.",
-                            "Opción D: erradica por completo la pobreza estructural en la región."
-                        ],
-                        correct: 1,
-                        rationale: "El narcotráfico erosiona la gobernabilidad, corrompe estructuras estatales y genera altos índices de violencia letal."
-                    },
-                    {
-                        question: "40. El acelerado envejecimiento de la población costarricense plantea retos estructurales urgentes para el Estado, destacando principalmente",
-                        options: [
-                            "Opción A: el cierre masivo de centros educativos de enseñanza primaria.",
-                            "Opción B: la sostenibilidad financiera de los regímenes de pensiones y la demanda de servicios de salud geriátrica.",
-                            "Opción C: la disminución drástica en la esperanza de vida nacional.",
-                            "Opción D: la saturación absoluta del mercado laboral juvenil."
-                        ],
-                        correct: 1,
-                        rationale: "Menos cotizantes activos y mayor población longeva exigen reformas en la seguridad social y sostenibilidad presupuestaria."
-                    },
-                    {
-                        question: "41. La presencia histórica de población migrante nicaragüense en Costa Rica desempeña un rol socioeconómico fundamental al",
-                        options: [
-                            "Opción A: ocupar exclusivamente cargos de alta gerencia corporativa tecnológica.",
-                            "Opción B: aportar fuerza de trabajo esencial en sectores productivos como la agricultura estacional y la construcción.",
-                            "Opción C: desestabilizar permanentemente el sistema de salud pública nacional.",
-                            "Opción D: suprimir la necesidad de mano de obra local en el territorio."
-                        ],
-                        correct: 1,
-                        rationale: "La migración laboral sostiene actividades clave de la economía costarricense, aunque plantea retos de integración social."
-                    },
-                    {
-                        question: "42. Los Tratados de Libre Comercio suscritos por Costa Rica con diversas economías globales buscan fundamentalmente",
-                        options: [
-                            "Opción A: aislar al país de los mercados financieros internacionales.",
-                            "Opción B: desgravar aranceles para facilitar la exportación de bienes y servicios y atraer inversión extranjera.",
-                            "Opción C: suprimir la soberanía legislativa en materia ambiental y laboral.",
-                            "Opción D: eliminar la competencia comercial interna."
-                        ],
-                        correct: 1,
-                        rationale: "Los TLC pretenden garantizar acceso preferencial a mercados externos para potenciar el modelo exportador."
-                    },
-                    {
-                        question: "43. La crisis de los misiles en Cuba en 1962 representó un hito crítico de la Guerra Fría caracterizado por",
-                        options: [
-                            "Opción A: la invasión pacífica de la península de Corea por tropas de la ONU.",
-                            "Opción B: la instalación de bases de misiles soviéticos en Cuba y el bloqueo naval ordenado por Estados Unidos, situando al mundo al borde de la guerra nuclear.",
-                            "Opción C: la descolonización definitiva del continente africano.",
-                            "Opción D: la firma de los acuerdos de desarme total entre la OTAN y el Pacto de Varsovia."
-                        ],
-                        correct: 1,
-                        rationale: "La crisis de octubre de 1962 fue el momento más álgido de confrontación directa potencial entre las dos superpotencias atómicas."
-                    },
-                    {
-                        question: "44. El régimen de segregación racial conocido como «Apartheid», abolido formalmente en Sudáfrica en 1994, se caracterizó por",
-                        options: [
-                            "Opción A: la igualdad plena de derechos civiles para toda la población sin distinción étnica.",
-                            "Opción B: la discriminación institucionalizada, la privación de derechos políticos y la separación forzosa de la mayoría negra.",
-                            "Opción C: la cooperación democrática pacífica liderada por minorías blancas.",
-                            "Opción D: el rechazo unánime de las políticas segregacionistas por parte de todas las potencias occidentales desde su origen."
-                        ],
-                        correct: 1,
-                        rationale: "El apartheid legalizó el racismo institucional en Sudáfrica hasta la llegada de Nelson Mandela a la presidencia."
-                    },
-                    {
-                        question: "45. El trágico genocidio ocurrido en Ruanda en 1994 puso de manifiesto ante la comunidad internacional",
-                        options: [
-                            "Opción A: la efectividad inmediata de los cascos azules de la ONU para prevenir masacres.",
-                            "Opción B: las devastadoras consecuencias de los odios étnicos manipulados políticamente y la lentitud de respuesta humanitaria global.",
-                            "Opción C: el éxito de la democracia parlamentaria en el África subsahariana.",
-                            "Opción D: la superación definitiva de los conflictos armados contemporáneos."
-                        ],
-                        correct: 1,
-                        rationale: "La masacre entre hutus y tutsis evidenció la incapacidad de la ONU para frenar violaciones masivas a los derechos humanos."
-                    },
-                    {
-                        question: "46. Uno de los desafíos ambientales más apremiantes de la sociedad contemporánea es el cambio climático, el cual está asociado principalmente a",
-                        options: [
-                            "Opción A: la disminución en la emisión industrial de gases de efecto invernadero.",
-                            "Opción B: la quema masiva de combustibles fósiles, la deforestación y el modelo insostenible de consumo global.",
-                            "Opción C: la estabilización térmica natural de los océanos polares.",
-                            "Opción D: el uso exclusivo de energías limpias y renovables en el planeta."
-                        ],
-                        correct: 1,
-                        rationale: "Las actividades humanas industriales y el modelo energético fósil aceleran el calentamiento global y alteran el clima."
-                    },
-                    {
-                        question: "47. La irrupción de las tecnologías de la información y la comunicación (TIC) en el siglo XXI ha transformado la organización laboral mediante modalidades como el teletrabajo, lo cual evidencia",
-                        options: [
-                            "Opción A: la rigidez absoluta del espacio físico tradicional de oficina.",
-                            "Opción B: la compresión espaciotemporal y la flexibilidad en la ejecución de actividades productivas.",
-                            "Opción C: la desaparición del comercio electrónico internacional.",
-                            "Opción D: el aislamiento total de los mercados financieros globales."
-                        ],
-                        correct: 1,
-                        rationale: "Las TIC diluyen las barreras tradicionales de tiempo y distancia, reconfigurando el mercado laboral contemporáneo."
-                    },
-                    {
-                        question: "48. El principio de la autodeterminación de los pueblos, consagrado en el derecho internacional moderno, postula que toda nación tiene el derecho soberano de",
-                        options: [
-                            "Opción A: decidir libremente su condición política y su desarrollo económico, social y cultural sin intervención extranjera.",
-                            "Opción B: someter sus decisiones gubernamentales al mandato militar de las superpotencias.",
-                            "Opción C: renunciar a la protección de los derechos humanos fundamentales.",
-                            "Opción D: aislarse permanentemente de los flujos de comercio mundial."
-                        ],
-                        correct: 0,
-                        rationale: "La autodeterminación garantiza la soberanía estatal frente al intervencionismo extranjero y colonial."
-                    },
-                    {
-                        question: "49. En la estructura de la economía global actual, las denominadas «ciudades globales» (como Nueva York, Londres o Tokio) funcionan geográficamente como",
-                        options: [
-                            "Opción A: centros periféricos de producción agrícola tradicional de subsistencia.",
-                            "Opción B: nodos estratégicos de comando financiero, servicios avanzados y toma de decisiones corporativas mundiales.",
-                            "Opción C: regiones aisladas del flujo de capitales e información digital.",
-                            "Opción D: enclaves exclusivamente industriales sin influencia en los mercados internacionales."
-                        ],
-                        correct: 1,
-                        rationale: "Las ciudades globales concentran el poder financiero, las bolsas de valores y la dirección de la economía transnacional."
-                    },
-                    {
-                        question: "50. Uno de los retos políticos e institucionales más complejos que enfrentan las democracias latinoamericanas en la actualidad es",
-                        options: [
-                            "Opción A: el fortalecimiento de los partidos únicos de corte autoritario.",
-                            "Opción B: la desafección ciudadana, la desigualdad socioeconómica y la corrupción que erosionan la gobernabilidad.",
-                            "Opción C: la erradicación absoluta de los problemas fiscales estatales.",
-                            "Opción D: la supresión de los procesos electorales periódicos."
-                        ],
-                        correct: 1,
-                        rationale: "La desigualdad, la desconfianza institucional y la corrupción ponen a prueba la consolidación democrática en la región."
                     }
                 ]
             },
             civica: {
                 name: "Cívica",
-                icon: "⚖️",
+                icon: "⚖",
                 desc: "Derechos y Constitución",
                 neonColor: "fuchsia",
                 borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20",
@@ -1256,9 +714,9 @@
                     <div class="p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs space-y-2 animate-fadeIn">
                         <p class="font-bold flex items-center gap-1.5">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Retroalimentación Oficial MEP:
+                            Resolución y Retroalimentación MEP:
                         </p>
-                        <p class="leading-relaxed">${q.rationale}</p>
+                        <p class="leading-relaxed whitespace-pre-line">${q.rationale}</p>
                     </div>
                 `;
             }
