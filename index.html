@@ -348,22 +348,357 @@
                 badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
-                    {
-                        title: "Vanguardismo Literario CR",
-                        block: "Literatura Costarricense",
-                        frontEmoji: "🎭📖",
-                        frontText: "Ruptura con las formas tradicionales",
-                        backTitle: "Definición MEP 2026",
-                        backText: "Movimiento literario del siglo XX que buscó la libertad de expresión, verso libre y crítica social.",
-                        tip: "Tip 11°: Relaciona las obras con el contexto sociohistórico costarricense."
-                    }
+                    { title: "Ficha 1: Símil o Comparación", block: "Recursos Retóricos", frontEmoji: "⚖️", frontText: "Relación de semejanza explícita (como, cual)", backTitle: "Definición MEP 2026", backText: "Recurso retórico que establece una relación de semejanza explícita entre dos elementos utilizando nexos comparativos.", tip: "Busque siempre la presencia de nexos expresos." },
+                    { title: "Ficha 2: Metáfora", block: "Recursos Retóricos", frontEmoji: "💎", frontText: "Semejanza implícita sin nexos comparativos", backTitle: "Definición MEP 2026", backText: "Identificación de un objeto con otro debido a una semejanza implícita, sin utilizar nexos comparativos.", tip: "El emisor traslada el significado figurado de forma directa." },
+                    { title: "Ficha 3: Prosopopeya o Personificación", block: "Recursos Retóricos", frontEmoji: "🌳", frontText: "Cualidades humanas a seres inanimados", backTitle: "Definición MEP 2026", backText: "Atribución de cualidades, sentimientos o acciones humanas a seres inanimados, animales o conceptos abstractos.", tip: "Detecte verbos de acción humana en la naturaleza." },
+                    { title: "Ficha 4: Hipérbole", block: "Recursos Retóricos", frontEmoji: "📈", frontText: "Exageración desproporcionada", backTitle: "Definición MEP 2026", backText: "Exageración desproporcionada de ideas, cualidades o acciones con un fin expresivo o enfático.", tip: "Identifique términos absolutos o magnitudes exageradas." },
+                    { title: "Ficha 5: Epíteto", block: "Recursos Retóricos", frontEmoji: "⭐", frontText: "Adjetivo de cualidad natural o inherente", backTitle: "Definición MEP 2026", backText: "Adjetivo calificativo que expresa una cualidad inherente del sustantivo que acompaña.", tip: "Busque adjetivos redundantes pero poéticos." },
+                    { title: "Ficha 6: Antítesis", block: "Recursos Retóricos", frontEmoji: "🌗", frontText: "Oposición de ideas o palabras opuestas", backTitle: "Definición MEP 2026", backText: "Oposición o contraposición de dos ideas o palabras de significado opuesto para resaltar un contraste.", tip: "Busque palabras antónimas cercanas." },
+                    { title: "Ficha 7: Hipérbaton", block: "Recursos Retóricos", frontEmoji: "🔀", frontText: "Alteración del orden sintáctico (S+V+P)", backTitle: "Definición MEP 2026", backText: "Alteración o inversión del orden sintáctico tradicional y lógico de las palabras en la oración.", tip: "Si la lectura suena a estilo poético antiguo, es hipérbaton." },
+                    { title: "Ficha 8: Anáfora", block: "Recursos Retóricos", frontEmoji: "🔁", frontText: "Repetición al comienzo de versos o frases", backTitle: "Definición MEP 2026", backText: "Repetición intencional de una o varias palabras al comienzo de versos o frases sucesivas.", tip: "Revise los inicios consecutivos con la misma palabra." },
+                    { title: "Ficha 9: Ironía", block: "Recursos Retóricos", frontEmoji: "😉", frontText: "Expresar lo contrario de lo que se dice", backTitle: "Definición MEP 2026", backText: "Expresión de una idea dando a entender exactamente lo contrario de lo que se dice, cargada de tono crítico.", tip: "Analice el contexto global de burla sutil." },
+                    { title: "Ficha 10: Polisíndeton", block: "Recursos Retóricos", frontEmoji: "➕", frontText: "Uso repetido de nexos conjuntivos (y, e)", backTitle: "Definición MEP 2026", backText: "Utilización repetida e innecesaria de nexos conjuntivos donde gramaticalmente no serían estrictamente requeridos.", tip: "Repetición constante de la conjunción 'y'." },
+                    { title: "Ficha 11: Asíndeton", block: "Recursos Retóricos", frontEmoji: "✂️", frontText: "Supresión deliberada de nexos conjuntivos", backTitle: "Definición MEP 2026", backText: "Supresión u omisión deliberada de nexos conjuntivos para otorgar rapidez y agilidad al texto.", tip: "Identifique listas separadas únicamente por comas." },
+                    { title: "Ficha 12: Metonimia", block: "Recursos Retóricos", frontEmoji: "🔄", frontText: "Sustitución por contigüidad lógica", backTitle: "Definición MEP 2026", backText: "Sustitución de un término por otro con el que mantiene una relación de contigüidad (autor-obra, continente-contenido).", tip: "'Leer a Cervantes' (el autor por la obra)." },
+                    { title: "Ficha 13: Sinécdoque", block: "Recursos Retóricos", frontEmoji: "🧩", frontText: "Relación de inclusión cuantitativa (parte/todo)", backTitle: "Definición MEP 2026", backText: "Tipo de metonimia basada en una relación de inclusión cuantitativa (la parte por el todo).", tip: "'Necesitamos más manos' (la parte por el individuo)." },
+                    { title: "Ficha 14: Lenguaje Denotativo", block: "Niveles del Lenguaje", frontEmoji: "📖", frontText: "Uso objetivo, literal y de diccionario", backTitle: "Definición MEP 2026", backText: "Uso del lenguaje estrictamente objetivo, literal y directo, tal como aparece registrado en el diccionario.", tip: "Predomina en textos científicos y noticias." },
+                    { title: "Ficha 15: Lenguaje Connotativo", block: "Niveles del Lenguaje", frontEmoji: "✨", frontText: "Uso subjetivo, figurado y simbólico", backTitle: "Definición MEP 2026", backText: "Uso subjetivo, figurado, simbólico y polisémico del lenguaje que evoca emociones e interpretaciones.", tip: "Sello distintivo de la poesía y literatura." },
+                    { title: "Ficha 16: Intención Comunicativa", block: "Análisis Textual", frontEmoji: "🎯", frontText: "Propósito fundamental que persigue el autor", backTitle: "Definición MEP 2026", backText: "Propósito fundamental que persigue el autor al redactar el texto (persuadir, informar, conmover).", tip: "Responde siempre a la pregunta ¿para qué escribió el autor?" },
+                    { title: "Ficha 17: Significado Implícito", block: "Análisis Textual", frontEmoji: "🔍", frontText: "Información deducida por inferencias", backTitle: "Definición MEP 2026", backText: "Información que no se enuncia de manera directa en el texto, pero que se deduce mediante inferencias lógicas.", tip: "Exige ir más allá de la lectura literal." },
+                    { title: "Ficha 18: Voz Discursiva o Enunciador", block: "Análisis Textual", frontEmoji: "🗣️", frontText: "Entidad que emite el discurso literario", backTitle: "Definición MEP 2026", backText: "Entidad o sujeto que emite el discurso dentro de la obra literaria o no literaria (no siempre coincide con el autor real).", tip: "Analice el punto de vista (primera o tercera persona)." },
+                    { title: "Ficha 19: Texto No Literario", block: "Textos Funcionales", frontEmoji: "📰", frontText: "Estructura argumentativa (tesis y argumentos)", backTitle: "Definición MEP 2026", backText: "Escritos orientados a informar o persuadir basados en tesis, argumentos, evidencias y contraargumentos.", tip: "Distinga con claridad entre hechos y opiniones." },
+                    { title: "Ficha 20: Pensamiento Social y Sesgos", block: "Análisis Sociocultural", frontEmoji: "🌐", frontText: "Cosmovisiones e ideologías de la sociedad", backTitle: "Definición MEP 2026", backText: "Posturas, prejuicios, ideologías o cosmovisiones arraigadas en una sociedad que el texto reproduce o cuestiona.", tip: "Evalúe cómo el trasfondo sociocultural condiciona al emisor." }
                 ],
                 questions: [
                     {
-                        question: "¿Cuál propiedad textual garantiza que las ideas de un texto guarden una relación lógica y unitaria en torno a un tema central?",
-                        options: ["La cohesión gramatical", "La coherencia global", "La elipsis pronominal", "La sinonimia contextual"],
+                        question: "<<El sur es un desierto que llora mientras canta, y esa voz no se extingue como pájaro muerto; hacia el mar encamina sus deseos amargos abriendo un eco débil que vive lentamente>>.\n\n1. En el texto anterior, el recurso retórico presente en la expresión «un desierto que llora» se refiere fundamentalmente a",
+                        options: [
+                            "Opción A: la aridez extrema del clima costero.",
+                            "Opción B: la fugacidad inevitable de la existencia humana.",
+                            "Opción C: la personificación de un paisaje desolado que expresa dolor.",
+                            "Opción D: la esperanza extinta de encontrar agua en el mar."
+                        ],
+                        correct: 2,
+                        rationale: "Se atribuye una acción humana (\"llorar\") a un elemento inanimado (\"desierto\"), constituyendo una prosopopeya o personificación."
+                    },
+                    {
+                        question: "<<Los árboles de la plaza levantaban sus brazos nudosos hacia el cielo gris, suplicando en silencio una tregua a la tormenta invernal que azotaba la ciudad>>.\n\n2. A partir de la lectura del fragmento anterior, el recurso estilístico destacado en los árboles que «suplicaban en silencio» corresponde a",
+                        options: [
+                            "Opción A: un hipérbaton de orden sintáctico.",
+                            "Opción B: una hipérbole de magnitud exagerada.",
+                            "Opción C: una prosopopeya que humaniza el entorno natural.",
+                            "Opción D: un símil de comparación explícita."
+                        ],
+                        correct: 2,
+                        rationale: "Los árboles adquieren la capacidad humana de suplicar, lo que evidencia una personificación."
+                    },
+                    {
+                        question: "<<El ensayo clínico demostró de manera concluyente que la nueva vacuna redujo la incidencia de contagios graves en un 92% durante las primeras cuatro semanas de aplicación masiva en la población adulta>>.\n\n3. El texto anterior se clasifica como no literario y su intención comunicativa primordial consiste en",
+                        options: [
+                            "Opción A: informar objetivamente sobre los resultados científicos de un estudio médico.",
+                            "Opción B: persuadir subjetivamente al lector mediante recursos poéticos y metafóricos.",
+                            "Opción C: narrar una historia fantástica ambientada en un laboratorio clínico.",
+                            "Opción D: criticar las políticas públicas de salud preventiva aplicadas en el país."
+                        ],
+                        correct: 0,
+                        rationale: "Al ser un texto informativo de divulgación científica, su propósito central es transmitir datos objetivos y comprobables."
+                    },
+                    {
+                        question: "<<Sus ojos eran dos luceros brillantes que iluminaban la oscuridad de mis noches más solitarias>>.\n\n4. El recurso literario presente en la comparación implícita «sus ojos eran dos luceros» se denomina",
+                        options: [
+                            "Opción A: símil.",
+                            "Opción B: metáfora.",
+                            "Opción C: epíteto.",
+                            "Opción D: antítesis."
+                        ],
                         correct: 1,
-                        rationale: "La coherencia es la propiedad semántica que organiza el sentido global del texto."
+                        rationale: "Se identifica un elemento con otro directamente sin usar nexos comparativos, configurando una metáfora."
+                    },
+                    {
+                        question: "<<El ruido con que rueda la ronca tempestad...>>\n\n5. En el verso anterior, la repetición constante del fonema vibrante /r/ con intención expresiva imita el sonido del trueno y constituye un recurso fónico conocido como",
+                        options: [
+                            "Opción A: hipérbaton.",
+                            "Opción B: aliteración.",
+                            "Opción C: ironía.",
+                            "Opción D: anáfora."
+                        ],
+                        correct: 1,
+                        rationale: "La aliteración es la repetición deliberada de sonidos semejantes para producir efectos acústicos evocadores."
+                    },
+                    {
+                        question: "<<La tarde caía lentamente sobre el puerto, envolviendo los barcos en una neblina densa, fría y silenciosa. Nadie caminaba ya por el muelle; solo las gaviotas emitían gritos lejanos que se perdían en la inmensidad gris del océano>>.\n\n6. A partir de la atmósfera descrita en el texto anterior, se infiere que el estado anímico predominante que proyecta el entorno es de",
+                        options: [
+                            "Opción A: euforia y celebración festiva.",
+                            "Opción B: melancolía, soledad y quietud.",
+                            "Opción C: tensión bélica y hostilidad inminente.",
+                            "Opción D: alegría desbordante y esperanza."
+                        ],
+                        correct: 1,
+                        rationale: "Elementos como la neblina densa, la ausencia de personas y la inmensidad gris construyen una atmósfera de soledad y melancolía."
+                    },
+                    {
+                        question: "<<El uso excesivo de plásticos de un solo uso representa una amenaza inminente para los ecosistemas marinos. Es urgente que las municipalidades implementen normativas estrictas de reciclaje antes de que la contaminación llegue a un punto de no retorno>>.\n\n7. En relación con la postura del emisor en el texto no literario anterior, se puede afirmar que este expresa",
+                        options: [
+                            "Opción A: una descripción neutral e indiferente ante el problema de los residuos.",
+                            "Opción B: una opinión argumentativa orientada a persuadir sobre la urgencia ecológica.",
+                            "Opción C: un relato de ficción basado en hechos futuristas.",
+                            "Opción D: un informe técnico puramente estadístico sin juicios de valor."
+                        ],
+                        correct: 1,
+                        rationale: "El emisor adopta una postura crítica y argumentativa exhortando a la acción municipal frente a la problemática ambiental."
+                    },
+                    {
+                        question: "<<Temprano levanté la muerte el vuelo,\ntemprano madrugé la madrugada,\ntemprano estás rodando por el suelo>>.\n\n8. En los versos anteriores, la repetición de la palabra «temprano» al inicio de los versos sucesivos corresponde al recurso retórico denominado",
+                        options: [
+                            "Opción A: asíndeton.",
+                            "Opción B: anáfora.",
+                            "Opción C: hipérbole.",
+                            "Opción D: metonimia."
+                        ],
+                        correct: 1,
+                        rationale: "La repetición de una misma palabra al comienzo de versos consecutivos es una anáfora."
+                    },
+                    {
+                        question: "<<El caballero caminaba con paso firme, vistiendo su armadura brillante bajo el inclemente sol del mediodía, dispuesto a enfrentar los peligros del páramo>>.\n\n9. El nivel de lectura predominante en el fragmento anterior, que permite extraer datos directos como la vestimenta del caballero y el momento del día, se denomina",
+                        options: [
+                            "Opción A: comprensión literal.",
+                            "Opción B: inferencia semántica profunda.",
+                            "Opción C: análisis ideológico subyacente.",
+                            "Opción D: deconstrucción crítica del mito."
+                        ],
+                        correct: 0,
+                        rationale: "La comprensión literal rescata información explícita e inequívoca expuesta directamente en el texto."
+                    },
+                    {
+                        question: "¡Oh más dura que mármol a mis quejas y al encendido fuego en que me quemo...!\n\n10. En el fragmento poético anterior, la expresión «más dura que mármol» constituye un recurso literario de comparación explícita conocido como",
+                        options: [
+                            "Opción A: símil.",
+                            "Opción B: metáfora pura.",
+                            "Opción C: epíteto natural.",
+                            "Opción D: aliteración fónica."
+                        ],
+                        correct: 0,
+                        rationale: "Al emplear la estructura comparativa explícita (\"más... que\"), se configura un símil."
+                    },
+                    {
+                        question: "<<La digitalización de los procesos educativos ha transformado radicalmente las aulas modernas. No obstante, brechas socioeconómicas significativas continúan limitando el acceso equitativo a las herramientas tecnológicas en las zonas rurales>>.\n\n11. El propósito comunicativo central del texto no literario anterior consiste en",
+                        options: [
+                            "Opción A: elogiar el éxito absoluto de la tecnología en todas las escuelas del mundo.",
+                            "Opción B: analizar de manera crítica un fenómeno actual señalando sus contrastes y limitaciones.",
+                            "Opción C: narrar una anécdota personal sobre el uso de computadoras portátiles.",
+                            "Opción D: instruir paso a paso sobre cómo reparar dispositivos digitales educativos."
+                        ],
+                        correct: 1,
+                        rationale: "El texto expone un análisis equilibrado y crítico sobre la modernización educativa y las desigualdades de acceso."
+                    },
+                    {
+                        question: "<<Por una mirada, un mundo;\npor una sonrisa, un cielo;\npor un beso... ¡yo no sé\nqué te diera por un beso!>>\n\n12. En los versos anteriores, la exageración poética orientada a magnificar el valor afectivo de un gesto se denomina",
+                        options: [
+                            "Opción A: ironía.",
+                            "Opción B: hipérbole.",
+                            "Opción C: símil.",
+                            "Opción D: metáfora."
+                        ],
+                        correct: 1,
+                        rationale: "Ofrecer un mundo o un cielo a cambio de una mirada o un beso representa una exageración evidente (hipérbole)."
+                    },
+                    {
+                        question: "<<El sabio investigador examinó minuciosamente cada muestra bajo el lente del microscopio electrónico, buscando indicios de la nueva cepa bacteriana>>.\n\n13. En el fragmento anterior, el término «investigador» empleado en su sentido estricto y de diccionario cumple con el uso de un lenguaje de tipo",
+                        options: [
+                            "Opción A: denotativo.",
+                            "Opción B: connotativo.",
+                            "Opción C: figurado.",
+                            "Opción D: metafórico."
+                        ],
+                        correct: 0,
+                        rationale: "El lenguaje denotativo es literal, objetivo y libre de ambigüedades interpretativas."
+                    },
+                    {
+                        question: "<<La noche se puso de luto cuando partiste sin decir adiós>>.\n\n14. La expresión anterior sugiere un sentido figurado y subjetivo característico del lenguaje",
+                        options: [
+                            "Opción A: denotativo institucional.",
+                            "Opción B: connotativo.",
+                            "Opción C: científico formal.",
+                            "Opción D: periodístico informativo."
+                        ],
+                        correct: 1,
+                        rationale: "El lenguaje connotativo otorga significados estéticos y emocionales (\"la noche de luto\" por la tristeza)."
+                    },
+                    {
+                        question: "<<Acudió, corrió, voló, llegó triunfante a la meta establecida por el comité olímpico>>.\n\n15. La omisión deliberada de nexos conjuntivos en la enumeración verbal anterior recibe el nombre de",
+                        options: [
+                            "Opción A: polisíndeton.",
+                            "Opción B: asíndeton.",
+                            "Opción C: hipérbaton.",
+                            "Opción D: antítesis."
+                        ],
+                        correct: 1,
+                        rationale: "La ausencia de conjunciones (\"y\") entre las acciones sucesivas caracteriza al asíndeton, imprimiendo dinamismo."
+                    },
+                    {
+                        question: "<<Y sufre y late y ríe y llora dentro de este pecho solitario>>.\n\n16. A diferencia del ejercicio anterior, la repetición constante y acumulativa de la conjunción «y» en el verso citado se denomina",
+                        options: [
+                            "Opción A: polisíndeton.",
+                            "Opción B: asíndeton.",
+                            "Opción C: metáfora.",
+                            "Opción D: ironía."
+                        ],
+                        correct: 0,
+                        rationale: "El uso reiterado de nexos conjuntivos innecesarios gramaticalmente constituye el polisíndeton."
+                    },
+                    {
+                        question: "<<Del salón en el ángulo oscuro, de su dueño tal vez olvidada, silenciosa y cubierta de polvo veíase el arpa>>.\n\n17. En los versos anteriores, el orden sintáctico habitual ha sido alterado (colocando complementos antes del sujeto y el verbo principal), lo cual constituye un",
+                        options: [
+                            "Opción A: símil.",
+                            "Opción B: hipérbaton.",
+                            "Opción C: pleonasmo.",
+                            "Opción D: epíteto."
+                        ],
+                        correct: 1,
+                        rationale: "La alteración intencional de la sintaxis lógica de la oración es un hipérbaton."
+                    },
+                    {
+                        question: "<<Es tan corto el amor y tan largo el olvido...>>\n\n18. La contraposición de dos ideas de significado opuesto (corto vs. largo) en el verso anterior se clasifica como",
+                        options: [
+                            "Opción A: metáfora.",
+                            "Opción B: antítesis.",
+                            "Opción C: prosopopeya.",
+                            "Opción D: hipérbole."
+                        ],
+                        correct: 1,
+                        rationale: "La presencia de conceptos contrarios en un mismo enunciado configura una antítesis o contraste."
+                    },
+                    {
+                        question: "<<El candidato prometió solucionar todos los problemas económicos del país en veinticuatro horas sin cobrar impuestos ¡qué gran muestra de realismo financiero!>>.\n\n19. El tono predominante en la frase final del texto anterior expresa una intención de burla sutil que da a entender lo contrario, lo cual corresponde a",
+                        options: [
+                            "Opción A: una metáfora lírica.",
+                            "Opción B: una ironía crítica.",
+                            "Opción C: un epíteto descriptivo.",
+                            "Opción D: una hipérbole exagerada."
+                        ],
+                        correct: 1,
+                        rationale: "La afirmación elogia sarcásticamente una propuesta inverosímil, evidenciando ironía."
+                    },
+                    {
+                        question: "<<Por favor, ayúdame; necesitamos más manos en la cocina para terminar la cena antes de que lleguen los invitados>>.\n\n20. En la expresión «necesitamos más manos», el recurso tropológico empleado (designar el todo -personas- por una parte de su anatomía) se denomina",
+                        options: [
+                            "Opción A: metonimia de causa.",
+                            "Opción B: sinécdoque.",
+                            "Opción C: símil comparativo.",
+                            "Opción D: personificación."
+                        ],
+                        correct: 1,
+                        rationale: "La utilización de una parte (\"manos\") para representar al individuo completo es un caso clásico de sinécdoque."
+                    },
+                    {
+                        question: "<<El museo exhibe tres magníficos óleos originales del maestro Pablo Picasso>>.\n\n21. En el enunciado anterior, la sustitución del nombre del autor por sus obras (\"óleos de Picasso\") constituye una figura de transferencia lógica llamada",
+                        options: [
+                            "Opción A: metonimia (el autor por la obra).",
+                            "Opción B: símil ilustrativo.",
+                            "Opción C: prosopopeya artística.",
+                            "Opción D: hipérbole descriptiva."
+                        ],
+                        correct: 0,
+                        rationale: "Nombrar la obra refiriéndose a su creador es una metonimia basada en la relación de autoría."
+                    },
+                    {
+                        question: "<<La Fila Brunqueña atesora una biodiversidad invaluable en sus bosques húmedos, donde comunidades locales lideran proyectos de ecoturismo sostenible y protección de cuencas hidrográficas>>.\n\n22. A partir del contenido del texto no literario anterior, se infiere que la intención principal del autor es",
+                        options: [
+                            "Opción A: promocionar un destino turístico extranjero de playa.",
+                            "Opción B: valorar y visibilizar iniciativas locales de conservación ambiental y comunitaria.",
+                            "Opción C: denunciar la destrucción total de los recursos hídricos nacionales.",
+                            "Opción D: relatar una leyenda fantástica sobre la fauna de la región."
+                        ],
+                        correct: 1,
+                        rationale: "El texto destaca de manera informativa y positiva los esfuerzos comunitarios de sostenibilidad en la región."
+                    },
+                    {
+                        question: "<<Por tus venas de plata corre el agua cristalina de la montaña>>.\n\n23. La expresión «venas de plata» aplicada al cauce del río constituye una metáfora que embellece el paisaje mediante un lenguaje",
+                        options: [
+                            "Opción A: denotativo y literal.",
+                            "Opción B: connotativo y figurado.",
+                            "Opción C: técnico y científico.",
+                            "Opción D: periodístico informativo."
+                        ],
+                        correct: 1,
+                        rationale: "El uso de imágenes poéticas y subjetivas caracteriza al lenguaje connotativo."
+                    },
+                    {
+                        question: "<<El análisis socioeconómico revela que la inflación acumulada durante el último semestre afectó primordialmente el poder adquisitivo de los hogares de menores ingresos, ensanchando la brecha de desigualdad>>.\n\n24. El tipo de texto anterior corresponde a un artículo de análisis económico, cuyo rasgo discursivo esencial es",
+                        options: [
+                            "Opción A: la subjetividad poética basada en metáforas abstractas.",
+                            "Opción B: la exposición argumentativa sustentada en datos y realidades sociales.",
+                            "Opción C: la narración fantástica de hechos imaginarios.",
+                            "Opción D: la estructura dramática con diálogos teatrales."
+                        ],
+                        correct: 1,
+                        rationale: "Los textos de análisis socioeconómico exponen y argumentan sobre problemáticas reales con rigor analítico."
+                    },
+                    {
+                        question: "<<Por ti la verde hierba, el fresco viento, el blanco lirio y colorada rosa y dulce primavera me agradaba...>>\n\n25. En los versos anteriores, los adjetivos «verde» (para la hierba) y «blanco» (para el lirio) cumplen una función estética natural redundante conocida como",
+                        options: [
+                            "Opción A: hipérbole.",
+                            "Opción B: epíteto.",
+                            "Opción C: ironía.",
+                            "Opción D: metáfora."
+                        ],
+                        correct: 1,
+                        rationale: "El epíteto destaca una cualidad propia e inseparable del sustantivo (\"hierba verde\", \"nieve blanca\")."
+                    },
+                    {
+                        question: "<<La ciencia avanza a pasos agigantados, desentrañando los misterios más profundos del cosmos y ofreciendo soluciones innovadoras a los grandes desafíos de la humanidad>>.\n\n26. En el fragmento anterior, la expresión «a pasos agigantados» constituye una exageración idiomática empleada para denotar rapidez, catalogada como",
+                        options: [
+                            "Opción A: símil.",
+                            "Opción B: hipérbole.",
+                            "Opción C: anáfora.",
+                            "Opción D: antítesis."
+                        ],
+                        correct: 1,
+                        rationale: "Expresar el avance mediante una magnitud desproporcionada es un recurso hiperbólico."
+                    },
+                    {
+                        question: "<<El informe meteorológico indica que la onda tropical número 40 ingresará al territorio nacional este jueves, generando lluvias intensas en la vertiente del Pacífico y el Valle Central>>.\n\n27. El texto anterior se clasifica como no literario informativo, destacando por el empleo de un lenguaje",
+                        options: [
+                            "Opción A: denotativo, objetivo y claro.",
+                            "Opción B: connotativo, ambiguo y lírico.",
+                            "Opción C: sarcástico e irónico.",
+                            "Opción D: metafórico y subjetivo."
+                        ],
+                        correct: 0,
+                        rationale: "Los reportes del clima emplean un lenguaje denotativo y objetivo para orientar a la población sin adornos literarios."
+                    },
+                    {
+                        question: "<<El fuego de la ira ardía en su pecho, consumiendo toda posibilidad de reconciliación pacífica>>.\n\n28. La identificación directa entre la ira y el fuego en el texto anterior representa una figura retórica de",
+                        options: [
+                            "Opción A: símil.",
+                            "Opción B: metáfora.",
+                            "Opción C: epíteto.",
+                            "Opción D: hipérbaton."
+                        ],
+                        correct: 1,
+                        rationale: "Comparar implícitamente la pasión de la ira con el fuego abrasador es una metáfora conceptual."
+                    },
+                    {
+                        question: "<<Las murallas de la ciudad antigua guardaban secretos de siglos, observando impasibles el devenir de las nuevas generaciones>>.\n\n29. La atribución de la capacidad de «observar impasibles» a las murallas de piedra constituye una",
+                        options: [
+                            "Opción A: hipérbole.",
+                            "Opción B: prosopopeya o personificación.",
+                            "Opción C: anáfora.",
+                            "Opción D: metonimia."
+                        ],
+                        correct: 1,
+                        rationale: "Otorgar un atributo perceptivo y actitudinal humano a un objeto inanimado es una personificación."
+                    },
+                    {
+                        question: "<<La lectura crítica no es un ejercicio de memorización pasiva, sino un diálogo activo donde el lector decodifica, cuestiona y reconstruye los múltiples sentidos propuestos por el autor>>.\n\n30. A partir de la tesis expuesta en el texto no literario anterior, se infiere que la comprensión lectora exige fundamentalmente",
+                        options: [
+                            "Opción A: repetir de memoria los datos biográficos del escritor.",
+                            "Opción B: una interacción reflexiva, analítica y participativa entre el lector y el texto.",
+                            "Opción C: aceptar dogmáticamente cualquier premisa sin evaluar evidencias.",
+                            "Opción D: ignorar el contexto sociocultural del emisor."
+                        ],
+                        correct: 1,
+                        rationale: "El texto sostiene que leer críticamente implica un rol activo de diálogo y reconstrucción de significados."
                     }
                 ]
             },
@@ -649,7 +984,7 @@
 
             container.innerHTML = `
                 <div class="space-y-4">
-                    <p class="text-sm md:text-base font-semibold text-white leading-relaxed">
+                    <p class="text-sm md:text-base font-semibold text-white leading-relaxed whitespace-pre-line">
                         ${q.question}
                     </p>
                     <div class="grid gap-2.5">
@@ -717,10 +1052,10 @@
             const totalQ = sub.questions.length;
             const pct = stats.answered > 0 ? Math.round((stats.correct / stats.answered) * 100) : 0;
             
-            document.getElementById('answeredCount').innerText = `${stats.answered} / ${totalQ}`;
-            document.getElementById('correctCount').innerText = stats.correct;
-            document.getElementById('liveScoreBadge').innerText = `${pct}% Aciertos`;
-            document.getElementById('liveProgressBar').style.width = `${pct}%`;
+            document.getElementById('answeredCount')?.innerText = `${stats.answered} / ${totalQ}`;
+            document.getElementById('correctCount')?.innerText = stats.correct;
+            document.getElementById('liveScoreBadge')?.innerText = `${pct}% Aciertos`;
+            document.getElementById('liveProgressBar')?.style.width = `${pct}%`;
         }
 
         window.onload = function() {
