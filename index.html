@@ -226,7 +226,7 @@
                 {t: "Magnitud Escalar", b: "Vectores y Escalares", e: "📏", f: "Valor numérico y unidad", d: "Cantidad física definida únicamente por su valor numérico y unidad.", tip: "Masa, temperatura y rapidez."},
                 {t: "Magnitud Vectorial", b: "Vectores y Escalares", e: "↗️", f: "Valor, dirección y sentido", d: "Cantidad física que requiere valor numérico, unidad, dirección y sentido.", tip: "Velocidad, fuerza y aceleración."},
                 {t: "MRU", b: "Cinemática", e: "🚗", f: "v = d / t (a = 0)", d: "Movimiento rectilíneo uniforme con velocidad constante y aceleración nula.", tip: "Distancia proporcional al tiempo."},
-                {t: "MRUV", b: "Cinemática", e: "🏎️️", f: "d = vᵢ·t + ½·a·t²", d: "Estudio del movimiento acelerado considerando variación de velocidad.", tip: "La aceleración es constante."},
+                {t: "MRUV", b: "Cinemática", e: "🏎️", f: "d = vᵢ·t + ½·a·t²", d: "Estudio del movimiento acelerado considerando variación de velocidad.", tip: "La aceleración es constante."},
                 {t: "Primera Ley de Newton", b: "Dinámica", e: "🧱", f: "Inercia (ΣF = 0)", d: "Un cuerpo mantiene su estado a menos que actúe una fuerza neta.", tip: "Frenado brusco de un autobús."},
                 {t: "Segunda Ley de Newton", b: "Dinámica", e: "🏋️", f: "F = m·a", d: "La aceleración es directamente proporcional a la fuerza e inversamente a la masa.", tip: "Empujar un carrito vacío vs lleno."},
                 {t: "Tercera Ley de Newton", b: "Dinámica", e: "🪃", f: "Acción y Reacción", d: "A toda fuerza de acción corresponde otra de igual magnitud y sentido opuesto.", tip: "El retroceso al disparar un arma."},
@@ -429,8 +429,8 @@
                     }
                 ]
             },
-            sociales: {
-                name: "Sociales",
+            estudios_sociales: {
+                name: "Estudios Sociales",
                 icon: "🌍",
                 desc: "Historia y Geografía CR",
                 neonColor: "blue",
@@ -456,29 +456,27 @@
             },
             civica: {
                 name: "Cívica",
-                icon: "⚖",
+                icon: "⚖️️",
                 desc: "Derechos y Constitución",
                 neonColor: "fuchsia",
                 borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20",
                 badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: [
-                    {
-                        title: "Estado de Derecho en CR",
-                        block: "Constitución Política",
-                        frontEmoji: "🏛️⚖️",
-                        frontText: "Principio de legalidad y división de poderes",
-                        backTitle: "Definición MEP 2026",
-                        backText: "Sistema donde gobernantes y gobernados están sometidos por igual a la Constitución y leyes vigentes.",
-                        tip: "Tip 11°: Identifica los contrapesos de la Sala Constitucional (Sala IV)."
-                    }
+                    { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
+                    { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." }
                 ],
                 questions: [
                     {
-                        question: "¿Cuál institución costarricense actúa como tribunal garante de la legalidad y la constitucionalidad de las leyes y actos públicos?",
-                        options: ["La Contraloría General de la República", "La Sala Constitucional (Sala IV)", "El Tribunal Supremo de Elecciones", "La Defensoría de los Habitantes"],
+                        question: "1. En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan fundamentalmente mediante",
+                        options: [
+                            "Opción A: la concentración de las decisiones estatales en una única figura militar.",
+                            "Opción B: la celebración periódica de elecciones libres, transparentes y competitivas.",
+                            "Opción C: la supresión de los partidos políticos de oposición.",
+                            "Opción D: el control absoluto de los medios de comunicación por parte del Poder Ejecutivo."
+                        ],
                         correct: 1,
-                        rationale: "La Sala Constitucional de la Corte Suprema de Justicia protege el orden constitucional y los derechos fundamentales."
+                        rationale: "Las elecciones periódicas y libres aseguran la renovación pacífica de las autoridades y el respeto a la pluralidad política."
                     }
                 ]
             }
@@ -714,7 +712,7 @@
                     <div class="p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs space-y-2 animate-fadeIn">
                         <p class="font-bold flex items-center gap-1.5">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Resolución y Retroalimentación MEP:
+                            Retroalimentación Oficial MEP:
                         </p>
                         <p class="leading-relaxed whitespace-pre-line">${q.rationale}</p>
                     </div>
