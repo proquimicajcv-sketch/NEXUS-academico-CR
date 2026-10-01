@@ -22,6 +22,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
+    <!-- Header / Navbar -->
     <header class="w-full max-w-6xl mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
         <div class="flex items-center gap-3">
             <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 transform hover:scale-105 transition-transform duration-300">
@@ -43,8 +44,10 @@
         </div>
     </header>
 
+    <!-- Main Content Area -->
     <main class="w-full max-w-6xl mx-auto px-4 md:px-6 my-6 space-y-8">
         
+        <!-- Hero section with Creator Credit and Featured Portrait -->
         <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
             <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -84,6 +87,7 @@
             </div>
         </section>
 
+        <!-- Áreas de Estudio & Avance por Materia -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2">
@@ -96,10 +100,11 @@
             </div>
             
             <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                <!-- Dynamic subject cards -->
+                <!-- Se inyecta dinámicamente con JS -->
             </div>
         </section>
 
+        <!-- Fichas Mnemotécnicas Interactivas -->
         <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
@@ -115,7 +120,7 @@
 
             <div class="max-w-xl mx-auto space-y-4">
                 <div id="flashcardSingleContainer" class="perspective-1000 h-80 cursor-pointer">
-                    <!-- Dynamic single 3D card -->
+                    <!-- Dinámico -->
                 </div>
 
                 <div class="flex items-center justify-center gap-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800">
@@ -135,7 +140,6 @@
                     &larr; Anterior Ficha
                 </button>
                 <button onclick="resetCards()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                     Reiniciar
                 </button>
                 <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-indigo-600/30">
@@ -144,6 +148,7 @@
             </div>
         </section>
 
+        <!-- Banco de Preguntas MEP & Selección Única -->
         <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
@@ -158,7 +163,7 @@
             </div>
 
             <div id="questionContainer" class="space-y-6 max-w-2xl mx-auto">
-                <!-- Dynamic questions -->
+                <!-- Dinámico -->
             </div>
 
             <div class="flex items-center justify-between pt-4 border-t border-slate-800 max-w-2xl mx-auto">
@@ -379,7 +384,7 @@
             { title: "Ficha 8: Anáfora", block: "Recursos Retóricos", frontEmoji: "🔁", frontText: "Repetición al comienzo de versos o frases", backTitle: "Definición MEP 2026", backText: "Repetición intencional de una o varias palabras al comienzo de versos o frases sucesivas.", tip: "Revise los inicios consecutivos con la misma palabra." },
             { title: "Ficha 9: Ironía", block: "Recursos Retóricos", frontEmoji: "😉", frontText: "Expresar lo contrario de lo que se dice", backTitle: "Definición MEP 2026", backText: "Expresión de una idea dando a entender exactamente lo contrario de lo que se dice, cargada de tono crítico.", tip: "Analice el contexto global de burla sutil." },
             { title: "Ficha 10: Polisíndeton", block: "Recursos Retóricos", frontEmoji: "➕", frontText: "Uso repetido de nexos conjuntivos (y, e)", backTitle: "Definición MEP 2026", backText: "Utilización repetida e innecesaria de nexos conjuntivos donde gramaticalmente no serían estrictamente requeridos.", tip: "Repetición constante de la conjunción 'y'." },
-            { title: "Ficha 11: Asíndeton", block: "Recursos Retóricos", frontEmoji: "✂️", frontText: "Supresión deliberada de nexos conjuntivos", backTitle: "Definición MEP 2026", backText: "Supresión u omisión deliberada de nexos conjuntivos para otorgar rapidez y agilidad al texto.", tip: "Identifique listas separadas únicamente por comas." },
+            { title: "Ficha 11: Asíndeton", block: "Recursos Retóricos", frontEmoji: "✂️️", frontText: "Supresión deliberada de nexos conjuntivos", backTitle: "Definición MEP 2026", backText: "Supresión u omisión deliberada de nexos conjuntivos para otorgar rapidez y agilidad al texto.", tip: "Identifique listas separadas únicamente por comas." },
             { title: "Ficha 12: Metonimia", block: "Recursos Retóricos", frontEmoji: "🔄", frontText: "Sustitución por contigüidad lógica", backTitle: "Definición MEP 2026", backText: "Sustitución de un término por otro con el que mantiene una relación de contigüidad (autor-obra, continente-contenido).", tip: "'Leer a Cervantes' (el autor por la obra)." },
             { title: "Ficha 13: Sinécdoque", block: "Recursos Retóricos", frontEmoji: "🧩", frontText: "Relación de inclusión cuantitativa (parte/todo)", backTitle: "Definición MEP 2026", backText: "Tipo de metonimia basada en una relación de inclusión cuantitativa (la parte por el todo).", tip: "'Necesitamos más manos' (la parte por el individuo)." },
             { title: "Ficha 14: Lenguaje Denotativo", block: "Niveles del Lenguaje", frontEmoji: "📖", frontText: "Uso objetivo, literal y de diccionario", backTitle: "Definición MEP 2026", backText: "Uso del lenguaje estrictamente objetivo, literal y directo, tal como aparece registrado en el diccionario.", tip: "Predomina en textos científicos y noticias." },
@@ -442,12 +447,9 @@
 
         const civicaCardsList = [
             { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
-            { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." },
-            { title: "Ficha 3: Régimen Parlamentario vs. Presidencialista", block: "Sistemas Políticos", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-R-E-S\"", backTitle: "Definición MEP 2026", backText: "Ejecutivo electo por votación popular directa independiente del Parlamento (Costa Rica/EE. UU.).", tip: "Formas de organización de los poderes del Estado." },
-            { title: "Ficha 4: Constitucionalismo en CR", block: "Constitución Política", frontEmoji: "📜", frontText: "Mnemotecnia: \"L-E-Y-E-S\"", backTitle: "Definición MEP 2026", backText: "Ley de la República subordinada a la Constitución, Estabilidad institucional, Estado de Derecho supremo.", tip: "Supremacía de la Constitución Política." },
-            { title: "Ficha 5: Poder Ejecutivo", block: "Poderes del Estado", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-M-I-N\"", backTitle: "Definición MEP 2026", backText: "Presidente, Ministros de Gobierno, Instituciones descentralizadas, Normas reglamentarias.", tip: "Dirección política y administración general." }
+            { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." }
         ];
-        for(let i = 6; i <= 40; i++) {
+        for(let i = 3; i <= 40; i++) {
             civicaCardsList.push({
                 title: `Ficha ${i}: Concepto Cívico #${i}`,
                 block: "Educación Cívica CR",
