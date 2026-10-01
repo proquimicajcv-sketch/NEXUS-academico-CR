@@ -32,7 +32,7 @@
         </div>
         <div class="flex items-center gap-3">
             <div class="text-right hidden sm:block">
-                <p class="text-xs font-semibold text-indigo-300">Prof. Jorge Carvajal Vanegas</p>
+                <p class="text-xs font-semibold text-indigo-300">Creado por: Prof. Jorge Carvajal Vanegas</p>
                 <p class="text-[10px] text-slate-400">Excelencia Académica 11°</p>
             </div>
             <span class="px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold rounded-full">11° Año</span>
@@ -42,7 +42,7 @@
     <!-- Main Content Area -->
     <main class="w-full max-w-5xl mx-auto px-4 md:px-6 my-6 space-y-8">
         
-        <!-- Hero section -->
+        <!-- Hero section with Creator Credit -->
         <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
             <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -56,7 +56,7 @@
                 <div class="text-center md:text-left space-y-2">
                     <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
                         <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        Plataforma Oficial de Repaso 2026
+                        Pensado en el mejor desempeño de los estudiantes en pruebas nacionales
                     </div>
                     <h2 class="text-xl md:text-3xl font-extrabold text-white tracking-tight">¡Bienvenido al núcleo de tu éxito académico!</h2>
                     <p class="text-slate-300 text-xs md:text-sm leading-relaxed max-w-2xl">
@@ -66,7 +66,7 @@
             </div>
         </section>
 
-        <!-- Áreas de Estudio Activas & Dashboard de Progreso -->
+        <!-- Áreas de Estudio & Avance por Materia -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2">
@@ -79,11 +79,11 @@
             </div>
             
             <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-                <!-- Se inyecta dinámicamente con JS para mostrar progreso y selección -->
+                <!-- Se inyecta dinámicamente con JS -->
             </div>
         </section>
 
-        <!-- Fichas Mnemotécnicas Interactivas con Rotación 3D -->
+        <!-- Fichas Mnemotécnicas Interactivas -->
         <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
                 <div>
@@ -93,22 +93,13 @@
                     <p class="text-xs text-slate-400 mt-0.5">Toca cualquier tarjeta para girarla y revelar su significado y tip oficial MEP</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span id="cardCounter" class="text-xs bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 px-3 py-1 rounded-full font-semibold">Ficha 1 de 3</span>
+                    <span id="cardCounter" class="text-xs bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 px-3 py-1 rounded-full font-semibold">Fichas MEP</span>
                 </div>
             </div>
 
-            <!-- Contenedor de Tarjetas 3D -->
+            <!-- Contenedor de Tarjetas 3D con colores Neón específicos -->
             <div id="flashcardsContainer" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <!-- Renderizado por JS -->
-            </div>
-
-            <div class="flex justify-between items-center pt-2">
-                <button onclick="prevCard()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5">
-                    &larr; Anterior
-                </button>
-                <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow-lg shadow-indigo-500/20 transition-all flex items-center gap-1.5">
-                    Siguiente &rarr;
-                </button>
             </div>
         </section>
 
@@ -120,14 +111,16 @@
         <p class="text-slate-400 font-medium">Creado por: <span class="text-indigo-400 font-bold">Prof. Jorge Carvajal Vanegas</span></p>
     </footer>
 
-    <!-- Script de Interactividad Completa -->
     <script>
-        // Base de datos de materias con conceptos, actividades, preguntas y fichas
+        // Base de datos completa con colores neón específicos por materia
         const database = {
             ciencias: {
                 name: "Ciencias",
                 icon: "🧬",
                 desc: "Física, Química, Biología",
+                neonColor: "emerald", // Verde Neón
+                borderNeon: "border-emerald-500/60 shadow-emerald-500/20",
+                badgeNeon: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
                 progress: { concepts: 85, activities: 70, questions: 78 },
                 flashcards: [
                     {
@@ -142,20 +135,20 @@
                     {
                         title: "Ley de Conservación de la Materia",
                         block: "Química Orgánica",
-                        frontEmoji: "⚖️🔥",
+                        frontEmoji: "⚖️️🔥",
                         frontText: "Lavoisier: La masa ni se crea ni se destruye",
                         backTitle: "Definición MEP 2026",
                         backText: "En toda reacción química ordinaria, la masa total de los reactivos es igual a la masa total de los productos.",
                         tip: "Tip 11°: Fundamental para balanceo de ecuaciones químicas."
                     },
                     {
-                        title: "Cinética y Movimiento Rectilíneo",
+                        title: "Cinética y MRUV",
                         block: "Física Mecánica",
                         frontEmoji: "🏎️💨",
-                        frontText: "Velocidad constante y aceleración",
+                        frontText: "d = v<sub>i</sub>&middot;t + &frac12;a&middot;t<sup>2</sup>",
                         backTitle: "Definición MEP 2026",
-                        backText: "Estudio del movimiento de los cuerpos sin considerar las causas que lo originan (MRU y MRUV).",
-                        tip: "Tip 11°: Domina las fórmulas de distancia y tiempo en problemas prácticos."
+                        backText: "Estudio del movimiento acelerado de los cuerpos considerando la variación de velocidad por unidad de tiempo.",
+                        tip: "Tip 11°: Domina las fórmulas de distancia y aceleración en problemas prácticos."
                     }
                 ]
             },
@@ -163,33 +156,36 @@
                 name: "Matemáticas",
                 icon: "📐",
                 desc: "Álgebra y Geometría",
+                neonColor: "amber", // Amarillo Neón
+                borderNeon: "border-amber-400/60 shadow-amber-400/20",
+                badgeNeon: "bg-amber-400/10 text-amber-300 border-amber-400/30",
                 progress: { concepts: 90, activities: 82, questions: 85 },
                 flashcards: [
                     {
                         title: "Funciones Exponenciales",
                         block: "Álgebra Avanzada",
                         frontEmoji: "📈⚡",
-                        frontText: "Crecimiento y decrecimiento poblacional",
+                        frontText: "f(x) = a<sup>x</sup> con a &gt; 0 y a &ne; 1",
                         backTitle: "Definición MEP 2026",
-                        backText: "Función de la forma f(x) = a^x con a > 0 y a != 1, caracterizada por su asíntota horizontal.",
+                        backText: "Función exponencial caracterizada por su crecimiento o decrecimiento poblacional y asíntota horizontal.",
                         tip: "Tip 11°: Evalúa correctamente la base para determinar si es creciente o decreciente."
                     },
                     {
-                        title: "Geometría Analítica del Espacio",
+                        title: "Geometría del Espacio",
                         block: "Geometría 3D",
                         frontEmoji: "🌐📐",
-                        frontText: "Esferas y Planos cartesianos",
+                        frontText: "(x - h)<sup>2</sup> + (y - k)<sup>2</sup> + (z - l)<sup>2</sup> = r<sup>2</sup>",
                         backTitle: "Definición MEP 2026",
-                        backText: "Ecuación de la esfera: (x-h)² + (y-k)² + (z-l)² = r², determinando su centro y radio.",
-                        tip: "Tip 11°: Identifica los signos opuestos al extraer el centro (h, k, l)."
+                        backText: "Ecuación cartesiana de la esfera en el espacio tridimensional con centro (h, k, l) y radio r.",
+                        tip: "Tip 11°: Identifica los signos opuestos al extraer el centro de la esfera."
                     },
                     {
-                        title: "Estadística y Probabilidad",
-                        block: "Análisis de Datos",
+                        title: "Distribución Normal",
+                        block: "Estadística",
                         frontEmoji: "📊🎲",
-                        frontText: "Distribución Normal y Probabilidad",
+                        frontText: "z = (X - &mu;) / &sigma;",
                         backTitle: "Definición MEP 2026",
-                        backText: "Cálculo de probabilidades bajo la curva normal estándar z = (X - μ) / σ.",
+                        backText: "Tipificación de variables aleatorias continuas bajo la curva normal estándar de probabilidad.",
                         tip: "Tip 11°: Memoriza las propiedades de simetría de la campana de Gauss."
                     }
                 ]
@@ -198,6 +194,9 @@
                 name: "Español",
                 icon: "✍️",
                 desc: "Comprensión y Gramática",
+                neonColor: "cyan", // Celeste Neón Brillante
+                borderNeon: "border-cyan-400/60 shadow-cyan-400/20",
+                badgeNeon: "bg-cyan-400/10 text-cyan-300 border-cyan-400/30",
                 progress: { concepts: 78, activities: 65, questions: 72 },
                 flashcards: [
                     {
@@ -210,7 +209,7 @@
                         tip: "Tip 11°: Relaciona las obras con el contexto sociohistórico costarricense."
                     },
                     {
-                        title: "Cohesión y Coherencia Textual",
+                        title: "Cohesión y Coherencia",
                         block: "Gramática Superior",
                         frontEmoji: "🔗📝",
                         frontText: "Conectores y estructura lógica",
@@ -233,6 +232,9 @@
                 name: "Sociales",
                 icon: "🌍",
                 desc: "Historia y Geografía CR",
+                neonColor: "blue", // Azul Real Neón
+                borderNeon: "border-blue-500/60 shadow-blue-500/20",
+                badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
                 progress: { concepts: 88, activities: 75, questions: 80 },
                 flashcards: [
                     {
@@ -268,6 +270,9 @@
                 name: "Cívica",
                 icon: "⚖️",
                 desc: "Derechos y Constitución",
+                neonColor: "fuchsia", // Rosado Neón
+                borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20",
+                badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
                 progress: { concepts: 92, activities: 85, questions: 89 },
                 flashcards: [
                     {
@@ -302,7 +307,6 @@
         };
 
         let currentSubjectKey = 'ciencias';
-        let activeCardIndex = 0;
 
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
@@ -312,21 +316,30 @@
                 const sub = database[key];
                 const isSelected = key === currentSubjectKey;
                 
+                let neonRing = 'border-slate-800 hover:border-slate-700';
+                if (isSelected) {
+                    if (sub.neonColor === 'emerald') neonRing = 'border-emerald-500 shadow-lg ring-2 ring-emerald-500/30';
+                    else if (sub.neonColor === 'amber') neonRing = 'border-amber-400 shadow-lg ring-2 ring-amber-400/30';
+                    else if (sub.neonColor === 'cyan') neonRing = 'border-cyan-400 shadow-lg ring-2 ring-cyan-400/30';
+                    else if (sub.neonColor === 'blue') neonRing = 'border-blue-500 shadow-lg ring-2 ring-blue-500/30';
+                    else if (sub.neonColor === 'fuchsia') neonRing = 'border-fuchsia-500 shadow-lg ring-2 ring-fuchsia-500/30';
+                }
+
                 const card = document.createElement('div');
-                card.className = `bg-slate-900 border ${isSelected ? 'border-indigo-500 shadow-indigo-500/20 shadow-lg ring-2 ring-indigo-500/30' : 'border-slate-800 hover:border-slate-700'} rounded-2xl p-4 cursor-pointer transition-all duration-300 flex flex-col justify-between group`;
+                card.className = `bg-slate-900 border ${neonRing} rounded-2xl p-4 cursor-pointer transition-all duration-300 flex flex-col justify-between group`;
                 card.onclick = () => selectSubject(key);
 
                 card.innerHTML = `
                     <div>
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-2xl group-hover:scale-110 transition-transform">${sub.icon}</span>
-                            <span class="text-[10px] px-2 py-0.5 rounded-full ${isSelected ? 'bg-indigo-500/20 text-indigo-300 font-bold' : 'bg-slate-800 text-slate-400'}">${sub.progress.concepts}% Avance</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full ${isSelected ? sub.badgeNeon + ' font-bold' : 'bg-slate-800 text-slate-400'}">${sub.progress.concepts}% Avance</span>
                         </div>
                         <h4 class="font-bold text-sm text-white">${sub.name}</h4>
                         <p class="text-[11px] text-slate-400 mt-0.5">${sub.desc}</p>
                     </div>
                     
-                    <!-- Barras de Porcentajes de Colores -->
+                    <!-- Barras de porcentaje de colores -->
                     <div class="mt-4 space-y-1.5 pt-3 border-t border-slate-800/80">
                         <div class="flex justify-between text-[10px] text-slate-400 font-medium">
                             <span>Conceptos</span>
@@ -359,7 +372,6 @@
 
         function selectSubject(key) {
             currentSubjectKey = key;
-            activeCardIndex = 0;
             renderSubjects();
             renderFlashcards();
         }
@@ -381,33 +393,33 @@
 
                 cardEl.innerHTML = `
                     <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-2xl">
-                        <!-- Frente de la Ficha -->
-                        <div class="absolute inset-0 backface-hidden bg-slate-950 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between shadow-inner">
+                        <!-- Frente de la Ficha con borde Neón -->
+                        <div class="absolute inset-0 backface-hidden bg-slate-950 border ${sub.borderNeon} rounded-2xl p-5 flex flex-col justify-between shadow-inner">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Ficha #${idx + 1}</span>
+                                <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">Ficha #${idx + 1}</span>
                                 <span class="text-[11px] text-slate-400 font-medium">${card.block}</span>
                             </div>
                             <div class="text-center space-y-2 my-auto">
                                 <span class="text-4xl block">${card.frontEmoji}</span>
                                 <h4 class="font-bold text-sm text-white">${card.title}</h4>
-                                <p class="text-xs text-slate-300">${card.frontText}</p>
+                                <p class="text-xs text-slate-300 font-mono">${card.frontText}</p>
                             </div>
                             <div class="text-center">
-                                <span class="text-[10px] text-indigo-400 font-semibold bg-indigo-500/10 px-2.5 py-1 rounded-lg border border-indigo-500/20 inline-block">👆 Toca para girar y ver significado</span>
+                                <span class="text-[10px] ${sub.badgeNeon} px-2.5 py-1 rounded-lg border inline-block">👆 Toca para girar y ver significado</span>
                             </div>
                         </div>
 
-                        <!-- Dorso de la Ficha (Significado y Tip) -->
-                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-indigo-950/90 to-slate-950 border border-indigo-500/40 rounded-2xl p-5 flex flex-col justify-between shadow-2xl">
+                        <!-- Dorso de la Ficha (Significado y Tip en Neón) -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-slate-900 to-slate-950 border ${sub.borderNeon} rounded-2xl p-5 flex flex-col justify-between shadow-2xl">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold uppercase tracking-wider text-fuchsia-400 bg-fuchsia-500/10 px-3 py-1 rounded-full border border-fuchsia-500/20">${card.backTitle}</span>
+                                <span class="text-xs font-bold uppercase tracking-wider ${sub.badgeNeon} px-3 py-1 rounded-full border">${card.backTitle}</span>
                                 <span class="text-[11px] text-slate-400 font-medium">MEP 2026</span>
                             </div>
                             <div class="space-y-2 my-auto">
-                                <h5 class="font-bold text-xs text-indigo-300">${card.title}</h5>
+                                <h5 class="font-bold text-xs text-white">${card.title}</h5>
                                 <p class="text-xs text-slate-200 leading-relaxed">${card.backText}</p>
                             </div>
-                            <div class="bg-indigo-500/10 p-2.5 rounded-xl border border-indigo-500/20 text-[11px] text-indigo-300 font-medium">
+                            <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 text-[11px] text-slate-300 font-medium">
                                 🎯 <strong>Tip:</strong> ${card.tip}
                             </div>
                         </div>
@@ -415,19 +427,8 @@
                 `;
                 container.appendChild(cardEl);
             });
-
-            document.getElementById('cardCounter').innerText = `Mostrando ${sub.flashcards.length} fichas MEP`;
         }
 
-        function nextCard() {
-            // Rotación o aviso visual opcional
-        }
-
-        function prevCard() {
-            // Rotación o aviso visual opcional
-        }
-
-        // Inicialización al cargar la ventana
         window.onload = function() {
             renderSubjects();
             renderFlashcards();
