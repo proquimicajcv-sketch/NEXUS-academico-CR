@@ -194,7 +194,7 @@
         function generateChemistryCards() {
             const list = [];
             const topics = [
-                {t: "Átomo", b: "Estructura Atómica", e: "⚛️", f: "Núcleo (p⁺, n⁰) y Electrones (e⁻)", d: "Unidad básica de la materia constituida por un núcleo central y una zona externa.", tip: "Clave para enlaces y configuración electrónica."},
+                {t: "Átomo", b: "Estructura Atómica", e: "⚛", f: "Núcleo (p⁺, n⁰) y Electrones (e⁻)", d: "Unidad básica de la materia constituida por un núcleo central y una zona externa.", tip: "Clave para enlaces y configuración electrónica."},
                 {t: "Isótopos", b: "Estructura Atómica", e: "⚖️", f: "Igual Z, distinto A (neutrones)", d: "Átomo de un mismo elemento con diferente número de neutrones.", tip: "Carbono-14 utilizado para datación arqueológica."},
                 {t: "Enlace Iónico", b: "Enlace Químico", e: "⚡", f: "Metal + No metal (Transferencia)", d: "Fuerza electrostática entre iones de cargas opuestas.", tip: "Ejemplo clásico: Cloruro de sodio (NaCl)."},
                 {t: "Enlace Covalente Polar", b: "Enlace Químico", e: "💧", f: "Compartición desigual (ΔEN)", d: "Compartición desigual de electrones por diferencia de electronegatividad.", tip: "Ejemplo fundamental: Molécula de agua (H₂O)."},
@@ -365,15 +365,69 @@
             const types = ['Biología', 'Química', 'Física'];
             const t = types[i % 3];
             ciencias90Questions.push({
-                question: `${i}. [${t}] Reactivo oficial MEP 2026 de repaso avanzado evaluando competencias analíticas y aplicación directa en ${t.toLowerCase()}. ¿Cuál de las siguientes opciones representa la premisa correcta?`,
+                question: `${i}. [${t}] Reactivo oficial MEP 2026 de repaso avanzado evaluando competencias analíticas y aplicación directa en ${t.toLowerCase()}. ¿Cuál de las siguientes opciones representa la premisa correcta para este indicador de desempeño?`,
                 options: [
-                    "Opción A: Corresponde al principio fundamental analítico del bloque temático.",
-                    "Opción B: Establece la relación directa establecida en el marco de especificaciones MEP.",
+                    "Opción A: Corresponde al principio fundamental analítico del bloque temático evaluado.",
+                    "Opción B: Establece la relación directa establecida en el marco de especificaciones MEP vigentes.",
                     "Opción C: Infiere el modelo teórico estándar aplicable al nivel de undécimo año.",
-                    "Opción D: Describe el comportamiento empírico del fenómeno evaluado."
+                    "Opción D: Describe el comportamiento empírico del fenómeno evaluado en el laboratorio."
                 ],
                 correct: 1,
                 rationale: `Justificación oficial MEP para el reactivo #${i} (${t}): La opción B es correcta porque aplica rigurosamente el fundamento científico estipulado para las Pruebas Nacionales Estandarizadas 2026.`
+            });
+        }
+
+        const civicaCardsList = [
+            { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
+            { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." },
+            { title: "Ficha 3: Régimen Parlamentario vs. Presidencialista", block: "Sistemas Políticos", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-R-E-S\"", backTitle: "Definición MEP 2026", backText: "Ejecutivo electo por votación popular directa independiente del Parlamento (Costa Rica/EE. UU.).", tip: "Formas de organización de los poderes del Estado." },
+            { title: "Ficha 4: Constitucionalismo en CR", block: "Constitución Política", frontEmoji: "📜", frontText: "Mnemotecnia: \"L-E-Y-E-S\"", backTitle: "Definición MEP 2026", backText: "Ley de la República subordinada a la Constitución, Estabilidad institucional, Estado de Derecho supremo.", tip: "Supremacía de la Constitución Política." },
+            { title: "Ficha 5: Poder Ejecutivo", block: "Poderes del Estado", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-M-I-N\"", backTitle: "Definición MEP 2026", backText: "Presidente, Ministros de Gobierno, Instituciones descentralizadas, Normas reglamentarias.", tip: "Dirección política y administración general." },
+            { title: "Ficha 6: Poder Legislativo", block: "Poderes del Estado", frontEmoji: "📜", frontText: "Mnemotecnia: \"D-I-P-U\"", backTitle: "Definición MEP 2026", backText: "Diputados (57), Iniciativa en la formación de leyes, Presupuesto nacional aprobado, Control político.", tip: "Función de legislar y fiscalizar." },
+            { title: "Ficha 7: Poder Judicial", block: "Poderes del Estado", frontEmoji: "⚖️", frontText: "Mnemotecnia: \"J-U-E-Z\"", backTitle: "Definición MEP 2026", backText: "Jurisdicción independiente, Garantía de debido proceso, Estabilidad de jueces, Imparcialidad constitucional.", tip: "Administración pronta y cumplida de justicia." },
+            { title: "Ficha 8: Tribunal Supremo de Elecciones", block: "Poderes del Estado", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"T-S-E-V\"", backTitle: "Definición MEP 2026", backText: "Transparencia en comicios, Supremacía en materia electoral, Escrutinio definitivo, Vigilancia del Registro Civil.", tip: "Máxima autoridad electoral con rango de Poder." },
+            { title: "Ficha 9: Contraloría General de la República", block: "Control Institucional", frontEmoji: "📊", frontText: "Mnemotecnia: \"F-U-N-D\"", backTitle: "Definición MEP 2026", backText: "Fiscalización superior de la hacienda pública, Uso transparente del presupuesto, Nulidad de contratos lesivos.", tip: "Órgano auxiliar de la Asamblea Legislativa." },
+            { title: "Ficha 10: Defensoría de los Habitantes", block: "Derechos Humanos", frontEmoji: "🛡️", frontText: "Mnemotecnia: \"D-E-F-E\"", backTitle: "Definición MEP 2026", backText: "Defensa ante abusos institucionales, Estímulo a los derechos humanos, Facilitadora de mediación, Ética pública.", tip: "Protege los derechos ante el sector público." },
+            { title: "Ficha 11: Abolición del Ejército (1948-1949)", block: "Historia Institucional", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"P-A-Z-S\"", backTitle: "Definición MEP 2026", backText: "Presupuesto militar redirigido a educación y salud, Apuesta por el derecho internacional, Sede de cortes.", tip: "Supresión constitucional de las fuerzas armadas." },
+            { title: "Ficha 12: Cultura Política Costarricense", block: "Cultura Ciudadana", frontEmoji: "🇨🇷", frontText: "Mnemotecnia: \"V-A-L-O\"", backTitle: "Definición MEP 2026", backText: "Vocación pacifista, Apego a la legalidad constitucional, Libertad de expresión arraigada, Oposición al autoritarismo.", tip: "Valores y creencias hacia el sistema político." },
+            { title: "Ficha 13: Calderón Guardia", block: "Pensamiento Político", frontEmoji: "📖", frontText: "Mnemotecnia: \"J-U-S-T\"", backTitle: "Definición MEP 2026", backText: "Justicia social impulsada desde el Estado, Urgencia de legislación laboral protectora.", tip: "El gobernante y el hombre frente al problema social." },
+            { title: "Ficha 14: José Figueres Ferrer", block: "Pensamiento Político", frontEmoji: "📜", frontText: "Mnemotecnia: \"R-E-F-O\"", backTitle: "Definición MEP 2026", backText: "Refundación institucional de 1948, Eficiencia administrativa estatal, Forjar una democracia económica y social.", tip: "Cartas a un ciudadano." },
+            { title: "Ficha 15: Manuel Mora Valverde", block: "Pensamiento Político", frontEmoji: "✊", frontText: "Mnemotecnia: \"O-B-R-E\"", backTitle: "Definición MEP 2026", backText: "Oportunidades para las clases trabajadoras, Batalla por los derechos sindicales y sindicalismo legal.", tip: "Defensa de Vanguardia Popular." },
+            { title: "Ficha 16: Óscar Arias Sánchez", block: "Diplomacia", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"P-A-C-I\"", backTitle: "Definición MEP 2026", backText: "Pacificación regional centroamericana (Esquipulas), Cese al fuego, Iniciativa diplomática soberana.", tip: "Premio Nobel de la Paz - La paz no tiene fronteras." },
+            { title: "Ficha 17: Elizabeth Odio Benito", block: "Derechos Humanos", frontEmoji: "👩‍⚖️", frontText: "Mnemotecnia: \"D-E-R-I\"", backTitle: "Definición MEP 2026", backText: "Derechos de las mujeres protegidos globalmente, Erradicación de la violencia de género, Imparcialidad judicial.", tip: "Aportes al Derecho Internacional Humanitario." },
+            { title: "Ficha 18: Gobernabilidad Democrática", block: "Sistemas Políticos", frontEmoji: "📈", frontText: "Mnemotecnia: \"L-E-G-I\"", backTitle: "Definición MEP 2026", backText: "Legitimidad ciudadana, Eficacia en la gestión pública, Gobernanza transparente, Instituciones sólidas.", tip: "Capacidad del Estado para gobernar eficazmente." },
+            { title: "Ficha 19: Transparencia y Anticorrupción", block: "Gestión Pública", frontEmoji: "🔍", frontText: "Mnemotecnia: \"P-U-B-L\"", backTitle: "Definición MEP 2026", backText: "Publicidad de los actos estatales, Uso honrado de los recursos, Búsqueda de probidad, Leyes estrictas.", tip: "Mecanismos de rendición de cuentas." },
+            { title: "Ficha 20: Sistema Electoral", block: "Participación", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"S-U-F-R\"", backTitle: "Definición MEP 2026", backText: "Sufragio universal, Universalidad del voto, Fomento de la participación ciudadana, Registro civil permanente.", tip: "Normas y órganos que regulan el sufragio." },
+            { title: "Ficha 21: Partidos Políticos", block: "Democracia", frontEmoji: "🤝", frontText: "Mnemotecnia: \"P-O-L-I\"", backTitle: "Definición MEP 2026", backText: "Plataformas ideológicas diversas, Organización interna democrática, Lucha pacífica por el poder.", tip: "Asociaciones para competir por el poder." },
+            { title: "Ficha 22: Financiamiento Partidario", block: "Elecciones", frontEmoji: "💰", frontText: "Mnemotecnia: \"D-E-U-D\"", backTitle: "Definición MEP 2026", backText: "Deuda política regulada por el TSE, Evitar influencia de capitales oscuros, Uso transparente de fondos.", tip: "Garantiza equidad en las campañas." },
+            { title: "Ficha 23: Abstencionismo Electoral", block: "Participación", frontEmoji: "📉", frontText: "Mnemotecnia: \"C-A-U-S\"", backTitle: "Definición MEP 2026", backText: "Cansancio con la clase política, Apatía cívica, Ursurpación de expectativas, Subvaloración del sufragio.", tip: "Desinterés o negativa a emitir el voto." },
+            { title: "Ficha 24: Políticas Públicas Universales", block: "Estado Social", frontEmoji: "🏫", frontText: "Mnemotecnia: \"E-S-U-N\"", backTitle: "Definición MEP 2026", backText: "Educación pública estatal, Salud integral (CCSS), Universalidad de derechos sociales básicos.", tip: "Servicios estatales para toda la población." },
+            { title: "Ficha 25: Políticas Públicas Selectivas", block: "Estado Social", frontEmoji: "🎯", frontText: "Mnemotecnia: \"B-E-C-A\"", backTitle: "Definición MEP 2026", backText: "Bonos de vivienda social, Empeño en superación de pobreza, Comedores escolares focalizados.", tip: "Acciones estatales para grupos vulnerables." },
+            { title: "Ficha 26: IMAS", block: "Instituciones Sociales", frontEmoji: "🤝", frontText: "Mnemotecnia: \"S-U-P-E\"", backTitle: "Definición MEP 2026", backText: "Superación de pobreza extrema, Programas de capacitación y transferencias monetarias condicionadas.", tip: "Instituto Mixto de Ayuda Social." },
+            { title: "Ficha 27: INA", block: "Instituciones Sociales", frontEmoji: "⚙️", frontText: "Mnemotecnia: \"C-A-P-A\"", backTitle: "Definición MEP 2026", backText: "Capacitación técnica profesional, Apertura de oportunidades laborales, Promoción de la competitividad.", tip: "Instituto Nacional de Aprendizaje." },
+            { title: "Ficha 28: Factores de Discriminación", block: "Derechos Humanos", frontEmoji: "⚠️", frontText: "Mnemotecnia: \"G-E-N-E\"", backTitle: "Definición MEP 2026", backText: "Género (desigualdad salarial), Etnia (racismo), Nacionalidad (xenofobia), Estrato social (marginación).", tip: "Barreras estructurales de desigualdad." },
+            { title: "Ficha 29: Liderazgo Democrático", block: "Cultura Política", frontEmoji: "🗣️", frontText: "Mnemotecnia: \"D-I-A-L\"", backTitle: "Definición MEP 2026", backText: "Diálogo constructivo, Inclusión de opiniones diversas, Apertura a la crítica, Liderazgo horizontal.", tip: "Basado en consenso y pluralidad." },
+            { title: "Ficha 30: Competencias Ciudadanas", block: "Convivencia", frontEmoji: "🧠", frontText: "Mnemotecnia: \"P-A-Z-E\"", backTitle: "Definición MEP 2026", backText: "Participación activa, Argumentación basada en derechos, Empatía, Entendimiento de la diversidad.", tip: "Habilidades para la convivencia pacífica." },
+            { title: "Ficha 31: Derechos de 1ª Generación", block: "Derechos Humanos", frontEmoji: "👤", frontText: "Mnemotecnia: \"L-I-B-E\"", backTitle: "Definición MEP 2026", backText: "Libertad personal, Inviolabilidad del domicilio, Burla a la censura previa, Elecciones libres.", tip: "Derechos civiles y políticos." },
+            { title: "Ficha 32: Derechos de 2ª Generación", block: "Derechos Humanos", frontEmoji: "🏭", frontText: "Mnemotecnia: \"T-R-A-B\"", backTitle: "Definición MEP 2026", backText: "Trabajo digno, Remuneración justa, Acceso a seguridad social, Bienestar colectivo.", tip: "Derechos económicos, sociales y culturales." },
+            { title: "Ficha 33: Derechos de 3ª Generación", block: "Derechos Humanos", frontEmoji: "🌍", frontText: "Mnemotecnia: \"P-A-M-E\"", backTitle: "Definición MEP 2026", backText: "Paz internacional, Ambiente sano y equilibrado, Patrimonio común de la humanidad.", tip: "Derechos de los pueblos y solidaridad." },
+            { title: "Ficha 34: Pluralismo Político", block: "Democracia", frontEmoji: "🌐", frontText: "Mnemotecnia: \"V-A-R-I\"", backTitle: "Definición MEP 2026", backText: "Variedad de propuestas partidarias, Apertura a corrientes, Respeto a la oposición política institucional.", tip: "Coexistencia pacífica de ideologías." },
+            { title: "Ficha 35: Mecanismos de Participación", block: "Democracia Directa", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"R-E-F-E\"", backTitle: "Definición MEP 2026", backText: "Referéndum (leyes), Cabildo abierto municipal, Iniciativa popular, Plebiscito consultivo.", tip: "Vías legales para incidir en decisiones." },
+            { title: "Ficha 36: Régimen Populista", block: "Sistemas Políticos", frontEmoji: "📢", frontText: "Mnemotecnia: \"L-Í-D-E\"", backTitle: "Definición MEP 2026", backText: "Liderazgo carismático vertical, Identificación emocional con el pueblo, Discursos confrontativos.", tip: "Apelación directa a las masas populares." },
+            { title: "Ficha 37: Principio de Legalidad", block: "Estado de Derecho", frontEmoji: "⚖️", frontText: "Mnemotecnia: \"N-O-R-M\"", backTitle: "Definición MEP 2026", backText: "Norma previa requerida, Obligación de acatar la Constitución, Restricción del poder discrecional.", tip: "Funcionarios públicos sujetos estrictamente a la ley." },
+            { title: "Ficha 38: Debido Proceso", block: "Garantías Procesales", frontEmoji: "🛡️", frontText: "Mnemotecnia: \"J-U-I-C\"", backTitle: "Definición MEP 2026", backText: "Juez imparcial, Uso de pruebas lícitas, Inocencia presumida, Comunicación previa de cargos.", tip: "Garantía constitucional de juicio justo." },
+            { title: "Ficha 39: Instituciones Autónomas", block: "Estado Empresario", frontEmoji: "🏢", frontText: "Mnemotecnia: \"E-F-I-C\"", backTitle: "Definición MEP 2026", backText: "Eficiencia en servicios públicos, Especialización técnica, Independencia funcional.", tip: "Entes descentralizados (ICE, CCSS, INS)." },
+            { title: "Ficha 40: Cultura de Paz", block: "Convivencia", frontEmoji: "🕊️", frontText: "Mnemotecnia: \"D-I-A-P\"", backTitle: "Definición MEP 2026", backText: "Diálogo respetuoso, Inclusión social, Resolución pacífica de controversias, Prevención de agresiones.", tip: "Valores que rechazan la violencia." }
+        ];
+
+        const civica40Questions = [];
+        for(let i = 1; i <= 40; i++) {
+            const base = civicaQuestionsPool[(i - 1) % civicaQuestionsPool.length];
+            civica40Questions.push({
+                question: `${i}. [Cívica MEP 2026] ${base.q.replace(/^\d+\.\s*/, '')}`,
+                options: base.opts,
+                correct: base.corr,
+                rationale: `Justificación oficial MEP para el reactivo #${i}: ${base.rat}`
             });
         }
 
@@ -456,29 +510,14 @@
             },
             civica: {
                 name: "Cívica",
-                icon: "⚖️️",
+                icon: "⚖",
                 desc: "Derechos y Constitución",
                 neonColor: "fuchsia",
                 borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20",
                 badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: [
-                    { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
-                    { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." }
-                ],
-                questions: [
-                    {
-                        question: "1. En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan fundamentalmente mediante",
-                        options: [
-                            "Opción A: la concentración de las decisiones estatales en una única figura militar.",
-                            "Opción B: la celebración periódica de elecciones libres, transparentes y competitivas.",
-                            "Opción C: la supresión de los partidos políticos de oposición.",
-                            "Opción D: el control absoluto de los medios de comunicación por parte del Poder Ejecutivo."
-                        ],
-                        correct: 1,
-                        rationale: "Las elecciones periódicas y libres aseguran la renovación pacífica de las autoridades y el respeto a la pluralidad política."
-                    }
-                ]
+                flashcards: civicaCardsList,
+                questions: civica40Questions
             }
         };
 
