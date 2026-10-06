@@ -342,10 +342,10 @@
                 { q: "En un ecosistema marino, las adaptaciones morfológicas que presentan los organismos nadadores (como la forma hidrodinámica de los delfines) tienen como ventaja evolutiva fundamental...", corrText: "disminuir la resistencia al avance en el medio acuático optimizando el gasto energético.", inc: ["incrementar la absorción directa de nutrientes por la piel.", "facilitar la termorregulación en aguas de alta temperatura.", "aumentar la flotabilidad negativa en zonas abisales."] },
                 { q: "Durante el proceso de transcripción del ADN, una secuencia molde de ADN con bases TAC produce un codón en el ARN mensajero complementario constituido por...", corrText: "AUG.", inc: ["ATC", "UACG", "GCA"] },
                 { q: "En la respiración celular aerobia, la molécula que actúa como aceptor final de electrones en la cadena transportadora ubicada en la cresta mitocondrial es...", corrText: "el oxígeno molecular (O₂).", inc: ["el dióxido de carbono (CO₂)", "la glucosa", "el ácido pirúvico"] },
-                { q: "Un átomo neutro posee un número másico A = 31 y 16 neutrones en su núcleo. ¿Cuál es su número atómico (Z) y su cantidad de electrones?", corrText: "Z = 15 y 15 electrones.", inc: ["Z = 16 y 16 electrones", "Z = 31 y 31 electrones", "Z = 15 y 31 electrones"] },
+                { q: "Un átomo neutro posee un número másico <i>A</i> = 31 y 16 neutrones en su núcleo. ¿Cuál es su número atómico (<i>Z</i>) y su cantidad de electrones?", corrText: "Z = 15 y 15 electrones.", inc: ["Z = 16 y 16 electrones", "Z = 31 y 31 electrones", "Z = 15 y 31 electrones"] },
                 { q: "Al disolver cloruro de sodio (NaCl) en agua destilada, se produce una solución electrolítica capaz de conducir la corriente eléctrica debido a...", corrText: "la disociación de los iones Na⁺ y Cl⁻ libres en el medio acuoso.", inc: ["la formación de enlaces covalentes polares estables.", "la ausencia total de cargas eléctricas móviles.", "la neutralización completa de las moléculas de agua."] },
-                { q: "Si se preparan 500 mL de disolución acuosa empleando 2 moles de soluto, la concentración molar (M) resultante corresponde a...", corrText: "4,0 M.", inc: ["1,0 M", "0,5 M", "2,5 M"] },
-                { q: "Un objeto de 4 kg de masa experimenta una aceleración constante de 3 m/s² sobre una superficie horizontal sin fricción. ¿Cuál es la magnitud de la fuerza neta aplicada?", corrText: "12 N", inc: ["1,33 N", "7 N", "0,75 N"] },
+                { q: "Si se preparan 500 mL de disolución acuosa empleando 2 moles de soluto, la concentración molar (<i>M</i>) resultante corresponde a...", corrText: "4,0 M.", inc: ["1,0 M", "0,5 M", "2,5 M"] },
+                { q: "Un objeto de 4 kg de masa experimenta una aceleración constante de 3 m/s<sup>2</sup> sobre una superficie horizontal sin fricción. ¿Cuál es la magnitud de la fuerza neta aplicada?", corrText: "12 N", inc: ["1,33 N", "7 N", "0,75 N"] },
                 { q: "Un vehículo viaja con Movimiento Rectilíneo Uniforme (MRU) recorriendo una distancia de 150 metros en un intervalo de 10 segundos. Su rapidez media es de...", corrText: "15 m/s", inc: ["1500 m/s", "1,5 m/s", "60 m/s"] },
                 { q: "El trabajo mecánico realizado por una fuerza constante de 50 N que desplaza un cuerpo 4 metros en la misma dirección y sentido de la fuerza es de...", corrText: "200 J", inc: ["12,5 J", "54 J", "46 J"] }
             ];
@@ -358,14 +358,14 @@
         }
 
         // ==========================================
-        // 2. MATEMÁTICAS (Banco estructurado y variado)
+        // 2. MATEMÁTICAS (Formato limpio con HTML en lugar de LaTeX)
         // ==========================================
         function getMatematicasFlashcards() {
             const list = [];
             const mathTopics = [
-                {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)² + (y - k)² = r²", d: "Centro C(h,k) invirtiendo signos y radio r igual a la raíz del término derecho."},
+                {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)<sup>2</sup> + (y - k)<sup>2</sup> = r<sup>2</sup>", d: "Centro C(h,k) invirtiendo signos y radio r igual a la raíz del término derecho."},
                 {t: "Pendiente de la Recta", b: "Álgebra", e: "📈", f: "m = (y₂ - y₁) / (x₂ - x₁)", d: "Medida de inclinación. Si m > 0 es creciente; si m < 0 es decreciente."},
-                {t: "Función Cuadrática", b: "Funciones", e: "📉", f: "f(x) = ax² + bx + c | h = -b/(2a)", d: "Parábola con concavidad según 'a'. Discriminante Δ = b² - 4ac."},
+                {t: "Función Cuadrática", b: "Funciones", e: "📉", f: "f(x) = ax<sup>2</sup> + bx + c | h = -b / (2a)", d: "Parábola con concavidad según 'a'. Discriminante Δ = b<sup>2</sup> - 4ac."},
                 {t: "Media Aritmética", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ) / n", d: "Promedio estadístico de una serie de datos dividido entre la cantidad n."}
             ];
             for(let i=1; i<=50; i++) {
@@ -380,10 +380,10 @@
 
         function getMatematicasQuestions() {
             const rawMath = [
-                { q: "Considere la circunferencia dada por la ecuación $(x - 3)^2 + (y + 2)^2 = 25$. Las coordenadas del centro $C$ y la medida de su radio $r$ corresponden a...", corrText: "C(3, -2) y r = 5", inc: ["C(-3, 2) y r = 25", "C(3, -2) y r = 25", "C(-3, -2) y r = 5"] },
-                { q: "¿Cuál es la pendiente de la recta que pasa por los puntos $A(1, 2)$ y $B(3, 8)$ en el plano cartesiano?", corrText: "m = 3", inc: ["m = 2", "m = 6", "m = 5/2"] },
-                { q: "Dada la función cuadrática $f(x) = -x^2 + 4x - 3$, la parábola intercepta al eje $Y$ en el punto...", corrText: "(0, -3)", inc: ["(0, 3)", "(3, 0)", "(1, 0)"] },
-                { q: "Al calcular el discriminante $\\Delta = b^2 - 4ac$ de la ecuación cuadrática $2x^2 - 4x + 2 = 0$, se obtiene un valor de...", corrText: "0", inc: ["16", "-16", "4"] },
+                { q: "Considere la circunferencia dada por la ecuación (<i>x</i> - 3)<sup>2</sup> + (<i>y</i> + 2)<sup>2</sup> = 25. Las coordenadas del centro <i>C</i> y la medida de su radio <i>r</i> corresponden a...", corrText: "C(3, -2) y r = 5", inc: ["C(-3, 2) y r = 25", "C(3, -2) y r = 25", "C(-3, -2) y r = 5"] },
+                { q: "¿Cuál es la pendiente de la recta que pasa por los puntos <i>A</i>(1, 2) y <i>B</i>(3, 8) en el plano cartesiano?", corrText: "m = 3", inc: ["m = 2", "m = 6", "m = 5/2"] },
+                { q: "Dada la función cuadrática <i>f</i>(<i>x</i>) = -<i>x</i><sup>2</sup> + 4<i>x</i> - 3, la parábola intercepta al eje <i>Y</i> en el punto...", corrText: "(0, -3)", inc: ["(0, 3)", "(3, 0)", "(1, 0)"] },
+                { q: "Al calcular el discriminante Δ = <i>b</i><sup>2</sup> - 4<i>ac</i> de la ecuación cuadrática 2<i>x</i><sup>2</sup> - 4<i>x</i> + 2 = 0, se obtiene un valor de...", corrText: "0", inc: ["16", "-16", "4"] },
                 { q: "Si la media aritmética de un conjunto de 5 notas de exámenes es 80, ¿cuál es la suma total de las calificaciones obtenidas?", corrText: "400", inc: ["16", "85", "380"] }
             ];
             const list = [];
@@ -400,7 +400,7 @@
         function getEspanolFlashcards() {
             const list = [];
             const espTopics = [
-                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖️️", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
+                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
                 {t: "Metáfora", b: "Recursos Retóricos", e: "💎", f: "Identificación implícita sin nexos", d: "Sustitución de un término por otro debido a una semejanza implícita."},
                 {t: "Prosopopeya", b: "Recursos Retóricos", e: "🌳", f: "Cualidades humanas a inanimados", d: "Dota a objetos o conceptos de acciones o sentimientos humanos."}
             ];
@@ -436,7 +436,7 @@
             const list = [];
             const socTopics = [
                 {t: "Imperialismo del Siglo XIX", b: "Historia Mundial", e: "🌐", f: "Expansión colonial europea (Materias primas)", d: "Proceso económico y político donde potencias dominaron territorios ultramarinos."},
-                {t: "Causas de la PGM", b: "Historia Mundial", e: "⚔️️", f: "Militarismo, Alianzas, Imperialismo, Nacionalismo (MAIN)", d: "Factores estructurales que provocaron el estallido bélico en 1914."},
+                {t: "Causas de la PGM", b: "Historia Mundial", e: "⚔", f: "Militarismo, Alianzas, Imperialismo, Nacionalismo (MAIN)", d: "Factores estructurales que provocaron el estallido bélico en 1914."},
                 {t: "Costa Rica: Estado Gestor", b: "Historia Nacional", e: "🇨🇷", f: "Reformas 1948-1949: Abolición del ejército, TSE y Código de Trabajo", d: "Modelo de desarrollo e institucionalidad democrática de la Segunda República."}
             ];
             for(let i=1; i<=50; i++) {
@@ -506,7 +506,7 @@
             { term: "Átomo", subject: "Ciencias", desc: "Unidad básica de la materia constituida por un núcleo central (protones y neutrones) y electrones orbitales." },
             { term: "Enlace Iónico", subject: "Ciencias", desc: "Fuerza electrostática de atracción entre iones de cargas opuestas formado por transferencia electrónica (metal + no metal)." },
             { term: "Molaridad (M)", subject: "Ciencias", desc: "Unidad química de concentración que expresa el número de moles de soluto disueltos en un litro de disolución." },
-            { term: "Ecuación de la Circunferencia", subject: "Matemáticas", desc: "Expresión analítica (x - h)² + (y - k)² = r² que define los puntos equidistantes de un centro C(h,k)." },
+            { term: "Ecuación de la Circunferencia", subject: "Matemáticas", desc: "Expresión analítica (<i>x</i> - <i>h</i>)<sup>2</sup> + (<i>y</i> - <i>k</i>)<sup>2</sup> = <i>r</i><sup>2</sup> que define los puntos equidistantes de un centro C(h,k)." },
             { term: "Pendiente de la Recta", subject: "Matemáticas", desc: "Medida de inclinación de una recta m = (y₂ - y₁) / (x₂ - x₁) en el plano cartesiano." },
             { term: "Símil o Comparación", subject: "Español", desc: "Recurso retórico que establece una relación de semejanza explícita mediante nexos como 'como' o 'cual'." },
             { term: "Metáfora", subject: "Español", desc: "Identificación implícita entre dos términos debido a una semejanza directa, sin usar nexos." },
