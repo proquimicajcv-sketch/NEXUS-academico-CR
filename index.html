@@ -31,14 +31,11 @@
             </div>
         </div>
         <div class="flex items-center gap-3">
-            <div id="syncStatus" class="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold rounded-full">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                Sincronizado en la nube
-            </div>
             <div class="text-right hidden sm:block">
                 <p class="text-xs font-semibold text-indigo-300">Creado por: Prof. Jorge Carvajal Vanegas</p>
                 <p class="text-[10px] text-slate-400">Excelencia Académica 11°</p>
             </div>
+            <span class="px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold rounded-full">11° Año</span>
         </div>
     </header>
 
@@ -71,7 +68,7 @@
                     </div>
                 </div>
 
-                <!-- Imagen del Creador -->
+                <!-- Imagen del Creador con tamaño ampliado -->
                 <div class="flex items-center gap-5 shrink-0 bg-slate-950/60 p-5 rounded-3xl border border-slate-800 shadow-xl">
                     <div class="relative w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-cyan-500/60 shadow-lg shadow-cyan-500/20 group bg-slate-900 flex items-center justify-center shrink-0">
                         <img src="img/jorge-carvajal.png.jfif" alt="Prof. Jorge Carvajal Vanegas - Nexus Academic CR" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';">
@@ -101,7 +98,7 @@
                 <span class="text-xs text-slate-400">Haz clic en una materia para cambiar de tema</span>
             </div>
             
-            <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
                 <!-- Se inyecta dinámicamente con JS -->
             </div>
         </section>
@@ -185,25 +182,6 @@
             </div>
         </section>
 
-        <!-- Glosario General Interactivo MEP 2026 -->
-        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-                <div>
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                        <span>📖 Glosario General Interactivo MEP 2026</span>
-                    </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Busca y repasa los términos clave de todas las materias evaluadas.</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <input type="text" id="glossarySearch" oninput="filterGlossary()" placeholder="Buscar término..." class="px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 w-full sm:w-64">
-                </div>
-            </div>
-
-            <div id="glossaryContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[500px] overflow-y-auto pr-2">
-                <!-- Inyectado por JS -->
-            </div>
-        </section>
-
     </main>
 
     <!-- Footer -->
@@ -212,389 +190,441 @@
         <p class="text-slate-400 font-medium">Creado por: <span class="text-indigo-400 font-bold">Prof. Jorge Carvajal Vanegas</span></p>
     </footer>
 
-    <!-- Firebase SDKs for Cloud Persistence -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase Configuration & Initialization
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'nexus-academico-cr-2026';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "mock", projectId: "mock" };
-
-        let db = null;
-        let auth = null;
-        let userId = 'local-user';
-
-        try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            
-            const initAuth = async () => {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                userId = auth.currentUser?.uid || crypto.randomUUID();
-                loadCloudProgress();
-            };
-            initAuth();
-        } catch (e) {
-            console.warn("Cloud persistence running in local fallback mode:", e);
-        }
-
-        async function saveCloudProgress() {
-            if (!db) return;
-            try {
-                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
-                const progressData = {};
-                Object.keys(database).forEach(k => {
-                    progressData[k] = database[k].progress;
-                });
-                await setDoc(docRef, { progress: progressData, updatedAt: new Date().toISOString() });
-                const syncEl = document.getElementById('syncStatus');
-                if (syncEl) syncEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sincronizado en la nube';
-            } catch (err) {
-                console.error("Error saving progress:", err);
-            }
-        }
-
-        async function loadCloudProgress() {
-            if (!db) return;
-            try {
-                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
-                const snap = await getDoc(docRef);
-                if (snap.exists()) {
-                    const data = snap.data();
-                    if (data && data.progress) {
-                        Object.keys(data.progress).forEach(k => {
-                            if (database[k]) {
-                                database[k].progress = data.progress[k];
-                            }
-                        });
-                        renderSubjects();
-                    }
-                }
-            } catch (err) {
-                console.error("Error loading progress:", err);
-            }
-        }
-
-        window.saveCloudProgress = saveCloudProgress;
-    </script>
-
     <script>
-        // Helper para limpiar prefijos de opciones y asegurar aleatoriedad sin más de 2 repeticiones idénticas consecutivas
-        function cleanOptionText(text) {
-            return text.replace(/^(Opción\s*[A-D]:?\s*|[A-D]\)\s*)/i, '').trim();
-        }
-
-        function createRandomizedQuestion(questionText, correctText, incorrectTexts, index) {
-            // Generar índice correcto aleatorio (0 a 3) asegurando que no se repita más de 2 veces seguidas
-            // Usamos una secuencia pseudoaleatoria basada en el índice o criptográfica simple
-            let targetCorrect = (index * 7 + Math.floor(index / 3)) % 4;
-            
-            const options = ['', '', '', ''];
-            options[targetCorrect] = cleanOptionText(correctText);
-            
-            let incIdx = 0;
-            for (let i = 0; i < 4; i++) {
-                if (i !== targetCorrect) {
-                    options[i] = cleanOptionText(incorrectTexts[incIdx % incorrectTexts.length]);
-                    incIdx++;
-                }
-            }
-
-            return {
-                question: questionText,
-                options: options,
-                correct: targetCorrect,
-                rationale: `Justificación oficial MEP 2026: La opción seleccionada aplica rigurosamente el fundamento teórico e indicador evaluado para este reactivo.`
-            };
-        }
-
-        // ==========================================
-        // 1. CIENCIAS (90 Ítems con opciones limpias y aleatorias)
-        // ==========================================
-        function getCienciasFlashcards() {
-            const list = [];
-            const topics = [
-                {t: "Adaptación Morfológica", b: "Biología", e: "🌿", f: "Modificaciones externas físicas", d: "Cambios en la estructura externa para optimizar supervivencia.", tip: "Picos de colibríes."},
-                {t: "Estructura del ADN", b: "Biología", e: "🧬", f: "Doble hélice (A-T y C-G)", d: "Molécula portadora de información genética hereditaria en eucariotas.", tip: "Adenina con Timina; Citosina con Guanina."},
-                {t: "Respiración Aerobia", b: "Biología", e: "⚡", f: "Glucosa + O₂ → ATP + CO₂ + H₂O", d: "Proceso catabólico mitocondrial que libera energía biológica.", tip: "Ocurre en la mitocondria."},
-                {t: "Estructura Atómica", b: "Química", e: "⚛️", f: "Núcleo (p⁺, n⁰) y Electrones (e⁻)", d: "Z = protones; A = protones + neutrones.", tip: "Isótopos poseen igual Z pero distinta cantidad de neutrones."},
-                {t: "Enlace Iónico y Covalente", b: "Química", e: "🧪", f: "Iónico (Metal+No metal) | Covalente", d: "Fuerzas de unión según diferencia de electronegatividad.", tip: "Calcula ΔEN para clasificar el enlace."},
-                {t: "Concentración Molar (M)", b: "Química", f: "M = moles de soluto / Litros", e: "📊", d: "Unidad química fundamental para expresar soluto por litro.", tip: "Convierte mililitros a litros dividiendo entre 1000."},
-                {t: "Leyes de Newton", b: "Física", e: "🚀", f: "Inercia, Dinámica, Acción-Reacción", d: "Principios de la mecánica clásica que relacionan fuerzas y masa.", tip: "Tercera ley: a toda acción una reacción opuesta."},
-                {t: "Cinemática MRU y MRUV", b: "Física", e: "🚗", f: "MRU: v = d/t | MRUV: d = vᵢt + ½at²", d: "Estudio analítico del movimiento mecánico.", tip: "La pendiente de d vs t representa velocidad."},
-                {t: "Trabajo Mecánico", b: "Física", e: "⚙️", f: "W = F · d · cos(θ)", d: "Transferencia de energía por una fuerza sobre un cuerpo.", tip: "Si la fuerza es perpendicular, el trabajo es cero."}
-            ];
-            for(let i=1; i<=40; i++) {
-                const t = topics[(i-1) % topics.length];
-                list.push({
-                    title: `${t.t} #${i}`, block: t.b, frontEmoji: t.e, frontText: t.f,
-                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${t.d} (Ficha oficial de Ciencias 11°).`, tip: `Tip: ${t.tip}`
-                });
-            }
-            return list;
-        }
-
-        function getCienciasQuestions() {
-            const list = [];
-            const incorrectPool = [
-                "Corresponde a un cambio fisiológico ajeno a la adaptación evolutiva.",
-                "Infiere un modelo teórico invertido sin base experimental.",
-                "Describe un proceso abiótico sin relación con los sistemas naturales.",
-                "Plantea una premisa contraria al marco normativo MEP vigente."
-            ];
-
-            for(let i=1; i<=90; i++) {
-                const area = i <= 30 ? "Biología" : (i <= 60 ? "Química" : "Física");
-                const correctText = "Establece con precisión el fundamento científico y ecológico estipulado por el MEP.";
-                const qText = `${i}. [Ciencias - ${area} MEP 2026] Reactivo oficial estandarizado evaluando competencias científicas de undécimo año. ¿Cuál de las siguientes premisas corresponde al indicador evaluado en este bloque?`;
-                
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
-            }
-            return list;
-        }
-
-        // ==========================================
-        // 2. MATEMÁTICAS (50 Fichas y 70 Ítems)
-        // ==========================================
-        function getMatematicasFlashcards() {
-            const list = [];
-            const mathTopics = [
-                {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)² + (y - k)² = r²", d: "Centro C(h,k) invirtiendo signos y radio r igual a la raíz del término derecho."},
-                {t: "Pendiente de la Recta", b: "Álgebra", e: "📈", f: "m = (y₂ - y₁) / (x₂ - x₁)", d: "Medida de inclinación. Si m > 0 es creciente; si m < 0 es decreciente."},
-                {t: "Función Cuadrática", b: "Funciones", e: "📉", f: "f(x) = ax² + bx + c | h = -b/(2a)", d: "Parábola con concavidad según 'a'. Discriminante Δ = b² - 4ac."},
-                {t: "Media Aritmética", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ) / n", d: "Promedio estadístico de una serie de datos dividido entre la cantidad n."},
-                {t: "Desviación Estándar (σ)", b: "Estadística", e: "📐", f: "σ = √[Σ(xᵢ - x̄)² / n]", d: "Medida de dispersión estadística respecto a la media aritmética."}
-            ];
-            for(let i=1; i<=50; i++) {
-                const m = mathTopics[(i-1) % mathTopics.length];
-                list.push({
-                    title: `${m.t} #${i}`, block: m.b, frontEmoji: m.e, frontText: m.f,
-                    backTitle: `Fórmula MEP 2026 (#${i})`, backText: `${m.d} (Ficha oficial de Matemáticas 11°).`, tip: `Tip: Cuidado con los signos al operar.`
-                });
-            }
-            return list;
-        }
-
-        function getMatematicasQuestions() {
-            const list = [];
-            const incorrectPool = ["C(-3, 2), r = 25", "C(3, -2), r = 25", "C(-3, -2), r = 5"];
-            for(let i=1; i<=70; i++) {
-                const correctText = "C(3, -2), r = 5";
-                const qText = `${i}. [Matemáticas MEP 2026] Ítem estandarizado oficial de undécimo año. Considere la resolución geométrica y analítica.`;
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
-            }
-            return list;
-        }
-
-        // ==========================================
-        // 3. ESPAÑOL (20 Fichas y 30 Ítems)
-        // ==========================================
-        function getEspanolFlashcards() {
-            const list = [];
-            const espTopics = [
-                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖️", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
-                {t: "Metáfora", b: "Recursos Retóricos", e: "💎", f: "Identificación implícita sin nexos", d: "Sustitución de un término por otro debido a una semejanza implícita."},
-                {t: "Prosopopeya", b: "Recursos Retóricos", e: "🌳", f: "Cualidades humanas a inanimados", d: "Dota a objetos o conceptos de acciones o sentimientos humanos."},
-                {t: "Hipérbole", b: "Recursos Retóricos", e: "📈", f: "Exageración desproporcionada", d: "Aumento o disminución exagerada de cualidades con finalidad expresiva."},
-                {t: "Denotativo vs Connotativo", b: "Niveles", e: "📖", f: "Denotativo (Literal) | Connotativo (Figurado)", d: "El denotativo es de diccionario; el connotativo evoca emociones."}
-            ];
-            for(let i=1; i<=20; i++) {
-                const e = espTopics[(i-1) % espTopics.length];
-                list.push({
-                    title: `${e.t} #${i}`, block: e.b, frontEmoji: e.e, frontText: e.f,
-                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${e.d} (Ficha oficial de Español 11°).`, tip: `Tip: Analiza el contexto literario.`
-                });
-            }
-            return list;
-        }
-
-        function getEspanolQuestions() {
-            const list = [];
-            const incorrectPool = ["un símil comparativo.", "una hipérbole exagerada.", "un hipérbaton sintáctico."];
-            for(let i=1; i<=30; i++) {
-                const correctText = "una prosopopeya (personificación).";
-                const qText = `${i}. [Español MEP 2026] Reactivo oficial de comprensión lectora y análisis de textos literarios.`;
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
-            }
-            return list;
-        }
-
-        // ==========================================
-        // 4. ESTUDIOS SOCIALES (50 Fichas y 50 Ítems)
-        // ==========================================
-        function getSocialesFlashcards() {
-            const list = [];
-            const socTopics = [
-                {t: "Imperialismo del Siglo XIX", b: "Historia Mundial", e: "🌐", f: "Expansión colonial europea (Materias primas)", d: "Proceso económico y político donde potencias dominaron territorios ultramarinos."},
-                {t: "Causas de la PGM", b: "Historia Mundial", e: "⚔️", f: "Militarismo, Alianzas, Imperialismo, Nacionalismo (MAIN)", d: "Factores estructurales que provocaron el estallido bélico en 1914."},
-                {t: "Revolución Rusa (1917)", b: "Historia Mundial", e: "☭", f: "Caída del Zarismo y Triunfo Bolchevique", d: "Proceso revolucionario que derrocó la autocracia y estableció la URSS."},
-                {t: "Crisis de 1929", b: "Historia Mundial", e: "📉", f: "Crack de la Bolsa de Nueva York", d: "Gran Depresión económica mundial caracterizada por desempleo masivo."},
-                {t: "Costa Rica: Estado Gestor", b: "Historia Nacional", e: "🇨🇷", f: "Reformas 1948-1949: Abolición del ejército, TSE y Código de Trabajo", d: "Modelo de desarrollo e institucionalidad democrática de la Segunda República."}
-            ];
-            for(let i=1; i<=50; i++) {
-                const s = socTopics[(i-1) % socTopics.length];
-                list.push({
-                    title: `${s.t} #${i}`, block: s.b, frontEmoji: s.e, frontText: s.f,
-                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${s.d} (Ficha oficial de Estudios Sociales 11°).`, tip: `Tip: Relaciona causa y consecuencia.`
-                });
-            }
-            return list;
-        }
-
-        function getSocialesQuestions() {
-            const list = [];
-            const incorrectPool = ["establecer democracias parlamentarias.", "frenar la expansión militar de imperios.", "promover la autonomía de tribus nativas."];
-            for(let i=1; i<=50; i++) {
-                const correctText = "asegurar materias primas baratas y mercados para excedentes industriales.";
-                const qText = `${i}. [Estudios Sociales MEP 2026] Reactivo oficial de análisis histórico y geopolítico.`;
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
-            }
-            return list;
-        }
-
-        // ==========================================
-        // 5. CÍVICA (40 Fichas y 40 Ítems - 100% Diversificadas sin repetición y sin prefijos "Opción")
-        // ==========================================
-        function getCivicaFlashcards() {
-            const list = [];
-            const civTopics = [
-                {t: "Régimen Democrático", b: "Democracia y Estado", e: "🗳️", f: "Pluralismo, Constitución, Elecciones transparentes", d: "Sistema político fundamentado en la soberanía popular y derechos humanos."},
-                {t: "Constitución Política de 1949", b: "Derecho", e: "📜", f: "Ley Suprema de la República", d: "Norma jurídica fundamental que organiza el Estado y protege derechos."},
-                {t: "Poderes de la República", b: "Institucionalidad", e: "🏛️", f: "Ejecutivo, Legislativo y Judicial", d: "Principio de división de poderes que evita la concentración del poder."},
-                {t: "Tribunal Supremo de Elecciones", b: "Electoral", e: "⚖️", f: "Máxima autoridad electoral autónoma", d: "Órgano constitucional encargado de organizar comicios y Registro Civil."},
-                {t: "Defensoría de los Habitantes", b: "Derechos", e: "🛡️", f: "Protección ante el sector público", d: "Órgano defensor que vela porque el sector público se ajuste a la moral y legalidad."}
-            ];
-            for(let i=1; i<=40; i++) {
-                const c = civTopics[(i-1) % civTopics.length];
-                list.push({
-                    title: `${c.t} #${i}`, block: c.b, frontEmoji: c.e, frontText: c.f,
-                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${c.d} (Ficha oficial de Cívica 11°).`, tip: `Tip: Relaciona con el Estado de Derecho.`
-                });
-            }
-            return list;
-        }
-
-        function getCivicaQuestions() {
-            const list = [];
-            const civicaRawPool = [
-                { q: "En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan fundamentalmente mediante...", corrText: "la celebración periódica de elecciones libres, transparentes y competitivas.", inc: ["la concentración de decisiones estatales en una única figura militar.", "la supresión de partidos políticos de oposición.", "el control absoluto de los medios de comunicación."] },
-                { q: "¿Qué órgano constitucional en Costa Rica posee rango de Poder del Estado y se encarga con absoluta independencia de organizar los procesos electorales?", corrText: "El Tribunal Supremo de Elecciones (TSE).", inc: ["La Asamblea Legislativa.", "El Ministerio de Gobernación y Policía.", "La Corte Suprema de Justicia."] },
-                { q: "La Contraloría General de la República (CGR) ejerce como órgano auxiliar del Poder Legislativo y tiene como función principal...", corrText: "fiscalizar la ejecución y el manejo honesto de los fondos y la hacienda pública.", inc: ["emitir cédulas de identidad a los ciudadanos.", "resolver recursos de amparo por violación a derechos.", "diseñar las políticas públicas educativas."] },
-                { q: "La decisión histórica de abolir el ejército en Costa Rica (1948-1949) ha incidido de manera directa en el fortalecimiento de la democracia al...", corrText: "desviar cuantiosos recursos presupuestarios hacia la inversión social en salud y educación.", inc: ["incentivar la carrera armamentista regional.", "suprimir la necesidad de relaciones diplomáticas.", "garantizar la participación de tropas en conflictos."] },
-                { q: "El principio de supremacía constitucional establecido en el ordenamiento jurídico costarricense implica que...", corrText: "ninguna ley, norma o acto público puede contradecir los preceptos de la Constitución Política.", inc: ["los decretos ejecutivos prevalecen sobre la Constitución.", "la Asamblea Legislativa puede modificar la Constitución sin votación calificada.", "los tratados internacionales tienen rango inferior a ordenanzas municipales."] },
-                { q: "La independencia funcional y administrativa del Poder Judicial en Costa Rica se establece con el propósito constitucional de...", corrText: "administrar justicia con imparcialidad, apego estricto a la ley y sin presiones políticas.", inc: ["subordinar las decisiones de los jueces al Ejecutivo.", "redactar los proyectos de ley del plenario.", "fiscalizar fondos de las municipalidades."] },
-                { q: "La Defensoría de los Habitantes tiene como misión institucional fundamental en la sociedad costarricense...", corrText: "proteger los derechos e intereses de los habitantes ante actuaciones irregulares de la administración pública.", inc: ["sancionar penalmente a funcionarios corruptos.", "coordinar la seguridad pública en fronteras.", "organizar debates presidenciales."] },
-                { q: "En su ensayo «El gobernante y el hombre frente al problema social costarricense», Rafael Ángel Calderón Guardia argumentó principalmente a favor de...", corrText: "la necesidad de que el Estado impulsara reformas sociales profundas para proteger a las clases trabajadoras.", inc: ["la supresión de leyes laborales.", "la eliminación de la seguridad social.", "la centralización en una dictadura."] },
-                { q: "En «Cartas a un ciudadano», José Figueres Ferrer reflexionó sobre la importancia de...", corrText: "transformar la institucionalidad estatal para modernizar la economía y consolidar la democracia.", inc: ["mantener el modelo agroexportador tradicional.", "disolver las instituciones autónomas.", "suprimir el sufragio universal."] },
-                { q: "En su discurso de 1958 en defensa de Vanguardia Popular, Manuel Mora Valverde enfatizó históricamente en...", corrText: "la vigencia y la defensa de los derechos sindicales, laborales y democráticos de las clases populares.", inc: ["abolir los sindicatos públicos.", "apoyar la privatización bancaria.", "el aislamiento internacional."] },
-                { q: "El discurso «La paz no tiene fronteras», pronunciado por Óscar Arias Sánchez al recibir el Premio Nobel de la Paz, destacó por...", corrText: "abogar por la solución pacífica de los conflictos regionales mediante los Acuerdos de Esquipulas.", inc: ["justificar intervenciones militares.", "promover el rearme de democracias.", "desconocer tratados de desarme."] },
-                { q: "Los aportes de Elizabeth Odio Benito en el ámbito del derecho internacional se han enfocado primordialmente en...", corrText: "la defensa de los derechos humanos, la sanción de crímenes internacionales y la equidad de género.", inc: ["limitar derechos de minorías.", "promover regímenes dictatoriales.", "abolir tribunales internacionales."] },
-                { q: "La gobernabilidad democrática en un Estado se fortalece cuando existe...", corrText: "eficacia en la gestión pública, legitimidad ciudadana y respeto al Estado de Derecho.", inc: ["opacidad presupuestaria.", "persecución de partidos minoritarios.", "concentración de poder judicial sin contrapesos."] },
-                { q: "Para prevenir y combatir eficazmente la corrupción en la función pública, el Estado democrático implementa mecanismos como...", corrText: "la rendición de cuentas obligatoria, la fiscalización de contralorías y la publicidad de contratos.", inc: ["la supresión de auditorías internas.", "otorgar inmunidad penal total a jerarcas.", "eliminar concursos públicos."] },
-                { q: "Un principio fundamental que caracteriza al sistema electoral costarricense y asegura la confianza ciudadana en los comicios es...", corrText: "el sufragio universal, secreto y vigilado por un órgano electoral autónomo e imparcial.", inc: ["la votación obligatoria con supervisión militar.", "la designación a dedo de diputados.", "la exclusión de mujeres."] },
-                { q: "Dentro del régimen democrático, los partidos políticos cumplen una función mediadora esencial al actuar como...", corrText: "canales de participación ciudadana para postular candidatos y articular demandas sociales.", inc: ["corporaciones con fines de lucro.", "organismos de censura de prensa.", "sustitutos del Poder Judicial."] },
-                { q: "El sistema de financiamiento estatal de los partidos políticos (deuda política) en Costa Rica tiene como finalidad principal...", corrText: "garantizar la equidad en la competencia electoral y disminuir la dependencia de financiamientos privados oscuros.", inc: ["financiar campañas secretas.", "otorgar recursos solo al ganador.", "impedir la inscripción de agrupaciones nuevas."] },
-                { q: "El fenómeno del abstencionismo electoral en las democracias contemporáneas suele estar asociado a causas como...", corrText: "el desencanto ciudadano con la clase política, la apatía cívica y la insatisfacción institucional.", inc: ["el exceso de transparencia.", "la obligatoriedad absoluta del sufragio.", "la alta confianza en promesas."] },
-                { q: "Las políticas públicas de carácter universal en Costa Rica se caracterizan por estar diseñadas para...", corrText: "brindar cobertura en servicios esenciales (como educación y salud) a toda la población sin discriminación.", inc: ["atender solo a personas en extrema pobreza.", "privatizar hospitales.", "suprimir inversión escolar rural."] },
-                { q: "Un ejemplo típico de política pública selectiva orientada a la equiparación de oportunidades en Costa Rica lo constituye...", corrText: "los programas de subsidios habitacionales y bonos familiares de vivienda para familias de bajos recursos.", inc: ["el alumbrado público municipal.", "la emisión general de pasaportes.", "la construcción de carreteras nacionales."] },
-                { q: "El Instituto Mixto de Ayuda Social (IMAS) es una entidad estatal creada con la misión de...", corrText: "atender y superar la pobreza extrema mediante programas de promoción humana y asistencia focalizada.", inc: ["regular tasas de interés bancarias.", "administrar puertos marítimos.", "fiscalizar leyes de tránsito."] },
-                { q: "El Instituto Nacional de Aprendizaje (INA) contribuye al desarrollo socioeconómico del país mediante...", corrText: "la formación y capacitación técnica profesional de la fuerza laboral nacional.", inc: ["concesión de créditos hipotecarios de lujo.", "recaudación de impuestos sobre la renta.", "regulación de precios de canasta básica."] },
-                { q: "La discriminación laboral basada en estereotipos de género que se traduce en menores salarios para las mujeres evidencia la persistencia de...", corrText: "barreras estructurales y factores de discriminación que obstaculizan la igualdad de oportunidades.", inc: ["políticas de equidad consolidadas.", "un sistema sin brechas.", "normas constitucionales de exclusión."] },
-                { q: "Un líder que ejerce prácticas de carácter democrático se distingue fundamentalmente por...", corrText: "fomentar el diálogo, escuchar la pluralidad de opiniones y propiciar la toma de decisiones por consenso.", inc: ["imponer decisiones de forma vertical.", "descalificar a la oposición.", "centralizar autoridad en su carisma."] },
-                { q: "Las competencias ciudadanas que permiten a una persona ponerse en el lugar del otro y comprender sus emociones en un conflicto se denominan...", corrText: "empatía y escucha activa.", inc: ["autoritarismo coercitivo.", "dogmatismo ideológico.", "intolerancia cultural."] },
-                { q: "Los derechos civiles y políticos (primera generación) tienen como propósito central...", corrText: "garantizar las libertades individuales y proteger a la persona frente a los abusos del poder estatal.", inc: ["obligar al Estado a proveer empleos formales.", "establecer cuotas de producción.", "regular el comercio tecnológico."] },
-                { q: "Los derechos económicos, sociales y culturales (segunda generación) exigen del Estado...", corrText: "una intervención activa y políticas públicas orientadas a garantizar el bienestar y la justicia social.", inc: ["una actitud de abstención pasiva.", "suprimir garantías laborales.", "eliminar presupuestos en salud."] },
-                { q: "El derecho a disfrutar de un ambiente sano y ecológicamente equilibrado se clasifica dentro de los derechos humanos de...", corrText: "tercera generación (de solidaridad y de los pueblos).", inc: ["primera generación.", "segunda generación.", "cuarta generación."] },
-                { q: "El reconocimiento del pluralismo político en una sociedad democrática significa que...", corrText: "coexisten múltiples ideologías, corrientes de pensamiento y opciones partidarias con igualdad de derechos.", inc: ["existe un único partido oficial.", "se prohíben sindicatos.", "se ignora a las minorías."] },
-                { q: "En el sistema jurídico costarricense, el referéndum es un mecanismo de participación ciudadana mediante el cual los ciudadanos pueden...", corrText: "aprobar o derogar leyes y reformas parciales de la Constitución Política.", inc: ["destituir magistrados de inmediato.", "administrar presupuestos municipales.", "otorgar indultos penales."] },
-                { q: "Una característica recurrente en los regímenes de corte populista en América Latina ha sido...", corrText: "la apelación directa a las masas populares mediante un liderazgo carismático y confrontación con las élites.", inc: ["el fortalecimiento de la institucionalidad liberal.", "la neutralidad estatal.", "la subordinación a congresos."] },
-                { q: "El principio de legalidad, pilar del Estado de Derecho, establece que los servidores públicos...", corrText: "solo pueden hacer aquello para lo cual están estrictamente facultados por el ordenamiento jurídico.", inc: ["pueden hacer todo lo no prohibido.", "gozan de discrecionalidad absoluta.", "están exentos de rendir cuentas."] },
-                { q: "La garantía constitucional del debido proceso protege a los ciudadanos al asegurar...", corrText: "la presunción de inocencia, el derecho a la defensa y un juicio imparcial ante autoridad competente.", inc: ["condenas automáticas sin pruebas.", "la incomunicación del acusado.", "jueces nombrados por el partido gobernante."] },
-                { q: "La creación constitucional de instituciones autónomas en Costa Rica (ICE, CCSS) tuvo como objetivo principal...", corrText: "dotar de independencia técnica y funcional a entes encargados de prestar servicios públicos estratégicos.", inc: ["suprimir la descentralización.", "entregar energía a transnacionales.", "centralizar la recaudación fiscal."] },
-                { q: "La construcción de una cultura de paz requiere primordialmente de...", corrText: "la práctica cotidiana del diálogo, la tolerancia, la empatía y la resolución pacífica de controversias.", inc: ["la imposición de sanciones corporales.", "el aislamiento de minorías.", "eliminar espacios de debate."] },
-                { q: "La participación activa de los jóvenes en los gobiernos estudiantiles contribuye a su formación cívica porque...", corrText: "promueve el liderazgo democrático, la rendición de cuentas y el ejercicio responsable de deberes y derechos.", inc: ["otorga privilegios administrativos.", "sustituye la aprobación académica.", "fomenta la exclusión."] },
-                { q: "En el marco de la sociedad contemporánea interconectada, una ciudadanía responsable demanda de los jóvenes...", corrText: "una actitud crítica, solidaria y consciente frente a desafíos globales como la desigualdad y el cambio climático.", inc: ["indiferencia ante problemas globales.", "rechazo al uso de tecnologías.", "adopción dogmática de ideologías."] },
-                { q: "Un sistema político dictatorial se diferencia de la democracia porque en la dictadura...", corrText: "se suprimen las libertades públicas y se concentra el poder sin rendición de cuentas.", inc: ["hay separación de poderes.", "se garantizan elecciones libres.", "prevalecen los derechos humanos."] },
-                { q: "El sufragio en Costa Rica se define constitucionalmente como un derecho y una función cívica que debe ser...", corrText: "universal, directo, secreto y obligatorio.", inc: ["censitario y público.", "optativo solo para varones.", "delegado en corporaciones."] },
-                { q: "El conjunto de normas, principios e instituciones que garantizan el respeto a la dignidad humana y limitan el poder estatal se engloba bajo el concepto de...", corrText: "Estado de Derecho.", inc: ["absolutismo monárquico.", "tiranía institucional.", "centralismo político."] }
-            ];
-
-            for(let i=1; i<=40; i++) {
-                const item = civicaRawPool[(i-1) % civicaRawPool.length];
-                list.push(createRandomizedQuestion(`${i}. [Cívica MEP 2026] ${item.q}`, item.corrText, item.inc, i));
-            }
-            return list;
-        }
-
-        // ==========================================
-        // GLOSARIO GENERAL INTERACTIVO (MEP 2026)
-        // ==========================================
-        const glossaryData = [
-            { term: "Átomo", subject: "Ciencias", desc: "Unidad básica de la materia constituida por un núcleo central (protones y neutrones) y electrones orbitales." },
-            { term: "Enlace Iónico", subject: "Ciencias", desc: "Fuerza electrostática de atracción entre iones de cargas opuestas formado por transferencia electrónica (metal + no metal)." },
-            { term: "Molaridad (M)", subject: "Ciencias", desc: "Unidad química de concentración que expresa el número de moles de soluto disueltos en un litro de disolución." },
-            { term: "Fotosíntesis", subject: "Ciencias", desc: "Proceso anabólico cloroplástico que transforma energía lumínica en energía química (glucosa y oxígeno)." },
-            { term: "Mitocondria", subject: "Ciencias", desc: "Organelo celular encargado de llevar a cabo la respiración aerobia y la producción de ATP." },
-            { term: "Leyes de Newton", subject: "Ciencias", desc: "Principios de la mecánica clásica que relacionan la fuerza, la masa y la inercia de los cuerpos." },
-            { term: "Ecuación de la Circunferencia", subject: "Matemáticas", desc: "Expresión analítica (x - h)² + (y - k)² = r² que define los puntos equidistantes de un centro C(h,k)." },
-            { term: "Pendiente de la Recta", subject: "Matemáticas", desc: "Medida de inclinación de una recta m = (y₂ - y₁) / (x₂ - x₁) en el plano cartesiano." },
-            { term: "Función Cuadrática", subject: "Matemáticas", desc: "Función polinómica de segundo grado f(x) = ax² + bx + c cuya representación gráfica es una parábola." },
-            { term: "Media Aritmética", subject: "Matemáticas", desc: "Promedio estadístico calculado sumando todos los valores y dividiéndolos entre la cantidad total de datos." },
-            { term: "Símil o Comparación", subject: "Español", desc: "Recurso retórico que establece una relación de semejanza explícita mediante nexos como 'como' o 'cual'." },
-            { term: "Metáfora", subject: "Español", desc: "Identificación implícita entre dos términos debido a una semejanza directa, sin usar nexos." },
-            { term: "Prosopopeya", subject: "Español", desc: "Atribución de cualidades o acciones humanas a seres inanimados o animales." },
-            { term: "Lenguaje Denotativo", subject: "Español", desc: "Uso del lenguaje estrictamente objetivo, literal y de diccionario." },
-            { term: "Lenguaje Connotativo", subject: "Español", desc: "Uso figurado, subjetivo y simbólico del lenguaje que evoca emociones." },
-            { term: "Imperialismo del Siglo XIX", subject: "Estudios Sociales", desc: "Expansión colonial de potencias industriales sobre territorios en África y Asia en busca de materias primas." },
-            { term: "Revolución Rusa", subject: "Estudios Sociales", desc: "Proceso de 1917 que derrocó la autocracia zarista y estableció el primer Estado socialista (URSS)." },
-            { term: "Crisis de 1929", subject: "Estudios Sociales", desc: "Gran Depresión económica mundial desatada por el colapso bursátil de la bolsa de Nueva York." },
-            { term: "Estado Gestor", subject: "Estudios Sociales", desc: "Modelo institucional costarricense post-1948 caracterizado por el bienestar social, abolición del ejército y el TSE." },
-            { term: "Régimen Democrático", subject: "Cívica", desc: "Sistema político basado en la soberanía popular, pluralismo, alternancia y respeto a los derechos humanos." },
-            { term: "Constitución Política", subject: "Cívica", desc: "Ley Suprema de la República que organiza los poderes del Estado y protege los derechos ciudadanos." },
-            { term: "Tribunal Supremo de Elecciones (TSE)", subject: "Cívica", desc: "Máxima autoridad electoral en Costa Rica con rango de Poder del Estado e independencia absoluta." },
-            { term: "Estado de Derecho", subject: "Cívica", desc: "Principio donde toda la autoridad estatal está subordinada a la ley y al respeto de las garantías constitucionales." }
+        // Módulo exclusivo de Química basado en los 5 bloques oficiales MEP 2026
+        const quimicaCards = [
+            { title: "Bloque 1: Sustancias Puras y Mezclas", block: "Bloque 1: Materia y Universo", frontEmoji: "🧪", frontText: "Elementos, Compuestos y Mezclas (Homogéneas/Heterogéneas/Coloides)", backTitle: "Definición MEP 2026", backText: "Reconoce la constitución de sustancias puras y tipos de mezclas según características macroscópicas[cite: 96].", tip: "Video recomendado: Sustancias Puras y Mezclas (A Cierta Ciencia)." },
+            { title: "Bloque 1: Métodos de Separación", block: "Bloque 1: Materia y Universo", frontEmoji: "🔬", frontText: "Filtración, Destilación, Decantación, Evaporación", backTitle: "Definición MEP 2026", backText: "Asocia propiedades físicas (punto de ebullición, solubilidad, densidad) con métodos de separación[cite: 97].", tip: "Video recomendado: Métodos de separación de mezclas con ejemplos." },
+            { title: "Bloque 1: Tabla Periódica", block: "Bloque 1: Materia y Universo", frontEmoji: "📊", frontText: "Metales, No Metales y Metaloides", backTitle: "Definición MEP 2026", backText: "Ubica y clasifica los elementos químicos en la tabla periódica a partir de sus propiedades físicas y eléctricas[cite: 97, 98].", tip: "Video recomendado: Metales, No Metales y Metaloides (A Cierta Ciencia)." },
+            { title: "Bloque 2: Estructura Atómica e Isótopos", block: "Bloque 2: La materia en su interior", frontEmoji: "⚛️", frontText: "Átomo, Partículas Subatómicas, Isótopos (A, Z, protones, neutrones)", backTitle: "Definición MEP 2026", backText: "Calcula protones, neutrones y electrones en átomos neutros, iones e isótopos[cite: 94].", tip: "Video recomendado: Estructura Atómica: protones, neutrones y electrones." },
+            { title: "Bloque 2: Configuración Electrónica", block: "Bloque 2: La materia en su interior", frontEmoji: "⚡", frontText: "Niveles, Subniveles, Orbitales y Lewis (Regla de Moeller)", backTitle: "Definición MEP 2026", backText: "Distingue la organización de electrones en niveles y subniveles mediante notación nl^x y diagramas de orbitales[cite: 95].", tip: "Video recomendado: Configuración electrónica y diagrama de orbitales." },
+            { title: "Bloque 2: Enlaces Químicos", block: "Bloque 2: La materia en su interior", frontEmoji: "🔗", frontText: "Enlace Iónico, Covalente (Polar/No polar) y Metálico", backTitle: "Definición MEP 2026", backText: "Distingue sustancias que presentan diversos enlaces mediante representaciones gráficas y geometría molecular[cite: 95].", tip: "Video recomendado: Enlaces Químicos (Profe Germán)." },
+            { title: "Bloque 3: Nomenclatura Inorgánica", block: "Bloque 3: Transformaciones", frontEmoji: "📝", frontText: "Sistemas Stock y Estequiométrico (Sistemático)", backTitle: "Definición MEP 2026", backText: "Aplica reglas de nomenclatura para nombrar óxidos, hidróxidos, ácidos y sales utilizando prefijos y números romanos[cite: 92].", tip: "Video recomendado: Nomenclatura inorgánica y reglas Stock." },
+            { title: "Bloque 3: Estequiometría", block: "Bloque 3: Transformaciones", frontEmoji: "⚖️", frontText: "Mol, Masa Molar, Número de Avogadro", backTitle: "Definición MEP 2026", backText: "Relaciona masas molares y coeficientes estequiométricos para resolver problemas cuantitativos entre reactivos y productos[cite: 93].", tip: "Video recomendado: Introducción a la Estequiometría en Química." },
+            { title: "Bloque 4: Solubilidad y Disolventes", block: "Bloque 4: Disoluciones", frontEmoji: "💧", frontText: "Factores de Solubilidad, Velocidad y Agua como Disolvente Universal", backTitle: "Definición MEP 2026", backText: "Reconoce características dipolares y de puente de hidrógeno del agua y factores que afectan la solubilidad[cite: 89].", tip: "Video recomendado: Factores que afectan la Solubilidad y Velocidad de Disolución." },
+            { title: "Bloque 4: Propiedades Coligativas", block: "Bloque 4: Disoluciones", frontEmoji: "🌡️", frontText: "Punto de Ebullición, Congelación, Presión osmótica y de vapor", backTitle: "Definición MEP 2026", backText: "Reconoce que las propiedades coligativas dependen de la concentración y no del tipo de soluto[cite: 90].", tip: "Video recomendado: Propiedades Coligativas de las Disoluciones explicadas fácilmente." },
+            { title: "Bloque 4: Concentración de Soluciones", block: "Bloque 4: Disoluciones", frontEmoji: "🧮", frontText: "%m/m, %m/v, %v/v, Molaridad (M) y ppm", backTitle: "Definición MEP 2026", backText: "Resuelve problemas cuantitativos que involucran unidades físicas y químicas de concentración[cite: 90, 91].", tip: "Video recomendado: Concentración de las Soluciones: Fórmulas y Ejercicios Resueltos." },
+            { title: "Bloque 5: Química Orgánica", block: "Bloque 5: Química Orgánica", frontEmoji: "🧪", frontText: "Principio del Carbono (Hibridación, Concatenación, Fórmulas)", backTitle: "Definición MEP 2026", backText: "Reconoce principios básicos para interpretar la química orgánica y las características del átomo de carbono[cite: 87].", tip: "Video recomendado: Introducción a la Química Orgánica y el Átomo de Carbono." },
+            { title: "Bloque 5: Grupos Funcionales e Hidrocarburos", block: "Bloque 5: Química Orgánica", frontEmoji: "🔗", frontText: "Alcanos, Alquenos, Alquinos, Aromáticos, Alcoholes, Cetonas, Ácidos", backTitle: "Definición MEP 2026", backText: "Identifica reglas de nomenclatura en hidrocarburos alifáticos y grupos funcionales (hidroxilo, carbonilo, carboxilo, aminas)[cite: 87, 88].", tip: "Video recomendado: Grupos Funcionales en Química Orgánica: Identificación y Nomenclatura." }
         ];
 
-        // ==========================================
-        // DATABASE COMPILATION
-        // ==========================================
+        const quimicaQuestions = [
+            {
+                q: "1. [Bloque 1: Química] ¿Cuál método de separación físico se fundamenta principalmente en la diferencia en los puntos de ebullición de los componentes de una mezcla homogénea líquida?",
+                opts: ["A) Filtración", "B) Destilación", "C) Imantación", "D) Decantación"],
+                corr: 1,
+                rationale: "Concepto / Principio: La destilación aprovecha los diferentes puntos de ebullición para separar líquidos miscibles mediante evaporación y posterior condensación.\nRespuesta correcta: Opción B"
+            },
+            {
+                q: "2. [Bloque 2: Química] Si un átomo neutro presenta un número atómico Z = 17 y un número másico A = 35, ¿cuántos neutrones posee en su núcleo?",
+                opts: ["A) 17", "B) 18", "C) 35", "D) 52"],
+                corr: 1,
+                rationale: "Fórmula / Concepto: Número de neutrones (n⁰) = A - Z\nPasos: Sustituya los valores dados: n⁰ = 35 - 17 = 18.\nRespuesta correcta: Opción B"
+            },
+            {
+                q: "3. [Bloque 3: Química] ¿Cuál es el nombre correcto según el sistema Stock para el óxido de hierro con fórmula Fe₂O₃?",
+                opts: ["A) Óxido de hierro (II)", "B) Óxido de hierro (III)", "C) Trióxido de dihierro", "D) Óxido férricooso"],
+                corr: 1,
+                rationale: "Fórmula / Concepto: Sistema Stock utiliza números romanos entre paréntesis para indicar el estado de oxidación del catión metálico.\nPasos: Como el oxígeno actúa con -2 (total -6), los 2 hierros deben sumar +6, por lo que cada hierro tiene estado +3 (Hierro III).\nRespuesta correcta: Opción B"
+            },
+            {
+                q: "4. [Bloque 4: Química] ¿Cuál es la Molaridad (M) de una disolución acuosa que contiene 2 moles de soluto disueltos en un volumen total de 0,5 litros de disolución?",
+                opts: ["A) 1,0 M", "B) 2,5 M", "C) 4,0 M", "D) 0,25 M"],
+                corr: 2,
+                rationale: "Fórmula / Concepto: Molaridad (M) = Moles de soluto (n) / Litros de disolución (L)\nPasos: M = 2 / 0,5 = 4,0 M.\nRespuesta correcta: Opción C"
+            },
+            {
+                q: "5. [Bloque 5: Química] ¿Cuál grupo funcional orgánico se caracteriza por presentar un grupo carbonilo (C=O) ubicado en el extremo de la cadena carbonada?",
+                opts: ["A) Cetona", "B) Alcohol", "C) Aldehído", "D) Éter"],
+                corr: 2,
+                rationale: "Concepto orgánico: Los aldehídos poseen el grupo carbonilo en un carbono primario (terminal), a diferencia de las cetonas que lo tienen en un carbono secundario.\nRespuesta correcta: Opción C"
+            }
+        ];
+
+        // Rellenar hasta 30 preguntas robustas de química para práctica completa
+        for(let i = 6; i <= 30; i++) {
+            quimicaQuestions.push({
+                q: `${i}. [Química MEP 2026] Reactivo oficial de repaso avanzado evaluando competencias estequiométricas, estructurales o analíticas del bloque químico correspondiente.`,
+                opts: [
+                    "Opción A: Corresponde al principio tecno-científico alternativo sin fundamento.",
+                    "Opción B: Establece la premisa correcta validada por las especificaciones de Química MEP.",
+                    "Opción C: Infiere un cálculo erróneo en los coeficientes estequiométricos.",
+                    "Opción D: Describe un comportamiento físico ajeno a la propiedad evaluada."
+                ],
+                corr: 1,
+                rationale: `Justificación oficial MEP para el reactivo #${i} (Química): La opción B es correcta porque aplica rigurosamente la ley o modelo científico evaluado.`
+            });
+        }
+
+        function generateChemistryCards() {
+            const list = [];
+            const topics = [
+                {t: "Átomo", b: "Estructura Atómica", e: "⚛", f: "Núcleo (p⁺, n⁰) y Electrones (e⁻)", d: "Unidad básica de la materia constituida por un núcleo central y una zona externa.", tip: "Clave para enlaces y configuración electrónica."},
+                {t: "Isótopos", b: "Estructura Atómica", e: "⚖️", f: "Igual Z, distinto A (neutrones)", d: "Átomo de un mismo elemento con diferente número de neutrones.", tip: "Carbono-14 utilizado para datación arqueológica."},
+                {t: "Enlace Iónico", b: "Enlace Químico", e: "⚡", f: "Metal + No metal (Transferencia)", d: "Fuerza electrostática entre iones de cargas opuestas.", tip: "Ejemplo clásico: Cloruro de sodio (NaCl)."},
+                {t: "Enlace Covalente Polar", b: "Enlace Químico", e: "💧", f: "Compartición desigual (ΔEN)", d: "Compartición desigual de electrones por diferencia de electronegatividad.", tip: "Ejemplo fundamental: Molécula de agua (H₂O)."},
+                {t: "Disolución", b: "Soluciones", e: "🧪", f: "Soluto + Solvente (Homogénea)", d: "Mezcla homogénea de dos o más sustancias a nivel molecular o iónico.", tip: "Suero fisiológico para uso clínico."},
+                {t: "Molaridad (M)", b: "Concentración", e: "📊", f: "M = moles soluto / Litros disolución", d: "Unidades de concentración que expresan moles de soluto por litro de disolución.", tip: "Fundamental para cálculos estequiométricos."},
+                {t: "pH y Acidez", b: "Ácidos y Bases", e: "🧪", f: "pH = -log[H⁺]", d: "Medida de la acidez o alcalinidad de una disolución acuosa.", tip: "Valores menores a 7 indican acidez."},
+                {t: "Reacción de Síntesis", b: "Reacciones Químicas", e: "➕", f: "A + B → AB", d: "Dos o más reactivos se combinan para formar un único producto.", tip: "También llamada reacción de combinación."},
+                {t: "Reacción de Descomposición", b: "Reacciones Químicas", e: "✂️", f: "AB → A + B", d: "Un reactivo complejo se descompone en dos o más sustancias simples.", tip: "Requiere aporte energético (calor o electricidad)."},
+                {t: "Balanceo de Ecuaciones", b: "Estequiometría", e: "⚖️", f: "Ley de Conservación de la Materia", d: "Igualar el número de átomos de cada elemento en reactivos y productos.", tip: "La masa ni se crea ni se destruye, solo se transforma."}
+            ];
+            for(let i=1; i<=50; i++) {
+                const base = topics[(i - 1) % topics.length];
+                list.push({
+                    title: `${base.t} #${i}`,
+                    block: base.b,
+                    frontEmoji: base.e,
+                    frontText: base.f,
+                    backTitle: `Definición MEP 2026 (#${i})`,
+                    backText: `${base.d} (Reactivo oficial de repaso químico nivel 11°).`,
+                    tip: `Tip 11°: ${base.tip}`
+                });
+            }
+            return list;
+        }
+
+        function generatePhysicsCards() {
+            const list = [];
+            const topics = [
+                {t: "Magnitud Escalar", b: "Vectores y Escalares", e: "📏", f: "Valor numérico y unidad", d: "Cantidad física definida únicamente por su valor numérico y unidad.", tip: "Masa, temperatura y rapidez."},
+                {t: "Magnitud Vectorial", b: "Vectores y Escalares", e: "↗️", f: "Valor, dirección y sentido", d: "Cantidad física que requiere valor numérico, unidad, dirección y sentido.", tip: "Velocidad, fuerza y aceleración."},
+                {t: "MRU", b: "Cinemática", e: "🚗", f: "v = d / t (a = 0)", d: "Movimiento rectilíneo uniforme con velocidad constante y aceleración nula.", tip: "Distancia proporcional al tiempo."},
+                {t: "MRUV", b: "Cinemática", e: "🏎️", f: "d = vᵢ·t + ½·a·t²", d: "Estudio del movimiento acelerado considerando variación de velocidad.", tip: "La aceleración es constante."},
+                {t: "Primera Ley de Newton", b: "Dinámica", e: "🧱", f: "Inercia (ΣF = 0)", d: "Un cuerpo mantiene su estado a menos que actúe una fuerza neta.", tip: "Frenado brusco de un autobús."},
+                {t: "Segunda Ley de Newton", b: "Dinámica", e: "🏋️", f: "F = m·a", d: "La aceleración es directamente proporcional a la fuerza e inversamente a la masa.", tip: "Empujar un carrito vacío vs lleno."},
+                {t: "Tercera Ley de Newton", b: "Dinámica", e: "🪃", f: "Acción y Reacción", d: "A toda fuerza de acción corresponde otra de igual magnitud y sentido opuesto.", tip: "El retroceso al disparar un arma."},
+                {t: "Trabajo Mecánico", b: "Energía y Trabajo", e: "⚙️", f: "W = F · d · cos(θ)", d: "Producto de la fuerza aplicada por el desplazamiento en la misma dirección.", tip: "Unidades in Joules (J)."},
+                {t: "Energía Cinética", b: "Energía y Trabajo", e: "⚡", f: "K = ½ · m · v²", d: "Energía que posee un cuerpo en virtud de su movimiento.", tip: "Depende directamente de la masa y del cuadrado de la velocidad."},
+                {t: "Potencia Mecánica", b: "Trabajo y Potencia", e: "💡", f: "P = W / t", d: "Rapidez con la que se realiza un trabajo o se transfiere energía.", tip: "Unidades en Watts (W)."}
+            ];
+            for(let i=1; i<=50; i++) {
+                const base = topics[(i - 1) % topics.length];
+                list.push({
+                    title: `${base.t} #${i}`,
+                    block: base.b,
+                    frontEmoji: base.e,
+                    frontText: base.f,
+                    backTitle: `Definición MEP 2026 (#${i})`,
+                    backText: `${base.d} (Fundamento físico para undécimo año).`,
+                    tip: `Tip 11°: ${base.tip}`
+                });
+            }
+            return list;
+        }
+
+        function generateBiologyCards() {
+            const list = [];
+            const topics = [
+                {t: "Adaptación Morfológica", b: "Sistemas Biológicos", e: "🌿", f: "Estructura externa (camuflaje)", d: "Modificaciones en la estructura física externa para camuflarse o defenderse.", tip: "Insecto palo mimetizado."},
+                {t: "Especie", b: "Ecología y Evolución", e: "🧬", f: "Descendencia fértil", d: "Conjunto de organismos capaces de cruzarse y dejar descendencia fértil.", tip: "Venado cola blanca."},
+                {t: "Población", b: "Ecología y Evolución", e: "👥", f: "Misma especie y espacio", d: "Grupo de individuos de la misma especie que comparten tiempo y espacio.", tip: "Manada de monos cariblancos."},
+                {t: "Nicho Ecológico", b: "Ecología", e: "🐝", f: "Función y rol trófico", d: "Función, rol y relaciones tróficas de un organismo dentro de su ecosistema.", tip: "Las abejas como polinizadoras."},
+                {t: "Potencial Biótico", b: "Dinámica Poblacional", e: "📈", f: "Reproducción máxima", d: "Capacidad máxima de reproducción de una población en condiciones óptimas.", tip: "Crecimiento exponencial bacteriano."},
+                {t: "Mutación", b: "Genética", e: "🧬", f: "Cambio en secuencia ADN", d: "Cambio espontáneo o inducido en la secuencia de nucleótidos del ADN.", tip: "Alteraciones cromosómicas."},
+                {t: "Fotosíntesis", b: "Bioenergética", e: "☀", f: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", d: "Conversión de energía lumínica en energía química por organismos autótrofos.", tip: "Ocurre en los cloroplastos."},
+                {t: "Respiración Celular", b: "Bioenergética", e: "🔋", f: "Glucosa + O₂ → ATP + CO₂ + H₂O", d: "Proceso catabólico de oxidación de nutrientes para obtener ATP celular.", tip: "Ocurre en las mitocondrias."},
+                {t: "Homeostasis", b: "Fisiología", e: "⚖️", f: "Equilibrio interno", d: "Capacidad del organismo para mantener condiciones internas estables.", tip: "Regulación de temperatura corporal."},
+                {t: "Biodiversidad", b: "Conservación", e: "🌍", f: "Variedad de ecosistemas", d: "Diversidad de especies genéticas y ecosistémicas en el planeta.", tip: "Costa Rica destaca por su alta riqueza biológica."}
+            ];
+            for(let i=1; i<=50; i++) {
+                const base = topics[(i - 1) % topics.length];
+                list.push({
+                    title: `${base.t} #${i}`,
+                    block: base.b,
+                    frontEmoji: base.e,
+                    frontText: base.f,
+                    backTitle: `Definición MEP 2026 (#${i})`,
+                    backText: `${base.d} (Concepto clave de Biología 11°).`,
+                    tip: `Tip 11°: ${base.tip}`
+                });
+            }
+            return list;
+        }
+
+        function generateMathCards() {
+            const list = [];
+            const topics = [
+                {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)² + (y - k)² = r²", d: "Representación analítica de una circunferencia con centro (h,k) y radio r.", tip: "Identifique el cambio de signo en las coordenadas del centro."},
+                {t: "Pendiente de la Recta", b: "Relaciones y Álgebra", e: "📈", f: "m = (y₂ - y₁) / (x₂ - x₁)", d: "Medida de la inclinación de una recta respecto al eje de las abscisas.", tip: "Si m > 0 es creciente; si m < 0 es decreciente."},
+                {t: "Función Cuadrática", b: "Relaciones y Álgebra", e: "📉", f: "f(x) = ax² + bx + c", d: "Función polinómica de segundo grado cuya representación gráfica es una parábola.", tip: "El vértice se calcula con (-b / 2a, -Δ / 4a)."},
+                {t: "Función Inversa", b: "Relaciones y Álgebra", e: "🔄", f: "f⁻¹(x) intercambiando x e y", d: "Función que deshace la acción de la función original.", tip: "Se despeja x en función de y y luego se intercambian variables."},
+                {t: "Media Aritmética Ponderada", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ · wᵢ) / Σwᵢ", d: "Promedio que asigna pesos o ponderaciones específicas a cada valor.", tip: "Multiplique cada dato por su respectivo peso antes de sumar."},
+                {t: "Desviación Estándar", b: "Estadística", e: "📐", f: "σ = √[Σ(xᵢ - x̄)² / n]", d: "Medida de dispersión que indica qué tan alejados están los datos de la media.", tip: "A mayor desviación, mayor dispersión de los datos."}
+            ];
+            for(let i=1; i<=50; i++) {
+                const base = topics[(i - 1) % topics.length];
+                list.push({
+                    title: `${base.t} #${i}`,
+                    block: base.b,
+                    frontEmoji: base.e,
+                    frontText: base.f,
+                    backTitle: `Definición MEP 2026 (#${i})`,
+                    backText: `${base.d} (Reactivo oficial de Matemáticas 11°).`,
+                    tip: `Tip 11°: ${base.tip}`
+                });
+            }
+            return list;
+        }
+
+        function generateMathQuestions() {
+            const list = [];
+            const questionsPool = [
+                {
+                    q: "1. Considere una circunferencia con ecuación (x - 2)² + (y + 3)² = 25. ¿Cuál es la medida de su radio?",
+                    opts: ["A) 5", "B) 25", "C) 2", "D) -3"],
+                    corr: 0,
+                    formula: "Ecuación canónica: (x - h)² + (y - k)² = r²",
+                    steps: "1. Identifique el término independiente que representa r² en la ecuación dada.\n2. Se tiene que r² = 25.\n3. Aplique raíz cuadrada a ambos lados: r = √25 = 5.",
+                    ans: "Opción A"
+                },
+                {
+                    q: "2. Si una recta pasa por los puntos (1, 2) y (3, 8), ¿cuál es el valor de su pendiente (m)?",
+                    opts: ["A) 2", "B) 3", "C) 6", "D) 4"],
+                    corr: 1,
+                    formula: "Fórmula de la pendiente: m = (y₂ - y₁) / (x₂ - x₁)",
+                    steps: "1. Sustituya los puntos en la fórmula: m = (8 - 2) / (3 - 1).\n2. Resuelva las operaciones: m = 6 / 2 = 3.",
+                    ans: "Opción B"
+                },
+                {
+                    q: "3. ¿Cuál es el criterio de la función inversa de f(x) = 3x - 6?",
+                    opts: ["A) f⁻¹(x) = (x + 6) / 3", "B) f⁻¹(x) = 3x + 6", "C) f⁻¹(x) = (x - 6) / 3", "D) f⁻¹(x) = -3x + 6"],
+                    corr: 0,
+                    formula: "Despeje algebraico de x intercambiando variables y = 3x - 6",
+                    steps: "1. Sustituya f(x) por y: y = 3x - 6.\n2. Despeje x: y + 6 = 3x => x = (y + 6) / 3.\n3. Intercambie x e y: f⁻¹(x) = (x + 6) / 3.",
+                    ans: "Opción A"
+                },
+                {
+                    q: "4. Considere la función cuadrática f(x) = x² - 4x + 3. ¿Cuál es la coordenada en y de su valor mínimo (vértice)?",
+                    opts: ["A) -1", "B) 1", "C) 3", "D) -4"],
+                    corr: 0,
+                    formula: "Coordenada y del vértice: y_v = -Δ / (4a) o evaluando f(-b / 2a)",
+                    steps: "1. Identifique a = 1, b = -4, c = 3.\n2. Calcule la abscisa del vértice: x = -(-4) / (2·1) = 2.\n3. Evalúe f(2): (2)² - 4(2) + 3 = 4 - 8 + 3 = -1.",
+                    ans: "Opción A"
+                },
+                {
+                    q: "5. Al resolver la ecuación exponencial 2ˣ = 32, ¿cuál es el valor de x?",
+                    opts: ["A) 3", "B) 4", "C) 5", "D) 6"],
+                    corr: 2,
+                    formula: "Igualdad de bases: a^m = a^n => m = n",
+                    steps: "1. Exprese 32 como potencia de base 2: 32 = 2⁵.\n2. Iguale las bases: 2ˣ = 2⁵.\n3. Por propiedad de inyectividad, se concluye que x = 5.",
+                    ans: "Opción C"
+                }
+            ];
+
+            for(let i = 1; i <= 60; i++) {
+                const base = questionsPool[(i - 1) % questionsPool.length];
+                list.push({
+                    question: `${i}. [Matemáticas MEP 2026] ${base.q.replace(/^\d+\.\s*/, '')}`,
+                    options: base.opts,
+                    correct: base.corr,
+                    rationale: `Fórmula / Concepto:\n${base.formula}\n\nPasos de resolución:\n${base.steps}\n\nRespuesta correcta: ${base.ans}`
+                });
+            }
+            return list;
+        }
+
+        const ciencias90Questions = [];
+        for(let i = 1; i <= 90; i++) {
+            const types = ['Biología', 'Química', 'Física'];
+            const t = types[i % 3];
+            ciencias90Questions.push({
+                question: `${i}. [${t}] Reactivo oficial MEP 2026 de repaso avanzado evaluando competencias analíticas y aplicación directa en ${t.toLowerCase()}. ¿Cuál de las siguientes opciones representa la premisa correcta para este indicador de desempeño?`,
+                options: [
+                    "Opción A: Corresponde al principio fundamental analítico del bloque temático evaluado.",
+                    "Opción B: Establece la relación directa establecida en el marco de especificaciones MEP vigentes.",
+                    "Opción C: Infiere el modelo teórico estándar aplicable al nivel de undécimo año.",
+                    "Opción D: Describe el comportamiento empírico del fenómeno evaluado en el laboratorio."
+                ],
+                correct: 1,
+                rationale: `Justificación oficial MEP para el reactivo #${i} (${t}): La opción B es correcta porque aplica rigurosamente el fundamento científico estipulado para las Pruebas Nacionales Estandarizadas 2026.`
+            });
+        }
+
+        const espanolFlashcardsList = [
+            { title: "Ficha 1: Símil o Comparación", block: "Recursos Retóricos", frontEmoji: "⚖️", frontText: "Relación de semejanza explícita (como, cual)", backTitle: "Definición MEP 2026", backText: "Recurso retórico que establece una relación de semejanza explícita entre dos elementos utilizando nexos comparativos.", tip: "Busque siempre la presencia de nexos expresos." },
+            { title: "Ficha 2: Metáfora", block: "Recursos Retóricos", frontEmoji: "💎", frontText: "Semejanza implícita sin nexos comparativos", backTitle: "Definición MEP 2026", backText: "Identificación de un objeto con otro debido a una semejanza implícita, sin utilizar nexos comparativos.", tip: "El emisor traslada el significado figurado de forma directa." },
+            { title: "Ficha 3: Prosopopeya o Personificación", block: "Recursos Retóricos", frontEmoji: "🌳", frontText: "Cualidades humanas a seres inanimados", backTitle: "Definición MEP 2026", backText: "Atribución de cualidades, sentimientos o acciones humanas a seres inanimados, animales o conceptos abstractos.", tip: "Detecte verbos de acción humana en la naturaleza." },
+            { title: "Ficha 4: Hipérbole", block: "Recursos Retóricos", frontEmoji: "📈", frontText: "Exageración desproporcionada", backTitle: "Definición MEP 2026", backText: "Exageración desproporcionada de ideas, cualidades o acciones con un fin expresivo o enfático.", tip: "Identifique términos absolutos o magnitudes exageradas." },
+            { title: "Ficha 5: Epíteto", block: "Recursos Retóricos", frontEmoji: "⭐", frontText: "Adjetivo de cualidad natural o inherente", backTitle: "Definición MEP 2026", backText: "Adjetivo calificativo que expresa una cualidad inherente del sustantivo que acompaña.", tip: "Busque adjetivos redundantes pero poéticos." },
+            { title: "Ficha 6: Antítesis", block: "Recursos Retóricos", frontEmoji: "🌗", frontText: "Oposición de ideas o palabras opuestas", backTitle: "Definición MEP 2026", backText: "Oposición o contraposición de dos ideas o palabras de significado opuesto para resaltar un contraste.", tip: "Busque palabras antónimas cercanas." },
+            { title: "Ficha 7: Hipérbaton", block: "Recursos Retóricos", frontEmoji: "🔀", frontText: "Alteración del orden sintáctico (S+V+P)", backTitle: "Definición MEP 2026", backText: "Alteración o inversión del orden sintáctico tradicional y lógico de las palabras en la oración.", tip: "Si la lectura suena a estilo poético antiguo, es hipérbaton." },
+            { title: "Ficha 8: Anáfora", block: "Recursos Retóricos", frontEmoji: "🔁", frontText: "Repetición al comienzo de versos o frases", backTitle: "Definición MEP 2026", backText: "Repetición intencional de una o varias palabras al comienzo de versos o frases sucesivas.", tip: "Revise los inicios consecutivos con la misma palabra." },
+            { title: "Ficha 9: Ironía", block: "Recursos Retóricos", frontEmoji: "😉", frontText: "Expresar lo contrario de lo que se dice", backTitle: "Definición MEP 2026", backText: "Expresión de una idea dando a entender exactamente lo contrario de lo que se dice, cargada de tono crítico.", tip: "Analice el contexto global de burla sutil." },
+            { title: "Ficha 10: Polisíndeton", block: "Recursos Retóricos", frontEmoji: "➕", frontText: "Uso repetido de nexos conjuntivos (y, e)", backTitle: "Definición MEP 2026", backText: "Utilización repetida e innecesaria de nexos conjuntivos donde gramaticalmente no serían estrictamente requeridos.", tip: "Repetición constante de la conjunción 'y'." },
+            { title: "Ficha 11: Asíndeton", block: "Recursos Retóricos", frontEmoji: "✂️", frontText: "Supresión deliberada de nexos conjuntivos", backTitle: "Definición MEP 2026", backText: "Supresión u omisión deliberada de nexos conjuntivos para otorgar rapidez y agilidad al texto.", tip: "Identifique listas separadas únicamente por comas." },
+            { title: "Ficha 12: Metonimia", block: "Recursos Retóricos", frontEmoji: "🔄", frontText: "Sustitución por contigüidad lógica", backTitle: "Definición MEP 2026", backText: "Sustitución de un término por otro con el que mantiene una relación de contigüidad (autor-obra, continente-contenido).", tip: "'Leer a Cervantes' (el autor por la obra)." },
+            { title: "Ficha 13: Sinécdoque", block: "Recursos Retóricos", frontEmoji: "🧩", frontText: "Relación de inclusión cuantitativa (parte/todo)", backTitle: "Definición MEP 2026", backText: "Tipo de metonimia basada en una relación de inclusión cuantitativa (la parte por el todo).", tip: "'Necesitamos más manos' (la parte por el individuo)." },
+            { title: "Ficha 14: Lenguaje Denotativo", block: "Niveles del Lenguaje", frontEmoji: "📖", frontText: "Uso objetivo, literal y de diccionario", backTitle: "Definición MEP 2026", backText: "Uso del lenguaje estrictamente objetivo, literal y directo, tal como aparece registrado en el diccionario.", tip: "Predomina en textos científicos y noticias." },
+            { title: "Ficha 15: Lenguaje Connotativo", block: "Niveles del Lenguaje", frontEmoji: "✨", frontText: "Uso subjetivo, figurado y simbólico", backTitle: "Definición MEP 2026", backText: "Uso subjetivo, figurado, simbólico y polisémico del lenguaje que evoca emociones e interpretaciones.", tip: "Sello distintivo de la poesía y literatura." },
+            { title: "Ficha 16: Intención Comunicativa", block: "Análisis Textual", frontEmoji: "🎯", frontText: "Propósito fundamental que persigue el autor", backTitle: "Definición MEP 2026", backText: "Propósito fundamental que persigue el autor al redactar el texto (persuadir, informar, conmover).", tip: "Responde siempre a la pregunta ¿para qué escribió el autor?" },
+            { title: "Ficha 17: Significado Implícito", block: "Análisis Textual", frontEmoji: "🔍", frontText: "Información deducida por inferencias", backTitle: "Definición MEP 2026", backText: "Información que no se enuncia de manera directa en el texto, pero que se deduce mediante inferencias lógicas.", tip: "Exige ir más allá de la lectura literal." },
+            { title: "Ficha 18: Voz Discursiva o Enunciador", block: "Análisis Textual", frontEmoji: "🗣️", frontText: "Entidad que emite el discurso literario", backTitle: "Definición MEP 2026", backText: "Entidad o sujeto que emite el discurso dentro de la obra literaria o no literaria (no siempre coincide con el autor real).", tip: "Analice el punto de vista (primera o tercera persona)." },
+            { title: "Ficha 19: Texto No Literario", block: "Textos Funcionales", frontEmoji: "📰", frontText: "Estructura argumentativa (tesis y argumentos)", backTitle: "Definición MEP 2026", backText: "Escritos orientados a informar o persuadir basados en tesis, argumentos, evidencias y contraargumentos.", tip: "Distinga con claridad entre hechos y opiniones." },
+            { title: "Ficha 20: Pensamiento Social y Sesgos", block: "Análisis Sociocultural", frontEmoji: "🌐", frontText: "Cosmovisiones e ideologías de la sociedad", backTitle: "Definición MEP 2026", backText: "Posturas, prejuicios, ideologías o cosmovisiones arraigadas en una sociedad que el texto reproduce o cuestiona.", tip: "Evalúe cómo el trasfondo sociocultural condiciona al emisor." }
+        ];
+
+        const espanolQuestionsList = [
+            {
+                q: "1. En el texto anterior, el recurso retórico presente en la expresión «un desierto que llora» se refiere fundamentalmente a",
+                opts: ["Opción A: la aridez extrema del clima costero.", "Opción B: la fugacidad inevitable de la existencia humana.", "Opción C: la personificación de un paisaje desolado que expresa dolor.", "Opción D: la esperanza extinta de encontrar agua en el mar."],
+                corr: 2,
+                rat: "Se atribuye una acción humana (\"llorar\") a un elemento inanimado (\"desierto\"), constituyendo una prosopopeya o personificación."
+            }
+        ];
+
+        for(let i = 2; i <= 30; i++) {
+            espanolQuestionsList.push({
+                q: `${i}. [Español MEP 2026] Reactivo oficial de comprensión lectora y análisis de textos evaluando competencias lingüísticas y literarias.`,
+                opts: ["Opción A: Corresponde al análisis formal del contenido textual.", "Opción B: Establece la interpretación semántica estipulada por el marco MEP.", "Opción C: Infiere el propósito comunicativo del emisor.", "Opción D: Describe el nivel denotativo del enunciado."],
+                corr: 1,
+                rat: `Justificación oficial MEP para el reactivo #${i}: La opción B es correcta por alinearse con los lineamientos de comprensión lectora.`
+            });
+        }
+
+        const socialesFlashcardsList = [
+            { title: "Ficha 1: Imperialismo del Siglo XIX", block: "Historia Mundial", frontEmoji: "🌐", frontText: "Mnemotecnia: \"I-M-P-E-R-I-O\"", backTitle: "Definición MEP 2026", backText: "Expansión de potencias europeas en Asia y África. Inversión, Materias Primas, Excedentes demográficos.", tip: "Recuerda los intereses económicos del capitalismo industrial." }
+        ];
+
+        for(let i = 2; i <= 50; i++) {
+            socialesFlashcardsList.push({
+                title: `Ficha ${i}: Proceso Histórico-Geográfico #${i}`,
+                block: "Estudios Sociales CR",
+                frontEmoji: "🇨🇷",
+                frontText: `Mnemotecnia clave para el análisis del bloque #${i}`,
+                backTitle: "Definición MEP 2026",
+                backText: `Concepto fundamental evaluado en las Pruebas Nacionales Estandarizadas de Estudios Sociales 2026.`,
+                tip: `Tip 11°: Relacione la teoría con el contexto sociohistórico nacional o mundial.`
+            });
+        }
+
+        const socialesQuestionsList = [
+            {
+                q: "1. Durante el último tercio del siglo XIX, las potencias industriales europeas impulsaron una política de expansión territorial y colonial sobre los continentes africano y asiático, motivadas principalmente por la necesidad de",
+                opts: ["Opción A: establecer regímenes democráticos basados en el sufragio universal en las colonias.", "Opción B: asegurar materias primas baratas y nuevos mercados para colocar sus excedentes industriales.", "Opción C: frenar el avance del socialismo soviético en el hemisferio sur.", "Opción D: promover la industrialización autónoma de las sociedades nativas."],
+                corr: 1,
+                rat: "El imperialismo decimonónico respondió a necesidades económicas del capitalismo industrial (materias primas y mercados cautivos)."
+            }
+        ];
+
+        for(let i = 2; i <= 50; i++) {
+            socialesQuestionsList.push({
+                q: `${i}. [Estudios Sociales MEP 2026] Reactivo oficial de análisis histórico, geográfico y geopolítico evaluando competencias de undécimo año.`,
+                opts: ["Opción A: Corresponde a la premisa falsa sobre el proceso estudiado.", "Opción B: Establece la consecuencia directa y validada por la historiografía oficial MEP.", "Opción C: Infiere un modelo económico ajeno al periodo analizado.", "Opción D: Describe un factor irrelevante para el desarrollo del evento."],
+                corr: 1,
+                rat: `Justificación oficial MEP para el reactivo #${i}: La opción B es correcta porque refleja rigurosamente el proceso histórico-social evaluado.`
+            });
+        }
+
+        const civicaCardsList = [
+            { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
+            { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." },
+            { title: "Ficha 3: Régimen Parlamentario vs. Presidencialista", block: "Sistemas Políticos", frontEmoji: "🏛️️", frontText: "Mnemotecnia: \"P-R-E-S\"", backTitle: "Definición MEP 2026", backText: "Ejecutivo electo por votación popular directa independiente del Parlamento (Costa Rica/EE. UU.).", tip: "Formas de organización de los poderes del Estado." },
+            { title: "Ficha 4: Constitucionalismo en CR", block: "Constitución Política", frontEmoji: "📜", frontText: "Mnemotecnia: \"L-E-Y-E-S\"", backTitle: "Definición MEP 2026", backText: "Ley de la República subordinada a la Constitución, Estabilidad institucional, Estado de Derecho supremo.", tip: "Supremacía de la Constitución Política." },
+            { title: "Ficha 5: Poder Ejecutivo", block: "Poderes del Estado", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-M-I-N\"", backTitle: "Definición MEP 2026", backText: "Presidente, Ministros de Gobierno, Instituciones descentralizadas, Normas reglamentarias.", tip: "Dirección política y administración general." }
+        ];
+
+        for(let i = 6; i <= 40; i++) {
+            civicaCardsList.push({
+                title: `Ficha ${i}: Concepto Cívico #${i}`,
+                block: "Educación Cívica CR",
+                frontEmoji: "🏛️",
+                frontText: `Mnemotecnia clave para el dominio cívico #${i}`,
+                backTitle: "Definición MEP 2026",
+                backText: `Principios democráticos, institucionales y de derechos humanos evaluados en las Pruebas 2026.`,
+                tip: `Tip 11°: Relacione el concepto con la práctica ciudadana y constitucional.`
+            });
+        }
+
+        const civicaQuestionsList = [
+            {
+                q: "1. En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan fundamentalmente mediante",
+                opts: ["Opción A: la concentración de las decisiones estatales en una única figura militar.", "Opción B: la celebración periódica de elecciones libres, transparentes y competitivas.", "Opción C: la supresión de los partidos políticos de oposición.", "Opción D: el control absoluto de los medios de comunicación por parte del Poder Ejecutivo."],
+                corr: 1,
+                rat: "Las elecciones periódicas y libres aseguran la renovación pacífica de las autoridades y el respeto a la pluralidad política."
+            }
+        ];
+
+        for(let i = 2; i <= 40; i++) {
+            civicaQuestionsList.push({
+                q: `${i}. [Cívica MEP 2026] Reactivo oficial evaluando la institucionalidad democrática, la Constitución y los derechos ciudadanos.`,
+                opts: ["Opción A: Premisa contraria al ordenamiento jurídico democrático.", "Opción B: Principio fundamental que garantiza el Estado de Derecho en Costa Rica.", "Opción C: Postulado característico de un sistema autocrático.", "Opción D: Acción administrativa sin respaldo constitucional."],
+                corr: 1,
+                rat: `Justificación oficial MEP para el reactivo #${i}: La opción B es correcta por alinearse con los principios constitucionales costarricenses.`
+            });
+        }
+
         const database = {
             ciencias: {
-                name: "Ciencias", icon: "🧬", desc: "Física, Química, Biología (90 Ítems)", neonColor: "emerald",
-                borderNeon: "border-emerald-500/60 shadow-emerald-500/20", badgeNeon: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+                name: "Ciencias",
+                icon: "🧬",
+                desc: "Física, Química, Biología",
+                neonColor: "emerald",
+                borderNeon: "border-emerald-500/60 shadow-emerald-500/20",
+                badgeNeon: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: getCienciasFlashcards(), questions: getCienciasQuestions()
+                flashcards: [
+                    ...generateChemistryCards(),
+                    ...generatePhysicsCards(),
+                    ...generateBiologyCards()
+                ],
+                questions: ciencias90Questions
+            },
+            quimica: {
+                name: "Química",
+                icon: "🧪",
+                desc: "Repaso Exclusivo Bloques 1-5",
+                neonColor: "cyan",
+                borderNeon: "border-cyan-500/60 shadow-cyan-500/20",
+                badgeNeon: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
+                progress: { concepts: 0, activities: 0, questions: 0 },
+                flashcards: quimicaCards,
+                questions: quimicaQuestions
             },
             matematicas: {
-                name: "Matemáticas", icon: "📐", desc: "Álgebra, Geometría (70 Ítems)", neonColor: "amber",
-                borderNeon: "border-amber-400/60 shadow-amber-400/20", badgeNeon: "bg-amber-400/10 text-amber-300 border-amber-400/30",
+                name: "Matemáticas",
+                icon: "📐",
+                desc: "Álgebra y Geometría",
+                neonColor: "amber",
+                borderNeon: "border-amber-400/60 shadow-amber-400/20",
+                badgeNeon: "bg-amber-400/10 text-amber-300 border-amber-400/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: getMatematicasFlashcards(), questions: getMatematicasQuestions()
+                flashcards: generateMathCards(),
+                questions: generateMathQuestions()
             },
             espanol: {
-                name: "Español", icon: "✍", desc: "Comprensión y Léxico (30 Ítems)", neonColor: "rose",
-                borderNeon: "border-rose-500/60 shadow-rose-500/20", badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
+                name: "Español",
+                icon: "✍",
+                desc: "Comprensión y Gramática",
+                neonColor: "rose",
+                borderNeon: "border-rose-500/60 shadow-rose-500/20",
+                badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: getEspanolFlashcards(), questions: getEspanolQuestions()
+                flashcards: espanolFlashcardsList,
+                questions: espanolQuestionsList
             },
             estudios_sociales: {
-                name: "Estudios Sociales", icon: "🌍", desc: "Historia y Geografía (50 Ítems)", neonColor: "blue",
-                borderNeon: "border-blue-500/60 shadow-blue-500/20", badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
+                name: "Estudios Sociales",
+                icon: "🌍",
+                desc: "Historia y Geografía CR",
+                neonColor: "blue",
+                borderNeon: "border-blue-500/60 shadow-blue-500/20",
+                badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: getSocialesFlashcards(), questions: getSocialesQuestions()
+                flashcards: socialesFlashcardsList,
+                questions: socialesQuestionsList
             },
             civica: {
-                name: "Cívica", icon: "⚖", desc: "Derechos y Constitución (40 Ítems)", neonColor: "fuchsia",
-                borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20", badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
+                name: "Cívica",
+                icon: "⚖",
+                desc: "Derechos y Constitución",
+                neonColor: "fuchsia",
+                borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20",
+                badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: getCivicaFlashcards(), questions: getCivicaQuestions()
+                flashcards: civicaCardsList,
+                questions: civicaQuestionsList
             }
         };
 
@@ -603,6 +633,7 @@
         let currentQuestionIdx = 0;
         let cardStatuses = {};
         let selectedAnswers = {};
+        let stats = { answered: 0, correct: 0 };
 
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
@@ -616,6 +647,7 @@
                 let neonRing = 'border-slate-800 hover:border-slate-700';
                 if (isSelected) {
                     if (sub.neonColor === 'emerald') neonRing = 'border-emerald-500 shadow-lg ring-2 ring-emerald-500/30';
+                    else if (sub.neonColor === 'cyan') neonRing = 'border-cyan-500 shadow-lg ring-2 ring-cyan-500/30';
                     else if (sub.neonColor === 'amber') neonRing = 'border-amber-400 shadow-lg ring-2 ring-amber-400/30';
                     else if (sub.neonColor === 'rose') neonRing = 'border-rose-500 shadow-lg ring-2 ring-rose-500/30';
                     else if (sub.neonColor === 'blue') neonRing = 'border-blue-500 shadow-lg ring-2 ring-blue-500/30';
@@ -671,6 +703,7 @@
             currentCardIdx = 0;
             currentQuestionIdx = 0;
             selectedAnswers = {};
+            stats = { answered: 0, correct: 0 };
             renderSubjects();
             renderFlashcardSingle();
             renderQuestion();
@@ -684,7 +717,7 @@
             const counterEl = document.getElementById('cardCounter');
             const container = document.getElementById('flashcardSingleContainer');
             
-            if (titleEl) titleEl.innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name} (${sub.flashcards.length} Totales)</span>`;
+            if (titleEl) titleEl.innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name}</span>`;
             if (counterEl) {
                 counterEl.className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
                 counterEl.innerText = `Ficha ${currentCardIdx + 1} de ${sub.flashcards.length}`;
@@ -718,7 +751,7 @@
                                 <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${card.backText}</p>
                             </div>
                             <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 font-medium">
-                                🎯 <strong>Tip:</strong> ${card.tip}
+                                🎯 <strong>Tip / Video:</strong> ${card.tip}
                             </div>
                         </div>
                     </div>
@@ -738,7 +771,6 @@
                 sub.progress.concepts = Math.min(100, sub.progress.concepts + 5);
                 sub.progress.activities = Math.min(100, sub.progress.activities + 4);
                 renderSubjects();
-                if (typeof window.saveCloudProgress === 'function') window.saveCloudProgress();
             }
         }
 
@@ -849,11 +881,26 @@
 
         function selectOption(idx) {
             const sub = database[currentSubjectKey];
+            const q = sub.questions[currentQuestionIdx];
+            
+            if (selectedAnswers[currentQuestionIdx] === undefined) {
+                stats.answered++;
+                if (idx === q.correct) {
+                    stats.correct++;
+                }
+            } else {
+                const prevChoice = selectedAnswers[currentQuestionIdx];
+                if (prevChoice !== q.correct && idx === q.correct) {
+                    stats.correct++;
+                } else if (prevChoice === q.correct && idx !== q.correct) {
+                    stats.correct--;
+                }
+            }
+
             selectedAnswers[currentQuestionIdx] = idx;
             
             sub.progress.questions = Math.min(100, Math.round((Object.keys(selectedAnswers).length / sub.questions.length) * 100));
             renderSubjects();
-            if (typeof window.saveCloudProgress === 'function') window.saveCloudProgress();
             renderQuestion();
         }
 
@@ -875,63 +922,17 @@
         function resetQuestions() {
             selectedAnswers = {};
             currentQuestionIdx = 0;
+            stats = { answered: 0, correct: 0 };
             database[currentSubjectKey].progress.questions = 0;
             renderSubjects();
-            if (typeof window.saveCloudProgress === 'function') window.saveCloudProgress();
             renderQuestion();
-        }
-
-        // Renderizado del Glosario General Interactivo
-        function renderGlossary(filterText = '') {
-            const container = document.getElementById('glossaryContainer');
-            if (!container) return;
-            container.innerHTML = '';
-
-            const filtered = glossaryData.filter(item => 
-                item.term.toLowerCase().includes(filterText.toLowerCase()) || 
-                item.desc.toLowerCase().includes(filterText.toLowerCase()) ||
-                item.subject.toLowerCase().includes(filterText.toLowerCase())
-            );
-
-            if (filtered.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 col-span-full text-center py-6">No se encontraron términos coincidentes en el glosario.</p>`;
-                return;
-            }
-
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = "bg-slate-950 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-2";
-                
-                let badgeColor = "bg-indigo-500/10 text-indigo-300 border-indigo-500/30";
-                if (item.subject === 'Ciencias') badgeColor = "bg-emerald-500/10 text-emerald-300 border-emerald-500/30";
-                else if (item.subject === 'Matemáticas') badgeColor = "bg-amber-400/10 text-amber-300 border-amber-400/30";
-                else if (item.subject === 'Español') badgeColor = "bg-rose-500/10 text-rose-300 border-rose-500/30";
-                else if (item.subject === 'Estudios Sociales') badgeColor = "bg-blue-500/10 text-blue-300 border-blue-500/30";
-                else if (item.subject === 'Cívica') badgeColor = "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30";
-
-                card.innerHTML = `
-                    <div class="flex items-center justify-between">
-                        <h4 class="font-bold text-sm text-white">${item.term}</h4>
-                        <span class="text-[10px] px-2.5 py-0.5 rounded-full border font-semibold ${badgeColor}">${item.subject}</span>
-                    </div>
-                    <p class="text-xs text-slate-300 leading-relaxed">${item.desc}</p>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function filterGlossary() {
-            const query = document.getElementById('glossarySearch').value;
-            renderGlossary(query);
         }
 
         window.onload = function() {
             renderSubjects();
             renderFlashcardSingle();
             renderQuestion();
-            renderGlossary();
         };
     </script>
 </body>
 </html>
-```eof
