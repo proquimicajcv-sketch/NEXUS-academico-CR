@@ -99,7 +99,7 @@
             </div>
             
             <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-                <!-- Se inyecta dinámicamente con JS (Química de primero en color naranja) -->
+                <!-- Se inyecta dinámicamente con JS -->
             </div>
         </section>
 
@@ -110,7 +110,7 @@
                     <h3 id="currentSubjectTitle" class="text-lg font-bold text-white flex items-center gap-2">
                         <span>🧪 Fichas y Vídeos de Química</span>
                     </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para girarla 3D y ver el vídeo explicativo incrustado de cada bloque.</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para girarla 3D. Accede a los vídeos oficiales de YouTube por bloque temático.</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <span id="cardCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Ficha 1 de 1</span>
@@ -119,7 +119,7 @@
 
             <!-- Contenedor Individual de Tarjeta 3D -->
             <div class="max-w-xl mx-auto space-y-4">
-                <div id="flashcardSingleContainer" class="perspective-1000 h-[380px] cursor-pointer">
+                <div id="flashcardSingleContainer" class="perspective-1000 h-80 cursor-pointer">
                     <!-- Renderizado por JS -->
                 </div>
 
@@ -191,35 +191,35 @@
     </footer>
 
     <script>
-        // Módulo exclusivo de Química con los 5 bloques y reproductor de YouTube incrustado en cada ficha
+        // Módulo exclusivo de Química con los 5 bloques y URLs con formato http://www. exacto
         const quimicaCards = [
             // BLOQUE 1
             {
                 title: "Bloque 1: Sustancias Puras y Mezclas",
                 block: "Bloque 1: La materia base del Universo",
                 frontEmoji: "🧪",
-                frontText: "Elementos, Compuestos y Mezclas",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                frontText: "Sustancias Puras y Mezclas",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Reconoce la constitución de elementos, compuestos y mezclas (homogéneas, heterogéneas y coloides)[cite: 96].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/8VQtgvyWpo8' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=8VQtgvyWpo8' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             {
                 title: "Bloque 1: Métodos de Separación",
                 block: "Bloque 1: La materia base del Universo",
                 frontEmoji: "🔬",
                 frontText: "Técnicas de separación física",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Asocia propiedades físicas (punto de ebullición, solubilidad, densidad) con métodos de separación[cite: 97].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/UQO88zoMC9Q' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=UQO88zoMC9Q' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             {
                 title: "Bloque 1: Metales, No Metales y Metaloides",
                 block: "Bloque 1: La materia base del Universo",
                 frontEmoji: "📊",
                 frontText: "Propiedades y ubicación en la Tabla Periódica",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Ubica y clasifica los elementos químicos en la tabla periódica internacional a partir de sus propiedades[cite: 97, 98].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/bQwiegsjb9k' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=bQwiegsjb9k' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             // BLOQUE 2
             {
@@ -227,27 +227,27 @@
                 block: "Bloque 2: La materia en su interior",
                 frontEmoji: "⚛",
                 frontText: "Átomo, Partículas Subatómicas e Isótopos",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Calcula número másico (A), atómico (Z), protones, neutrones y electrones en átomos neutros e iones[cite: 94].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/Xvno5NeanxU' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=Xvno5NeanxU' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             {
                 title: "Bloque 2: Configuración y Orbitales",
                 block: "Bloque 2: La materia en su interior",
                 frontEmoji: "⚡",
                 frontText: "Niveles, Subniveles, Orbitales y Lewis",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Distingue la organización de electrones en niveles, subniveles y diagramas de orbitales[cite: 95].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/hsE8c1-kOju' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=hsE8c1-kOju' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             {
                 title: "Bloque 2: Enlaces Químicos",
                 block: "Bloque 2: La materia en su interior",
                 frontEmoji: "🔗",
                 frontText: "Enlace Iónico, Covalente y Metálico",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Distingue sustancias que presentan enlaces iónicos, metálicos, covalentes polares y no polares[cite: 95].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/nXPzA-GOHM8' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=nXPzA-GOHM8' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             // BLOQUE 3
             {
@@ -255,18 +255,18 @@
                 block: "Bloque 3: Transformaciones de la materia",
                 frontEmoji: "📝",
                 frontText: "Sistemas Stock y Estequiométrico",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Aplica reglas de nomenclatura para nombrar óxidos, hidróxidos, ácidos y sales[cite: 92].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/Xvno5NeanxU' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=Xvno5NeanxU' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             {
                 title: "Bloque 3: Estequiometría y Avogadro",
                 block: "Bloque 3: Transformaciones de la materia",
                 frontEmoji: "⚖️",
                 frontText: "Mol, Masa Molar y Relaciones Cuantitativas",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 99]",
                 backText: "Relaciona masas molares y coeficientes estequiométricos de una ecuación química[cite: 93].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/hsE8e1-kOjU' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=hsE8e1-kOjU' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 99]"
             },
             // BLOQUE 4
             {
@@ -274,27 +274,27 @@
                 block: "Bloque 4: Disoluciones",
                 frontEmoji: "💧",
                 frontText: "Factores de Solubilidad y Velocidad de Disolución",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 100]",
                 backText: "Reconoce factores que afectan la solubilidad y velocidad, y el agua como disolvente universal[cite: 89].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/Xvno5NeanxU' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=Xvno5NeanxU' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 100]"
             },
             {
                 title: "Bloque 4: Propiedades Coligativas",
                 block: "Bloque 4: Disoluciones",
                 frontEmoji: "🌡️",
                 frontText: "Efecto del Soluto sobre el Disolvente",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 100]",
                 backText: "Reconoce el efecto del soluto en el punto de ebullición, congelación y presión osmótica[cite: 90].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/hsE8c1-kOju' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=hsE8c1-kOju' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 100]"
             },
             {
                 title: "Bloque 4: Unidades de Concentración",
                 block: "Bloque 4: Disoluciones",
                 frontEmoji: "🧮",
                 frontText: "%m/m, %m/v, %v/v, Molaridad y ppm",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 100]",
                 backText: "Resuelve problemas cuantitativos que involucran porcentaje masa, Molaridad (M) y partes por millón[cite: 90, 91].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/nXPzA-GOHM8' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=nXPzA-GOHM8' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 100]"
             },
             // BLOQUE 5
             {
@@ -302,18 +302,18 @@
                 block: "Bloque 5: Química orgánica",
                 frontEmoji: "🧪",
                 frontText: "Hibridación, Concatenación y Tipos de Fórmulas",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 100]",
                 backText: "Reconoce los principios básicos necesarios para la correcta interpretación de la química orgánica[cite: 87].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/Xvno5NeanxU' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=Xvno5NeanxU' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 100]"
             },
             {
                 title: "Bloque 5: Hidrocarburos y Grupos Funcionales",
                 block: "Bloque 5: Química orgánica",
                 frontEmoji: "🔗",
                 frontText: "Alcanos, Alquenos, Alcoholes, Cetonas, Ácidos",
-                backTitle: "Vídeo Educativo MEP (YouTube)",
+                backTitle: "Objetivos MEP y Vídeo Oficial[cite: 100]",
                 backText: "Identifica y diferencia grupos funcionales y reglas de nomenclatura orgánica[cite: 87, 88].",
-                embed: "<iframe class='w-full h-36 rounded-xl border border-orange-500/40' src='https://www.youtube.com/embed/hsE8c1-kOju' title='YouTube video' allowfullscreen></iframe>"
+                tip: "🎥 <a href='http://www.youtube.com/watch?v=hsE8c1-kOju' target='_blank' class='text-orange-400 underline font-bold'>Ver Vídeo Oficial de YouTube</a>[cite: 100]"
             }
         ];
 
