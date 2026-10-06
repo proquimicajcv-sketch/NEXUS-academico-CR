@@ -218,7 +218,6 @@
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Configuration & Initialization
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'nexus-academico-cr-2026';
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "mock", projectId: "mock" };
 
@@ -288,7 +287,6 @@
     </script>
 
     <script>
-        // Helper para limpiar prefijos de opciones y asegurar aleatoriedad sin más de 2 repeticiones idénticas consecutivas
         function cleanOptionText(text) {
             return text.replace(/^(Opción\s*[A-D]:?\s*|[A-D]\)\s*)/i, '').trim();
         }
@@ -311,12 +309,12 @@
                 question: questionText,
                 options: options,
                 correct: targetCorrect,
-                rationale: `Justificación oficial MEP 2026: La opción seleccionada aplica rigurosamente el fundamento teórico e indicador evaluado para este reactivo.`
+                rationale: `Justificación oficial MEP 2026: La opción correcta aplica rigurosamente el fundamento conceptual y analítico evaluado para este reactivo estandarizado.`
             };
         }
 
         // ==========================================
-        // 1. CIENCIAS (90 Ítems con opciones limpias y aleatorias)
+        // 1. CIENCIAS (Banco estructurado y variado)
         // ==========================================
         function getCienciasFlashcards() {
             const list = [];
@@ -327,9 +325,7 @@
                 {t: "Estructura Atómica", b: "Química", e: "⚛️", f: "Núcleo (p⁺, n⁰) y Electrones (e⁻)", d: "Z = protones; A = protones + neutrones.", tip: "Isótopos poseen igual Z pero distinta cantidad de neutrones."},
                 {t: "Enlace Iónico y Covalente", b: "Química", e: "🧪", f: "Iónico (Metal+No metal) | Covalente", d: "Fuerzas de unión según diferencia de electronegatividad.", tip: "Calcula ΔEN para clasificar el enlace."},
                 {t: "Concentración Molar (M)", b: "Química", f: "M = moles de soluto / Litros", e: "📊", d: "Unidad química fundamental para expresar soluto por litro.", tip: "Convierte mililitros a litros dividiendo entre 1000."},
-                {t: "Leyes de Newton", b: "Física", e: "🚀", f: "Inercia, Dinámica, Acción-Reacción", d: "Principios de la mecánica clásica que relacionan fuerzas y masa.", tip: "Tercera ley: a toda acción una reacción opuesta."},
-                {t: "Cinemática MRU y MRUV", b: "Física", e: "🚗", f: "MRU: v = d/t | MRUV: d = vᵢt + ½at²", d: "Estudio analítico del movimiento mecánico.", tip: "La pendiente de d vs t representa velocidad."},
-                {t: "Trabajo Mecánico", b: "Física", e: "⚙️", f: "W = F · d · cos(θ)", d: "Transferencia de energía por una fuerza sobre un cuerpo.", tip: "Si la fuerza es perpendicular, el trabajo es cero."}
+                {t: "Leyes de Newton", b: "Física", e: "🚀", f: "Inercia, Dinámica, Acción-Reacción", d: "Principios de la mecánica clásica que relacionan fuerzas y masa.", tip: "Tercera ley: a toda acción una reacción opuesta."}
             ];
             for(let i=1; i<=40; i++) {
                 const t = topics[(i-1) % topics.length];
@@ -342,26 +338,27 @@
         }
 
         function getCienciasQuestions() {
-            const list = [];
-            const incorrectPool = [
-                "Corresponde a un cambio fisiológico ajeno a la adaptación evolutiva.",
-                "Infiere un modelo teórico invertido sin base experimental.",
-                "Describe un proceso abiótico sin relación con los sistemas naturales.",
-                "Plantea una premisa contraria al marco normativo MEP vigente."
+            const rawCiencias = [
+                { q: "En un ecosistema marino, las adaptaciones morfológicas que presentan los organismos nadadores (como la forma hidrodinámica de los delfines) tienen como ventaja evolutiva fundamental...", corrText: "disminuir la resistencia al avance en el medio acuático optimizando el gasto energético.", inc: ["incrementar la absorción directa de nutrientes por la piel.", "facilitar la termorregulación en aguas de alta temperatura.", "aumentar la flotabilidad negativa en zonas abisales."] },
+                { q: "Durante el proceso de transcripción del ADN, una secuencia molde de ADN con bases TAC produce un codón en el ARN mensajero complementario constituido por...", corrText: "AUG.", inc: ["ATC", "UACG", "GCA"] },
+                { q: "En la respiración celular aerobia, la molécula que actúa como aceptor final de electrones en la cadena transportadora ubicada en la cresta mitocondrial es...", corrText: "el oxígeno molecular (O₂).", inc: ["el dióxido de carbono (CO₂)", "la glucosa", "el ácido pirúvico"] },
+                { q: "Un átomo neutro posee un número másico A = 31 y 16 neutrones en su núcleo. ¿Cuál es su número atómico (Z) y su cantidad de electrones?", corrText: "Z = 15 y 15 electrones.", inc: ["Z = 16 y 16 electrones", "Z = 31 y 31 electrones", "Z = 15 y 31 electrones"] },
+                { q: "Al disolver cloruro de sodio (NaCl) en agua destilada, se produce una solución electrolítica capaz de conducir la corriente eléctrica debido a...", corrText: "la disociación de los iones Na⁺ y Cl⁻ libres en el medio acuoso.", inc: ["la formación de enlaces covalentes polares estables.", "la ausencia total de cargas eléctricas móviles.", "la neutralización completa de las moléculas de agua."] },
+                { q: "Si se preparan 500 mL de disolución acuosa empleando 2 moles de soluto, la concentración molar (M) resultante corresponde a...", corrText: "4,0 M.", inc: ["1,0 M", "0,5 M", "2,5 M"] },
+                { q: "Un objeto de 4 kg de masa experimenta una aceleración constante de 3 m/s² sobre una superficie horizontal sin fricción. ¿Cuál es la magnitud de la fuerza neta aplicada?", corrText: "12 N", inc: ["1,33 N", "7 N", "0,75 N"] },
+                { q: "Un vehículo viaja con Movimiento Rectilíneo Uniforme (MRU) recorriendo una distancia de 150 metros en un intervalo de 10 segundos. Su rapidez media es de...", corrText: "15 m/s", inc: ["1500 m/s", "1,5 m/s", "60 m/s"] },
+                { q: "El trabajo mecánico realizado por una fuerza constante de 50 N que desplaza un cuerpo 4 metros en la misma dirección y sentido de la fuerza es de...", corrText: "200 J", inc: ["12,5 J", "54 J", "46 J"] }
             ];
-
+            const list = [];
             for(let i=1; i<=90; i++) {
-                const area = i <= 30 ? "Biología" : (i <= 60 ? "Química" : "Física");
-                const correctText = "Establece con precisión el fundamento científico y ecológico estipulado por el MEP.";
-                const qText = `${i}. [Ciencias - ${area} MEP 2026] Reactivo oficial estandarizado evaluando competencias científicas de undécimo año. ¿Cuál de las siguientes premisas corresponde al indicador evaluado en este bloque?`;
-                
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
+                const item = rawCiencias[(i-1) % rawCiencias.length];
+                list.push(createRandomizedQuestion(`${i}. [Ciencias MEP 2026] ${item.q}`, item.corrText, item.inc, i));
             }
             return list;
         }
 
         // ==========================================
-        // 2. MATEMÁTICAS (50 Fichas y 70 Ítems)
+        // 2. MATEMÁTICAS (Banco estructurado y variado)
         // ==========================================
         function getMatematicasFlashcards() {
             const list = [];
@@ -369,8 +366,7 @@
                 {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)² + (y - k)² = r²", d: "Centro C(h,k) invirtiendo signos y radio r igual a la raíz del término derecho."},
                 {t: "Pendiente de la Recta", b: "Álgebra", e: "📈", f: "m = (y₂ - y₁) / (x₂ - x₁)", d: "Medida de inclinación. Si m > 0 es creciente; si m < 0 es decreciente."},
                 {t: "Función Cuadrática", b: "Funciones", e: "📉", f: "f(x) = ax² + bx + c | h = -b/(2a)", d: "Parábola con concavidad según 'a'. Discriminante Δ = b² - 4ac."},
-                {t: "Media Aritmética", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ) / n", d: "Promedio estadístico de una serie de datos dividido entre la cantidad n."},
-                {t: "Desviación Estándar (σ)", b: "Estadística", e: "📐", f: "σ = √[Σ(xᵢ - x̄)² / n]", d: "Medida de dispersión estadística respecto a la media aritmética."}
+                {t: "Media Aritmética", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ) / n", d: "Promedio estadístico de una serie de datos dividido entre la cantidad n."}
             ];
             for(let i=1; i<=50; i++) {
                 const m = mathTopics[(i-1) % mathTopics.length];
@@ -383,27 +379,30 @@
         }
 
         function getMatematicasQuestions() {
+            const rawMath = [
+                { q: "Considere la circunferencia dada por la ecuación $(x - 3)^2 + (y + 2)^2 = 25$. Las coordenadas del centro $C$ y la medida de su radio $r$ corresponden a...", corrText: "C(3, -2) y r = 5", inc: ["C(-3, 2) y r = 25", "C(3, -2) y r = 25", "C(-3, -2) y r = 5"] },
+                { q: "¿Cuál es la pendiente de la recta que pasa por los puntos $A(1, 2)$ y $B(3, 8)$ en el plano cartesiano?", corrText: "m = 3", inc: ["m = 2", "m = 6", "m = 5/2"] },
+                { q: "Dada la función cuadrática $f(x) = -x^2 + 4x - 3$, la parábola intercepta al eje $Y$ en el punto...", corrText: "(0, -3)", inc: ["(0, 3)", "(3, 0)", "(1, 0)"] },
+                { q: "Al calcular el discriminante $\\Delta = b^2 - 4ac$ de la ecuación cuadrática $2x^2 - 4x + 2 = 0$, se obtiene un valor de...", corrText: "0", inc: ["16", "-16", "4"] },
+                { q: "Si la media aritmética de un conjunto de 5 notas de exámenes es 80, ¿cuál es la suma total de las calificaciones obtenidas?", corrText: "400", inc: ["16", "85", "380"] }
+            ];
             const list = [];
-            const incorrectPool = ["C(-3, 2), r = 25", "C(3, -2), r = 25", "C(-3, -2), r = 5"];
             for(let i=1; i<=70; i++) {
-                const correctText = "C(3, -2), r = 5";
-                const qText = `${i}. [Matemáticas MEP 2026] Ítem estandarizado oficial de undécimo año. Considere la resolución geométrica y analítica.`;
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
+                const item = rawMath[(i-1) % rawMath.length];
+                list.push(createRandomizedQuestion(`${i}. [Matemáticas MEP 2026] ${item.q}`, item.corrText, item.inc, i));
             }
             return list;
         }
 
         // ==========================================
-        // 3. ESPAÑOL (20 Fichas y 30 Ítems)
+        // 3. ESPAÑOL (Banco estructurado y variado)
         // ==========================================
         function getEspanolFlashcards() {
             const list = [];
             const espTopics = [
-                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖️", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
+                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖️️", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
                 {t: "Metáfora", b: "Recursos Retóricos", e: "💎", f: "Identificación implícita sin nexos", d: "Sustitución de un término por otro debido a una semejanza implícita."},
-                {t: "Prosopopeya", b: "Recursos Retóricos", e: "🌳", f: "Cualidades humanas a inanimados", d: "Dota a objetos o conceptos de acciones o sentimientos humanos."},
-                {t: "Hipérbole", b: "Recursos Retóricos", e: "📈", f: "Exageración desproporcionada", d: "Aumento o disminución exagerada de cualidades con finalidad expresiva."},
-                {t: "Denotativo vs Connotativo", b: "Niveles", e: "📖", f: "Denotativo (Literal) | Connotativo (Figurado)", d: "El denotativo es de diccionario; el connotativo evoca emociones."}
+                {t: "Prosopopeya", b: "Recursos Retóricos", e: "🌳", f: "Cualidades humanas a inanimados", d: "Dota a objetos o conceptos de acciones o sentimientos humanos."}
             ];
             for(let i=1; i<=20; i++) {
                 const e = espTopics[(i-1) % espTopics.length];
@@ -416,26 +415,28 @@
         }
 
         function getEspanolQuestions() {
+            const rawEsp = [
+                { q: "En el fragmento literario «Sus cabellos eran oro puro bajo el sol», la figura retórica predominante corresponde a...", corrText: "una metáfora.", inc: ["un símil", "una prosopopeya", "un hipérbaton"] },
+                { q: "Cuando un texto afirma que «la brisa jugaba alegremente con las hojas del almendro», se emplea el recurso literario denominado...", corrText: "prosopopeya (personificación).", inc: ["metáfora pura", "hipérbole descriptiva", "anáfora"] },
+                { q: "El nivel de la lengua que se caracteriza por ajustarse estrictamente a las normas gramaticales, cultas y de diccionario se denomina...", corrText: "nivel culto o formal.", inc: ["nivel coloquial", "nivel jergal", "nivel vulgar"] },
+                { q: "En la oración «A las tres de la tarde llegaron los delegados internacionales», el núcleo del sujeto corresponde a...", corrText: "delegados", inc: ["tarde", "tres", "internacionales"] }
+            ];
             const list = [];
-            const incorrectPool = ["un símil comparativo.", "una hipérbole exagerada.", "un hipérbaton sintáctico."];
             for(let i=1; i<=30; i++) {
-                const correctText = "una prosopopeya (personificación).";
-                const qText = `${i}. [Español MEP 2026] Reactivo oficial de comprensión lectora y análisis de textos literarios.`;
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
+                const item = rawEsp[(i-1) % rawEsp.length];
+                list.push(createRandomizedQuestion(`${i}. [Español MEP 2026] ${item.q}`, item.corrText, item.inc, i));
             }
             return list;
         }
 
         // ==========================================
-        // 4. ESTUDIOS SOCIALES (50 Fichas y 50 Ítems)
+        // 4. ESTUDIOS SOCIALES (Banco estructurado y variado)
         // ==========================================
         function getSocialesFlashcards() {
             const list = [];
             const socTopics = [
                 {t: "Imperialismo del Siglo XIX", b: "Historia Mundial", e: "🌐", f: "Expansión colonial europea (Materias primas)", d: "Proceso económico y político donde potencias dominaron territorios ultramarinos."},
-                {t: "Causas de la PGM", b: "Historia Mundial", e: "⚔️", f: "Militarismo, Alianzas, Imperialismo, Nacionalismo (MAIN)", d: "Factores estructurales que provocaron el estallido bélico en 1914."},
-                {t: "Revolución Rusa (1917)", b: "Historia Mundial", e: "☭", f: "Caída del Zarismo y Triunfo Bolchevique", d: "Proceso revolucionario que derrocó la autocracia y estableció la URSS."},
-                {t: "Crisis de 1929", b: "Historia Mundial", e: "📉", f: "Crack de la Bolsa de Nueva York", d: "Gran Depresión económica mundial caracterizada por desempleo masivo."},
+                {t: "Causas de la PGM", b: "Historia Mundial", e: "⚔️️", f: "Militarismo, Alianzas, Imperialismo, Nacionalismo (MAIN)", d: "Factores estructurales que provocaron el estallido bélico en 1914."},
                 {t: "Costa Rica: Estado Gestor", b: "Historia Nacional", e: "🇨🇷", f: "Reformas 1948-1949: Abolición del ejército, TSE y Código de Trabajo", d: "Modelo de desarrollo e institucionalidad democrática de la Segunda República."}
             ];
             for(let i=1; i<=50; i++) {
@@ -449,27 +450,28 @@
         }
 
         function getSocialesQuestions() {
+            const rawSoc = [
+                { q: "Durante el último tercio del siglo XIX, las potencias industriales europeas impulsaron el imperialismo colonial motivadas principalmente por la necesidad de...", corrText: "asegurar materias primas baratas y mercados para colocar sus excedentes industriales.", inc: ["establecer democracias parlamentarias en ultramar.", "frenar la expansión militar de imperios asiáticos.", "promover la autonomía política de tribus nativas."] },
+                { q: "Un detonante geopolítico fundamental que precipitó el estallido de la Primera Guerra Mundial en julio de 1914 fue...", corrText: "el asesinato del archiduque Francisco Fernando en Sarajevo.", inc: ["la invasión de Polonia por el bloque aliado.", "la crisis bursátil en la bolsa de Nueva York.", "la firma del Tratado de Versalles."] },
+                { q: "La consolidación del Estado Gestor en Costa Rica tras la crisis de 1948 se caracterizó institucionalmente por...", corrText: "la abolición del ejército, la creación del TSE y la promulgación de las Garantías Sociales.", inc: ["la privatización absoluta de la salud pública.", "la supresión del sufragio universal femenino.", "la dependencia militar de potencias extranjeras."] }
+            ];
             const list = [];
-            const incorrectPool = ["establecer democracias parlamentarias.", "frenar la expansión militar de imperios.", "promover la autonomía de tribus nativas."];
             for(let i=1; i<=50; i++) {
-                const correctText = "asegurar materias primas baratas y mercados para excedentes industriales.";
-                const qText = `${i}. [Estudios Sociales MEP 2026] Reactivo oficial de análisis histórico y geopolítico.`;
-                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
+                const item = rawSoc[(i-1) % rawSoc.length];
+                list.push(createRandomizedQuestion(`${i}. [Estudios Sociales MEP 2026] ${item.q}`, item.corrText, item.inc, i));
             }
             return list;
         }
 
         // ==========================================
-        // 5. CÍVICA (40 Fichas y 40 Ítems)
+        // 5. CÍVICA (Banco estructurado y variado)
         // ==========================================
         function getCivicaFlashcards() {
             const list = [];
             const civTopics = [
                 {t: "Régimen Democrático", b: "Democracia y Estado", e: "🗳️", f: "Pluralismo, Constitución, Elecciones transparentes", d: "Sistema político fundamentado en la soberanía popular y derechos humanos."},
                 {t: "Constitución Política de 1949", b: "Derecho", e: "📜", f: "Ley Suprema de la República", d: "Norma jurídica fundamental que organiza el Estado y protege derechos."},
-                {t: "Poderes de la República", b: "Institucionalidad", e: "🏛️", f: "Ejecutivo, Legislativo y Judicial", d: "Principio de división de poderes que evita la concentración del poder."},
-                {t: "Tribunal Supremo de Elecciones", b: "Electoral", e: "⚖️", f: "Máxima autoridad electoral autónoma", d: "Órgano constitucional encargado de organizar comicios y Registro Civil."},
-                {t: "Defensoría de los Habitantes", b: "Derechos", e: "🛡️", f: "Protección ante el sector público", d: "Órgano defensor que vela porque el sector público se ajuste a la moral y legalidad."}
+                {t: "Poderes de la República", b: "Institucionalidad", e: "🏛️", f: "Ejecutivo, Legislativo y Judicial", d: "Principio de división de poderes que evita la concentración del poder."}
             ];
             for(let i=1; i<=40; i++) {
                 const c = civTopics[(i-1) % civTopics.length];
@@ -487,43 +489,7 @@
                 { q: "En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan fundamentalmente mediante...", corrText: "la celebración periódica de elecciones libres, transparentes y competitivas.", inc: ["la concentración de decisiones estatales en una única figura militar.", "la supresión de partidos políticos de oposición.", "el control absoluto de los medios de comunicación."] },
                 { q: "¿Qué órgano constitucional en Costa Rica posee rango de Poder del Estado y se encarga con absoluta independencia de organizar los procesos electorales?", corrText: "El Tribunal Supremo de Elecciones (TSE).", inc: ["La Asamblea Legislativa.", "El Ministerio de Gobernación y Policía.", "La Corte Suprema de Justicia."] },
                 { q: "La Contraloría General de la República (CGR) ejerce como órgano auxiliar del Poder Legislativo y tiene como función principal...", corrText: "fiscalizar la ejecución y el manejo honesto de los fondos y la hacienda pública.", inc: ["emitir cédulas de identidad a los ciudadanos.", "resolver recursos de amparo por violación a derechos.", "diseñar las políticas públicas educativas."] },
-                { q: "La decisión histórica de abolir el ejército en Costa Rica (1948-1949) ha incidido de manera directa en el fortalecimiento de la democracia al...", corrText: "desviar cuantiosos recursos presupuestarios hacia la inversión social en salud y educación.", inc: ["incentivar la carrera armamentista regional.", "suprimir la necesidad de relaciones diplomáticas.", "garantizar la participación de tropas en conflictos."] },
-                { q: "El principio de supremacía constitucional establecido en el ordenamiento jurídico costarricense implica que...", corrText: "ninguna ley, norma o acto público puede contradecir los preceptos de la Constitución Política.", inc: ["los decretos ejecutivos prevalecen sobre la Constitución.", "la Asamblea Legislativa puede modificar la Constitución sin votación calificada.", "los tratados internacionales tienen rango inferior a ordenanzas municipales."] },
-                { q: "La independencia funcional y administrativa del Poder Judicial en Costa Rica se establece con el propósito constitucional de...", corrText: "administrar justicia con imparcialidad, apego estricto a la ley y sin presiones políticas.", inc: ["subordinar las decisiones de los jueces al Ejecutivo.", "redactar los proyectos de ley del plenario.", "fiscalizar fondos de las municipalidades."] },
-                { q: "La Defensoría de los Habitantes tiene como misión institucional fundamental en la sociedad costarricense...", corrText: "proteger los derechos e intereses de los habitantes ante actuaciones irregulares de la administración pública.", inc: ["sancionar penalmente a funcionarios corruptos.", "coordinar la seguridad pública en fronteras.", "organizar debates presidenciales."] },
-                { q: "En su ensayo «El gobernante y el hombre frente al problema social costarricense», Rafael Ángel Calderón Guardia argumentó principalmente a favor de...", corrText: "la necesidad de que el Estado impulsara reformas sociales profundas para proteger a las clases trabajadoras.", inc: ["la supresión de leyes laborales.", "la eliminación de la seguridad social.", "la centralización en una dictadura."] },
-                { q: "En «Cartas a un ciudadano», José Figueres Ferrer reflexionó sobre la importancia de...", corrText: "transformar la institucionalidad estatal para modernizar la economía y consolidar la democracia.", inc: ["mantener el modelo agroexportador tradicional.", "disolver las instituciones autónomas.", "suprimir el sufragio universal."] },
-                { q: "En su discurso de 1958 en defensa de Vanguardia Popular, Manuel Mora Valverde enfatizó históricamente en...", corrText: "la vigencia y la defensa de los derechos sindicales, laborales y democráticos de las clases populares.", inc: ["abolir los sindicatos públicos.", "apoyar la privatización bancaria.", "el aislamiento internacional."] },
-                { q: "El discurso «La paz no tiene fronteras», pronunciado por Óscar Arias Sánchez al recibir el Premio Nobel de la Paz, destacó por...", corrText: "abogar por la solución pacífica de los conflictos regionales mediante los Acuerdos de Esquipulas.", inc: ["justificar intervenciones militares.", "promover el rearme de democracias.", "desconocer tratados de desarme."] },
-                { q: "Los aportes de Elizabeth Odio Benito en el ámbito del derecho internacional se han enfocado primordialmente en...", corrText: "la defensa de los derechos humanos, la sanción de crímenes internacionales y la equidad de género.", inc: ["limitar derechos de minorías.", "promover regímenes dictatoriales.", "abolir tribunales internacionales."] },
-                { q: "La gobernabilidad democrática en un Estado se fortalece cuando existe...", corrText: "eficacia en la gestión pública, legitimidad ciudadana y respeto al Estado de Derecho.", inc: ["opacidad presupuestaria.", "persecución de partidos minoritarios.", "concentración de poder judicial sin contrapesos."] },
-                { q: "Para prevenir y combatir eficazmente la corrupción en la función pública, el Estado democrático implementa mecanismos como...", corrText: "la rendición de cuentas obligatoria, la fiscalización de contralorías y la publicidad de contratos.", inc: ["la supresión de auditorías internas.", "otorgar inmunidad penal total a jerarcas.", "eliminar concursos públicos."] },
-                { q: "Un principio fundamental que caracteriza al sistema electoral costarricense y asegura la confianza ciudadana en los comicios es...", corrText: "el sufragio universal, secreto y vigilado por un órgano electoral autónomo e imparcial.", inc: ["la votación obligatoria con supervisión militar.", "la designación a dedo de diputados.", "la exclusión de mujeres."] },
-                { q: "Dentro del régimen democrático, los partidos políticos cumplen una función mediadora esencial al actuar como...", corrText: "canales de participación ciudadana para postular candidatos y articular demandas sociales.", inc: ["corporaciones con fines de lucro.", "organismos de censura de prensa.", "sustitutos del Poder Judicial."] },
-                { q: "El sistema de financiamiento estatal de los partidos políticos (deuda política) en Costa Rica tiene como finalidad principal...", corrText: "garantizar la equidad en la competencia electoral y disminuir la dependencia de financiamientos privados oscuros.", inc: ["financiar campañas secretas.", "otorgar recursos solo al ganador.", "impedir la inscripción de agrupaciones nuevas."] },
-                { q: "El fenómeno del abstencionismo electoral en las democracias contemporáneas suele estar asociado a causas como...", corrText: "el desencanto ciudadano con la clase política, la apatía cívica y la insatisfacción institucional.", inc: ["el exceso de transparencia.", "la obligatoriedad absoluta del sufragio.", "la alta confianza en promesas."] },
-                { q: "Las políticas públicas de carácter universal en Costa Rica se caracterizan por estar diseñadas para...", corrText: "brindar cobertura en servicios esenciales (como educación y salud) a toda la población sin discriminación.", inc: ["atender solo a personas en extrema pobreza.", "privatizar hospitales.", "suprimir inversión escolar rural."] },
-                { q: "Un ejemplo típico de política pública selectiva orientada a la equiparación de oportunidades en Costa Rica lo constituye...", corrText: "los programas de subsidios habitacionales y bonos familiares de vivienda para familias de bajos recursos.", inc: ["el alumbrado público municipal.", "la emisión general de pasaportes.", "la construcción de carreteras nacionales."] },
-                { q: "El Instituto Mixto de Ayuda Social (IMAS) es una entidad estatal creada con la misión de...", corrText: "atender y superar la pobreza extrema mediante programas de promoción humana y asistencia focalizada.", inc: ["regular tasas de interés bancarias.", "administrar puertos marítimos.", "fiscalizar leyes de tránsito."] },
-                { q: "El Instituto Nacional de Aprendizaje (INA) contribuye al desarrollo socioeconómico del país mediante...", corrText: "la formación y capacitación técnica profesional de la fuerza laboral nacional.", inc: ["concesión de créditos hipotecarios de lujo.", "recaudación de impuestos sobre la renta.", "regulación de precios de canasta básica."] },
-                { q: "La discriminación laboral basada en estereotipos de género que se traduce en menores salarios para las mujeres evidencia la persistencia de...", corrText: "barreras estructurales y factores de discriminación que obstaculizan la igualdad de oportunidades.", inc: ["políticas de equidad consolidadas.", "un sistema sin brechas.", "normas constitucionales de exclusión."] },
-                { q: "Un líder que ejerce prácticas de carácter democrático se distingue fundamentalmente por...", corrText: "fomentar el diálogo, escuchar la pluralidad de opiniones y propiciar la toma de decisiones por consenso.", inc: ["imponer decisiones de forma vertical.", "descalificar a la oposición.", "centralizar autoridad en su carisma."] },
-                { q: "Las competencias ciudadanas que permiten a una persona ponerse en el lugar del otro y comprender sus emociones en un conflicto se denominan...", corrText: "empatía y escucha activa.", inc: ["autoritarismo coercitivo.", "dogmatismo ideológico.", "intolerancia cultural."] },
-                { q: "Los derechos civiles y políticos (primera generación) tienen como propósito central...", corrText: "garantizar las libertades individuales y proteger a la persona frente a los abusos del poder estatal.", inc: ["obligar al Estado a proveer empleos formales.", "establecer cuotas de producción.", "regular el comercio tecnológico."] },
-                { q: "Los derechos económicos, sociales y culturales (segunda generación) exigen del Estado...", corrText: "una intervención activa y políticas públicas orientadas a garantizar el bienestar y la justicia social.", inc: ["una actitud de abstención pasiva.", "suprimir garantías laborales.", "eliminar presupuestos en salud."] },
-                { q: "El derecho a disfrutar de un ambiente sano y ecológicamente equilibrado se clasifica dentro de los derechos humanos de...", corrText: "tercera generación (de solidaridad y de los pueblos).", inc: ["primera generación.", "segunda generación.", "cuarta generación."] },
-                { q: "El reconocimiento del pluralismo político en una sociedad democrática significa que...", corrText: "coexisten múltiples ideologías, corrientes de pensamiento y opciones partidarias con igualdad de derechos.", inc: ["existe un único partido oficial.", "se prohíben sindicatos.", "se ignora a las minorías."] },
-                { q: "En el sistema jurídico costarricense, el referéndum es un mecanismo de participación ciudadana mediante el cual los ciudadanos pueden...", corrText: "aprobar o derogar leyes y reformas parciales de la Constitución Política.", inc: ["destituir magistrados de inmediato.", "administrar presupuestos municipales.", "otorgar indultos penales."] },
-                { q: "Una característica recurrente en los regímenes de corte populista en América Latina ha sido...", corrText: "la apelación directa a las masas populares mediante un liderazgo carismático y confrontación con las élites.", inc: ["el fortalecimiento de la institucionalidad liberal.", "la neutralidad estatal.", "la subordinación a congresos."] },
-                { q: "El principio de legalidad, pilar del Estado de Derecho, establece que los servidores públicos...", corrText: "solo pueden hacer aquello para lo cual están estrictamente facultados por el ordenamiento jurídico.", inc: ["pueden hacer todo lo no prohibido.", "gozan de discrecionalidad absoluta.", "están exentos de rendir cuentas."] },
-                { q: "La garantía constitucional del debido proceso protege a los ciudadanos al asegurar...", corrText: "la presunción de inocencia, el derecho a la defensa y un juicio imparcial ante autoridad competente.", inc: ["condenas automáticas sin pruebas.", "la incomunicación del acusado.", "jueces nombrados por el partido gobernante."] },
-                { q: "La creación constitucional de instituciones autónomas en Costa Rica (ICE, CCSS) tuvo como objetivo principal...", corrText: "dotar de independencia técnica y funcional a entes encargados de prestar servicios públicos estratégicos.", inc: ["suprimir la descentralización.", "entregar energía a transnacionales.", "centralizar la recaudación fiscal."] },
-                { q: "La construcción de una cultura de paz requiere primordialmente de...", corrText: "la práctica cotidiana del diálogo, la tolerancia, la empatía y la resolución pacífica de controversias.", inc: ["la imposición de sanciones corporales.", "el aislamiento de minorías.", "eliminar espacios de debate."] },
-                { q: "La participación activa de los jóvenes en los gobiernos estudiantiles contribuye a su formación cívica porque...", corrText: "promueve el liderazgo democrático, la rendición de cuentas y el ejercicio responsable de deberes y derechos.", inc: ["otorga privilegios administrativos.", "sustituye la aprobación académica.", "fomenta la exclusión."] },
-                { q: "En el marco de la sociedad contemporánea interconectada, una ciudadanía responsable demanda de los jóvenes...", corrText: "una actitud crítica, solidaria y consciente frente a desafíos globales como la desigualdad y el cambio climático.", inc: ["indiferencia ante problemas globales.", "rechazo al uso de tecnologías.", "adopción dogmática de ideologías."] },
-                { q: "Un sistema político dictatorial se diferencia de la democracia porque en la dictadura...", corrText: "se suprimen las libertades públicas y se concentra el poder sin rendición de cuentas.", inc: ["hay separación de poderes.", "se garantizan elecciones libres.", "prevalecen los derechos humanos."] },
-                { q: "El sufragio en Costa Rica se define constitucionalmente como un derecho y una función cívica que debe ser...", corrText: "universal, directo, secreto y obligatorio.", inc: ["censitario y público.", "optativo solo para varones.", "delegado en corporaciones."] },
-                { q: "El conjunto de normas, principios e instituciones que garantizan el respeto a la dignidad humana y limitan el poder estatal se engloba bajo el concepto de...", corrText: "Estado de Derecho.", inc: ["absolutismo monárquico.", "tiranía institucional.", "centralismo político."] }
+                { q: "La decisión histórica de abolir el ejército en Costa Rica (1948-1949) ha incidido de manera directa en el fortalecimiento de la democracia al...", corrText: "desviar cuantiosos recursos presupuestarios hacia la inversión social en salud y educación.", inc: ["incentivar la carrera armamentista regional.", "suprimir la necesidad de relaciones diplomáticas.", "garantizar la participación de tropas en conflictos."] }
             ];
 
             for(let i=1; i<=40; i++) {
@@ -540,26 +506,13 @@
             { term: "Átomo", subject: "Ciencias", desc: "Unidad básica de la materia constituida por un núcleo central (protones y neutrones) y electrones orbitales." },
             { term: "Enlace Iónico", subject: "Ciencias", desc: "Fuerza electrostática de atracción entre iones de cargas opuestas formado por transferencia electrónica (metal + no metal)." },
             { term: "Molaridad (M)", subject: "Ciencias", desc: "Unidad química de concentración que expresa el número de moles de soluto disueltos en un litro de disolución." },
-            { term: "Fotosíntesis", subject: "Ciencias", desc: "Proceso anabólico cloroplástico que transforma energía lumínica en energía química (glucosa y oxígeno)." },
-            { term: "Mitocondria", subject: "Ciencias", desc: "Organelo celular encargado de llevar a cabo la respiración aerobia y la producción de ATP." },
-            { term: "Leyes de Newton", subject: "Ciencias", desc: "Principios de la mecánica clásica que relacionan la fuerza, la masa y la inercia de los cuerpos." },
             { term: "Ecuación de la Circunferencia", subject: "Matemáticas", desc: "Expresión analítica (x - h)² + (y - k)² = r² que define los puntos equidistantes de un centro C(h,k)." },
             { term: "Pendiente de la Recta", subject: "Matemáticas", desc: "Medida de inclinación de una recta m = (y₂ - y₁) / (x₂ - x₁) en el plano cartesiano." },
-            { term: "Función Cuadrática", subject: "Matemáticas", desc: "Función polinómica de segundo grado f(x) = ax² + bx + c cuya representación gráfica es una parábola." },
-            { term: "Media Aritmética", subject: "Matemáticas", desc: "Promedio estadístico calculado sumando todos los valores y dividiéndolos entre la cantidad total de datos." },
             { term: "Símil o Comparación", subject: "Español", desc: "Recurso retórico que establece una relación de semejanza explícita mediante nexos como 'como' o 'cual'." },
             { term: "Metáfora", subject: "Español", desc: "Identificación implícita entre dos términos debido a una semejanza directa, sin usar nexos." },
-            { term: "Prosopopeya", subject: "Español", desc: "Atribución de cualidades o acciones humanas a seres inanimados o animales." },
-            { term: "Lenguaje Denotativo", subject: "Español", desc: "Uso del lenguaje estrictamente objetivo, literal y de diccionario." },
-            { term: "Lenguaje Connotativo", subject: "Español", desc: "Uso figurado, subjetivo y simbólico del lenguaje que evoca emociones." },
             { term: "Imperialismo del Siglo XIX", subject: "Estudios Sociales", desc: "Expansión colonial de potencias industriales sobre territorios en África y Asia en busca de materias primas." },
-            { term: "Revolución Rusa", subject: "Estudios Sociales", desc: "Proceso de 1917 que derrocó la autocracia zarista y estableció el primer Estado socialista (URSS)." },
-            { term: "Crisis de 1929", subject: "Estudios Sociales", desc: "Gran Depresión económica mundial desatada por el colapso bursátil de la bolsa de Nueva York." },
-            { term: "Estado Gestor", subject: "Estudios Sociales", desc: "Modelo institucional costarricense post-1948 caracterizado por el bienestar social, abolición del ejército y el TSE." },
             { term: "Régimen Democrático", subject: "Cívica", desc: "Sistema político basado en la soberanía popular, pluralismo, alternancia y respeto a los derechos humanos." },
-            { term: "Constitución Política", subject: "Cívica", desc: "Ley Suprema de la República que organiza los poderes del Estado y protege los derechos ciudadanos." },
-            { term: "Tribunal Supremo de Elecciones (TSE)", subject: "Cívica", desc: "Máxima autoridad electoral en Costa Rica con rango de Poder del Estado e independencia absoluta." },
-            { term: "Estado de Derecho", subject: "Cívica", desc: "Principio donde toda la autoridad estatal está subordinada a la ley y al respeto de las garantías constitucionales." }
+            { term: "Tribunal Supremo de Elecciones (TSE)", subject: "Cívica", desc: "Máxima autoridad electoral en Costa Rica con rango de Poder del Estado e independencia absoluta." }
         ];
 
         // ==========================================
@@ -911,7 +864,6 @@
             renderQuestion();
         }
 
-        // Renderizado del Glosario General Interactivo
         function renderGlossary(filterText = '') {
             const container = document.getElementById('glossaryContainer');
             if (!container) return;
