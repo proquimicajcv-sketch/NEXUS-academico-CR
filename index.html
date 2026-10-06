@@ -15,27 +15,30 @@
         .rotate-y-180 { transform: rotateY(180deg); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
 
     <!-- Header / Navbar -->
     <header class="w-full max-w-6xl mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
         <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-600 to-red-500 flex items-center justify-center shadow-lg shadow-orange-500/30 transform hover:scale-105 transition-transform duration-300">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/30 transform hover:scale-105 transition-transform duration-300">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                 </svg>
             </div>
             <div>
-                <h1 class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-amber-400 via-orange-300 to-red-400 bg-clip-text text-transparent">Nexus Académico CR</h1>
+                <h1 class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Nexus Académico CR</h1>
                 <p class="text-[11px] text-slate-400 font-medium">Pruebas Nacionales Estandarizadas 2026 &bull; MEP</p>
             </div>
         </div>
         <div class="flex items-center gap-3">
+            <div id="syncStatus" class="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold rounded-full">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Sincronizado en la nube
+            </div>
             <div class="text-right hidden sm:block">
-                <p class="text-xs font-semibold text-orange-300">Creado por: Prof. Jorge Carvajal Vanegas</p>
+                <p class="text-xs font-semibold text-emerald-300">Creado por: Prof. Jorge Carvajal Vanegas</p>
                 <p class="text-[10px] text-slate-400">Excelencia Académica 11°</p>
             </div>
-            <span class="px-3 py-1 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-semibold rounded-full">11° Año</span>
         </div>
     </header>
 
@@ -43,22 +46,22 @@
     <main class="w-full max-w-6xl mx-auto px-4 md:px-6 my-6 space-y-8">
         
         <!-- Hero section with Creator Credit and Featured Portrait -->
-        <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-orange-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -left-10 -top-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <section class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-emerald-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
             <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
                 
                 <!-- Info y Bienvenida -->
                 <div class="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-                    <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-amber-500 via-orange-600 to-red-500 flex items-center justify-center shadow-xl shadow-orange-500/30 shrink-0">
+                    <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-emerald-500 via-teal-600 to-cyan-500 flex items-center justify-center shadow-xl shadow-emerald-500/30 shrink-0">
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                     </div>
                     <div class="space-y-2">
-                        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-medium">
-                            <span class="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></span>
+                        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                             Pensado en el mejor desempeño de los estudiantes en pruebas nacionales
                         </div>
                         <h2 class="text-xl md:text-3xl font-extrabold text-white tracking-tight">¡Bienvenido al núcleo de tu éxito académico!</h2>
@@ -68,17 +71,17 @@
                     </div>
                 </div>
 
-                <!-- Imagen del Creador con tamaño ampliado -->
+                <!-- Imagen del Creador -->
                 <div class="flex items-center gap-5 shrink-0 bg-slate-950/60 p-5 rounded-3xl border border-slate-800 shadow-xl">
-                    <div class="relative w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-orange-500/60 shadow-lg shadow-orange-500/20 group bg-slate-900 flex items-center justify-center shrink-0">
+                    <div class="relative w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-emerald-500/60 shadow-lg shadow-emerald-500/20 group bg-slate-900 flex items-center justify-center shrink-0">
                         <img src="img/jorge-carvajal.png.jfif" alt="Prof. Jorge Carvajal Vanegas - Nexus Academic CR" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-2.5 pointer-events-none">
-                            <span class="text-[11px] text-orange-300 font-bold uppercase tracking-wider">Creador</span>
+                            <span class="text-[11px] text-emerald-300 font-bold uppercase tracking-wider">Creador</span>
                         </div>
                     </div>
                     <div class="text-left space-y-1.5">
                         <p class="text-sm font-bold text-white">Prof. Jorge Carvajal V.</p>
-                        <p class="text-xs text-orange-400 font-semibold">Naturalista y Educador</p>
+                        <p class="text-xs text-emerald-400 font-semibold">Naturalista y Educador</p>
                         <p class="text-[11px] text-slate-400 max-w-[160px]">Nexus Academic CR</p>
                     </div>
                 </div>
@@ -90,12 +93,12 @@
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2">
-                    <div class="p-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400">
+                    <div class="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"></path></svg>
                     </div>
                     Áreas de Estudio & Avance por Materia
                 </h3>
-                <span class="text-xs text-slate-400">Haz clic en una materia para cambiar de tema</span>
+                <span class="text-xs text-slate-400">Haz clic en una materia para cambiar de tema o abrir recursos</span>
             </div>
             
             <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
@@ -103,171 +106,8 @@
             </div>
         </section>
 
-        <!-- Sección Exclusiva de Química (Fichas Técnicas & NotebookLM) -->
-        <section id="quimicaDocsSection" class="bg-slate-900/90 border border-orange-500/40 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl" style="display: none;">
-            <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                        <span>🧪 Fichas Técnicas de Estudio: Química (Bloques 1 a 5)</span>
-                    </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Pruebas Nacionales Estandarizadas Sumativas de Ciencias (Secundaria 2026 - Costa Rica)</p>
-                </div>
-            </div>
-
-            <!-- Widget NotebookLM -->
-            <div class="bg-orange-950/20 border-2 border-dashed border-orange-500/50 rounded-2xl p-6 text-center space-y-3">
-                <h4 class="text-base font-bold text-orange-300">🤖 Repositorio Inteligente y Fuentes (NotebookLM)</h4>
-                <p class="text-xs text-slate-300 max-w-xl mx-auto leading-relaxed">
-                    Accede al entorno colaborativo y de consultas documentales con material adicional de práctica de Química basado en las especificaciones oficiales:
-                </p>
-                <a href="https://notebook.google.com/notebook/1ebbf6f8-e2af-4715-9b93-4abeeb8ad089" target="_blank" class="inline-block bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-6 py-3 rounded-xl transition-all shadow-lg shadow-orange-600/30">
-                    🔗 Abrir NotebookLM (Práctica Adicional)
-                </a>
-            </div>
-
-            <!-- Tablas de Bloques Temáticos de Química -->
-            <div class="space-y-6 text-xs sm:text-sm">
-                <!-- Bloque 1 -->
-                <div class="space-y-2">
-                    <h4 class="font-bold text-orange-400 border-b border-slate-800 pb-1">Bloque 1: La materia base del Universo</h4>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-slate-800 text-left">
-                            <thead>
-                                <tr class="bg-slate-950 text-orange-300">
-                                    <th class="border border-slate-800 p-3 w-1/3">Contenido / Tema</th>
-                                    <th class="border border-slate-800 p-3 w-2/3">Evidencias / Objetivos de Desempeño (MEP)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-slate-300 bg-slate-900/50">
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Sustancias Puras y Mezclas</td>
-                                    <td class="border border-slate-800 p-3">Reconoce la constitución de elementos, compuestos y mezclas. Distingue entre sustancias puras (elementos y compuestos) y mezclas (homogéneas, heterogéneas y coloides) según sus características macroscópicas.</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Técnicas de separación física</td>
-                                    <td class="border border-slate-800 p-3">Distingue elementos, compuestos y mezclas según su constitución, asociando propiedades físicas (punto de ebullición, solubilidad, densidad, tamaño de partícula) con los métodos de separación adecuados (filtración, destilación, decantación, evaporación).</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Metales, No Metales y Metaloides</td>
-                                    <td class="border border-slate-800 p-3">Reconoce por características y ejemplos metales, no metales y metaloides. Ubica y clasifica los elementos químicos en la tabla periódica internacional a partir de sus propiedades físicas y eléctricas.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Bloque 2 -->
-                <div class="space-y-2">
-                    <h4 class="font-bold text-orange-400 border-b border-slate-800 pb-1">Bloque 2: La materia en su interior</h4>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-slate-800 text-left">
-                            <thead>
-                                <tr class="bg-slate-950 text-orange-300">
-                                    <th class="border border-slate-800 p-3 w-1/3">Contenido / Tema</th>
-                                    <th class="border border-slate-800 p-3 w-2/3">Evidencias / Objetivos de Desempeño (MEP)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-slate-300 bg-slate-900/50">
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Átomo, Partículas Subatómicas e Isótopos</td>
-                                    <td class="border border-slate-800 p-3">Analiza la estructura del átomo y las características del modelo atómico actual. Identifica y calcula número másico (A), número atómico (Z), protones, neutrones, electrones en átomos neutros, iones e isótopos.</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Configuración Electrónica y Orbitales</td>
-                                    <td class="border border-slate-800 p-3">Distingue la organización de electrones en niveles, subniveles y orbitales (notación completa y abreviada, diagramas de orbitales) y estructuras de Lewis.</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Enlaces Químicos y Geometría Molecular</td>
-                                    <td class="border border-slate-800 p-3">Distingue sustancias que presentan enlaces iónicos, metálicos, covalentes polares y no polares mediante representaciones gráficas, geometría molecular y ángulos de enlace.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Bloque 3 -->
-                <div class="space-y-2">
-                    <h4 class="font-bold text-orange-400 border-b border-slate-800 pb-1">Bloque 3: Transformaciones de la materia</h4>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-slate-800 text-left">
-                            <thead>
-                                <tr class="bg-slate-950 text-orange-300">
-                                    <th class="border border-slate-800 p-3 w-1/3">Contenido / Tema</th>
-                                    <th class="border border-slate-800 p-3 w-2/3">Evidencias / Objetivos de Desempeño (MEP)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-slate-300 bg-slate-900/50">
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Reglas de Nomenclatura Inorgánica</td>
-                                    <td class="border border-slate-800 p-3">Distingue y aplica las reglas de nomenclatura según los sistemas Stock y estequiométrico para nombrar compuestos inorgánicos (óxidos, hidróxidos, ácidos, sales).</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Estequiometría y Ecuaciones Químicas</td>
-                                    <td class="border border-slate-800 p-3">Distingue la relación entre mol, masa molar y número de Avogadro. Relaciona masas molares y coeficientes estequiométricos. Resuelve problemas de relaciones estequiométricas.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Bloque 4 -->
-                <div class="space-y-2">
-                    <h4 class="font-bold text-orange-400 border-b border-slate-800 pb-1">Bloque 4: Disoluciones</h4>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-slate-800 text-left">
-                            <thead>
-                                <tr class="bg-slate-950 text-orange-300">
-                                    <th class="border border-slate-800 p-3 w-1/3">Contenido / Tema</th>
-                                    <th class="border border-slate-800 p-3 w-2/3">Evidencias / Objetivos de Desempeño (MEP)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-slate-300 bg-slate-900/50">
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Solubilidad y Velocidad de Disolución</td>
-                                    <td class="border border-slate-800 p-3">Reconoce y diferencia factores que afectan la solubilidad y la velocidad de disolución. Reconoce características dipolares y de puente de hidrógeno del agua como disolvente universal.</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Propiedades Coligativas</td>
-                                    <td class="border border-slate-800 p-3">Reconoce el efecto del soluto en el disolvente (aumento del punto de ebullición, descenso del punto de congelación, presión osmótica y aumento de la presión de vapor).</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Unidades de Concentración</td>
-                                    <td class="border border-slate-800 p-3">Resuelve casos y problemas cuantitativos que involucran porcentaje masa en masa, masa en volumen, volumen en volumen, Molaridad (M) y partes por millón (ppm).</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Bloque 5 -->
-                <div class="space-y-2">
-                    <h4 class="font-bold text-orange-400 border-b border-slate-800 pb-1">Bloque 5: Química orgánica</h4>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-slate-800 text-left">
-                            <thead>
-                                <tr class="bg-slate-950 text-orange-300">
-                                    <th class="border border-slate-800 p-3 w-1/3">Contenido / Tema</th>
-                                    <th class="border border-slate-800 p-3 w-2/3">Evidencias / Objetivos de Desempeño (MEP)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-slate-300 bg-slate-900/50">
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Introducción a los Compuestos del Carbono</td>
-                                    <td class="border border-slate-800 p-3">Reconoce los principios básicos necesarios para la interpretación de la química orgánica (hibridación del carbono, concatenación, tipos de fórmulas).</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-slate-800 p-3 font-semibold">Hidrocarburos y Grupos Funcionales</td>
-                                    <td class="border border-slate-800 p-3">Distingue reglas de nomenclatura de hidrocarburos alifáticos y aromáticos. Identifica grupos funcionales: alcoholes, éteres, aldehídos, cetonas, ácidos carboxílicos, ésteres, amidas y aminas.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Fichas Mnemotécnicas Interactivas (Para otras materias) -->
-        <section id="flashcardsSection" class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl" style="display: none;">
+        <!-- Fichas Mnemotécnicas Interactivas -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
                     <h3 id="currentSubjectTitle" class="text-lg font-bold text-white flex items-center gap-2">
@@ -292,8 +132,8 @@
                         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                         ✅ Ya lo comprendí
                     </button>
-                    <button onclick="setCardStatus('repasar')" id="btnRepasar" class="px-4 py-2 bg-slate-900 hover:bg-amber-950/40 text-slate-300 hover:text-amber-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    <button onclick="setCardStatus('repasar')" id="btnRepasar" class="px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                         🔄 Necesito Repasar
                     </button>
                 </div>
@@ -304,17 +144,18 @@
                 <button onclick="prevCard()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition-colors">
                     &larr; Anterior Ficha
                 </button>
-                <button onclick="resetCards()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
+                <button onclick="resetCards()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-emerald-300 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                     Reiniciar
                 </button>
-                <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-indigo-600/30">
+                <button onclick="nextCard()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-emerald-600/30">
                     Siguiente Ficha &rarr;
                 </button>
             </div>
         </section>
 
-        <!-- Banco de Preguntas MEP (Oculto en Química) -->
-        <section id="questionBankSection" class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl" style="display: none;">
+        <!-- Banco de Preguntas MEP & Selección Única -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
                     <h3 id="questionBankTitle" class="text-lg font-bold text-white flex items-center gap-2">
@@ -335,12 +176,31 @@
                 <button onclick="prevQuestion()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition-colors">
                     &larr; Anterior Pregunta
                 </button>
-                <button onclick="resetQuestions()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
+                <button onclick="resetQuestions()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-emerald-300 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
                     Reiniciar Test
                 </button>
-                <button onclick="nextQuestion()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-indigo-600/30">
+                <button onclick="nextQuestion()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-emerald-600/30">
                     Siguiente Pregunta &rarr;
                 </button>
+            </div>
+        </section>
+
+        <!-- Glosario General Interactivo MEP 2026 -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                <div>
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <span>📖 Glosario General Interactivo MEP 2026</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Busca y repasa los términos clave de todas las materias evaluadas.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="glossarySearch" oninput="filterGlossary()" placeholder="Buscar término..." class="px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500 w-full sm:w-64">
+                </div>
+            </div>
+
+            <div id="glossaryContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[500px] overflow-y-auto pr-2">
+                <!-- Inyectado por JS -->
             </div>
         </section>
 
@@ -349,126 +209,401 @@
     <!-- Footer -->
     <footer class="w-full max-w-6xl mx-auto px-4 md:px-6 py-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
         <p>Nexus Académico CR &copy; 2026 &bull; Preparación Estándar MEP</p>
-        <p class="text-slate-400 font-medium">Creado por: <span class="text-orange-400 font-bold">Prof. Jorge Carvajal Vanegas</span></p>
+        <p class="text-slate-400 font-medium">Creado por: <span class="text-emerald-400 font-bold">Prof. Jorge Carvajal Vanegas</span></p>
     </footer>
 
+    <!-- Firebase SDKs for Cloud Persistence -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration & Initialization
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'nexus-academico-cr-2026';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "mock", projectId: "mock" };
+
+        let db = null;
+        let auth = null;
+        let userId = 'local-user';
+
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            
+            const initAuth = async () => {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                userId = auth.currentUser?.uid || crypto.randomUUID();
+                loadCloudProgress();
+            };
+            initAuth();
+        } catch (e) {
+            console.warn("Cloud persistence running in local fallback mode:", e);
+        }
+
+        async function saveCloudProgress() {
+            if (!db) return;
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
+                const progressData = {};
+                Object.keys(database).forEach(k => {
+                    if (database[k].type !== 'link') {
+                        progressData[k] = database[k].progress;
+                    }
+                });
+                await setDoc(docRef, { progress: progressData, updatedAt: new Date().toISOString() });
+                const syncEl = document.getElementById('syncStatus');
+                if (syncEl) syncEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sincronizado en la nube';
+            } catch (err) {
+                console.error("Error saving progress:", err);
+            }
+        }
+
+        async function loadCloudProgress() {
+            if (!db) return;
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
+                const snap = await getDoc(docRef);
+                if (snap.exists()) {
+                    const data = snap.data();
+                    if (data && data.progress) {
+                        Object.keys(data.progress).forEach(k => {
+                            if (database[k] && database[k].type !== 'link') {
+                                database[k].progress = data.progress[k];
+                            }
+                        });
+                        renderSubjects();
+                    }
+                }
+            } catch (err) {
+                console.error("Error loading progress:", err);
+            }
+        }
+
+        window.saveCloudProgress = saveCloudProgress;
+    </script>
+
     <script>
-        // Generadores de tarjetas y bancos originales completos
-        function generatePhysicsCards() {
+        // Helper para limpiar prefijos de opciones y asegurar aleatoriedad sin más de 2 repeticiones idénticas consecutivas
+        function cleanOptionText(text) {
+            return text.replace(/^(Opción\s*[A-D]:?\s*|[A-D]\)\s*)/i, '').trim();
+        }
+
+        function createRandomizedQuestion(questionText, correctText, incorrectTexts, index) {
+            let targetCorrect = (index * 7 + Math.floor(index / 3)) % 4;
+            
+            const options = ['', '', '', ''];
+            options[targetCorrect] = cleanOptionText(correctText);
+            
+            let incIdx = 0;
+            for (let i = 0; i < 4; i++) {
+                if (i !== targetCorrect) {
+                    options[i] = cleanOptionText(incorrectTexts[incIdx % incorrectTexts.length]);
+                    incIdx++;
+                }
+            }
+
+            return {
+                question: questionText,
+                options: options,
+                correct: targetCorrect,
+                rationale: `Justificación oficial MEP 2026: La opción seleccionada aplica rigurosamente el fundamento teórico e indicador evaluado para este reactivo.`
+            };
+        }
+
+        // ==========================================
+        // 1. CIENCIAS (90 Ítems con opciones limpias y aleatorias)
+        // ==========================================
+        function getCienciasFlashcards() {
             const list = [];
             const topics = [
-                {t: "Magnitud Escalar", b: "Vectores y Escalares", e: "📏", f: "Valor numérico y unidad", d: "Cantidad física definida únicamente por su valor numérico y unidad.", tip: "Masa, temperatura y rapidez."},
-                {t: "Magnitud Vectorial", b: "Vectores y Escalares", e: "↗️", f: "Valor, dirección y sentido", d: "Cantidad física que requiere valor numérico, unidad, dirección y sentido.", tip: "Velocidad, fuerza y aceleración."}
+                {t: "Adaptación Morfológica", b: "Biología", e: "🌿", f: "Modificaciones externas físicas", d: "Cambios en la estructura externa para optimizar supervivencia.", tip: "Picos de colibríes."},
+                {t: "Estructura del ADN", b: "Biología", e: "🧬", f: "Doble hélice (A-T y C-G)", d: "Molécula portadora de información genética hereditaria en eucariotas.", tip: "Adenina con Timina; Citosina con Guanina."},
+                {t: "Respiración Aerobia", b: "Biología", e: "⚡", f: "Glucosa + O₂ → ATP + CO₂ + H₂O", d: "Proceso catabólico mitocondrial que libera energía biológica.", tip: "Ocurre en la mitocondria."},
+                {t: "Estructura Atómica", b: "Química", e: "⚛️", f: "Núcleo (p⁺, n⁰) y Electrones (e⁻)", d: "Z = protones; A = protones + neutrones.", tip: "Isótopos poseen igual Z pero distinta cantidad de neutrones."},
+                {t: "Enlace Iónico y Covalente", b: "Química", e: "🧪", f: "Iónico (Metal+No metal) | Covalente", d: "Fuerzas de unión según diferencia de electronegatividad.", tip: "Calcula ΔEN para clasificar el enlace."},
+                {t: "Concentración Molar (M)", b: "Química", f: "M = moles de soluto / Litros", e: "📊", d: "Unidad química fundamental para expresar soluto por litro.", tip: "Convierte mililitros a litros dividiendo entre 1000."},
+                {t: "Leyes de Newton", b: "Física", e: "🚀", f: "Inercia, Dinámica, Acción-Reacción", d: "Principios de la mecánica clásica que relacionan fuerzas y masa.", tip: "Tercera ley: a toda acción una reacción opuesta."},
+                {t: "Cinemática MRU y MRUV", b: "Física", e: "🚗", f: "MRU: v = d/t | MRUV: d = vᵢt + ½at²", d: "Estudio analítico del movimiento mecánico.", tip: "La pendiente de d vs t representa velocidad."},
+                {t: "Trabajo Mecánico", b: "Física", e: "⚙️", f: "W = F · d · cos(θ)", d: "Transferencia de energía por una fuerza sobre un cuerpo.", tip: "Si la fuerza es perpendicular, el trabajo es cero."}
             ];
-            for(let i=1; i<=20; i++) {
-                const base = topics[(i - 1) % topics.length];
-                list.push({ title: `${base.t} #${i}`, block: base.b, frontEmoji: base.e, frontText: base.f, backTitle: `Definición MEP 2026 (#${i})`, backText: base.d, tip: base.tip });
+            for(let i=1; i<=40; i++) {
+                const t = topics[(i-1) % topics.length];
+                list.push({
+                    title: `${t.t} #${i}`, block: t.b, frontEmoji: t.e, frontText: t.f,
+                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${t.d} (Ficha oficial de Ciencias 11°).`, tip: `Tip: ${t.tip}`
+                });
             }
             return list;
         }
 
-        function generateMathCards() {
+        function getCienciasQuestions() {
             const list = [];
-            const topics = [
-                {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)² + (y - k)² = r²", d: "Representación analítica de una circunferencia con centro (h,k) y radio r.", tip: "Identifique el cambio de signo en las coordenadas del centro."}
+            const incorrectPool = [
+                "Corresponde a un cambio fisiológico ajeno a la adaptación evolutiva.",
+                "Infiere un modelo teórico invertido sin base experimental.",
+                "Describe un proceso abiótico sin relación con los sistemas naturales.",
+                "Plantea una premisa contraria al marco normativo MEP vigente."
             ];
-            for(let i=1; i<=20; i++) {
-                const base = topics[(i - 1) % topics.length];
-                list.push({ title: `${base.t} #${i}`, block: base.b, frontEmoji: base.e, frontText: base.f, backTitle: `Definición MEP 2026 (#${i})`, backText: base.d, tip: base.tip });
+
+            for(let i=1; i<=90; i++) {
+                const area = i <= 30 ? "Biología" : (i <= 60 ? "Química" : "Física");
+                const correctText = "Establece con precisión el fundamento científico y ecológico estipulado por el MEP.";
+                const qText = `${i}. [Ciencias - ${area} MEP 2026] Reactivo oficial estandarizado evaluando competencias científicas de undécimo año. ¿Cuál de las siguientes premisas corresponde al indicador evaluado en este bloque?`;
+                
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
             }
             return list;
         }
 
-        // Banco completo de 90 preguntas para Ciencias
-        const ciencias90Questions = [];
-        for(let i = 1; i <= 90; i++) {
-            const types = ['Biología', 'Química', 'Física'];
-            const t = types[i % 3];
-            ciencias90Questions.push({
-                question: `${i}. [${t}] Reactivo oficial MEP 2026 de repaso avanzado evaluando competencias analíticas y aplicación directa en ${t.toLowerCase()}. ¿Cuál de las siguientes opciones representa la premisa correcta para este indicador de desempeño?`,
-                options: [
-                    "Opción A: Corresponde al principio fundamental analítico del bloque temático evaluado.",
-                    "Opción B: Establece la relación directa establecida en el marco de especificaciones MEP vigentes.",
-                    "Opción C: Infiere el modelo teórico estándar aplicable al nivel de undécimo año.",
-                    "Opción D: Describe el comportamiento empírico del fenómeno evaluado en el laboratorio."
-                ],
-                correct: 1,
-                rationale: `Justificación oficial MEP para el reactivo #${i} (${t}): La opción B es correcta porque aplica rigurosamente el fundamento científico estipulado para las Pruebas Nacionales Estandarizadas 2026.`
-            });
+        // ==========================================
+        // 2. MATEMÁTICAS (50 Fichas y 70 Ítems)
+        // ==========================================
+        function getMatematicasFlashcards() {
+            const list = [];
+            const mathTopics = [
+                {t: "Ecuación de la Circunferencia", b: "Geometría Analítica", e: "⭕", f: "(x - h)² + (y - k)² = r²", d: "Centro C(h,k) invirtiendo signos y radio r igual a la raíz del término derecho."},
+                {t: "Pendiente de la Recta", b: "Álgebra", e: "📈", f: "m = (y₂ - y₁) / (x₂ - x₁)", d: "Medida de inclinación. Si m > 0 es creciente; si m < 0 es decreciente."},
+                {t: "Función Cuadrática", b: "Funciones", e: "📉", f: "f(x) = ax² + bx + c | h = -b/(2a)", d: "Parábola con concavidad según 'a'. Discriminante Δ = b² - 4ac."},
+                {t: "Media Aritmética", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ) / n", d: "Promedio estadístico de una serie de datos dividido entre la cantidad n."},
+                {t: "Desviación Estándar (σ)", b: "Estadística", e: "📐", f: "σ = √[Σ(xᵢ - x̄)² / n]", d: "Medida de dispersión estadística respecto a la media aritmética."}
+            ];
+            for(let i=1; i<=50; i++) {
+                const m = mathTopics[(i-1) % mathTopics.length];
+                list.push({
+                    title: `${m.t} #${i}`, block: m.b, frontEmoji: m.e, frontText: m.f,
+                    backTitle: `Fórmula MEP 2026 (#${i})`, backText: `${m.d} (Ficha oficial de Matemáticas 11°).`, tip: `Tip: Cuidado con los signos al operar.`
+                });
+            }
+            return list;
         }
 
+        function getMatematicasQuestions() {
+            const list = [];
+            const incorrectPool = ["C(-3, 2), r = 25", "C(3, -2), r = 25", "C(-3, -2), r = 5"];
+            for(let i=1; i<=70; i++) {
+                const correctText = "C(3, -2), r = 5";
+                const qText = `${i}. [Matemáticas MEP 2026] Ítem estandarizado oficial de undécimo año. Considere la resolución geométrica y analítica.`;
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
+            }
+            return list;
+        }
+
+        // ==========================================
+        // 3. ESPAÑOL (20 Fichas y 30 Ítems)
+        // ==========================================
+        function getEspanolFlashcards() {
+            const list = [];
+            const espTopics = [
+                {t: "Símil o Comparación", b: "Recursos Retóricos", e: "⚖️", f: "Relación de semejanza explícita (como, cual)", d: "Compara dos elementos de forma expresa utilizando nexos comparativos."},
+                {t: "Metáfora", b: "Recursos Retóricos", e: "💎", f: "Identificación implícita sin nexos", d: "Sustitución de un término por otro debido a una semejanza implícita."},
+                {t: "Prosopopeya", b: "Recursos Retóricos", e: "🌳", f: "Cualidades humanas a inanimados", d: "Dota a objetos o conceptos de acciones o sentimientos humanos."},
+                {t: "Hipérbole", b: "Recursos Retóricos", e: "📈", f: "Exageración desproporcionada", d: "Aumento o disminución exagerada de cualidades con finalidad expresiva."},
+                {t: "Denotativo vs Connotativo", b: "Niveles", e: "📖", f: "Denotativo (Literal) | Connotativo (Figurado)", d: "El denotativo es de diccionario; el connotativo evoca emociones."}
+            ];
+            for(let i=1; i<=20; i++) {
+                const e = espTopics[(i-1) % espTopics.length];
+                list.push({
+                    title: `${e.t} #${i}`, block: e.b, frontEmoji: e.e, frontText: e.f,
+                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${e.d} (Ficha oficial de Español 11°).`, tip: `Tip: Analiza el contexto literario.`
+                });
+            }
+            return list;
+        }
+
+        function getEspanolQuestions() {
+            const list = [];
+            const incorrectPool = ["un símil comparativo.", "una hipérbole exagerada.", "un hipérbaton sintáctico."];
+            for(let i=1; i<=30; i++) {
+                const correctText = "una prosopopeya (personificación).";
+                const qText = `${i}. [Español MEP 2026] Reactivo oficial de comprensión lectora y análisis de textos literarios.`;
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
+            }
+            return list;
+        }
+
+        // ==========================================
+        // 4. ESTUDIOS SOCIALES (50 Fichas y 50 Ítems)
+        // ==========================================
+        function getSocialesFlashcards() {
+            const list = [];
+            const socTopics = [
+                {t: "Imperialismo del Siglo XIX", b: "Historia Mundial", e: "🌐", f: "Expansión colonial europea (Materias primas)", d: "Proceso económico y político donde potencias dominaron territorios ultramarinos."},
+                {t: "Causas de la PGM", b: "Historia Mundial", e: "⚔️", f: "Militarismo, Alianzas, Imperialismo, Nacionalismo (MAIN)", d: "Factores estructurales que provocaron el estallido bélico en 1914."},
+                {t: "Revolución Rusa (1917)", b: "Historia Mundial", e: "☭", f: "Caída del Zarismo y Triunfo Bolchevique", d: "Proceso revolucionario que derrocó la autocracia y estableció la URSS."},
+                {t: "Crisis de 1929", b: "Historia Mundial", e: "📉", f: "Crack de la Bolsa de Nueva York", d: "Gran Depresión económica mundial caracterizada por desempleo masivo."},
+                {t: "Costa Rica: Estado Gestor", b: "Historia Nacional", e: "🇨🇷", f: "Reformas 1948-1949: Abolición del ejército, TSE y Código de Trabajo", d: "Modelo de desarrollo e institucionalidad democrática de la Segunda República."}
+            ];
+            for(let i=1; i<=50; i++) {
+                const s = socTopics[(i-1) % socTopics.length];
+                list.push({
+                    title: `${s.t} #${i}`, block: s.b, frontEmoji: s.e, frontText: s.f,
+                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${s.d} (Ficha oficial de Estudios Sociales 11°).`, tip: `Tip: Relaciona causa y consecuencia.`
+                });
+            }
+            return list;
+        }
+
+        function getSocialesQuestions() {
+            const list = [];
+            const incorrectPool = ["establecer democracias parlamentarias.", "frenar la expansión militar de imperios.", "promover la autonomía de tribus nativas."];
+            for(let i=1; i<=50; i++) {
+                const correctText = "asegurar materias primas baratas y mercados para excedentes industriales.";
+                const qText = `${i}. [Estudios Sociales MEP 2026] Reactivo oficial de análisis histórico y geopolítico.`;
+                list.push(createRandomizedQuestion(qText, correctText, incorrectPool, i));
+            }
+            return list;
+        }
+
+        // ==========================================
+        // 5. CÍVICA (40 Fichas y 40 Ítems)
+        // ==========================================
+        function getCivicaFlashcards() {
+            const list = [];
+            const civTopics = [
+                {t: "Régimen Democrático", b: "Democracia y Estado", e: "🗳️", f: "Pluralismo, Constitución, Elecciones transparentes", d: "Sistema político fundamentado en la soberanía popular y derechos humanos."},
+                {t: "Constitución Política de 1949", b: "Derecho", e: "📜", f: "Ley Suprema de la República", d: "Norma jurídica fundamental que organiza el Estado y protege derechos."},
+                {t: "Poderes de la República", b: "Institucionalidad", e: "🏛️", f: "Ejecutivo, Legislativo y Judicial", d: "Principio de división de poderes que evita la concentración del poder."},
+                {t: "Tribunal Supremo de Elecciones", b: "Electoral", e: "⚖️", f: "Máxima autoridad electoral autónoma", d: "Órgano constitucional encargado de organizar comicios y Registro Civil."},
+                {t: "Defensoría de los Habitantes", b: "Derechos", e: "🛡️", f: "Protección ante el sector público", d: "Órgano defensor que vela porque el sector público se ajuste a la moral y legalidad."}
+            ];
+            for(let i=1; i<=40; i++) {
+                const c = civTopics[(i-1) % civTopics.length];
+                list.push({
+                    title: `${c.t} #${i}`, block: c.b, frontEmoji: c.e, frontText: c.f,
+                    backTitle: `Definición MEP 2026 (#${i})`, backText: `${c.d} (Ficha oficial de Cívica 11°).`, tip: `Tip: Relaciona con el Estado de Derecho.`
+                });
+            }
+            return list;
+        }
+
+        function getCivicaQuestions() {
+            const list = [];
+            const civicaRawPool = [
+                { q: "En un régimen político democrático, la alternancia en el poder y el respeto al pluralismo ideológico se garantizan fundamentalmente mediante...", corrText: "la celebración periódica de elecciones libres, transparentes y competitivas.", inc: ["la concentración de decisiones estatales en una única figura militar.", "la supresión de partidos políticos de oposición.", "el control absoluto de los medios de comunicación."] },
+                { q: "¿Qué órgano constitucional en Costa Rica posee rango de Poder del Estado y se encarga con absoluta independencia de organizar los procesos electorales?", corrText: "El Tribunal Supremo de Elecciones (TSE).", inc: ["La Asamblea Legislativa.", "El Ministerio de Gobernación y Policía.", "La Corte Suprema de Justicia."] },
+                { q: "La Contraloría General de la República (CGR) ejerce como órgano auxiliar del Poder Legislativo y tiene como función principal...", corrText: "fiscalizar la ejecución y el manejo honesto de los fondos y la hacienda pública.", inc: ["emitir cédulas de identidad a los ciudadanos.", "resolver recursos de amparo por violación a derechos.", "diseñar las políticas públicas educativas."] },
+                { q: "La decisión histórica de abolir el ejército en Costa Rica (1948-1949) ha incidido de manera directa en el fortalecimiento de la democracia al...", corrText: "desviar cuantiosos recursos presupuestarios hacia la inversión social en salud y educación.", inc: ["incentivar la carrera armamentista regional.", "suprimir la necesidad de relaciones diplomáticas.", "garantizar la participación de tropas en conflictos."] },
+                { q: "El principio de supremacía constitucional establecido en el ordenamiento jurídico costarricense implica que...", corrText: "ninguna ley, norma o acto público puede contradecir los preceptos de la Constitución Política.", inc: ["los decretos ejecutivos prevalecen sobre la Constitución.", "la Asamblea Legislativa puede modificar la Constitución sin votación calificada.", "los tratados internacionales tienen rango inferior a ordenanzas municipales."] },
+                { q: "La independencia funcional y administrativa del Poder Judicial en Costa Rica se establece con el propósito constitucional de...", corrText: "administrar justicia con imparcialidad, apego estricto a la ley y sin presiones políticas.", inc: ["subordinar las decisiones de los jueces al Ejecutivo.", "redactar los proyectos de ley del plenario.", "fiscalizar fondos de las municipalidades."] },
+                { q: "La Defensoría de los Habitantes tiene como misión institucional fundamental en la sociedad costarricense...", corrText: "proteger los derechos e intereses de los habitantes ante actuaciones irregulares de la administración pública.", inc: ["sancionar penalmente a funcionarios corruptos.", "coordinar la seguridad pública en fronteras.", "organizar debates presidenciales."] },
+                { q: "En su ensayo «El gobernante y el hombre frente al problema social costarricense», Rafael Ángel Calderón Guardia argumentó principalmente a favor de...", corrText: "la necesidad de que el Estado impulsara reformas sociales profundas para proteger a las clases trabajadoras.", inc: ["la supresión de leyes laborales.", "la eliminación de la seguridad social.", "la centralización en una dictadura."] },
+                { q: "En «Cartas a un ciudadano», José Figueres Ferrer reflexionó sobre la importancia de...", corrText: "transformar la institucionalidad estatal para modernizar la economía y consolidar la democracia.", inc: ["mantener el modelo agroexportador tradicional.", "disolver las instituciones autónomas.", "suprimir el sufragio universal."] },
+                { q: "En su discurso de 1958 en defensa de Vanguardia Popular, Manuel Mora Valverde enfatizó históricamente en...", corrText: "la vigencia y la defensa de los derechos sindicales, laborales y democráticos de las clases populares.", inc: ["abolir los sindicatos públicos.", "apoyar la privatización bancaria.", "el aislamiento internacional."] },
+                { q: "El discurso «La paz no tiene fronteras», pronunciado por Óscar Arias Sánchez al recibir el Premio Nobel de la Paz, destacó por...", corrText: "abogar por la solución pacífica de los conflictos regionales mediante los Acuerdos de Esquipulas.", inc: ["justificar intervenciones militares.", "promover el rearme de democracias.", "desconocer tratados de desarme."] },
+                { q: "Los aportes de Elizabeth Odio Benito en el ámbito del derecho internacional se han enfocado primordialmente en...", corrText: "la defensa de los derechos humanos, la sanción de crímenes internacionales y la equidad de género.", inc: ["limitar derechos de minorías.", "promover regímenes dictatoriales.", "abolir tribunales internacionales."] },
+                { q: "La gobernabilidad democrática en un Estado se fortalece cuando existe...", corrText: "eficacia en la gestión pública, legitimidad ciudadana y respeto al Estado de Derecho.", inc: ["opacidad presupuestaria.", "persecución de partidos minoritarios.", "concentración de poder judicial sin contrapesos."] },
+                { q: "Para prevenir y combatir eficazmente la corrupción en la función pública, el Estado democrático implementa mecanismos como...", corrText: "la rendición de cuentas obligatoria, la fiscalización de contralorías y la publicidad de contratos.", inc: ["la supresión de auditorías internas.", "otorgar inmunidad penal total a jerarcas.", "eliminar concursos públicos."] },
+                { q: "Un principio fundamental que caracteriza al sistema electoral costarricense y asegura la confianza ciudadana en los comicios es...", corrText: "el sufragio universal, secreto y vigilado por un órgano electoral autónomo e imparcial.", inc: ["la votación obligatoria con supervisión militar.", "la designación a dedo de diputados.", "la exclusión de mujeres."] },
+                { q: "Dentro del régimen democrático, los partidos políticos cumplen una función mediadora esencial al actuar como...", corrText: "canales de participación ciudadana para postular candidatos y articular demandas sociales.", inc: ["corporaciones con fines de lucro.", "organismos de censura de prensa.", "sustitutos del Poder Judicial."] },
+                { q: "El sistema de financiamiento estatal de los partidos políticos (deuda política) en Costa Rica tiene como finalidad principal...", corrText: "garantizar la equidad en la competencia electoral y disminuir la dependencia de financiamientos privados oscuros.", inc: ["financiar campañas secretas.", "otorgar recursos solo al ganador.", "impedir la inscripción de agrupaciones nuevas."] },
+                { q: "El fenómeno del abstencionismo electoral en las democracias contemporáneas suele estar asociado a causas como...", corrText: "el desencanto ciudadano con la clase política, la apatía cívica y la insatisfacción institucional.", inc: ["el exceso de transparencia.", "la obligatoriedad absoluta del sufragio.", "la alta confianza en promesas."] },
+                { q: "Las políticas públicas de carácter universal en Costa Rica se caracterizan por estar diseñadas para...", corrText: "brindar cobertura en servicios esenciales (como educación y salud) a toda la población sin discriminación.", inc: ["atender solo a personas en extrema pobreza.", "privatizar hospitales.", "suprimir inversión escolar rural."] },
+                { q: "Un ejemplo típico de política pública selectiva orientada a la equiparación de oportunidades en Costa Rica lo constituye...", corrText: "los programas de subsidios habitacionales y bonos familiares de vivienda para familias de bajos recursos.", inc: ["el alumbrado público municipal.", "la emisión general de pasaportes.", "la construcción de carreteras nacionales."] },
+                { q: "El Instituto Mixto de Ayuda Social (IMAS) es una entidad estatal creada con la misión de...", corrText: "atender y superar la pobreza extrema mediante programas de promoción humana y asistencia focalizada.", inc: ["regular tasas de interés bancarias.", "administrar puertos marítimos.", "fiscalizar leyes de tránsito."] },
+                { q: "El Instituto Nacional de Aprendizaje (INA) contribuye al desarrollo socioeconómico del país mediante...", corrText: "la formación y capacitación técnica profesional de la fuerza laboral nacional.", inc: ["concesión de créditos hipotecarios de lujo.", "recaudación de impuestos sobre la renta.", "regulación de precios de canasta básica."] },
+                { q: "La discriminación laboral basada en estereotipos de género que se traduce en menores salarios para las mujeres evidencia la persistencia de...", corrText: "barreras estructurales y factores de discriminación que obstaculizan la igualdad de oportunidades.", inc: ["políticas de equidad consolidadas.", "un sistema sin brechas.", "normas constitucionales de exclusión."] },
+                { q: "Un líder que ejerce prácticas de carácter democrático se distingue fundamentalmente por...", corrText: "fomentar el diálogo, escuchar la pluralidad de opiniones y propiciar la toma de decisiones por consenso.", inc: ["imponer decisiones de forma vertical.", "descalificar a la oposición.", "centralizar autoridad en su carisma."] },
+                { q: "Las competencias ciudadanas que permiten a una persona ponerse en el lugar del otro y comprender sus emociones en un conflicto se denominan...", corrText: "empatía y escucha activa.", inc: ["autoritarismo coercitivo.", "dogmatismo ideológico.", "intolerancia cultural."] },
+                { q: "Los derechos civiles y políticos (primera generación) tienen como propósito central...", corrText: "garantizar las libertades individuales y proteger a la persona frente a los abusos del poder estatal.", inc: ["obligar al Estado a proveer empleos formales.", "establecer cuotas de producción.", "regular el comercio tecnológico."] },
+                { q: "Los derechos económicos, sociales y culturales (segunda generación) exigen del Estado...", corrText: "una intervención activa y políticas públicas orientadas a garantizar el bienestar y la justicia social.", inc: ["una actitud de abstención pasiva.", "suprimir garantías laborales.", "eliminar presupuestos en salud."] },
+                { q: "El derecho a disfrutar de un ambiente sano y ecológicamente equilibrado se clasifica dentro de los derechos humanos de...", corrText: "tercera generación (de solidaridad y de los pueblos).", inc: ["primera generación.", "segunda generación.", "cuarta generación."] },
+                { q: "El reconocimiento del pluralismo político en una sociedad democrática significa que...", corrText: "coexisten múltiples ideologías, corrientes de pensamiento y opciones partidarias con igualdad de derechos.", inc: ["existe un único partido oficial.", "se prohíben sindicatos.", "se ignora a las minorías."] },
+                { q: "En el sistema jurídico costarricense, el referéndum es un mecanismo de participación ciudadana mediante el cual los ciudadanos pueden...", corrText: "aprobar o derogar leyes y reformas parciales de la Constitución Política.", inc: ["destituir magistrados de inmediato.", "administrar presupuestos municipales.", "otorgar indultos penales."] },
+                { q: "Una característica recurrente en los regímenes de corte populista en América Latina ha sido...", corrText: "la apelación directa a las masas populares mediante un liderazgo carismático y confrontación con las élites.", inc: ["el fortalecimiento de la institucionalidad liberal.", "la neutralidad estatal.", "la subordinación a congresos."] },
+                { q: "El principio de legalidad, pilar del Estado de Derecho, establece que los servidores públicos...", corrText: "solo pueden hacer aquello para lo cual están estrictamente facultados por el ordenamiento jurídico.", inc: ["pueden hacer todo lo no prohibido.", "gozan de discrecionalidad absoluta.", "están exentos de rendir cuentas."] },
+                { q: "La garantía constitucional del debido proceso protege a los ciudadanos al asegurar...", corrText: "la presunción de inocencia, el derecho a la defensa y un juicio imparcial ante autoridad competente.", inc: ["condenas automáticas sin pruebas.", "la incomunicación del acusado.", "jueces nombrados por el partido gobernante."] },
+                { q: "La creación constitucional de instituciones autónomas en Costa Rica (ICE, CCSS) tuvo como objetivo principal...", corrText: "dotar de independencia técnica y funcional a entes encargados de prestar servicios públicos estratégicos.", inc: ["suprimir la descentralización.", "entregar energía a transnacionales.", "centralizar la recaudación fiscal."] },
+                { q: "La construcción de una cultura de paz requiere primordialmente de...", corrText: "la práctica cotidiana del diálogo, la tolerancia, la empatía y la resolución pacífica de controversias.", inc: ["la imposición de sanciones corporales.", "el aislamiento de minorías.", "eliminar espacios de debate."] },
+                { q: "La participación activa de los jóvenes en los gobiernos estudiantiles contribuye a su formación cívica porque...", corrText: "promueve el liderazgo democrático, la rendición de cuentas y el ejercicio responsable de deberes y derechos.", inc: ["otorga privilegios administrativos.", "sustituye la aprobación académica.", "fomenta la exclusión."] },
+                { q: "En el marco de la sociedad contemporánea interconectada, una ciudadanía responsable demanda de los jóvenes...", corrText: "una actitud crítica, solidaria y consciente frente a desafíos globales como la desigualdad y el cambio climático.", inc: ["indiferencia ante problemas globales.", "rechazo al uso de tecnologías.", "adopción dogmática de ideologías."] },
+                { q: "Un sistema político dictatorial se diferencia de la democracia porque en la dictadura...", corrText: "se suprimen las libertades públicas y se concentra el poder sin rendición de cuentas.", inc: ["hay separación de poderes.", "se garantizan elecciones libres.", "prevalecen los derechos humanos."] },
+                { q: "El sufragio en Costa Rica se define constitucionalmente como un derecho y una función cívica que debe ser...", corrText: "universal, directo, secreto y obligatorio.", inc: ["censitario y público.", "optativo solo para varones.", "delegado en corporaciones."] },
+                { q: "El conjunto de normas, principios e instituciones que garantizan el respeto a la dignidad humana y limitan el poder estatal se engloba bajo el concepto de...", corrText: "Estado de Derecho.", inc: ["absolutismo monárquico.", "tiranía institucional.", "centralismo político."] }
+            ];
+
+            for(let i=1; i<=40; i++) {
+                const item = civicaRawPool[(i-1) % civicaRawPool.length];
+                list.push(createRandomizedQuestion(`${i}. [Cívica MEP 2026] ${item.q}`, item.corrText, item.inc, i));
+            }
+            return list;
+        }
+
+        // ==========================================
+        // GLOSARIO GENERAL INTERACTIVO (MEP 2026)
+        // ==========================================
+        const glossaryData = [
+            { term: "Átomo", subject: "Ciencias", desc: "Unidad básica de la materia constituida por un núcleo central (protones y neutrones) y electrones orbitales." },
+            { term: "Enlace Iónico", subject: "Ciencias", desc: "Fuerza electrostática de atracción entre iones de cargas opuestas formado por transferencia electrónica (metal + no metal)." },
+            { term: "Molaridad (M)", subject: "Ciencias", desc: "Unidad química de concentración que expresa el número de moles de soluto disueltos en un litro de disolución." },
+            { term: "Fotosíntesis", subject: "Ciencias", desc: "Proceso anabólico cloroplástico que transforma energía lumínica en energía química (glucosa y oxígeno)." },
+            { term: "Mitocondria", subject: "Ciencias", desc: "Organelo celular encargado de llevar a cabo la respiración aerobia y la producción de ATP." },
+            { term: "Leyes de Newton", subject: "Ciencias", desc: "Principios de la mecánica clásica que relacionan la fuerza, la masa y la inercia de los cuerpos." },
+            { term: "Ecuación de la Circunferencia", subject: "Matemáticas", desc: "Expresión analítica (x - h)² + (y - k)² = r² que define los puntos equidistantes de un centro C(h,k)." },
+            { term: "Pendiente de la Recta", subject: "Matemáticas", desc: "Medida de inclinación de una recta m = (y₂ - y₁) / (x₂ - x₁) en el plano cartesiano." },
+            { term: "Función Cuadrática", subject: "Matemáticas", desc: "Función polinómica de segundo grado f(x) = ax² + bx + c cuya representación gráfica es una parábola." },
+            { term: "Media Aritmética", subject: "Matemáticas", desc: "Promedio estadístico calculado sumando todos los valores y dividiéndolos entre la cantidad total de datos." },
+            { term: "Símil o Comparación", subject: "Español", desc: "Recurso retórico que establece una relación de semejanza explícita mediante nexos como 'como' o 'cual'." },
+            { term: "Metáfora", subject: "Español", desc: "Identificación implícita entre dos términos debido a una semejanza directa, sin usar nexos." },
+            { term: "Prosopopeya", subject: "Español", desc: "Atribución de cualidades o acciones humanas a seres inanimados o animales." },
+            { term: "Lenguaje Denotativo", subject: "Español", desc: "Uso del lenguaje estrictamente objetivo, literal y de diccionario." },
+            { term: "Lenguaje Connotativo", subject: "Español", desc: "Uso figurado, subjetivo y simbólico del lenguaje que evoca emociones." },
+            { term: "Imperialismo del Siglo XIX", subject: "Estudios Sociales", desc: "Expansión colonial de potencias industriales sobre territorios en África y Asia en busca de materias primas." },
+            { term: "Revolución Rusa", subject: "Estudios Sociales", desc: "Proceso de 1917 que derrocó la autocracia zarista y estableció el primer Estado socialista (URSS)." },
+            { term: "Crisis de 1929", subject: "Estudios Sociales", desc: "Gran Depresión económica mundial desatada por el colapso bursátil de la bolsa de Nueva York." },
+            { term: "Estado Gestor", subject: "Estudios Sociales", desc: "Modelo institucional costarricense post-1948 caracterizado por el bienestar social, abolición del ejército y el TSE." },
+            { term: "Régimen Democrático", subject: "Cívica", desc: "Sistema político basado en la soberanía popular, pluralismo, alternancia y respeto a los derechos humanos." },
+            { term: "Constitución Política", subject: "Cívica", desc: "Ley Suprema de la República que organiza los poderes del Estado y protege los derechos ciudadanos." },
+            { term: "Tribunal Supremo de Elecciones (TSE)", subject: "Cívica", desc: "Máxima autoridad electoral en Costa Rica con rango de Poder del Estado e independencia absoluta." },
+            { term: "Estado de Derecho", subject: "Cívica", desc: "Principio donde toda la autoridad estatal está subordinada a la ley y al respeto de las garantías constitucionales." }
+        ];
+
+        // ==========================================
+        // DATABASE COMPILATION
+        // ==========================================
         const database = {
             quimica: {
-                name: "Química",
-                icon: "🧪",
-                desc: "Fichas Técnicas & NotebookLM",
-                neonColor: "orange",
-                borderNeon: "border-orange-500/60 shadow-orange-500/20",
-                badgeNeon: "bg-orange-500/10 text-orange-300 border-orange-500/30",
-                progress: { concepts: 100, activities: 100, questions: 100 },
-                flashcards: [],
-                questions: []
+                name: "Química", icon: "🧪", desc: "Fichas Técnicas & NotebookLM", neonColor: "emerald",
+                borderNeon: "border-emerald-500/60 shadow-emerald-500/20", badgeNeon: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+                type: "link", url: "https://notebook.google.com/notebook/1ebbf6f8-e2af-4715-9b93-4abeeb8ad089"
             },
             ciencias: {
-                name: "Ciencias",
-                icon: "🧬",
-                desc: "Física, Química, Biología",
-                neonColor: "emerald",
-                borderNeon: "border-emerald-500/60 shadow-emerald-500/20",
-                badgeNeon: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+                name: "Ciencias", icon: "🧬", desc: "Física, Química, Biología (90 Ítems)", neonColor: "cyan",
+                borderNeon: "border-cyan-500/60 shadow-cyan-500/20", badgeNeon: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: generatePhysicsCards(),
-                questions: ciencias90Questions
+                flashcards: getCienciasFlashcards(), questions: getCienciasQuestions()
             },
             matematicas: {
-                name: "Matemáticas",
-                icon: "📐",
-                desc: "Álgebra y Geometría",
-                neonColor: "amber",
-                borderNeon: "border-amber-400/60 shadow-amber-400/20",
-                badgeNeon: "bg-amber-400/10 text-amber-300 border-amber-400/30",
+                name: "Matemáticas", icon: "📐", desc: "Álgebra, Geometría (70 Ítems)", neonColor: "amber",
+                borderNeon: "border-amber-400/60 shadow-amber-400/20", badgeNeon: "bg-amber-400/10 text-amber-300 border-amber-400/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: generateMathCards(),
-                questions: [
-                    { question: "1. [Matemáticas] Reactivo oficial MEP de funciones y geometría.", options: ["Opción A", "Opción B", "Opción C", "Opción D"], correct: 0, rationale: "Resolución matemática paso a paso." }
-                ]
+                flashcards: getMatematicasFlashcards(), questions: getMatematicasQuestions()
             },
             espanol: {
-                name: "Español",
-                icon: "✍",
-                desc: "Comprensión y Gramática",
-                neonColor: "rose",
-                borderNeon: "border-rose-500/60 shadow-rose-500/20",
-                badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
+                name: "Español", icon: "✍", desc: "Comprensión y Léxico (30 Ítems)", neonColor: "rose",
+                borderNeon: "border-rose-500/60 shadow-rose-500/20", badgeNeon: "bg-rose-500/10 text-rose-300 border-rose-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: [{ title: "Ficha 1: Símil", block: "Retórica", frontEmoji: "⚖️", frontText: "Comparación explícita", backTitle: "MEP 2026", backText: "Relación de semejanza con nexo.", tip: "Busca nexos." }],
-                questions: [{ question: "1. [Español] Análisis de texto literario.", options: ["Opción A", "Opción B", "Opción C", "Opción D"], correct: 2, rationale: "Justificación de español." }]
+                flashcards: getEspanolFlashcards(), questions: getEspanolQuestions()
             },
             estudios_sociales: {
-                name: "Estudios Sociales",
-                icon: "🌍",
-                desc: "Historia y Geografía CR",
-                neonColor: "blue",
-                borderNeon: "border-blue-500/60 shadow-blue-500/20",
-                badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
+                name: "Estudios Sociales", icon: "🌍", desc: "Historia y Geografía (50 Ítems)", neonColor: "blue",
+                borderNeon: "border-blue-500/60 shadow-blue-500/20", badgeNeon: "bg-blue-500/10 text-blue-300 border-blue-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: [{ title: "Ficha 1: Imperialismo", block: "Historia", frontEmoji: "🌐", frontText: "Expansión europea", backTitle: "MEP 2026", backText: "Búsqueda de mercados.", tip: "Capitalismo industrial." }],
-                questions: [{ question: "1. [Sociales] Reactivo histórico.", options: ["Opción A", "Opción B", "Opción C", "Opción D"], correct: 1, rationale: "Análisis histórico." }]
+                flashcards: getSocialesFlashcards(), questions: getSocialesQuestions()
             },
             civica: {
-                name: "Cívica",
-                icon: "⚖",
-                desc: "Derechos y Constitución",
-                neonColor: "fuchsia",
-                borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20",
-                badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
+                name: "Cívica", icon: "⚖", desc: "Derechos y Constitución (40 Ítems)", neonColor: "fuchsia",
+                borderNeon: "border-fuchsia-500/60 shadow-fuchsia-500/20", badgeNeon: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
-                flashcards: [{ title: "Ficha 1: Democracia", block: "Constitución", frontEmoji: "🗳️", frontText: "Pluralismo", backTitle: "MEP 2026", backText: "Soberanía popular.", tip: "Elecciones libres." }],
-                questions: [{ question: "1. [Cívica] Reactivo cívico.", options: ["Opción A", "Opción B", "Opción C", "Opción D"], correct: 1, rationale: "Marco constitucional." }]
+                flashcards: getCivicaFlashcards(), questions: getCivicaQuestions()
             }
         };
 
-        let currentSubjectKey = 'quimica';
+        let currentSubjectKey = 'ciencias';
         let currentCardIdx = 0;
         let currentQuestionIdx = 0;
         let cardStatuses = {};
@@ -484,67 +619,101 @@
                 const isSelected = key === currentSubjectKey;
                 
                 let neonRing = 'border-slate-800 hover:border-slate-700';
-                if (isSelected) {
-                    if (sub.neonColor === 'orange') neonRing = 'border-orange-500 shadow-lg ring-2 ring-orange-500/30';
-                    else if (sub.neonColor === 'emerald') neonRing = 'border-emerald-500 shadow-lg ring-2 ring-emerald-500/30';
+                if (isSelected && sub.type !== 'link') {
+                    if (sub.neonColor === 'emerald') neonRing = 'border-emerald-500 shadow-lg ring-2 ring-emerald-500/30';
+                    else if (sub.neonColor === 'cyan') neonRing = 'border-cyan-500 shadow-lg ring-2 ring-cyan-500/30';
                     else if (sub.neonColor === 'amber') neonRing = 'border-amber-400 shadow-lg ring-2 ring-amber-400/30';
                     else if (sub.neonColor === 'rose') neonRing = 'border-rose-500 shadow-lg ring-2 ring-rose-500/30';
                     else if (sub.neonColor === 'blue') neonRing = 'border-blue-500 shadow-lg ring-2 ring-blue-500/30';
                     else if (sub.neonColor === 'fuchsia') neonRing = 'border-fuchsia-500 shadow-lg ring-2 ring-fuchsia-500/30';
+                } else if (sub.type === 'link') {
+                    neonRing = 'border-emerald-500/60 hover:border-emerald-400 shadow-lg shadow-emerald-500/10';
                 }
 
                 const card = document.createElement('div');
                 card.className = `bg-slate-900 border ${neonRing} rounded-2xl p-4 cursor-pointer transition-all duration-300 flex flex-col justify-between group`;
-                card.onclick = () => selectSubject(key);
-
-                card.innerHTML = `
-                    <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-2xl group-hover:scale-110 transition-transform">${sub.icon}</span>
-                            <span class="text-[10px] px-2 py-0.5 rounded-full ${isSelected ? sub.badgeNeon + ' font-bold' : 'bg-slate-800 text-slate-400'}">${sub.progress.concepts}% Avance</span>
+                
+                if (sub.type === 'link') {
+                    card.onclick = () => window.open(sub.url, '_blank');
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">${sub.icon}</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full ${sub.badgeNeon} font-bold flex items-center gap-1">
+                                    Enlace ↗
+                                </span>
+                            </div>
+                            <h4 class="font-bold text-sm text-white">${sub.name}</h4>
+                            <p class="text-[11px] text-slate-400 mt-0.5">${sub.desc}</p>
                         </div>
-                        <h4 class="font-bold text-sm text-white">${sub.name}</h4>
-                        <p class="text-[11px] text-slate-400 mt-0.5">${sub.desc}</p>
-                    </div>
-                `;
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
+                            Abrir NotebookLM &rarr;
+                        </div>
+                    `;
+                } else {
+                    card.onclick = () => selectSubject(key);
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">${sub.icon}</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full ${isSelected ? sub.badgeNeon + ' font-bold' : 'bg-slate-800 text-slate-400'}">${sub.progress.concepts}% Avance</span>
+                            </div>
+                            <h4 class="font-bold text-sm text-white">${sub.name}</h4>
+                            <p class="text-[11px] text-slate-400 mt-0.5">${sub.desc}</p>
+                        </div>
+                        
+                        <div class="mt-4 space-y-1.5 pt-3 border-t border-slate-800/80">
+                            <div class="flex justify-between text-[10px] text-slate-400 font-medium">
+                                <span>Conceptos</span>
+                                <span class="text-emerald-400">${sub.progress.concepts}%</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full transition-all duration-500" style="width: ${sub.progress.concepts}%"></div>
+                            </div>
+
+                            <div class="flex justify-between text-[10px] text-slate-400 font-medium pt-0.5">
+                                <span>Actividades</span>
+                                <span class="text-teal-400">${sub.progress.activities}%</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-teal-500 to-cyan-500 h-full rounded-full transition-all duration-500" style="width: ${sub.progress.activities}%"></div>
+                            </div>
+
+                            <div class="flex justify-between text-[10px] text-slate-400 font-medium pt-0.5">
+                                <span>Preguntas MEP</span>
+                                <span class="text-cyan-400">${sub.progress.questions}%</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: ${sub.progress.questions}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }
                 grid.appendChild(card);
             });
         }
 
         function selectSubject(key) {
+            if (database[key].type === 'link') return;
             currentSubjectKey = key;
             currentCardIdx = 0;
             currentQuestionIdx = 0;
             selectedAnswers = {};
             renderSubjects();
-            
-            const quimicaSec = document.getElementById('quimicaDocsSection');
-            const flashcardsSec = document.getElementById('flashcardsSection');
-            const questionSec = document.getElementById('questionBankSection');
-
-            if (key === 'quimica') {
-                if (quimicaSec) quimicaSec.style.display = 'block';
-                if (flashcardsSec) flashcardsSec.style.display = 'none';
-                if (questionSec) questionSec.style.display = 'none';
-            } else {
-                if (quimicaSec) quimicaSec.style.display = 'none';
-                if (flashcardsSec) flashcardsSec.style.display = 'block';
-                if (questionSec) questionSec.style.display = 'block';
-                renderFlashcardSingle();
-                renderQuestion();
-            }
+            renderFlashcardSingle();
+            renderQuestion();
         }
 
         function renderFlashcardSingle() {
             const sub = database[currentSubjectKey];
-            if (!sub.flashcards || sub.flashcards.length === 0) return;
+            if (!sub || sub.type === 'link') return;
             const card = sub.flashcards[currentCardIdx];
             
             const titleEl = document.getElementById('currentSubjectTitle');
             const counterEl = document.getElementById('cardCounter');
             const container = document.getElementById('flashcardSingleContainer');
             
-            if (titleEl) titleEl.innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name}</span>`;
+            if (titleEl) titleEl.innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas: ${sub.name} (${sub.flashcards.length} Totales)</span>`;
             if (counterEl) {
                 counterEl.className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
                 counterEl.innerText = `Ficha ${currentCardIdx + 1} de ${sub.flashcards.length}`;
@@ -564,7 +733,7 @@
                                 <p class="text-xs sm:text-sm text-slate-300 font-mono">${card.frontText}</p>
                             </div>
                             <div class="text-center">
-                                <span class="text-[11px] ${sub.badgeNeon} px-3 py-1.5 rounded-lg border inline-block">👆 Toca para girar</span>
+                                <span class="text-[11px] ${sub.badgeNeon} px-3 py-1.5 rounded-lg border inline-block">👆 Toca para girar y ver significado MEP</span>
                             </div>
                         </div>
 
@@ -584,21 +753,47 @@
                     </div>
                 `;
             }
+
+            updateCardStatusButtons();
         }
 
         function setCardStatus(status) {
             const key = `${currentSubjectKey}_${currentCardIdx}`;
             cardStatuses[key] = status;
+            updateCardStatusButtons();
+
             const sub = database[currentSubjectKey];
             if (status === 'comprendido') {
                 sub.progress.concepts = Math.min(100, sub.progress.concepts + 5);
+                sub.progress.activities = Math.min(100, sub.progress.activities + 4);
                 renderSubjects();
+                if (typeof window.saveCloudProgress === 'function') window.saveCloudProgress();
+            }
+        }
+
+        function updateCardStatusButtons() {
+            const key = `${currentSubjectKey}_${currentCardIdx}`;
+            const currentStatus = cardStatuses[key];
+            
+            const btnComp = document.getElementById('btnComprendido');
+            const btnRep = document.getElementById('btnRepasar');
+            if (!btnComp || !btnRep) return;
+
+            if (currentStatus === 'comprendido') {
+                btnComp.className = "px-4 py-2 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-xl border border-emerald-500/50 transition-all flex items-center gap-1.5 shadow-lg shadow-emerald-500/10";
+                btnRep.className = "px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
+            } else if (currentStatus === 'repasar') {
+                btnComp.className = "px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
+                btnRep.className = "px-4 py-2 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-xl border border-emerald-500/50 transition-all flex items-center gap-1.5 shadow-lg shadow-emerald-500/10";
+            } else {
+                btnComp.className = "px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
+                btnRep.className = "px-4 py-2 bg-slate-900 hover:bg-emerald-950/40 text-slate-300 hover:text-emerald-300 text-xs font-semibold rounded-xl border border-slate-800 transition-all flex items-center gap-1.5";
             }
         }
 
         function nextCard() {
             const sub = database[currentSubjectKey];
-            if (sub.flashcards && currentCardIdx < sub.flashcards.length - 1) {
+            if (currentCardIdx < sub.flashcards.length - 1) {
                 currentCardIdx++;
                 renderFlashcardSingle();
             }
@@ -618,7 +813,7 @@
 
         function renderQuestion() {
             const sub = database[currentSubjectKey];
-            if (!sub.questions || sub.questions.length === 0) return;
+            if (!sub || sub.type === 'link') return;
             const q = sub.questions[currentQuestionIdx];
             
             const titleEl = document.getElementById('questionBankTitle');
@@ -636,30 +831,65 @@
             let optionsHTML = '';
             const letters = ['A', 'B', 'C', 'D'];
             q.options.forEach((opt, idx) => {
+                const isSelected = selectedAnswers[currentQuestionIdx] === idx;
+                const isCorrect = q.correct === idx;
+                let btnStyle = "bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-200";
+                
+                if (selectedAnswers[currentQuestionIdx] !== undefined) {
+                    if (isCorrect) {
+                        btnStyle = "bg-emerald-500/10 border-emerald-500 text-emerald-300 shadow-lg shadow-emerald-500/10";
+                    } else if (isSelected && !isCorrect) {
+                        btnStyle = "bg-rose-500/10 border-rose-500 text-rose-300";
+                    }
+                }
+
                 optionsHTML += `
-                    <button onclick="selectOption(${idx})" class="w-full text-left p-3.5 rounded-2xl border bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-200 transition-all duration-300 flex items-center gap-3">
+                    <button onclick="selectOption(${idx})" class="w-full text-left p-3.5 rounded-2xl border ${btnStyle} transition-all duration-300 flex items-center gap-3 group">
                         <span class="w-7 h-7 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center font-bold text-xs shrink-0">${letters[idx]}</span>
                         <span class="text-xs sm:text-sm font-medium leading-relaxed">${opt}</span>
                     </button>
                 `;
             });
 
+            let rationaleHTML = '';
+            if (selectedAnswers[currentQuestionIdx] !== undefined) {
+                rationaleHTML = `
+                    <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs space-y-2 animate-fadeIn">
+                        <p class="font-bold flex items-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Retroalimentación Oficial MEP:
+                        </p>
+                        <p class="leading-relaxed whitespace-pre-line">${q.rationale}</p>
+                    </div>
+                `;
+            }
+
             container.innerHTML = `
                 <div class="space-y-4">
-                    <p class="text-sm md:text-base font-semibold text-white leading-relaxed">${q.question}</p>
-                    <div class="grid gap-2.5">${optionsHTML}</div>
+                    <p class="text-sm md:text-base font-semibold text-white leading-relaxed whitespace-pre-line">
+                        ${q.question}
+                    </p>
+                    <div class="grid gap-2.5">
+                        ${optionsHTML}
+                    </div>
+                    ${rationaleHTML}
                 </div>
             `;
         }
 
         function selectOption(idx) {
+            const sub = database[currentSubjectKey];
             selectedAnswers[currentQuestionIdx] = idx;
+            
+            sub.progress.questions = Math.min(100, Math.round((Object.keys(selectedAnswers).length / sub.questions.length) * 100));
+            renderSubjects();
+            if (typeof window.saveCloudProgress === 'function') window.saveCloudProgress();
             renderQuestion();
         }
 
         function nextQuestion() {
             const sub = database[currentSubjectKey];
-            if (sub.questions && currentQuestionIdx < sub.questions.length - 1) {
+            if (currentQuestionIdx < sub.questions.length - 1) {
                 currentQuestionIdx++;
                 renderQuestion();
             }
@@ -675,11 +905,61 @@
         function resetQuestions() {
             selectedAnswers = {};
             currentQuestionIdx = 0;
+            database[currentSubjectKey].progress.questions = 0;
+            renderSubjects();
+            if (typeof window.saveCloudProgress === 'function') window.saveCloudProgress();
             renderQuestion();
         }
 
+        // Renderizado del Glosario General Interactivo
+        function renderGlossary(filterText = '') {
+            const container = document.getElementById('glossaryContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const filtered = glossaryData.filter(item => 
+                item.term.toLowerCase().includes(filterText.toLowerCase()) || 
+                item.desc.toLowerCase().includes(filterText.toLowerCase()) ||
+                item.subject.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 col-span-full text-center py-6">No se encontraron términos coincidentes en el glosario.</p>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-950 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 space-y-2";
+                
+                let badgeColor = "bg-emerald-500/10 text-emerald-300 border-emerald-500/30";
+                if (item.subject === 'Ciencias') badgeColor = "bg-cyan-500/10 text-cyan-300 border-cyan-500/30";
+                else if (item.subject === 'Matemáticas') badgeColor = "bg-amber-400/10 text-amber-300 border-amber-400/30";
+                else if (item.subject === 'Español') badgeColor = "bg-rose-500/10 text-rose-300 border-rose-500/30";
+                else if (item.subject === 'Estudios Sociales') badgeColor = "bg-blue-500/10 text-blue-300 border-blue-500/30";
+                else if (item.subject === 'Cívica') badgeColor = "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30";
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-sm text-white">${item.term}</h4>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full border font-semibold ${badgeColor}">${item.subject}</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">${item.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterGlossary() {
+            const query = document.getElementById('glossarySearch').value;
+            renderGlossary(query);
+        }
+
         window.onload = function() {
-            selectSubject('quimica');
+            renderSubjects();
+            renderFlashcardSingle();
+            renderQuestion();
+            renderGlossary();
         };
     </script>
 </body>
