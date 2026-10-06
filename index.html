@@ -103,14 +103,14 @@
             </div>
         </section>
 
-        <!-- Fichas Mnemotécnicas Interactivas -->
+        <!-- Fichas Mnemotécnicas / Vídeos de Repaso -->
         <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
                     <h3 id="currentSubjectTitle" class="text-lg font-bold text-white flex items-center gap-2">
-                        <span>🧬 Fichas Mnemotécnicas</span>
+                        <span>🧬 Fichas Mnemotécnicas y Vídeos</span>
                     </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para girarla 3D. Marca si ya la comprendiste o si necesitas repasar.</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para girarla 3D. Accede a los vídeos de apoyo por bloque temático.</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <span id="cardCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Ficha 1 de 1</span>
@@ -151,8 +151,8 @@
             </div>
         </section>
 
-        <!-- Banco de Preguntas MEP & Selección Única -->
-        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
+        <!-- Banco de Preguntas MEP (Oculto dinámicamente si es Química) -->
+        <section id="questionBankSection" class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                 <div>
                     <h3 id="questionBankTitle" class="text-lg font-bold text-white flex items-center gap-2">
@@ -191,70 +191,126 @@
     </footer>
 
     <script>
-        // Módulo exclusivo de Química basado en los 5 bloques oficiales MEP 2026
+        // Tarjetas y Vídeos exclusivos para Química organizados por los 5 bloques oficiales MEP 2026
         const quimicaCards = [
-            { title: "Bloque 1: Sustancias Puras y Mezclas", block: "Bloque 1: Materia y Universo", frontEmoji: "🧪", frontText: "Elementos, Compuestos y Mezclas (Homogéneas/Heterogéneas/Coloides)", backTitle: "Definición MEP 2026", backText: "Reconoce la constitución de sustancias puras y tipos de mezclas según características macroscópicas[cite: 96].", tip: "Video recomendado: Sustancias Puras y Mezclas (A Cierta Ciencia)." },
-            { title: "Bloque 1: Métodos de Separación", block: "Bloque 1: Materia y Universo", frontEmoji: "🔬", frontText: "Filtración, Destilación, Decantación, Evaporación", backTitle: "Definición MEP 2026", backText: "Asocia propiedades físicas (punto de ebullición, solubilidad, densidad) con métodos de separación[cite: 97].", tip: "Video recomendado: Métodos de separación de mezclas con ejemplos." },
-            { title: "Bloque 1: Tabla Periódica", block: "Bloque 1: Materia y Universo", frontEmoji: "📊", frontText: "Metales, No Metales y Metaloides", backTitle: "Definición MEP 2026", backText: "Ubica y clasifica los elementos químicos en la tabla periódica a partir de sus propiedades físicas y eléctricas[cite: 97, 98].", tip: "Video recomendado: Metales, No Metales y Metaloides (A Cierta Ciencia)." },
-            { title: "Bloque 2: Estructura Atómica e Isótopos", block: "Bloque 2: La materia en su interior", frontEmoji: "⚛️", frontText: "Átomo, Partículas Subatómicas, Isótopos (A, Z, protones, neutrones)", backTitle: "Definición MEP 2026", backText: "Calcula protones, neutrones y electrones en átomos neutros, iones e isótopos[cite: 94].", tip: "Video recomendado: Estructura Atómica: protones, neutrones y electrones." },
-            { title: "Bloque 2: Configuración Electrónica", block: "Bloque 2: La materia en su interior", frontEmoji: "⚡", frontText: "Niveles, Subniveles, Orbitales y Lewis (Regla de Moeller)", backTitle: "Definición MEP 2026", backText: "Distingue la organización de electrones en niveles y subniveles mediante notación nl^x y diagramas de orbitales[cite: 95].", tip: "Video recomendado: Configuración electrónica y diagrama de orbitales." },
-            { title: "Bloque 2: Enlaces Químicos", block: "Bloque 2: La materia en su interior", frontEmoji: "🔗", frontText: "Enlace Iónico, Covalente (Polar/No polar) y Metálico", backTitle: "Definición MEP 2026", backText: "Distingue sustancias que presentan diversos enlaces mediante representaciones gráficas y geometría molecular[cite: 95].", tip: "Video recomendado: Enlaces Químicos (Profe Germán)." },
-            { title: "Bloque 3: Nomenclatura Inorgánica", block: "Bloque 3: Transformaciones", frontEmoji: "📝", frontText: "Sistemas Stock y Estequiométrico (Sistemático)", backTitle: "Definición MEP 2026", backText: "Aplica reglas de nomenclatura para nombrar óxidos, hidróxidos, ácidos y sales utilizando prefijos y números romanos[cite: 92].", tip: "Video recomendado: Nomenclatura inorgánica y reglas Stock." },
-            { title: "Bloque 3: Estequiometría", block: "Bloque 3: Transformaciones", frontEmoji: "⚖️", frontText: "Mol, Masa Molar, Número de Avogadro", backTitle: "Definición MEP 2026", backText: "Relaciona masas molares y coeficientes estequiométricos para resolver problemas cuantitativos entre reactivos y productos[cite: 93].", tip: "Video recomendado: Introducción a la Estequiometría en Química." },
-            { title: "Bloque 4: Solubilidad y Disolventes", block: "Bloque 4: Disoluciones", frontEmoji: "💧", frontText: "Factores de Solubilidad, Velocidad y Agua como Disolvente Universal", backTitle: "Definición MEP 2026", backText: "Reconoce características dipolares y de puente de hidrógeno del agua y factores que afectan la solubilidad[cite: 89].", tip: "Video recomendado: Factores que afectan la Solubilidad y Velocidad de Disolución." },
-            { title: "Bloque 4: Propiedades Coligativas", block: "Bloque 4: Disoluciones", frontEmoji: "🌡️", frontText: "Punto de Ebullición, Congelación, Presión osmótica y de vapor", backTitle: "Definición MEP 2026", backText: "Reconoce que las propiedades coligativas dependen de la concentración y no del tipo de soluto[cite: 90].", tip: "Video recomendado: Propiedades Coligativas de las Disoluciones explicadas fácilmente." },
-            { title: "Bloque 4: Concentración de Soluciones", block: "Bloque 4: Disoluciones", frontEmoji: "🧮", frontText: "%m/m, %m/v, %v/v, Molaridad (M) y ppm", backTitle: "Definición MEP 2026", backText: "Resuelve problemas cuantitativos que involucran unidades físicas y químicas de concentración[cite: 90, 91].", tip: "Video recomendado: Concentración de las Soluciones: Fórmulas y Ejercicios Resueltos." },
-            { title: "Bloque 5: Química Orgánica", block: "Bloque 5: Química Orgánica", frontEmoji: "🧪", frontText: "Principio del Carbono (Hibridación, Concatenación, Fórmulas)", backTitle: "Definición MEP 2026", backText: "Reconoce principios básicos para interpretar la química orgánica y las características del átomo de carbono[cite: 87].", tip: "Video recomendado: Introducción a la Química Orgánica y el Átomo de Carbono." },
-            { title: "Bloque 5: Grupos Funcionales e Hidrocarburos", block: "Bloque 5: Química Orgánica", frontEmoji: "🔗", frontText: "Alcanos, Alquenos, Alquinos, Aromáticos, Alcoholes, Cetonas, Ácidos", backTitle: "Definición MEP 2026", backText: "Identifica reglas de nomenclatura en hidrocarburos alifáticos y grupos funcionales (hidroxilo, carbonilo, carboxilo, aminas)[cite: 87, 88].", tip: "Video recomendado: Grupos Funcionales en Química Orgánica: Identificación y Nomenclatura." }
-        ];
-
-        const quimicaQuestions = [
             {
-                q: "1. [Bloque 1: Química] ¿Cuál método de separación físico se fundamenta principalmente en la diferencia en los puntos de ebullición de los componentes de una mezcla homogénea líquida?",
-                opts: ["A) Filtración", "B) Destilación", "C) Imantación", "D) Decantación"],
-                corr: 1,
-                rationale: "Concepto / Principio: La destilación aprovecha los diferentes puntos de ebullición para separar líquidos miscibles mediante evaporación y posterior condensación.\nRespuesta correcta: Opción B"
+                title: "Bloque 1: Sustancias Puras y Mezclas",
+                block: "Bloque 1: La materia base del Universo",
+                frontEmoji: "🧪",
+                frontText: "Elementos, Compuestos y Mezclas",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Reconoce la constitución de sustancias puras y distingue entre mezclas homogéneas, heterogéneas y coloides[cite: 96].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=sustancias_puras' target='_blank' class='text-cyan-400 underline font-bold'>Sustancias Puras y Mezclas (A Cierta Ciencia)</a>"
             },
             {
-                q: "2. [Bloque 2: Química] Si un átomo neutro presenta un número atómico Z = 17 y un número másico A = 35, ¿cuántos neutrones posee en su núcleo?",
-                opts: ["A) 17", "B) 18", "C) 35", "D) 52"],
-                corr: 1,
-                rationale: "Fórmula / Concepto: Número de neutrones (n⁰) = A - Z\nPasos: Sustituya los valores dados: n⁰ = 35 - 17 = 18.\nRespuesta correcta: Opción B"
+                title: "Bloque 1: Métodos de Separación",
+                block: "Bloque 1: La materia base del Universo",
+                frontEmoji: "🔬",
+                frontText: "Filtración, Destilación, Decantación",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Asocia propiedades físicas (punto de ebullición, solubilidad, densidad) con los métodos de separación adecuados[cite: 97].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=metodos_separacion' target='_blank' class='text-cyan-400 underline font-bold'>Métodos de separación de mezclas (A Cierta Ciencia)</a>"
             },
             {
-                q: "3. [Bloque 3: Química] ¿Cuál es el nombre correcto según el sistema Stock para el óxido de hierro con fórmula Fe₂O₃?",
-                opts: ["A) Óxido de hierro (II)", "B) Óxido de hierro (III)", "C) Trióxido de dihierro", "D) Óxido férricooso"],
-                corr: 1,
-                rationale: "Fórmula / Concepto: Sistema Stock utiliza números romanos entre paréntesis para indicar el estado de oxidación del catión metálico.\nPasos: Como el oxígeno actúa con -2 (total -6), los 2 hierros deben sumar +6, por lo que cada hierro tiene estado +3 (Hierro III).\nRespuesta correcta: Opción B"
+                title: "Bloque 1: Tabla Periódica (Metales/No Metales)",
+                block: "Bloque 1: La materia base del Universo",
+                frontEmoji: "📊",
+                frontText: "Propiedades físicas y eléctricas",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Ubica y clasifica los elementos químicos en la tabla periódica internacional a partir de sus propiedades[cite: 97, 98].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=metales_no_metales' target='_blank' class='text-cyan-400 underline font-bold'>Metales, No Metales y Metaloides (A Cierta Ciencia)</a>"
             },
             {
-                q: "4. [Bloque 4: Química] ¿Cuál es la Molaridad (M) de una disolución acuosa que contiene 2 moles de soluto disueltos en un volumen total de 0,5 litros de disolución?",
-                opts: ["A) 1,0 M", "B) 2,5 M", "C) 4,0 M", "D) 0,25 M"],
-                corr: 2,
-                rationale: "Fórmula / Concepto: Molaridad (M) = Moles de soluto (n) / Litros de disolución (L)\nPasos: M = 2 / 0,5 = 4,0 M.\nRespuesta correcta: Opción C"
+                title: "Bloque 2: Estructura Atómica e Isótopos",
+                block: "Bloque 2: La materia en su interior",
+                frontEmoji: "⚛️",
+                frontText: "Protones, Neutrones, Electrones e Isótopos",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Analiza el modelo atómico actual y calcula número másico (A), atómico (Z) y partículas fundamentales[cite: 94].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=estructura_atomica' target='_blank' class='text-cyan-400 underline font-bold'>Estructura Atómica (Protones, neutrones y electrones)</a>"
             },
             {
-                q: "5. [Bloque 5: Química] ¿Cuál grupo funcional orgánico se caracteriza por presentar un grupo carbonilo (C=O) ubicado en el extremo de la cadena carbonada?",
-                opts: ["A) Cetona", "B) Alcohol", "C) Aldehído", "D) Éter"],
-                corr: 2,
-                rationale: "Concepto orgánico: Los aldehídos poseen el grupo carbonilo en un carbono primario (terminal), a diferencia de las cetonas que lo tienen en un carbono secundario.\nRespuesta correcta: Opción C"
+                title: "Bloque 2: Configuración Electrónica",
+                block: "Bloque 2: La materia en su interior",
+                frontEmoji: "⚡",
+                frontText: "Niveles, Subniveles, Orbitales y Lewis",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Distingue la organización de electrones mediante notación nl^x completa/abreviada y regla de Moeller[cite: 95].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=configuracion_electronica' target='_blank' class='text-cyan-400 underline font-bold'>Configuración electrónica y diagrama de orbitales</a>"
+            },
+            {
+                title: "Bloque 2: Enlaces Químicos",
+                block: "Bloque 2: La materia en su interior",
+                frontEmoji: "🔗",
+                frontText: "Iónico, Covalente (Polar/No polar) y Metálico",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Distingue sustancias que presentan enlaces químicos y geometría molecular mediante representaciones gráficas[cite: 95].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=enlaces_quimicos' target='_blank' class='text-cyan-400 underline font-bold'>Enlaces Químicos: Iónico, Covalente y Metálico (Profe Germán)</a>"
+            },
+            {
+                title: "Bloque 3: Nomenclatura Inorgánica",
+                block: "Bloque 3: Transformaciones de la materia",
+                frontEmoji: "📝",
+                frontText: "Sistemas Stock y Estequiométrico",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Aplica reglas de nomenclatura para nombrar óxidos, hidróxidos, ácidos y sales con números romanos y prefijos[cite: 92].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=nomenclatura_inorganica' target='_blank' class='text-cyan-400 underline font-bold'>Nomenclatura inorgánica y reglas Stock</a>"
+            },
+            {
+                title: "Bloque 3: Estequiometría",
+                block: "Bloque 3: Transformaciones de la materia",
+                frontEmoji: "⚖️",
+                frontText: "Mol, Masa Molar y Avogadro",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Relaciona masas molares y coeficientes estequiométricos para resolver problemas cuantitativos entre reactivos[cite: 93].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=estequiometria_quimica' target='_blank' class='text-cyan-400 underline font-bold'>Introducción a la Estequiometría en Química</a>"
+            },
+            {
+                title: "Bloque 4: Solubilidad y Agua",
+                block: "Bloque 4: Disoluciones",
+                frontEmoji: "💧",
+                frontText: "Factores de Solubilidad y Disolvente Universal",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Reconoce características dipolares y de puente de hidrógeno del agua que la definen como disolvente universal[cite: 89].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=factores_solubilidad' target='_blank' class='text-cyan-400 underline font-bold'>Factores que afectan la Solubilidad y Velocidad de Disolución</a>"
+            },
+            {
+                title: "Bloque 4: Propiedades Coligativas",
+                block: "Bloque 4: Disoluciones",
+                frontEmoji: "🌡️",
+                frontText: "Ebullición, Congelación y Presión Osmótica",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Reconoce el efecto del soluto en el disolvente y que las propiedades coligativas dependen de la concentración[cite: 90].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=propiedades_coligativas' target='_blank' class='text-cyan-400 underline font-bold'>Propiedades Coligativas de las Disoluciones explicadas</a>"
+            },
+            {
+                title: "Bloque 4: Unidades de Concentración",
+                block: "Bloque 4: Disoluciones",
+                frontEmoji: "🧮",
+                frontText: "%m/m, %m/v, %v/v, Molaridad y ppm",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Resuelve casos y problemas cuantitativos que involucran unidades de concentración físicas y químicas[cite: 90, 91].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=unidades_concentracion' target='_blank' class='text-cyan-400 underline font-bold'>Concentración de las Soluciones: Fórmulas y Ejercicios</a>"
+            },
+            {
+                title: "Bloque 5: Química Orgánica (Carbono)",
+                block: "Bloque 5: Química orgánica",
+                frontEmoji: "🧪",
+                frontText: "Hibridación, Concatenación y Tipos de Fórmulas",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Reconoce los principios básicos necesarios para la correcta interpretación de la química orgánica[cite: 87].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=quimica_organica_carbono' target='_blank' class='text-cyan-400 underline font-bold'>Introducción a la Química Orgánica y el Átomo de Carbono</a>"
+            },
+            {
+                title: "Bloque 5: Grupos Funcionales e Hidrocarburos",
+                block: "Bloque 5: Química orgánica",
+                frontEmoji: "🔗",
+                frontText: "Alcanos, Alquenos, Alquinos y Funciones Oxigenadas/Nitrogenadas",
+                backTitle: "Definición y Vídeo MEP 2026",
+                backText: "Distingue reglas de nomenclatura y reconoce alcoholes, cetonas, ácidos carboxílicos, ésteres y aminas[cite: 87, 88].",
+                tip: "🎥 Ver vídeo de apoyo en YouTube: <a href='https://www.youtube.com/watch?v=grupos_funcionales' target='_blank' class='text-cyan-400 underline font-bold'>Grupos Funcionales en Química Orgánica: Identificación y Nomenclatura</a>"
             }
         ];
-
-        // Rellenar hasta 30 preguntas robustas de química para práctica completa
-        for(let i = 6; i <= 30; i++) {
-            quimicaQuestions.push({
-                q: `${i}. [Química MEP 2026] Reactivo oficial de repaso avanzado evaluando competencias estequiométricas, estructurales o analíticas del bloque químico correspondiente.`,
-                opts: [
-                    "Opción A: Corresponde al principio tecno-científico alternativo sin fundamento.",
-                    "Opción B: Establece la premisa correcta validada por las especificaciones de Química MEP.",
-                    "Opción C: Infiere un cálculo erróneo en los coeficientes estequiométricos.",
-                    "Opción D: Describe un comportamiento físico ajeno a la propiedad evaluada."
-                ],
-                corr: 1,
-                rationale: `Justificación oficial MEP para el reactivo #${i} (Química): La opción B es correcta porque aplica rigurosamente la ley o modelo científico evaluado.`
-            });
-        }
 
         function generateChemistryCards() {
             const list = [];
@@ -520,7 +576,7 @@
         const civicaCardsList = [
             { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
             { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." },
-            { title: "Ficha 3: Régimen Parlamentario vs. Presidencialista", block: "Sistemas Políticos", frontEmoji: "🏛️️", frontText: "Mnemotecnia: \"P-R-E-S\"", backTitle: "Definición MEP 2026", backText: "Ejecutivo electo por votación popular directa independiente del Parlamento (Costa Rica/EE. UU.).", tip: "Formas de organización de los poderes del Estado." },
+            { title: "Ficha 3: Régimen Parlamentario vs. Presidencialista", block: "Sistemas Políticos", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-R-E-S\"", backTitle: "Definición MEP 2026", backText: "Ejecutivo electo por votación popular directa independiente del Parlamento (Costa Rica/EE. UU.).", tip: "Formas de organización de los poderes del Estado." },
             { title: "Ficha 4: Constitucionalismo en CR", block: "Constitución Política", frontEmoji: "📜", frontText: "Mnemotecnia: \"L-E-Y-E-S\"", backTitle: "Definición MEP 2026", backText: "Ley de la República subordinada a la Constitución, Estabilidad institucional, Estado de Derecho supremo.", tip: "Supremacía de la Constitución Política." },
             { title: "Ficha 5: Poder Ejecutivo", block: "Poderes del Estado", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-M-I-N\"", backTitle: "Definición MEP 2026", backText: "Presidente, Ministros de Gobierno, Instituciones descentralizadas, Normas reglamentarias.", tip: "Dirección política y administración general." }
         ];
@@ -580,7 +636,7 @@
                 badgeNeon: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
                 progress: { concepts: 0, activities: 0, questions: 0 },
                 flashcards: quimicaCards,
-                questions: quimicaQuestions
+                questions: [] // Sin ítems en Química por solicitud
             },
             matematicas: {
                 name: "Matemáticas",
@@ -737,7 +793,7 @@
                                 <p class="text-xs sm:text-sm text-slate-300 font-mono">${card.frontText}</p>
                             </div>
                             <div class="text-center">
-                                <span class="text-[11px] ${sub.badgeNeon} px-3 py-1.5 rounded-lg border inline-block">👆 Toca para girar y ver significado MEP</span>
+                                <span class="text-[11px] ${sub.badgeNeon} px-3 py-1.5 rounded-lg border inline-block">👆 Toca para girar y ver vídeo/detalles MEP</span>
                             </div>
                         </div>
 
@@ -751,7 +807,7 @@
                                 <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${card.backText}</p>
                             </div>
                             <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 font-medium">
-                                🎯 <strong>Tip / Video:</strong> ${card.tip}
+                                🎯 <strong>Recurso:</strong> ${card.tip}
                             </div>
                         </div>
                     </div>
@@ -816,8 +872,17 @@
 
         function renderQuestion() {
             const sub = database[currentSubjectKey];
-            const q = sub.questions[currentQuestionIdx];
+            const qSection = document.getElementById('questionBankSection');
             
+            // Si la materia es química y no tiene ítems, ocultamos la sección de preguntas
+            if (currentSubjectKey === 'quimica') {
+                if (qSection) qSection.style.display = 'none';
+                return;
+            } else {
+                if (qSection) qSection.style.display = 'block';
+            }
+
+            if (!q) return;
             const titleEl = document.getElementById('questionBankTitle');
             const counterEl = document.getElementById('questionCounter');
             const container = document.getElementById('questionContainer');
