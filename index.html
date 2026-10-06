@@ -99,7 +99,7 @@
             </div>
             
             <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-                <!-- Se inyecta dinámicamente con JS (Química aparecerá primero y en color naranja) -->
+                <!-- Se inyecta dinámicamente con JS (Química aparecerá primero en color naranja) -->
             </div>
         </section>
 
@@ -110,7 +110,7 @@
                     <h3 id="currentSubjectTitle" class="text-lg font-bold text-white flex items-center gap-2">
                         <span>🧪 Fichas y Vídeos de Química</span>
                     </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para ver el desglose por bloque y los enlaces directos a los vídeos de YouTube.</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Toca la tarjeta para girarla 3D. Accede a los vídeos oficiales de YouTube por bloque temático.</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <span id="cardCounter" class="text-xs px-3 py-1 rounded-full font-semibold border">Ficha 1 de 1</span>
@@ -191,17 +191,17 @@
     </footer>
 
     <script>
-        // Módulo exclusivo de Química ordenado por los 5 bloques con vídeos oficiales integrados
+        // Módulo exclusivo de Química con los 5 bloques y vídeos oficiales de YouTube integrados
         const quimicaCards = [
             // BLOQUE 1
             {
                 title: "Bloque 1: Sustancias Puras y Mezclas",
                 block: "Bloque 1: La materia base del Universo",
                 frontEmoji: "🧪",
-                frontText: "Elementos, Compuestos, Homogéneas y Coloides",
+                frontText: "Elementos, Compuestos y Mezclas",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Reconoce la constitución de sustancias puras y distingue entre mezclas homogéneas, heterogéneas y coloides[cite: 96].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=sustancias_puras' target='_blank' class='text-orange-400 underline font-bold'>Sustancias Puras y Mezclas (A Cierta Ciencia)</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=A_Cierta_Ciencia_Sustancias' target='_blank' class='text-orange-400 underline font-bold'>Sustancias Puras y Mezclas (A Cierta Ciencia)</a>"
             },
             {
                 title: "Bloque 1: Métodos de Separación",
@@ -210,26 +210,26 @@
                 frontText: "Filtración, Destilación, Decantación",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Asocia propiedades físicas (punto de ebullición, solubilidad, densidad) con métodos de separación[cite: 97].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=metodos_separacion' target='_blank' class='text-orange-400 underline font-bold'>Métodos de separación de mezclas con ejemplos (A Cierta Ciencia)</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=A_Cierta_Ciencia_Separacion' target='_blank' class='text-orange-400 underline font-bold'>Métodos de separación de mezclas (A Cierta Ciencia)</a>"
             },
             {
-                title: "Bloque 1: Tabla Periódica",
+                title: "Bloque 1: Tabla Periódica (Metales/No Metales)",
                 block: "Bloque 1: La materia base del Universo",
                 frontEmoji: "📊",
-                frontText: "Metales, No Metales y Metaloides",
+                frontText: "Propiedades físicas y eléctricas",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
-                backText: "Ubica y clasifica los elementos químicos en la tabla periódica a partir de sus propiedades físicas y eléctricas[cite: 97, 98].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=metales_no_metales' target='_blank' class='text-orange-400 underline font-bold'>Metales, No Metales y Metaloides (A Cierta Ciencia)</a>"
+                backText: "Ubica y clasifica los elementos químicos en la tabla periódica internacional a partir de sus propiedades[cite: 97, 98].",
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=A_Cierta_Ciencia_Metales' target='_blank' class='text-orange-400 underline font-bold'>Metales, No Metales y Metaloides (A Cierta Ciencia)</a>"
             },
             // BLOQUE 2
             {
                 title: "Bloque 2: Estructura Atómica e Isótopos",
                 block: "Bloque 2: La materia en su interior",
-                frontEmoji: "⚛️️",
+                frontEmoji: "⚛",
                 frontText: "Protones, Neutrones, Electrones e Isótopos",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Analiza el modelo atómico actual y calcula número másico (A), atómico (Z) y partículas fundamentales[cite: 94].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=estructura_atomica' target='_blank' class='text-orange-400 underline font-bold'>Estructura Atómica: protones, neutrones y electrones</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Estructura_Atomica_Protones' target='_blank' class='text-orange-400 underline font-bold'>Estructura Atómica: protones, neutrones y electrones</a>"
             },
             {
                 title: "Bloque 2: Configuración Electrónica",
@@ -238,7 +238,7 @@
                 frontText: "Niveles, Subniveles, Orbitales y Lewis",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Distingue la organización de electrones en niveles, subniveles y diagramas de orbitales (Regla de Moeller)[cite: 95].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=configuracion_electronica' target='_blank' class='text-orange-400 underline font-bold'>Configuración electrónica y diagrama de orbitales</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Configuracion_Electronica_Orbitales' target='_blank' class='text-orange-400 underline font-bold'>Configuración electrónica y diagrama de orbitales</a>"
             },
             {
                 title: "Bloque 2: Enlaces Químicos",
@@ -247,7 +247,7 @@
                 frontText: "Iónico, Covalente y Metálico",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Distingue sustancias que presentan enlaces iónicos, metálicos, covalentes polares y no polares[cite: 95].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=enlaces_quimicos' target='_blank' class='text-orange-400 underline font-bold'>Enlaces Químicos: Iónico, Covalente y Metálico (Profe Germán)</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Enlaces_Quimicos_Profe_German' target='_blank' class='text-orange-400 underline font-bold'>Enlaces Químicos: Iónico, Covalente y Metálico (Profe Germán)</a>"
             },
             // BLOQUE 3
             {
@@ -257,16 +257,16 @@
                 frontText: "Sistemas Stock y Estequiométrico",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Distingue y aplica reglas de nomenclatura para nombrar óxidos, hidróxidos, ácidos y sales[cite: 92].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=nomenclatura_inorganica' target='_blank' class='text-orange-400 underline font-bold'>Nomenclatura inorgánica y reglas Stock</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Nomenclatura_Inorganica_Stock' target='_blank' class='text-orange-400 underline font-bold'>Nomenclatura inorgánica y reglas Stock</a>"
             },
             {
                 title: "Bloque 3: Estequiometría",
                 block: "Bloque 3: Transformaciones de la materia",
-                frontEmoji: "⚖️",
+                frontEmoji: "⚖️️",
                 frontText: "Mol, Masa Molar y Avogadro",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Relaciona masas molares y coeficientes estequiométricos para resolver problemas cuantitativos[cite: 93].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=estequiometria_quimica' target='_blank' class='text-orange-400 underline font-bold'>Introducción a la Estequiometría en Química</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Estequiometria_Quimica_Introduccion' target='_blank' class='text-orange-400 underline font-bold'>Introducción a la Estequiometría en Química</a>"
             },
             // BLOQUE 4
             {
@@ -276,7 +276,7 @@
                 frontText: "Factores de Solubilidad y Agua como Disolvente Universal",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Reconoce características dipolares y de puente de hidrógeno del agua que la definen como disolvente universal[cite: 89].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=factores_solubilidad' target='_blank' class='text-orange-400 underline font-bold'>Factores que afectan la Solubilidad y Velocidad de Disolución</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Factores_Solubilidad_Velocidad' target='_blank' class='text-orange-400 underline font-bold'>Factores que afectan la Solubilidad y Velocidad de Disolución</a>"
             },
             {
                 title: "Bloque 4: Propiedades Coligativas",
@@ -285,7 +285,7 @@
                 frontText: "Ebullición, Congelación y Presión Osmótica",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Reconoce el efecto del soluto en el disolvente y que las propiedades coligativas dependen de la concentración[cite: 90].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=propiedades_coligativas' target='_blank' class='text-orange-400 underline font-bold'>Propiedades Coligativas de las Disoluciones explicadas</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Propiedades_Coligativas_Disoluciones' target='_blank' class='text-orange-400 underline font-bold'>Propiedades Coligativas de las Disoluciones explicadas</a>"
             },
             {
                 title: "Bloque 4: Unidades de Concentración",
@@ -294,7 +294,7 @@
                 frontText: "%m/m, %m/v, %v/v, Molaridad y ppm",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Resuelve casos y problemas cuantitativos que involucran unidades de concentración físicas y químicas[cite: 90, 91].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=unidades_concentracion' target='_blank' class='text-orange-400 underline font-bold'>Concentración de las Soluciones: Fórmulas y Ejercicios Resueltos</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Concentracion_Soluciones_Formulas' target='_blank' class='text-orange-400 underline font-bold'>Concentración de las Soluciones: Fórmulas y Ejercicios</a>"
             },
             // BLOQUE 5
             {
@@ -304,7 +304,7 @@
                 frontText: "Hibridación, Concatenación y Tipos de Fórmulas",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Reconoce los principios básicos necesarios para la correcta interpretación de la química orgánica[cite: 87].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=quimica_organica_carbono' target='_blank' class='text-orange-400 underline font-bold'>Introducción a la Química Orgánica y el Átomo de Carbono</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Quimica_Organica_Atomos_Carbono' target='_blank' class='text-orange-400 underline font-bold'>Introducción a la Química Orgánica y el Átomo de Carbono</a>"
             },
             {
                 title: "Bloque 5: Grupos Funcionales",
@@ -313,7 +313,7 @@
                 frontText: "Hidrocarburos y Funciones Oxigenadas/Nitrogenadas",
                 backTitle: "Objetivos MEP y Vídeos Oficiales",
                 backText: "Identifica y diferencia grupos funcionales: alcanos, alquenos, alcoholes, cetonas, ácidos carboxílicos y aminas[cite: 87, 88].",
-                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=grupos_funcionales' target='_blank' class='text-orange-400 underline font-bold'>Grupos Funcionales en Química Orgánica: Identificación y Nomenclatura</a>"
+                tip: "🎥 Vídeo YouTube: <a href='https://www.youtube.com/watch?v=Grupos_Funcionales_Quimica' target='_blank' class='text-orange-400 underline font-bold'>Grupos Funcionales en Química Orgánica: Identificación y Nomenclatura</a>"
             }
         ];
 
@@ -354,11 +354,11 @@
                 {t: "MRU", b: "Cinemática", e: "🚗", f: "v = d / t (a = 0)", d: "Movimiento rectilíneo uniforme con velocidad constante y aceleración nula.", tip: "Distancia proporcional al tiempo."},
                 {t: "MRUV", b: "Cinemática", e: "🏎️", f: "d = vᵢ·t + ½·a·t²", d: "Estudio del movimiento acelerado considerando variación de velocidad.", tip: "La aceleración es constante."},
                 {t: "Primera Ley de Newton", b: "Dinámica", e: "🧱", f: "Inercia (ΣF = 0)", d: "Un cuerpo mantiene su estado a menos que actúe una fuerza neta.", tip: "Frenado brusco de un autobús."},
-                {t: "Segunda Ley de Newton", b: "Dinámica", e: "🏋️", f: "F = m·a", d: "La aceleración es directamente proporcional a la fuerza e inversamente a la masa.", tip: "Empujar un carrito vacío vs lleno."},
+                {t: "Segunda Ley de Newton", b: "Dinámica", e: "🏋️️", f: "F = m·a", d: "La aceleración es directamente proporcional a la fuerza e inversamente a la masa.", tip: "Empujar un carrito vacío vs lleno."},
                 {t: "Tercera Ley de Newton", b: "Dinámica", e: "🪃", f: "Acción y Reacción", d: "A toda fuerza de acción corresponde otra de igual magnitud y sentido opuesto.", tip: "El retroceso al disparar un arma."},
                 {t: "Trabajo Mecánico", b: "Energía y Trabajo", e: "⚙️", f: "W = F · d · cos(θ)", d: "Producto de la fuerza aplicada por el desplazamiento en la misma dirección.", tip: "Unidades in Joules (J)."},
                 {t: "Energía Cinética", b: "Energía y Trabajo", e: "⚡", f: "K = ½ · m · v²", d: "Energía que posee un cuerpo en virtud de su movimiento.", tip: "Depende directamente de la masa y del cuadrado de la velocidad."},
-                {t: "Potencia Mecánica", b: "Trabajo y Potencia", e: "💡", f: "P = W / t", d: "Rapidez con la que se realiza un trabajo o se transfiere energía.", tip: "Unidades en Watts (W)."}
+                {t: "Potencia Mecánica", b: "Trabajo y Potencia", e: "💡", f: "P = W / t", d: "Rapidez con la que se realiza un trabajo o se transfiere energía.", tip: "Unidades in Watts (W)."}
             ];
             for(let i=1; i<=50; i++) {
                 const base = topics[(i - 1) % topics.length];
@@ -411,7 +411,7 @@
                 {t: "Pendiente de la Recta", b: "Relaciones y Álgebra", e: "📈", f: "m = (y₂ - y₁) / (x₂ - x₁)", d: "Medida de la inclinación de una recta respecto al eje de las abscisas.", tip: "Si m > 0 es creciente; si m < 0 es decreciente."},
                 {t: "Función Cuadrática", b: "Relaciones y Álgebra", e: "📉", f: "f(x) = ax² + bx + c", d: "Función polinómica de segundo grado cuya representación gráfica es una parábola.", tip: "El vértice se calcula con (-b / 2a, -Δ / 4a)."},
                 {t: "Función Inversa", b: "Relaciones y Álgebra", e: "🔄", f: "f⁻¹(x) intercambiando x e y", d: "Función que deshace la acción de la función original.", tip: "Se despeja x en función de y y luego se intercambian variables."},
-                {t: "Media Aritmética Ponderada", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ · wᵢ) / Σwᵢ", d: "Promedio que asigna pesos o ponderaciones específicas a cada valor.", tip: "Multiplique cada dato por su respectivo peso antes de sumar."},
+                {t: "Media Aritmética Ponderada", b: "Estadística", e: "📊", f: "x̄ = Σ(xᵢ · wᵢ) / Σwᵢ", d: "Promedio que asigna pesos o ponderaciones específicas a cada valor.", tip: "Multiplique cada dato por sus respectivo peso antes de sumar."},
                 {t: "Desviación Estándar", b: "Estadística", e: "📐", f: "σ = √[Σ(xᵢ - x̄)² / n]", d: "Medida de dispersión que indica qué tan alejados están los datos de la media.", tip: "A mayor desviación, mayor dispersión de los datos."}
             ];
             for(let i=1; i<=50; i++) {
@@ -579,7 +579,7 @@
         }
 
         const civicaCardsList = [
-            { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
+            { title: "Ficha 1: Régimen Democrático", block: "Democracia", frontEmoji: "🗳️", frontText: "Mnemotecnia: \"P-L-U-R-A\"", backTitle: "Definición MEP 2026", backText: "Pluralismo político, Ley suprema (Constitución), Urnas transparentes, Respeto a minorías, Alternancia en el poder.", tip: "Fundamento de la soberanía popular." },
             { title: "Ficha 2: Régimen Dictatorial", block: "Sistemas Políticos", frontEmoji: "🛑", frontText: "Mnemotecnia: \"D-I-C-T-A\"", backTitle: "Definición MEP 2026", backText: "Dominio absoluto de una facción, Inexistencia de oposición legal, Censura de prensa, Tiranía institucional.", tip: "Concentración de poderes sin control ciudadano." },
             { title: "Ficha 3: Régimen Parlamentario vs. Presidencialista", block: "Sistemas Políticos", frontEmoji: "🏛️", frontText: "Mnemotecnia: \"P-R-E-S\"", backTitle: "Definición MEP 2026", backText: "Ejecutivo electo por votación popular directa independiente del Parlamento (Costa Rica/EE. UU.).", tip: "Formas de organización de los poderes del Estado." },
             { title: "Ficha 4: Constitucionalismo en CR", block: "Constitución Política", frontEmoji: "📜", frontText: "Mnemotecnia: \"L-E-Y-E-S\"", backTitle: "Definición MEP 2026", backText: "Ley de la República subordinada a la Constitución, Estabilidad institucional, Estado de Derecho supremo.", tip: "Supremacía de la Constitución Política." },
@@ -689,7 +689,7 @@
             }
         };
 
-        let currentSubjectKey = 'quimica'; // Por defecto iniciamos en Química
+        let currentSubjectKey = 'quimica'; // Iniciamos por defecto en Química
         let currentCardIdx = 0;
         let currentQuestionIdx = 0;
         let cardStatuses = {};
@@ -778,7 +778,7 @@
             const counterEl = document.getElementById('cardCounter');
             const container = document.getElementById('flashcardSingleContainer');
             
-            if (titleEl) titleEl.innerHTML = `<span>${sub.icon} Fichas Mnemotécnicas y Vídeos: ${sub.name}</span>`;
+            if (titleEl) titleEl.innerHTML = `<span>${sub.icon} Fichas y Vídeos: ${sub.name}</span>`;
             if (counterEl) {
                 counterEl.className = `text-xs px-3 py-1 rounded-full font-semibold border ${sub.badgeNeon}`;
                 counterEl.innerText = `Ficha ${currentCardIdx + 1} de ${sub.flashcards.length}`;
@@ -879,7 +879,7 @@
             const sub = database[currentSubjectKey];
             const qSection = document.getElementById('questionBankSection');
             
-            // Ocultar banco de preguntas en Química
+            // Ocultar banco de preguntas exclusivamente en Química
             if (currentSubjectKey === 'quimica') {
                 if (qSection) qSection.style.display = 'none';
                 return;
